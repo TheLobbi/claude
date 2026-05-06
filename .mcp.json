@@ -76,7 +76,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@syncfusion/blazor-assistant@latest"
+        "@syncfusion/blazor-assistant@2.0.1"
       ],
       "env": {
         "SYNCFUSION_API_KEY": "${SYNCFUSION_API_KEY}"
