@@ -54,9 +54,27 @@
     ],
     "requires": []
   },
+  "contextEntry": "CONTEXT_SUMMARY.md",
   "context": {
+    "entry": "CONTEXT_SUMMARY.md",
     "title": "Claude Code Expert v8",
     "summary": "Modern second brain for Claude Code: deploys the 5-layer stack (CLAUDE.md + skills + hooks + agents + memory), bridges engram (tier-1 working memory) with the user's Obsidian vault (tier-2 durable knowledge) via a memory-consolidator agent, and ships 14 behavior-triggering skills + 11 commands + 18 agents + a 22-tool MCP reference server. Route tasks via /cc-help.",
+    "tags": [
+      "claude-code",
+      "second-brain",
+      "engram",
+      "obsidian",
+      "memory",
+      "mcp",
+      "skills",
+      "agents",
+      "commands",
+      "orchestration",
+      "autonomy"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
     "maxTokens": 500,
     "excludeGlobs": [
       "**/node_modules/**",
