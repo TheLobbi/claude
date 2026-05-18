@@ -6,8 +6,8 @@
     "name": "Markus Ahling"
   },
   "license": "MIT",
-  "homepage": "https://github.com/markus41/claude/tree/main/plugins/scrapin-aint-easy",
   "repository": "https://github.com/markus41/claude",
+  "homepage": "https://github.com/markus41/claude/tree/main/plugins/scrapin-aint-easy",
   "keywords": [
     "documentation",
     "algorithms",
@@ -18,13 +18,74 @@
     "interview-setup",
     "code-intelligence"
   ],
-  "mcpServers": {
-    "scrapin-aint-easy": {
-      "command": "node",
-      "args": [
-        "${CLAUDE_PLUGIN_ROOT}/dist/cli.js",
-        "--mcp"
-      ]
-    }
+  "permissions": {
+    "requires": [
+      "read",
+      "write",
+      "bash",
+      "glob",
+      "grep"
+    ],
+    "optional": [
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "documentation-crawling",
+      "knowledge-graph-search",
+      "algorithm-library",
+      "codebase-drift-detection",
+      "agent-drift-monitoring",
+      "interview-project-setup"
+    ],
+    "requires": []
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md",
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "Scrapin' Ain't Easy",
+    "summary": "Documentation intelligence engine: graph-based doc crawling, algorithm library, codebase drift detection, agent prompt drift monitoring, interview-driven project setup",
+    "tags": [
+      "documentation",
+      "algorithms",
+      "drift-detection",
+      "knowledge-graph",
+      "code-intelligence"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 800,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "commands/scrapin-search.md",
+      "commands/scrapin-crawl.md",
+      "commands/scrapin-diff.md",
+      "commands/scrapin-algo.md",
+      "commands/scrapin-drift.md",
+      "commands/scrapin-status.md",
+      "commands/scrapin-setup.md",
+      "agents/doc-crawler.md",
+      "agents/doc-graph-builder.md",
+      "agents/algo-indexer.md",
+      "agents/code-drift-detector.md",
+      "agents/agent-drift-detector.md",
+      "skills/code-review/SKILL.md",
+      "skills/bug-triage/SKILL.md",
+      "skills/migration-planner/SKILL.md",
+      "skills/project-setup/SKILL.md",
+      "skills/release-notes/SKILL.md"
+    ]
   }
 }
