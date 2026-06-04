@@ -11,6 +11,7 @@ risk: medium
 cost: medium
 description: Analyzes notification delivery metrics, user engagement, channel performance, and provides insights for optimization
 model: haiku
+effort: low
 tools:
   - Read
   - Write

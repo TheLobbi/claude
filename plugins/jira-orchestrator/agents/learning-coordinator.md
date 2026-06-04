@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Coordinates real-time learning across all agents, manages knowledge consolidation, and optimizes agent selection based on historical performance
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

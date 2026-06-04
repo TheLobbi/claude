@@ -11,6 +11,7 @@ risk: medium
 cost: medium
 description: Creates and manages PagerDuty incidents for critical Jira Orchestrator events with proper severity, deduplication, and auto-resolution
 model: haiku
+effort: low
 tools:
   - Read
   - Write

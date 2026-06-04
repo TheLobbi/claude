@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Track commits, map them to Jira issues, and post detailed commit summaries with Confluence references
 model: haiku
+effort: low
 tools:
   - git
   - jira-api

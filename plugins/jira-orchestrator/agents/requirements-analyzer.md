@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Deep analysis of Jira issue requirements to ensure clarity, completeness, and testability before implementation begins
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

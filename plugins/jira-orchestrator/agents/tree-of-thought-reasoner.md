@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Branching exploration agent for problems with multiple solution paths. ALWAYS queries Context7 for documentation and explores trade-offs systematically.
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

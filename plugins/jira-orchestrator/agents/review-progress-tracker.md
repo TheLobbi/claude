@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Track review status across all sub-item chunks with progress dashboards in Jira
 model: haiku
+effort: low
 tools:
   - Bash
   - Read

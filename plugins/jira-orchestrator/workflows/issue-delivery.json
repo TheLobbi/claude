@@ -1,0 +1,77 @@
+{
+  "name": "issue-delivery",
+  "displayName": "Jira Issue Delivery",
+  "description": "End-to-end delivery of a single Jira issue: triage, enrichment, implementation, review, PR, and ship — keeping Jira transitions and worklogs in sync at every step.",
+  "version": "1.0.0",
+  "type": "sequential",
+  "category": "development",
+  "triggers": [
+    { "type": "command", "pattern": "/jira:workflow run issue-delivery" }
+  ],
+  "inputs": [
+    { "name": "issueKey", "type": "string", "description": "Jira issue key, e.g. PROJ-123", "required": true }
+  ],
+  "outputs": [
+    { "name": "prUrl", "type": "string", "description": "URL of the opened/merged pull request", "source": "pr" }
+  ],
+  "steps": [
+    {
+      "id": "triage",
+      "name": "Triage & classify",
+      "type": "command",
+      "command": "/jira:triage",
+      "inputs": { "issueKey": "$.input.issueKey" },
+      "outputs": { "classification": "$.output" }
+    },
+    {
+      "id": "prepare",
+      "name": "Enrich & decompose",
+      "type": "command",
+      "command": "/jira:prepare",
+      "dependsOn": ["triage"],
+      "inputs": { "issueKey": "$.input.issueKey" }
+    },
+    {
+      "id": "work",
+      "name": "Implement (6-phase protocol)",
+      "type": "command",
+      "command": "/jira:work",
+      "dependsOn": ["prepare"],
+      "inputs": { "issueKey": "$.input.issueKey" },
+      "retries": { "max": 2, "backoff": "exponential", "delayMs": 2000 }
+    },
+    {
+      "id": "review",
+      "name": "Quality & council review",
+      "type": "command",
+      "command": "/jira:review",
+      "dependsOn": ["work"]
+    },
+    {
+      "id": "pr",
+      "name": "Open pull request",
+      "type": "command",
+      "command": "/jira:pr",
+      "dependsOn": ["review"],
+      "outputs": { "prUrl": "$.output.url" }
+    },
+    {
+      "id": "ship",
+      "name": "Ship & transition",
+      "type": "command",
+      "command": "/jira:ship",
+      "dependsOn": ["pr"],
+      "when": "$.review.approved == true"
+    }
+  ],
+  "errorHandling": {
+    "strategy": "abort",
+    "notifications": [{ "type": "slack", "target": "#jira-orchestrator" }]
+  },
+  "monitoring": { "enabled": true, "logLevel": "info", "checkpoints": true },
+  "metadata": {
+    "author": "jira-orchestrator",
+    "tags": ["jira", "delivery", "pipeline"],
+    "status": "stable"
+  }
+}

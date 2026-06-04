@@ -1,6 +1,6 @@
 ---
 name: harness-platform
-description: Harness Platform administration including delegates, RBAC, connectors, secrets, templates, policy as code (OPA), user management, audit logs, and governance
+description: This skill should be used when the user asks to "configure Harness delegates", "set up Harness RBAC", "manage connectors/secrets/templates", "apply OPA policy as code", or "review audit logs" — Harness platform administration and governance.
 allowed-tools: [Bash, Read, Write, Edit, Glob, Grep, Task, WebFetch, WebSearch]
 dependencies: [harness-mcp, harness-cd, harness-ci]
 triggers: [harness delegate, harness rbac, harness connector, harness secret, harness template, harness policy, harness opa, harness user, harness admin]

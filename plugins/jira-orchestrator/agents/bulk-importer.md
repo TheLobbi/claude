@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Imports issues from CSV, Excel, and JSON files with field mapping, validation, duplicate detection, and comprehensive error handling
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

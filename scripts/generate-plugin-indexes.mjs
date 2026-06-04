@@ -79,6 +79,15 @@ function buildNormalizedFrontmatter({ data, body, pluginName, type, fileName }) 
     ...(data.allowedTools ? { allowedTools: data.allowedTools } : {}),
     ...(data['allowed-tools'] ? { 'allowed-tools': data['allowed-tools'] } : {}),
     ...(data.examples ? { examples: data.examples } : {}),
+    // Modern Claude Code agent frontmatter (preserved when present; absent for
+    // plugins that do not use it, so their normalized output is unchanged).
+    ...(data.effort ? { effort: String(data.effort) } : {}),
+    ...(data.maxTurns !== undefined ? { maxTurns: data.maxTurns } : {}),
+    ...(data.disallowedTools ? { disallowedTools: data.disallowedTools } : {}),
+    ...(data.skills ? { skills: data.skills } : {}),
+    ...(data.memory !== undefined ? { memory: data.memory } : {}),
+    ...(data.background !== undefined ? { background: data.background } : {}),
+    ...(data.isolation !== undefined ? { isolation: data.isolation } : {}),
   };
 }
 

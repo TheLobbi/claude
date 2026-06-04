@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Extracts learnable patterns from task outcomes using extended thinking (8000 token budget) to identify success factors, failure modes, and transferable knowledge
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

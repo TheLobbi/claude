@@ -11,6 +11,7 @@ risk: medium
 cost: medium
 description: Break down PR reviews into small, manageable tasks that can be reviewed independently in 5-15 minute chunks
 model: sonnet
+effort: medium
 tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_create_issue

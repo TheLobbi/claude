@@ -5,6 +5,21 @@
   "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
+      "name": "jira:advise",
+      "intent": "Get prioritized, evidence-backed recommendations for the next best actions across Jira, sprints, PRs, and CI",
+      "tags": [
+        "jira-orchestrator",
+        "command",
+        "advisor"
+      ],
+      "inputs": [
+        "scope"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/advise.md"
+    },
+    {
       "name": "jira:approve",
       "intent": "Request, view, and process approvals (pr, deploy, release, issue)",
       "tags": [
@@ -18,7 +33,7 @@
       "path": "commands/approve.md"
     },
     {
-      "name": "jira:batch",
+      "name": "jira-orchestrator:batch",
       "intent": "Jira Batch Operations",
       "tags": [
         "jira-orchestrator",
@@ -229,7 +244,7 @@
       "path": "commands/export.md"
     },
     {
-      "name": "jira:harness-review",
+      "name": "jira-orchestrator:harness-review",
       "intent": "Harness PR Review Command",
       "tags": [
         "jira-orchestrator",
@@ -255,7 +270,7 @@
       "path": "commands/infra.md"
     },
     {
-      "name": "jira:install-hooks",
+      "name": "jira-orchestrator:install-hooks",
       "intent": "/jira:install-hooks",
       "tags": [
         "jira-orchestrator",
@@ -346,7 +361,7 @@
       "path": "commands/plan-prs.md"
     },
     {
-      "name": "jira:portfolio",
+      "name": "jira-orchestrator:portfolio",
       "intent": "Portfolio Management",
       "tags": [
         "jira-orchestrator",
@@ -359,7 +374,7 @@
       "path": "commands/portfolio.md"
     },
     {
-      "name": "jira:pr-fix",
+      "name": "pr-fix",
       "intent": "[DEPRECATED] Use /jira:pr --fix instead",
       "tags": [
         "jira-orchestrator",
@@ -438,7 +453,7 @@
       "path": "commands/quality.md"
     },
     {
-      "name": "jira:reason",
+      "name": "jira-orchestrator:reason",
       "intent": "Reasoning Command",
       "tags": [
         "jira-orchestrator",
@@ -610,6 +625,21 @@
       "risk": "medium",
       "cost": "medium",
       "path": "commands/work.md"
+    },
+    {
+      "name": "jira:workflow",
+      "intent": "List, inspect, validate, and run declarative multi-agent workflows for Jira delivery",
+      "tags": [
+        "jira-orchestrator",
+        "command",
+        "workflow"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/workflow.md"
     }
   ]
 }

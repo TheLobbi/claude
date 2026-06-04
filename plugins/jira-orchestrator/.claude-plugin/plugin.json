@@ -1,7 +1,8 @@
 {
+  "$schema": "https://claude.local/schemas/plugin.schema.json",
   "name": "jira-orchestrator",
-  "version": "8.0.0",
-  "description": "Enterprise Jira orchestration with 81 agents, 16 teams, 46 commands, 11 skills. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, and structured reasoning frameworks.",
+  "version": "8.1.0",
+  "description": "Enterprise Jira orchestration with 82 agents, 16 teams, 48 commands, 14 skills, 5 schema-validated workflows, and a read-only advisor. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, declarative workflow definitions, lifecycle telemetry hooks, and structured reasoning frameworks.",
   "author": {
     "name": "Markus Ahling",
     "email": "markus@lobbi.io"
@@ -13,6 +14,7 @@
     "harness",
     "ci-cd",
     "workflow",
+    "advisor",
     "automation",
     "agents",
     "clean-architecture",
@@ -40,10 +42,38 @@
   "license": "MIT",
   "repository": "https://github.com/Lobbi-Docs/claude",
   "contextEntry": "CONTEXT_SUMMARY.md",
+  "permissions": {
+    "requires": [
+      "read",
+      "write",
+      "bash",
+      "glob",
+      "grep"
+    ],
+    "optional": [
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "jira",
+      "orchestration",
+      "atlassian",
+      "harness",
+      "ci-cd",
+      "workflow",
+      "advisor",
+      "automation",
+      "agents"
+    ],
+    "requires": []
+  },
   "context": {
     "entry": "CONTEXT_SUMMARY.md",
     "title": "Jira Orchestrator",
-    "summary": "Enterprise Jira orchestration with 81 agents, 16 teams, 46 commands, 11 skills. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, and structured reasoning frameworks.",
+    "summary": "Enterprise Jira orchestration with 82 agents, 16 teams, 48 commands, 14 skills, 5 schema-validated declarative workflows, and a read-only advisor. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, and structured reasoning frameworks.",
     "tags": [
       "jira",
       "orchestration",
@@ -51,6 +81,7 @@
       "harness",
       "ci-cd",
       "workflow",
+      "advisor",
       "automation",
       "mcp"
     ],
@@ -62,7 +93,9 @@
       "**/node_modules/**",
       "**/dist/**",
       "**/build/**",
-      "**/*.zip"
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
     ],
     "lazyLoadSections": [
       "CLAUDE.md",

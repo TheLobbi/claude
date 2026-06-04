@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: /jira:install-hooks
 ---
 
 # /jira:install-hooks

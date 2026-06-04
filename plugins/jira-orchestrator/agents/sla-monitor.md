@@ -8,7 +8,9 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: SLA Monitor Agent
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

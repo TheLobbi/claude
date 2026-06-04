@@ -1,6 +1,6 @@
 ---
 name: clean-architecture
-description: Clean Architecture and SOLID principles implementation including dependency injection, layer separation, domain-driven design, hexagonal architecture, and code quality patterns
+description: This skill should be used when the user asks to "apply clean architecture", "follow SOLID principles", "add dependency injection", "separate layers", "use hexagonal/onion architecture", "domain-driven design", or needs guidance on structuring code into clean, testable, decoupled layers.
 allowed-tools:
   - Bash
   - Read

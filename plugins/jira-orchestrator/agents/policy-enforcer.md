@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Policy definition and evaluation engine for code quality gates, security requirements, review policies, branch protection, and compliance checks
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

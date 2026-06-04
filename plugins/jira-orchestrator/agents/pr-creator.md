@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Create high-quality pull requests via Harness Code with Confluence documentation and Jira integration
 model: haiku
+effort: low
 tools:
   - Bash
   - Read

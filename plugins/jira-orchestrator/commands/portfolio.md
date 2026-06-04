@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Portfolio Management
 ---
 
 # Portfolio Management

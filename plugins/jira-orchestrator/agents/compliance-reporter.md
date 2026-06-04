@@ -8,7 +8,9 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Compliance Reporter Agent
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

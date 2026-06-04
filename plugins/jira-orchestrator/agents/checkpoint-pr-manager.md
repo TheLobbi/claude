@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Manage incremental draft PRs during CODE phase when splitting strategy requires multiple PRs
 model: haiku
+effort: low
 tools:
   - Bash
   - Read

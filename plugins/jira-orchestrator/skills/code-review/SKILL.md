@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Comprehensive code review knowledge including security, performance, accessibility, and quality standards across multiple languages and frameworks
+description: This skill should be used when the user asks to "review code", "check changes", "analyze a PR", "do a security review", or "assess code quality" — providing comprehensive review across correctness, security, performance, accessibility, and testing.
 trigger_phrases: [review code, check changes, analyze PR, code quality, security review]
 categories: [review, quality, security, performance, accessibility, testing]
 version: 1.0.0

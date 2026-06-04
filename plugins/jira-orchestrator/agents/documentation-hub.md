@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Unified documentation agent for TDD, ADR, API docs, runbooks, Confluence pages, and Jira-Confluence linking with optimized CQL queries
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

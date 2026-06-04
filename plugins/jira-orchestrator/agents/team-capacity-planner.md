@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Advanced team capacity planning with workload tracking, availability management, sprint forecasting, over-allocation detection, resource leveling, and velocity analysis
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

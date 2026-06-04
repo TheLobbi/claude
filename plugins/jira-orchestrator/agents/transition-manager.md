@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Intelligent Jira workflow state management with fuzzy matching and validation
 model: haiku
+effort: low
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getTransitionsForJiraIssue

@@ -1,0 +1,52 @@
+{
+  "name": "sprint-planning",
+  "displayName": "Sprint Planning",
+  "description": "Plan a sprint end to end: compute team capacity, select and sequence backlog items, balance workload across assignees, and align with the roadmap.",
+  "version": "1.0.0",
+  "type": "sequential",
+  "category": "planning",
+  "triggers": [
+    { "type": "command", "pattern": "/jira:workflow run sprint-planning" },
+    { "type": "schedule", "schedule": "0 9 * * 1" }
+  ],
+  "inputs": [
+    { "name": "boardId", "type": "string", "description": "Jira board id", "required": true },
+    { "name": "sprintGoal", "type": "string", "description": "Optional sprint goal statement", "required": false }
+  ],
+  "steps": [
+    {
+      "id": "capacity",
+      "name": "Compute team capacity",
+      "type": "agent",
+      "agent": "team-capacity-planner",
+      "inputs": { "boardId": "$.input.boardId" },
+      "outputs": { "capacity": "$.output" }
+    },
+    {
+      "id": "plan",
+      "name": "Select & sequence backlog",
+      "type": "agent",
+      "agent": "sprint-planner",
+      "dependsOn": ["capacity"],
+      "inputs": { "capacity": "$.capacity.capacity", "goal": "$.input.sprintGoal" }
+    },
+    {
+      "id": "balance",
+      "name": "Balance workload",
+      "type": "agent",
+      "agent": "workload-balancer",
+      "dependsOn": ["plan"]
+    },
+    {
+      "id": "roadmap",
+      "name": "Align with roadmap",
+      "type": "agent",
+      "agent": "roadmap-planner",
+      "dependsOn": ["balance"],
+      "continueOnError": true
+    }
+  ],
+  "errorHandling": { "strategy": "abort" },
+  "monitoring": { "enabled": true, "logLevel": "info", "checkpoints": true },
+  "metadata": { "author": "jira-orchestrator", "tags": ["jira", "sprint", "planning"], "status": "stable" }
+}

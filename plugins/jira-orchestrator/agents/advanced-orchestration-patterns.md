@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Implements sophisticated orchestration patterns including Blackboard, Circuit Breaker, Dynamic Replanning, Hierarchical Decomposition, and Saga patterns for resilient multi-agent coordination
 model: opus
+effort: high
 tools:
   - Task
   - Read

@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Cross-project dependency detection, visualization, impact analysis, circular dependency detection, critical path calculation, and blocking issue identification
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

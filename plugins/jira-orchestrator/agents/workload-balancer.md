@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Workload distribution analysis and balancing with rebalancing recommendations, bottleneck identification, context switching analysis, meeting load impact assessment, and burnout risk detection.
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

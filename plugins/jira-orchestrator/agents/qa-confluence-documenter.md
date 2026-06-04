@@ -13,6 +13,7 @@ risk: medium
 cost: medium
 description: Creates visually impressive Confluence documentation with main hub pages and linked sub-pages for each task
 model: sonnet
+effort: medium
 tools:
   - mcp__plugin_jira-orchestrator_atlassian__getJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__getConfluencePage

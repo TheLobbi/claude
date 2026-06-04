@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Multi-level approval workflow orchestrator with gates, escalation rules, delegation, and comprehensive audit trails for PR, deployment, and release approvals
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

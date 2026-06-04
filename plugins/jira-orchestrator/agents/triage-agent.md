@@ -8,7 +8,9 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Jira Issue Triage Agent
 model: haiku
+effort: low
 tools:
   - Read
   - Grep

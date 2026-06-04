@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Multi-project portfolio management with aggregated metrics, cross-project dependencies, resource allocation, strategic alignment, and executive-level reporting
 model: opus
+effort: high
 tools:
   - Read
   - Write

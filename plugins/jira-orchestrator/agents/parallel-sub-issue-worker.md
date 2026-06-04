@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Discovers, analyzes dependencies, and coordinates parallel execution of Jira sub-issues using DAG-based scheduling with intelligent agent routing per sub-issue
 model: sonnet
+effort: medium
 tools:
   - Task
   - mcp__atlassian__getJiraIssue

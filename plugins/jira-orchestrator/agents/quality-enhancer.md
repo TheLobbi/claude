@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Enhanced code quality reviewer for orchestration workflow - validates best practices, security, performance, accessibility, and documentation
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Processes bulk Jira operations with intelligent batching, rate limiting, rollback support, and comprehensive progress tracking
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

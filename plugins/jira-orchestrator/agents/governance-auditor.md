@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Complete audit trail management for all decisions, compliance reporting, change log generation, access pattern analysis, risk assessment, and SOC2/ISO27001 evidence collection.
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

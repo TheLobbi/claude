@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Orchestrate the full completion workflow - PR creation, sub-item documentation, and QA transitions
 model: sonnet
+effort: medium
 tools:
   - Task
   - Bash

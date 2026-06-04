@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Log all documentation and interactions to PR comments for complete audit trail
 model: haiku
+effort: low
 tools:
   - mcp__atlassian__addCommentToJiraIssue
   - Bash

@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Generates high-quality conventional commit messages from Jira issue context and git diff analysis
 model: sonnet
+effort: medium
 tools:
   - mcp__atlassian__getJiraIssue
   - Bash

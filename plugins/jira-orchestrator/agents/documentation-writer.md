@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Comprehensive documentation writer for DOCUMENT phase - creates README, API docs, ADRs, code comments, changelogs, Confluence pages, user guides, and runbooks
 model: haiku
+effort: low
 tools:
   - Read
   - Write

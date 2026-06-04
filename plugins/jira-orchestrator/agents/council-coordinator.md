@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Coordinates agent council reviews using the blackboard pattern for collaborative multi-agent analysis
 model: sonnet
+effort: medium
 tools:
   - Task
   - Read

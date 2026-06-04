@@ -1,6 +1,6 @@
 ---
 name: task-details
-description: Enriches Jira tasks with comprehensive context, requirements analysis, and technical details through intelligent extraction, dependency mapping, and historical analysis
+description: This skill should be used when the user asks to "enrich a task", "add task details", "analyze requirements", "add context to an issue", "expand a ticket", or "estimate complexity" — enriching Jira issues with requirements, dependencies, and technical context.
 version: 1.0.0
 trigger_phrases:
   - "enrich task"

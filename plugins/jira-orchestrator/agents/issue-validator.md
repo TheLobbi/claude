@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: CRITICAL SAFETY AGENT - Validates issue key before ANY Jira operation. MUST be called first to prevent working on wrong issues.
 model: haiku
+effort: low
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__search

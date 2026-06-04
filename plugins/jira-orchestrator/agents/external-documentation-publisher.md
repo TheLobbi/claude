@@ -14,6 +14,7 @@ risk: medium
 cost: medium
 description: Publishes documentation to external platforms beyond Confluence - GitHub Wiki, API docs sites, GitBook, Notion, automated README updates, and blog posts
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Advanced quality analytics and intelligence system - tracks technical debt, quality trends, health scores, hotspots, security intelligence, and predictive quality metrics
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

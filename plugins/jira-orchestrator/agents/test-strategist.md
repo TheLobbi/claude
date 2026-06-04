@@ -8,7 +8,9 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-model: claude-haiku-4
+description: Test Strategist
+model: haiku
+effort: low
 tools:
   - Read
   - Grep

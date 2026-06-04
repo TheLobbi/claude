@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Create Confluence documentation at orchestration phases with Jira/PR linking
 model: sonnet
+effort: medium
 tools:
   - mcp__atlassian__createConfluencePage
   - mcp__atlassian__updateConfluencePage

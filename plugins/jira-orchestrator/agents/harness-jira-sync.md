@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Automate bidirectional synchronization between Harness CD and Jira for pipelines, deployments, Git repositories, pull requests, and code review comments using Harness MCP
 model: sonnet
+effort: medium
 tools:
   - Bash
   - Read

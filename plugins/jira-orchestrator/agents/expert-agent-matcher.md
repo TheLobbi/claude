@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Advanced expertise matching system - Deep multi-dimensional analysis to select optimal experts with confidence scoring, team composition optimization, and load balancing
 model: haiku
+effort: low
 tools:
   - Read
   - Grep

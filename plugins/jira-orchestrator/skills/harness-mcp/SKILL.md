@@ -1,6 +1,6 @@
 ---
 name: harness-mcp
-description: Harness MCP (Model Context Protocol) server integration for AI-powered CD operations, pipeline management, Git repositories, pull requests, code review comments, and bidirectional Jira synchronization
+description: This skill should be used when the user asks to "use the Harness MCP", "connect Harness to Jira", "manage Harness pipelines/repos/PRs from AI", or "sync Jira to Harness" — AI-driven Harness CD operations and Git/PR automation.
 allowed-tools:
   - Bash
   - Read

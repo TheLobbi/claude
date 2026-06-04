@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Expert infrastructure agent for creating modular Harness repositories, managing Kubernetes deployments, Helm charts, and Terraform infrastructure with deep GitOps knowledge
 model: sonnet
+effort: medium
 tools:
   - Bash
   - Read

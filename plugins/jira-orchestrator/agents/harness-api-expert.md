@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Expert agent for Harness REST API operations including authentication, organizations, projects, pipelines, triggers, services, environments, connectors, secrets, executions, and module-specific APIs (GitOps, Feature Flags, IaCM, Chaos, STO, CCM)
 model: sonnet
+effort: medium
 tools:
   - Bash
   - Read

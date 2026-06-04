@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Automated sprint planning with capacity calculation, velocity tracking, backlog prioritization, commitment suggestions, sprint health monitoring, and adaptive learning from past sprint outcomes
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

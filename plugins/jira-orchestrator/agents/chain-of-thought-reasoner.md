@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Linear step-by-step reasoning agent for sequential problem solving. ALWAYS queries Context7 for documentation before reasoning about any library, framework, or API.
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

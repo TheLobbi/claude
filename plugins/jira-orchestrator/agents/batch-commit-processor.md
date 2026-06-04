@@ -12,6 +12,11 @@ risk: medium
 cost: medium
 description: Process multiple commits in batch with time aggregation and comment deduplication
 model: sonnet
+effort: medium
+tools:
+  - Bash
+  - Read
+  - Grep
 ---
 
 # Batch Commit Processor Agent

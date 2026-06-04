@@ -1,9 +1,10 @@
 # jira-orchestrator Context Summary
 
 ## Plugin purpose
-Enterprise Jira orchestration with 81 agents, 16 teams, 46 commands, 11 skills. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, and structured reasoning frameworks.
+Enterprise Jira orchestration with 82 agents, 16 teams, 48 commands, 14 skills, and 5 schema-validated declarative workflows. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, a read-only `jira-advisor` agent, lifecycle telemetry hooks, and structured reasoning frameworks.
 
 ## Command index
+- `commands/advise.md`
 - `commands/approve.md`
 - `commands/batch.md`
 - `commands/branch.md`
@@ -16,7 +17,8 @@ Enterprise Jira orchestration with 81 agents, 16 teams, 46 commands, 11 skills. 
 - `commands/council.md`
 - `commands/create-repo.md`
 - `commands/deploy.md`
-- _... 34 more entries omitted for bootstrap brevity; lazy-load on demand._
+- `commands/workflow.md` — run declarative workflows (see Workflow index)
+- _... 35 more entries omitted for bootstrap brevity; lazy-load on demand._
 
 ## Agent index
 - `agents/advanced-orchestration-patterns.md`
@@ -31,6 +33,7 @@ Enterprise Jira orchestration with 81 agents, 16 teams, 46 commands, 11 skills. 
 - `agents/code-reviewer.md`
 - `agents/commit-message-generator.md`
 - `agents/commit-orchestrator.md`
+- `agents/jira-advisor.md` — read-only advisor: recommends next best actions
 - _... 69 more entries omitted for bootstrap brevity; lazy-load on demand._
 
 ## Skill index
@@ -47,6 +50,14 @@ Enterprise Jira orchestration with 81 agents, 16 teams, 46 commands, 11 skills. 
 - `skills/reasoning/complex-reasoning.md`
 - `skills/reasoning/documentation-lookup.md`
 - _... 2 more entries omitted for bootstrap brevity; lazy-load on demand._
+
+## Workflow index
+Declarative, schema-validated multi-agent workflows (run via `/jira:workflow`):
+- `workflows/issue-delivery.json` — sequential: triage → prepare → work → review → PR → ship
+- `workflows/bug-triage.json` — conditional: classify, then escalate or normal pipeline
+- `workflows/epic-decomposition.json` — hierarchical: epic → enriched stories
+- `workflows/sprint-planning.json` — sequential: capacity → plan → balance → roadmap
+- `workflows/pr-review-board.json` — parallel: code + security + QA, then synthesized verdict
 
 ## When-to-load guidance
 - Load this summary first for routing, scope checks, and high-level capability matching.

@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Event sourcing system for complete orchestration audit trail, state reconstruction, time-travel debugging, and event replay capabilities
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

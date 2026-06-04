@@ -1,6 +1,6 @@
 ---
 name: Confluence Documentation Patterns
-description: Guide for creating and managing technical documentation in Confluence with Jira integration.
+description: This skill should be used when the user asks to "create a Confluence page", "write documentation", "write a TDD", "create an ADR", "write a runbook", or "publish to Confluence" — authoring and linking technical documentation in Confluence from Jira work.
 version: 1.0.0
 categories: [confluence, documentation, atlassian, knowledge-base, technical-writing]
 trigger_phrases:

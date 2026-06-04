@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Comprehensive code reviewer for orchestration workflow - deep analysis of logic, security, performance, accessibility, test coverage, and documentation quality before PR creation
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

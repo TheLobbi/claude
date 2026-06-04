@@ -1,6 +1,6 @@
 ---
 name: pr-workflow
-description: Comprehensive knowledge for creating, managing, and merging pull requests with Jira integration, following best practices for code review, deployment, and team collaboration
+description: This skill should be used when the user asks to "create a PR", "open a pull request", "merge changes", "set up a git/PR workflow", or "request review" — creating, managing, and merging pull requests linked to Jira issues.
 version: 1.0.0
 trigger_phrases: [create PR, pull request, merge changes, git workflow, review request]
 categories: [git, pr, workflow, deployment, code-review]

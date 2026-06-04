@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Manages Confluence documentation based on Jira issues - reads requirements, writes technical docs, creates runbooks, syncs with Jira, maintains documentation lifecycle
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Orchestrate code review workflows from creation to completion with progress tracking
 model: sonnet
+effort: medium
 tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_create_issue

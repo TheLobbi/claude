@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Visual roadmap generation with timeline planning, dependency-aware scheduling, release train coordination, milestone tracking, and capacity-based forecasting
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

@@ -11,6 +11,7 @@ risk: medium
 cost: medium
 description: Transition Jira issues and all sub-items to QA status after work completion
 model: haiku
+effort: low
 tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_transition_issue

@@ -14,6 +14,7 @@ risk: medium
 cost: medium
 description: Real-time orchestration metrics dashboard with SLA tracking, quality metrics, throughput analysis, and agent performance monitoring
 model: haiku
+effort: low
 tools:
   - Read
   - Write

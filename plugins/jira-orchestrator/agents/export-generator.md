@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Generates PDF reports, Excel/CSV exports, and JSON exports with custom templates, scheduling, and distribution capabilities
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

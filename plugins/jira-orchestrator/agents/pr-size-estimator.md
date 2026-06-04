@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Analyze planned work and estimate final PR size to recommend splitting strategy before CODE phase begins
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

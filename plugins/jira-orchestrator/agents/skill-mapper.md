@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Team skills inventory management with expertise tracking, skill gap analysis, training recommendations, optimal task assignment, knowledge transfer tracking, and skill coverage reporting
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

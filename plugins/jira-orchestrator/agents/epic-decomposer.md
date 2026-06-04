@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Breaks down epics into manageable user stories and tasks using INVEST principles, user journey analysis, dependency mapping, and adaptive learning from past decompositions
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

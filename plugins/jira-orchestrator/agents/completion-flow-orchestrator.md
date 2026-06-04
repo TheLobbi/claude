@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Orchestrates the complete task completion flow including sub-issue monitoring, gap analysis, Confluence documentation, commit creation, and issue commenting with full traceability
 model: sonnet
+effort: medium
 tools:
   - git (status, diff, log, commit, push)
   - jira (get-issue, update-issue, add-comment, transition-issue, search-issues)

@@ -12,6 +12,7 @@ risk: medium
 cost: medium
 description: Reviews JIRA tickets in QA status, improves content quality, condenses descriptions, and ensures completeness
 model: sonnet
+effort: medium
 tools:
   - mcp__plugin_jira-orchestrator_atlassian__getJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__editJiraIssue

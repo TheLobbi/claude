@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Multi-project release planning, release train management, automated release notes, rollback coordination, feature flag management, and go/no-go decision support
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

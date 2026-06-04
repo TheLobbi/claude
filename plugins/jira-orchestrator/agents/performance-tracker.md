@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Tracks and analyzes agent performance metrics in real-time, generates performance reports, identifies trends, and provides data-driven recommendations
 model: haiku
+effort: low
 tools:
   - Read
   - Write

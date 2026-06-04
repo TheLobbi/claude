@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Intelligence and analytics module for the jira-orchestrator - provides predictive analytics, learning from history, smart prioritization, velocity tracking, and pattern recognition to optimize agent selection and task execution
 model: sonnet
+effort: medium
 tools:
   - Read
   - Write

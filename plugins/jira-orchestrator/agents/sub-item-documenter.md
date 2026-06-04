@@ -11,6 +11,7 @@ risk: medium
 cost: medium
 description: Document implementation details on all Jira sub-items after work completion
 model: haiku
+effort: low
 tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_add_comment

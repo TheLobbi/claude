@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Deep root cause analysis agent using 5 Whys, Fishbone diagrams, and causal chain analysis. ALWAYS grounds analysis in documentation and system facts.
 model: opus
+effort: high
 tools:
   - Read
   - Grep

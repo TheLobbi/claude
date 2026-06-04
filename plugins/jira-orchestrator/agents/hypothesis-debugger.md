@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Hypothesis-driven debugging agent that systematically tests theories to find root causes. ALWAYS checks documentation for expected behavior before forming hypotheses.
 model: sonnet
+effort: medium
 tools:
   - Read
   - Grep

@@ -10,6 +10,7 @@ risk: medium
 cost: medium
 description: Enriches Jira tasks with technical context, requirements analysis, codebase references, and adaptive learning from past enrichment effectiveness.
 model: haiku
+effort: low
 tools:
   - Read
   - Grep

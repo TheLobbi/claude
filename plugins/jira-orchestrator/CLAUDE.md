@@ -5,6 +5,7 @@
 - Keep edits scoped, minimal, and aligned with this plugin's existing architecture.
 
 ## Supported Commands
+- `advise` (see `commands/advise.md`) — read-only advisor: next best actions
 - `approve` (see `commands/approve.md`)
 - `batch` (see `commands/batch.md`)
 - `branch` (see `commands/branch.md`)
@@ -51,6 +52,17 @@
 - `team` (see `commands/team.md`)
 - `triage` (see `commands/triage.md`)
 - `work` (see `commands/work.md`)
+- `workflow` (see `commands/workflow.md`) — run declarative multi-agent workflows
+
+## Workflows & Advisor (v8.1)
+- Declarative workflows live in `workflows/*.json`, validated against
+  `workflows/schema/workflow.schema.json` (`node workflows/validate.mjs`). Run them
+  with `/jira:workflow run <name>`; inspect with `/jira:workflow show <name>`.
+- The read-only `agents/jira-advisor.md` recommends the next best actions, which
+  workflow to launch, and which agents to deploy. Invoke via `/jira:advise`.
+- Lifecycle telemetry: `hooks/scripts/capture-agent-telemetry.sh` (SubagentStop) and
+  `hooks/scripts/lessons-capture.sh` (PostToolUseFailure) write JSONL under
+  `.claude/orchestration/telemetry/`.
 
 ## Prohibited Actions
 - Do not delete or rename `.claude-plugin/plugin.json`.
