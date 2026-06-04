@@ -4,6 +4,10 @@ name: Jira PR Sync
 # Benefits: Keeps Jira issues updated with PR status, reduces manual status updates
 # Triggers: PR opened, updated, merged, or closed
 # Security: Uses repository secrets for Jira authentication
+#
+# Non-blocking: every Jira step is gated on the JIRA_* secrets being present, so the
+# job is a clean no-op (success) until those secrets are configured. Once they are
+# set, the steps run normally and surface real failures.
 
 on:
   pull_request:
@@ -21,6 +25,13 @@ jobs:
     # Skip if PR is from Dependabot or other bots (optional)
     if: github.actor != 'dependabot[bot]'
 
+    # Map secrets to job-level env so step `if:` guards can detect whether Jira is
+    # configured (the `secrets` context is not available in `if:` expressions).
+    env:
+      JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+      JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
     steps:
       # Step 1: Checkout repository to access commit history
       - name: Checkout code
@@ -29,19 +40,17 @@ jobs:
           fetch-depth: 0  # Full history to extract all commit messages
 
       # Step 2: Authenticate with Jira
-      # Required secrets: JIRA_BASE_URL, JIRA_USER_EMAIL, JIRA_API_TOKEN
+      # Skipped (job succeeds) when the Jira secrets are not configured.
       - name: Login to Jira
+        if: ${{ env.JIRA_BASE_URL != '' && env.JIRA_USER_EMAIL != '' && env.JIRA_API_TOKEN != '' }}
         uses: atlassian/gajira-login@v3
-        env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
       # Step 3: Extract Jira issue key from PR branch name or title
       # Looks for patterns like: PROJECT-123, TEAM-456
       # Branch examples: feature/PROJECT-123-description, bugfix/TEAM-456
       - name: Find Jira issue key
         id: find-issue
+        if: ${{ env.JIRA_BASE_URL != '' && env.JIRA_USER_EMAIL != '' && env.JIRA_API_TOKEN != '' }}
         uses: atlassian/gajira-find-issue-key@v3
         with:
           # Search in branch name first, then PR title
@@ -51,7 +60,7 @@ jobs:
       # Step 4: Post PR link as comment on Jira issue
       # Only runs if issue key was found
       - name: Comment PR link on Jira
-        if: steps.find-issue.outputs.issue != ''
+        if: ${{ steps.find-issue.outputs.issue != '' }}
         uses: atlassian/gajira-comment@v3
         with:
           issue: ${{ steps.find-issue.outputs.issue }}
@@ -128,7 +137,7 @@ jobs:
       # Step 9: Comment on all related issues
       # Links all Jira issues mentioned in commits to this PR
       - name: Link all related Jira issues
-        if: steps.extract-issues.outputs.issue_keys != ''
+        if: ${{ steps.extract-issues.outputs.issue_keys != '' && env.JIRA_BASE_URL != '' && env.JIRA_USER_EMAIL != '' && env.JIRA_API_TOKEN != '' }}
         run: |
           IFS=',' read -ra KEYS <<< "${{ steps.extract-issues.outputs.issue_keys }}"
           for KEY in "${KEYS[@]}"; do
