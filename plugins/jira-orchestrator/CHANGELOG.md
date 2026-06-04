@@ -13,8 +13,11 @@ No agent logic changed.
 - `commands/setup.md` frontmatter `model: claude-sonnet-4-5` → `model: sonnet` (future-proof alias,
   matching the convention used by the other agents).
 - `examples/self-reflection-integration.ts` API call `claude-sonnet-4-5-20251101` → `claude-sonnet-4-6`.
-- Historical `Co-Authored-By: Claude Opus 4.5` attribution lines in the WORKSTREAM/summary docs were
-  left intact (provenance, not config).
+- Normalized every model-version-pinned author/co-author trailer (`Claude Opus 4.5`,
+  `Claude Sonnet 4.5`, `Claude Code (Haiku 4.5)`) across the WORKSTREAM/summary docs and the
+  commit/PR templates (`commands/commit.md`, `templates/github/PULL_REQUEST_TEMPLATE.md`,
+  `docs/DEVELOPMENT-STANDARDS.md`) to the canonical version-less form
+  `Co-Authored-By: Claude <noreply@anthropic.com>` — accurate and never stale.
 
 ### Tooling terminology
 - Renamed the `Task tool` → `Agent tool` in the orchestration agents

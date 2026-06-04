@@ -267,7 +267,7 @@ Configuration:
 Branch: feature/AI-1099-foundation-fixes
 Issue: AI-1099
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude <noreply@anthropic.com>
 EOF
 ```
 

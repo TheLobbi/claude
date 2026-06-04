@@ -470,7 +470,7 @@ To improve these templates:
 
 ## Sign-Off
 
-**Completed By:** Claude Code (Haiku 4.5)
+**Completed By:** Claude Code
 
 **Date:** 2026-01-03
 

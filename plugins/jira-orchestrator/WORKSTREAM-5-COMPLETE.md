@@ -5,7 +5,7 @@
 **Status:** ✅ Complete & Committed
 **Commit:** `6a94bac`
 **Date:** 2026-01-19
-**Author:** AI Infrastructure Specialist (Claude Sonnet 4.5)
+**Author:** AI Infrastructure Specialist (Claude)
 
 ---
 
@@ -540,8 +540,8 @@ All quality gates passed, all tests green, ready for code review and production 
 
 **Commit:** `6a94bac - feat(resilience): Implement MCP resilience features for v7.4`
 
-**Author:** AI Infrastructure Specialist (Claude Sonnet 4.5)
-**Co-Authored-By:** Claude Opus 4.5 <noreply@anthropic.com>
+**Author:** AI Infrastructure Specialist (Claude)
+**Co-Authored-By:** Claude <noreply@anthropic.com>
 **Date:** 2026-01-19
 
 ---

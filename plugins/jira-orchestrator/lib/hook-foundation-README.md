@@ -445,5 +445,5 @@ async function onUserPromptSubmit(userMessage: string) {
 
 **Version:** 1.0.0
 **Last Updated:** 2026-01-19
-**Authors:** Claude Opus 4.5, architect-supreme
+**Authors:** Claude, architect-supreme
 **License:** MIT

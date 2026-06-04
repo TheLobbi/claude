@@ -103,4 +103,4 @@ Brief description of changes (2-3 sentences).
 
 ---
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude <noreply@anthropic.com>

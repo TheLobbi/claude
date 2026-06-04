@@ -370,7 +370,7 @@ Files:
 Workstream: AI-1099 Foundation Fixes - Workstream 3
 Branch: feature/AI-1099-foundation-fixes
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
 ---

@@ -359,7 +359,7 @@ npm install
 
 ## Authors
 
-- **Claude Opus 4.5** - Implementation
+- **Claude** - Implementation
 - **architect-supreme** - Architecture & Design
 
 ---
