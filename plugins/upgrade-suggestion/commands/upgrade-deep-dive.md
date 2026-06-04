@@ -7,19 +7,12 @@ tags:
   - deep-dive
   - analysis
 inputs:
-  - name: upgrade
-    description: "Upgrade to analyze: number from suggest-upgrades, or a description like 'caching' or 'error handling'"
-    required: true
-  - name: format
-    description: "Output format: 'visual' (rich dashboard), 'markdown' (portable doc), 'plan' (implementation steps only)"
-    required: false
-    default: "visual"
+  - upgrade
+  - format
 risk: low
 cost: medium
-description: >
-  Deep-dive analysis of a single upgrade. Produces a full impact report with
-  risk assessment, implementation plan with numbered steps, affected file list,
-  test strategy, rollback plan, and before/after code previews.
+description: |
+  Deep-dive analysis of a single upgrade. Produces a full impact report with risk assessment, implementation plan with numbered steps, affected file list, test strategy, rollback plan, and before/after code previews.
 allowed-tools:
   - Read
   - Grep

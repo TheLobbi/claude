@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Deep root cause analysis agent using 5 Whys, Fishbone diagrams, and causal chain analysis. ALWAYS grounds analysis in documentation and system facts.
 model: opus
-effort: high
-maxTurns: 50
 tools:
   - Read
   - Grep
@@ -27,6 +25,8 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
+effort: high
+maxTurns: 50
 memory: true
 background: false
 isolation: false

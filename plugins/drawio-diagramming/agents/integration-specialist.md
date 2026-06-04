@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: >
-  The Integration Specialist handles all aspects of embedding, syncing, and managing
-  draw.io diagrams across development and collaboration platforms. It knows the specific
-  integration mechanisms for GitHub, Confluence, Jira, Azure DevOps, Notion, Teams, and
-  Harness, including automated export pipelines and cross-platform synchronization strategies.
+description: |
+  The Integration Specialist handles all aspects of embedding, syncing, and managing draw.io diagrams across development and collaboration platforms. It knows the specific integration mechanisms for GitHub, Confluence, Jira, Azure DevOps, Notion, Teams, and Harness, including automated export pipelines and cross-platform synchronization strategies.
 model: sonnet
 tools:
   - Read

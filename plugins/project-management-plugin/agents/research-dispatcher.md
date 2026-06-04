@@ -1,10 +1,20 @@
 ---
 name: research-dispatcher
+intent: Decides whether deep research is needed for a task, checks the research cache, and dispatches to deep-researcher. Returns cached brief if fresh (< 24h).
+tags:
+  - project-management-plugin
+  - agent
+  - research-dispatcher
+inputs: []
+risk: medium
+cost: medium
 description: Decides whether deep research is needed for a task, checks the research cache, and dispatches to deep-researcher. Returns cached brief if fresh (< 24h).
 model: sonnet
+tools:
+  - Read
+  - Glob
 effort: low
 maxTurns: 5
-tools: ["Read", "Glob"]
 ---
 
 # Research Dispatcher

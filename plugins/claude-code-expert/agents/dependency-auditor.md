@@ -1,5 +1,13 @@
 ---
 name: dependency-auditor
+intent: Dependency health auditor — checks for security vulnerabilities, outdated packages, license issues, and bloat. Produces actionable upgrade reports. Read-only; does not modify package files.
+tags:
+  - claude-code-expert
+  - agent
+  - dependency-auditor
+inputs: []
+risk: medium
+cost: medium
 description: Dependency health auditor — checks for security vulnerabilities, outdated packages, license issues, and bloat. Produces actionable upgrade reports. Read-only; does not modify package files.
 model: claude-haiku-4-5-20251001
 allowed-tools:

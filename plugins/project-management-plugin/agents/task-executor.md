@@ -1,10 +1,24 @@
 ---
 name: task-executor
+intent: Implements one granular micro-task (5-15 min). Reads research brief first, implements atomically, saves artifacts. Refuses to execute without a research brief.
+tags:
+  - project-management-plugin
+  - agent
+  - task-executor
+inputs: []
+risk: medium
+cost: medium
 description: Implements one granular micro-task (5-15 min). Reads research brief first, implements atomically, saves artifacts. Refuses to execute without a research brief.
 model: sonnet
+tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 effort: medium
 maxTurns: 20
-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep"]
 ---
 
 # Task Executor

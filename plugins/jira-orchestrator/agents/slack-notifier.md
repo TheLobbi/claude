@@ -10,12 +10,12 @@ risk: medium
 cost: medium
 description: Delivers Jira orchestration notifications to Slack using Block Kit, managing threads, interactive buttons, and rich formatting for optimal user experience
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Read
   - Write
   - Bash
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

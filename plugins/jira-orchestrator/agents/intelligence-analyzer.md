@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Intelligence and analytics module for the jira-orchestrator - provides predictive analytics, learning from history, smart prioritization, velocity tracking, and pattern recognition to optimize agent selection and task execution
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Write
@@ -20,6 +18,8 @@ tools:
   - Bash
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

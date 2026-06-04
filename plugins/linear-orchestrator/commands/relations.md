@@ -6,9 +6,7 @@ tags:
   - command
   - relations
 inputs:
-  - name: action
-    description: "add | remove | list"
-    required: true
+  - action
 risk: low
 cost: low
 description: Issue relations (linear.app/docs/issue-relations)

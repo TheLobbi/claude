@@ -6,15 +6,11 @@ tags:
   - agent
   - advisor
 inputs:
-  - name: scope
-    description: "issue <KEY> | sprint <boardId> | pr <ref> | project <KEY>"
-    required: false
+  - scope
 risk: low
 cost: medium
 description: Use this agent to get prioritized, evidence-backed recommendations on what to do next across Jira issues, sprints, PRs, and CI — which workflow to launch, which agents to deploy, and where the biggest risks and bottlenecks are. Read-only; it advises, it never mutates Jira.
 model: opus
-effort: high
-maxTurns: 18
 tools:
   - Read
   - Grep
@@ -23,6 +19,8 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__getJiraIssueRemoteIssueLinks
   - mcp__atlassian__getTransitionsForJiraIssue
+effort: high
+maxTurns: 18
 disallowedTools:
   - Write
   - Edit

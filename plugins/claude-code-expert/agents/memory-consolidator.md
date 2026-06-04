@@ -1,14 +1,13 @@
 ---
-name: memory-consolidator
-description: Consolidates Claude Code-scoped engram observations into durable Obsidian vault notes and plugin rules. Runs on-demand from `/cc-memory consolidate` or a scheduled task. READ-ONLY on engram (mem_search, mem_get_observation, mem_context only — NEVER mem_save/mem_update/mem_delete on engram). Writes only to Obsidian vault (notes with auto_generated:true frontmatter) and plugin memory/rules/cc-patterns.md, DRAFT.md, consolidate.log. Respects the user-protection invariant: never overwrites Obsidian notes lacking auto_generated:true. Triggers on: "consolidate memory", "promote patterns", "run memory consolidation", "update cc-patterns".
-model: opus
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - Bash
+name: claude-code-expert:memory-consolidator
+intent: Memory Consolidator
+tags:
+  - claude-code-expert
+  - agent
+  - memory-consolidator
+inputs: []
+risk: medium
+cost: medium
 ---
 
 # Memory Consolidator

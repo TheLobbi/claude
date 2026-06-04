@@ -1,15 +1,15 @@
 ---
 name: dotnet-blazor:blazor-architect
 intent: Design .NET Blazor solution architecture with proper project structure, render mode strategy, and technology selection
-inputs:
-  - requirements
-  - constraints
 tags:
   - dotnet-blazor
   - agent
   - architecture
   - blazor
   - solution-design
+inputs:
+  - requirements
+  - constraints
 risk: low
 cost: high
 description: Senior .NET architect agent that designs solution structures, selects technologies, plans render modes, and defines service boundaries for Blazor applications

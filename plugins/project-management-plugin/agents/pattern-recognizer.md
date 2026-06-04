@@ -1,10 +1,21 @@
 ---
 name: pattern-recognizer
+intent: Extracts reusable patterns from completed tasks. Builds a pattern library for faster future decomposition and research. Runs after project completion.
+tags:
+  - project-management-plugin
+  - agent
+  - pattern-recognizer
+inputs: []
+risk: medium
+cost: medium
 description: Extracts reusable patterns from completed tasks. Builds a pattern library for faster future decomposition and research. Runs after project completion.
 model: haiku
+tools:
+  - Read
+  - Write
+  - Glob
 effort: low
 maxTurns: 10
-tools: ["Read", "Write", "Glob"]
 ---
 
 # Pattern Recognizer

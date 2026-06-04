@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Enriches Jira tasks with technical context, requirements analysis, codebase references, and adaptive learning from past enrichment effectiveness.
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Read
   - Grep
@@ -21,6 +19,8 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

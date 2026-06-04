@@ -12,8 +12,6 @@ risk: medium
 cost: medium
 description: Analyze planned work and estimate final PR size to recommend splitting strategy before CODE phase begins
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Grep
@@ -22,6 +20,8 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

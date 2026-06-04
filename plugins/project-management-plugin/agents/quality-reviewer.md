@@ -1,10 +1,22 @@
 ---
 name: quality-reviewer
+intent: Validates task completion against acceptance criteria. Each criterion is binary PASS or FAIL. Sets task COMPLETE or BLOCKED with specific evidence.
+tags:
+  - project-management-plugin
+  - agent
+  - quality-reviewer
+inputs: []
+risk: medium
+cost: medium
 description: Validates task completion against acceptance criteria. Each criterion is binary PASS or FAIL. Sets task COMPLETE or BLOCKED with specific evidence.
 model: sonnet
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
 effort: medium
 maxTurns: 10
-tools: ["Read", "Bash", "Glob", "Grep"]
 ---
 
 # Quality Reviewer

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "plugin": "work-automation",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "work-automation-orchestrator",
+      "intent": "Coordinates multi-step work units under ULTRA governance. Invoke when a task has 3+ artifacts, spans sub-repos, or needs parallel sub-agents. Delegates — does not do the work itself.",
+      "tags": [
+        "work-automation",
+        "agent",
+        "work-automation-orchestrator"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/work-automation-orchestrator.md"
+    },
+    {
+      "name": "work-unit-reporter",
+      "intent": "Generates ULTRA §13-compliant Work Unit Reports on demand. Verifies every claim against the filesystem before including it. Invoke at work-unit close or when user asks for a report.",
+      "tags": [
+        "work-automation",
+        "agent",
+        "work-unit-reporter"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/work-unit-reporter.md"
+    }
+  ]
+}

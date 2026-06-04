@@ -12,12 +12,12 @@ risk: medium
 cost: medium
 description: Process multiple commits in batch with time aggregation and comment deduplication
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Bash
   - Read
   - Grep
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

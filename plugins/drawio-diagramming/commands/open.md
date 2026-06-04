@@ -9,13 +9,8 @@ tags:
 inputs: []
 risk: low
 cost: low
-description: >
-  Opens .drawio diagram files in the draw.io desktop application (Electron) or
-  falls back to the browser-based editor at app.diagrams.net. Supports OS
-  detection (macOS, Windows, Linux), custom editor paths, file watching for
-  live reload, and opening specific pages within multi-page diagrams. Essential
-  for desktop Claude Code workflows where users want visual editing alongside
-  AI-powered generation.
+description: |
+  Opens .drawio diagram files in the draw.io desktop application (Electron) or falls back to the browser-based editor at app.diagrams.net. Supports OS detection (macOS, Windows, Linux), custom editor paths, file watching for live reload, and opening specific pages within multi-page diagrams. Essential for desktop Claude Code workflows where users want visual editing alongside AI-powered generation.
 allowed-tools:
   - Read
   - Bash

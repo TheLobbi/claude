@@ -8,12 +8,8 @@ tags:
 inputs: []
 risk: low
 cost: medium
-description: >
-  Exports draw.io diagrams to SVG, PNG, PDF, raw XML, self-editing HTML, and
-  Mermaid.js format. Supports CLI export via draw.io desktop, programmatic
-  export via the draw.io export server, quality settings, multi-page export,
-  batch processing, dark mode, transparent backgrounds, crop-to-content, and
-  CI/CD pipeline integration.
+description: |
+  Exports draw.io diagrams to SVG, PNG, PDF, raw XML, self-editing HTML, and Mermaid.js format. Supports CLI export via draw.io desktop, programmatic export via the draw.io export server, quality settings, multi-page export, batch processing, dark mode, transparent backgrounds, crop-to-content, and CI/CD pipeline integration.
 allowed-tools:
   - Read
   - Write

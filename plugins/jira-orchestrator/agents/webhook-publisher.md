@@ -10,12 +10,12 @@ risk: medium
 cost: medium
 description: Publishes Jira orchestration events to external webhook endpoints with retry logic, signature verification, and event filtering
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Read
   - Write
   - Bash
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

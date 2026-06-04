@@ -57,12 +57,41 @@
       "**/node_modules/**",
       "**/dist/**",
       "**/build/**",
-      "**/*.zip"
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
     ],
     "lazyLoadSections": [
       "CLAUDE.md",
       "skills/*/SKILL.md",
       "commands/*.md"
     ]
+  },
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "fastapi",
+      "mongodb",
+      "beanie",
+      "keycloak",
+      "kubernetes",
+      "docker",
+      "async",
+      "python"
+    ],
+    "requires": []
   }
 }

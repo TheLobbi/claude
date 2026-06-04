@@ -7,5 +7,65 @@
     "email": "markus@thelobbi.io"
   },
   "license": "MIT",
-  "keywords": ["planning", "tdd", "writing-plans", "plan-linter", "superpowers"]
+  "keywords": [
+    "planning",
+    "tdd",
+    "writing-plans",
+    "plan-linter",
+    "superpowers"
+  ],
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "planning",
+      "tdd",
+      "writing-plans",
+      "plan-linter",
+      "superpowers"
+    ],
+    "requires": []
+  },
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "Writing Plans Enhanced",
+    "summary": "Enhanced writing-plans skill: 5-phase structure, task metadata (Type/Depends-on/Parallel-safe/Risk), non-TDD task templates, automated plan linter with self-tests. Standalone hub-hosted fork of superpowers:writing-plans.",
+    "tags": [
+      "planning",
+      "tdd",
+      "writing-plans",
+      "plan-linter",
+      "superpowers"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "skills/*/SKILL.md",
+      "commands/*.md"
+    ]
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md"
 }

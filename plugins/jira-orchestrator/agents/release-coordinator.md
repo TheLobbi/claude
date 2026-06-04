@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Multi-project release planning, release train management, automated release notes, rollback coordination, feature flag management, and go/no-go decision support
 model: sonnet
-effort: medium
-maxTurns: 60
 tools:
   - Read
   - Write
@@ -26,6 +24,8 @@ tools:
   - mcp__atlassian__transitionJiraIssue
   - mcp__atlassian__createConfluencePage
   - mcp__atlassian__updateConfluencePage
+effort: medium
+maxTurns: 60
 memory: true
 background: false
 isolation: false

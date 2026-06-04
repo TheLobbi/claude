@@ -1,5 +1,13 @@
 ---
-description: Single execution cycle: research -> execute -> validate a single task
+name: project-management-plugin:pm-work
+intent: /pm:work — Research-First Task Execution
+tags:
+  - project-management-plugin
+  - command
+  - pm-work
+inputs: []
+risk: medium
+cost: medium
 ---
 
 # /pm:work — Research-First Task Execution

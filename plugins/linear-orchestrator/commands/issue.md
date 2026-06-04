@@ -6,9 +6,7 @@ tags:
   - command
   - issue
 inputs:
-  - name: action
-    description: "create | edit | select | delete | bulk"
-    required: true
+  - action
 risk: medium
 cost: low
 description: Full issue lifecycle covering creating-issues, editing-issues, select-issues, parent-and-sub-issues, issue-templates, labels, priority, due-dates, estimates

@@ -1,43 +1,31 @@
 ---
 name: /mui-design-system
 intent: Scaffold a complete design system built on MUI
+tags:
+  - mui-expert
+  - design-system
+  - theme
+  - tokens
+  - white-label
 inputs:
-  - name: --brand
-    type: string
-    description: Brand name for the design system
-    required: true
-  - name: --colors
-    type: string
-    description: Primary and secondary hex colors (e.g. primary=#2563eb,secondary=#7c3aed)
-    required: false
-  - name: --font
-    type: string
-    description: Font family (e.g. Inter, Roboto)
-    required: false
-    default: Inter
-  - name: --mode
-    type: enum
-    values: [scaffold, audit, tokens-only]
-    required: false
-    default: scaffold
-  - name: --css-vars
-    type: boolean
-    description: Use CssVarsProvider with CSS custom properties (v6)
-    required: false
-    default: true
-  - name: --white-label
-    type: boolean
-    description: Generate multi-tenant theme architecture
-    required: false
-    default: false
+  - '--brand'
+  - '--colors'
+  - '--font'
+  - '--mode'
+  - '--css-vars'
+  - '--white-label'
 risk: low
 cost: high
-tags: [mui-expert, design-system, theme, tokens, white-label]
-description: >
-  Scaffold a production-ready design system on MUI with design tokens, theme
-  configuration, TypeScript augmentation, component overrides, CSS variables,
-  dark mode, and optional multi-tenant white-label support.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent]
+description: |
+  Scaffold a production-ready design system on MUI with design tokens, theme configuration, TypeScript augmentation, component overrides, CSS variables, dark mode, and optional multi-tenant white-label support.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
+  - Agent
 ---
 
 # /mui-design-system

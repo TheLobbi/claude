@@ -10,14 +10,14 @@ risk: medium
 cost: medium
 description: Tracks and analyzes agent performance metrics in real-time, generates performance reports, identifies trends, and provides data-driven recommendations
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Read
   - Write
   - Grep
   - Glob
   - Bash
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

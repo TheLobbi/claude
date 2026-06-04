@@ -1,5 +1,13 @@
 ---
 name: debugger
+intent: Scope — generic code-level bugs in the user's codebase. Systematic root-cause tracer using hypothesis-driven investigation; read-only by default, proposes fixes without applying them unless explicitly authorized. For Claude Code itself (MCP, hooks, plugin install), use the `claude-code-debugger` agent instead.
+tags:
+  - claude-code-expert
+  - agent
+  - debugger
+inputs: []
+risk: medium
+cost: medium
 description: Scope — generic code-level bugs in the user's codebase. Systematic root-cause tracer using hypothesis-driven investigation; read-only by default, proposes fixes without applying them unless explicitly authorized. For Claude Code itself (MCP, hooks, plugin install), use the `claude-code-debugger` agent instead.
 model: claude-opus-4-6
 allowed-tools:

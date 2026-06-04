@@ -1,5 +1,14 @@
 ---
 name: performance-specialist
+intent: Council specialist focused on performance optimization opportunities
+tags:
+  - upgrade-suggestion
+  - agent
+  - performance
+  - council-member
+inputs: []
+risk: medium
+cost: medium
 description: Council specialist focused on performance optimization opportunities
 model: sonnet
 tools:
@@ -7,11 +16,6 @@ tools:
   - Grep
   - Glob
   - Bash
-tags:
-  - upgrade-suggestion
-  - agent
-  - performance
-  - council-member
 ---
 
 # Performance Specialist Agent

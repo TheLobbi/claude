@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-handoff
+intent: Snapshot active task state for post-/compact resume, or display the current handoff
+tags:
+  - project-management-plugin
+  - command
+  - pm-handoff
+inputs: []
+risk: medium
+cost: medium
 description: Snapshot active task state for post-/compact resume, or display the current handoff
 ---
 

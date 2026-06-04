@@ -1,9 +1,6 @@
 ---
 name: blazor-deploy
 intent: Deploy .NET Blazor apps to Azure, Docker, or Kubernetes with proper configuration
-inputs:
-  - target
-  - environment
 tags:
   - dotnet-blazor
   - command
@@ -11,6 +8,9 @@ tags:
   - azure
   - docker
   - kubernetes
+inputs:
+  - target
+  - environment
 risk: high
 cost: medium
 description: Generates deployment configuration and scripts for Azure App Service, Container Apps, Docker, or Kubernetes

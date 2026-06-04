@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-sync
+intent: Idempotent update of an existing Claude Code setup — re-fingerprint, propagate to sub-repos, refresh docs, section-merge CLAUDE.md. Absorbs legacy cc-config via --fix-drift.
+tags:
+  - claude-code-expert
+  - command
+  - cc-sync
+inputs: []
+risk: medium
+cost: medium
 description: Idempotent update of an existing Claude Code setup — re-fingerprint, propagate to sub-repos, refresh docs, section-merge CLAUDE.md. Absorbs legacy cc-config via --fix-drift.
 ---
 

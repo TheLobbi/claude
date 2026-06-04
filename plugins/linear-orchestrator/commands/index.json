@@ -1,100 +1,390 @@
 {
-  "commands": [
+  "version": 1,
+  "plugin": "linear-orchestrator",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
     {
-      "name": "linear:setup",
-      "file": "setup.md"
-    },
-    {
-      "name": "linear:issue",
-      "file": "issue.md"
+      "name": "linear:agent",
+      "intent": "Configure and operate Linear agents (AIG) — agent interaction, agent signals, OAuth actor authorization",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "agent",
+        "aig"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "high",
+      "cost": "low",
+      "path": "commands/agent.md"
     },
     {
       "name": "linear:assign",
-      "file": "assign.md"
-    },
-    {
-      "name": "linear:comment",
-      "file": "comment.md"
-    },
-    {
-      "name": "linear:triage",
-      "file": "triage.md"
-    },
-    {
-      "name": "linear:relations",
-      "file": "relations.md"
-    },
-    {
-      "name": "linear:documents",
-      "file": "documents.md"
-    },
-    {
-      "name": "linear:customer",
-      "file": "customer.md"
-    },
-    {
-      "name": "linear:cycle",
-      "file": "cycle.md"
-    },
-    {
-      "name": "linear:project",
-      "file": "project.md"
-    },
-    {
-      "name": "linear:initiative",
-      "file": "initiative.md"
-    },
-    {
-      "name": "linear:team",
-      "file": "team.md"
-    },
-    {
-      "name": "linear:workflow",
-      "file": "workflow.md"
-    },
-    {
-      "name": "linear:sla",
-      "file": "sla.md"
-    },
-    {
-      "name": "linear:agent",
-      "file": "agent.md"
-    },
-    {
-      "name": "linear:mcp",
-      "file": "mcp.md"
-    },
-    {
-      "name": "linear:webhook",
-      "file": "webhook.md"
+      "intent": "Assign or reassign Linear issues; supports single, bulk, and round-robin assignment strategies",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "assign"
+      ],
+      "inputs": [
+        "id",
+        "assignee"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/assign.md"
     },
     {
       "name": "linear:attachment",
-      "file": "attachment.md"
+      "intent": "Upload files to Linear, link external URLs as attachments, and download/inspect existing attachments",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "attachment"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/attachment.md"
+    },
+    {
+      "name": "linear:comment",
+      "intent": "Comment on issues, reply in threads, add reactions; supports markdown editor features and customer-request linkage",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "comment"
+      ],
+      "inputs": [
+        "id",
+        "body"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/comment.md"
+    },
+    {
+      "name": "linear:customer",
+      "intent": "Manage customers and customer requests — link to issues, track aggregate demand, route to teams",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "customer",
+        "customer-requests"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/customer.md"
+    },
+    {
+      "name": "linear:cycle",
+      "intent": "Plan, update, and report on Linear cycles (sprints) — velocity, scope changes, carry-over",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "cycle"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/cycle.md"
     },
     {
       "name": "linear:diff",
-      "file": "diff.md"
+      "intent": "Compute and render diffs of Linear issues, projects, or cycles between two points in time",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "diff",
+        "audit"
+      ],
+      "inputs": [
+        "scope"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/diff.md"
     },
     {
-      "name": "linear:query",
-      "file": "query.md"
-    },
-    {
-      "name": "linear:harness-sync",
-      "file": "harness-sync.md"
+      "name": "linear:documents",
+      "intent": "Manage Linear issue documents and project documents — create, update, link, and version",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "documents"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/documents.md"
     },
     {
       "name": "linear:harness-git",
-      "file": "harness-git.md"
+      "intent": "Harness Git Experience integration — bidirectional repo sync, signed commits, OAuth, auto-creation, rate-limit best practices, git cache, environments-as-code",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "harness",
+        "harness-git-experience",
+        "git-experience",
+        "bidir-sync",
+        "signed-commits"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/harness-git.md"
     },
     {
       "name": "linear:harness-platform",
-      "file": "harness-platform.md"
+      "intent": "Harness Platform automation — API keys/JWT, custom approvals, tags, triggers, variables/expressions, connectors (YAML), authentication",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "harness",
+        "harness-platform",
+        "api-keys",
+        "triggers",
+        "approvals",
+        "connectors"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/harness-platform.md"
+    },
+    {
+      "name": "linear:harness-sync",
+      "intent": "Two-way sync between Linear issues and Harness Code repositories — branches, PRs, deploys, and reviews",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "harness",
+        "bridge",
+        "two-way-sync"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/harness-sync.md"
+    },
+    {
+      "name": "linear:initiative",
+      "intent": "Manage Linear initiatives and sub-initiatives — strategic groupings of projects with their own status updates",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "initiative"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/initiative.md"
+    },
+    {
+      "name": "linear:issue",
+      "intent": "Create, edit, select, delete Linear issues with full feature support — sub-issues, templates, labels, priority, estimates, due dates",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "issue"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/issue.md"
+    },
+    {
+      "name": "linear:mcp",
+      "intent": "Install, configure, and operate the Linear MCP server for Claude Code",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "mcp"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/mcp.md"
     },
     {
       "name": "linear:planner-sync",
-      "file": "planner-sync.md"
+      "intent": "Two-way sync between Linear issues and Microsoft Planner tasks via Microsoft Graph delta queries",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "planner",
+        "microsoft-graph",
+        "bridge",
+        "two-way-sync"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/planner-sync.md"
+    },
+    {
+      "name": "linear:project",
+      "intent": "Manage Linear projects — create, milestone planning, status updates, templates, overview, and documents",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "project"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/project.md"
+    },
+    {
+      "name": "linear:query",
+      "intent": "Run arbitrary GraphQL queries with cursor pagination, filtering DSL, and complexity-budget rate limiting",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "query",
+        "graphql"
+      ],
+      "inputs": [
+        "query"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/query.md"
+    },
+    {
+      "name": "linear:relations",
+      "intent": "Manage issue relations — blocks, blocked-by, duplicate, related, and parent/child",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "relations"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/relations.md"
+    },
+    {
+      "name": "linear:setup",
+      "intent": "Configure Linear authentication (API key + OAuth 2.0 + actor authorization), install Linear MCP server, register webhooks, and wire up Harness/Planner bridges",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "setup",
+        "auth",
+        "oauth"
+      ],
+      "inputs": [
+        "mode"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/setup.md"
+    },
+    {
+      "name": "linear:sla",
+      "intent": "Manage SLA policies, monitor breach risk, and surface escalations",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "sla"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/sla.md"
+    },
+    {
+      "name": "linear:team",
+      "intent": "Manage Linear teams, members, default team pages, and team settings",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "team"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/team.md"
+    },
+    {
+      "name": "linear:triage",
+      "intent": "Manage the Linear triage queue — list, route, accept, decline, and configure auto-triage rules",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "triage"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/triage.md"
+    },
+    {
+      "name": "linear:webhook",
+      "intent": "Register, verify, replay, and dead-letter Linear webhooks",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "webhook"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "high",
+      "cost": "low",
+      "path": "commands/webhook.md"
+    },
+    {
+      "name": "linear:workflow",
+      "intent": "Configure team workflow states, transitions, and SLA-driven escalations",
+      "tags": [
+        "linear-orchestrator",
+        "command",
+        "workflow"
+      ],
+      "inputs": [
+        "action"
+      ],
+      "risk": "high",
+      "cost": "low",
+      "path": "commands/workflow.md"
     }
   ]
 }

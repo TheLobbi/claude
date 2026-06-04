@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Processes bulk Jira operations with intelligent batching, rate limiting, rollback support, and comprehensive progress tracking
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Write
@@ -24,6 +22,8 @@ tools:
   - mcp__atlassian__transitionJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

@@ -9,9 +9,7 @@ tags:
   - bridge
   - two-way-sync
 inputs:
-  - name: action
-    description: "enable | disable | status | reconcile | map | delta"
-    required: true
+  - action
 risk: high
 cost: medium
 description: Two-way MS Planner ↔ Linear sync via Microsoft Graph

@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Jira Issue Triage Agent
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Read
   - Grep
@@ -25,6 +23,8 @@ tools:
   - mcp__atlassian__getConfluencePage
   - mcp__obsidian__vault_search
   - mcp__obsidian__get_file_contents
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

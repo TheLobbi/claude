@@ -50,12 +50,41 @@
       "**/node_modules/**",
       "**/dist/**",
       "**/build/**",
-      "**/*.zip"
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
     ],
     "lazyLoadSections": [
       "CLAUDE.md",
       "skills/*/SKILL.md",
       "commands/*.md"
     ]
+  },
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "executive-director",
+      "association-management",
+      "workflow-automation",
+      "langgraph",
+      "langchain",
+      "deep-agents",
+      "ai-automation",
+      "nonprofit"
+    ],
+    "requires": []
   }
 }

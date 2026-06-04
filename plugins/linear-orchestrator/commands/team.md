@@ -6,9 +6,7 @@ tags:
   - command
   - team
 inputs:
-  - name: action
-    description: "list | create | update | members | pages"
-    required: true
+  - action
 risk: medium
 cost: low
 description: Teams + default team pages (linear.app/docs/teams, default-team-pages)

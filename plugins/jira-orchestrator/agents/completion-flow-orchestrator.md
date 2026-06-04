@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Orchestrates the complete task completion flow including sub-issue monitoring, gap analysis, Confluence documentation, commit creation, and issue commenting with full traceability
 model: sonnet
-effort: medium
-maxTurns: 60
 tools:
   - git (status, diff, log, commit, push)
   - jira (get-issue, update-issue, add-comment, transition-issue, search-issues)
@@ -19,6 +17,8 @@ tools:
   - task-coordinator (spawn sub-agents for gap fixes)
   - file-system (read, analyze changed files)
   - github (PR creation/update)
+effort: medium
+maxTurns: 60
 memory: true
 background: false
 isolation: false

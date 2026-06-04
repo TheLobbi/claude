@@ -1,6 +1,15 @@
 ---
 name: evaluator-optimizer
+intent: Implements the Evaluator-Optimizer loop pattern — generates an artifact, evaluates it against a rubric, and iteratively refines until quality threshold is met or max iterations reached. Use for code generation, config authoring, and any task where output quality must be verified before acceptance.
+tags:
+  - claude-code-expert
+  - agent
+  - evaluator-optimizer
+inputs: []
+risk: medium
+cost: medium
 description: Implements the Evaluator-Optimizer loop pattern — generates an artifact, evaluates it against a rubric, and iteratively refines until quality threshold is met or max iterations reached. Use for code generation, config authoring, and any task where output quality must be verified before acceptance.
+model: claude-opus-4-6
 tools:
   - Read
   - Write
@@ -9,7 +18,6 @@ tools:
   - Grep
   - Bash
   - Agent
-model: claude-opus-4-6
 ---
 
 # Evaluator-Optimizer Agent

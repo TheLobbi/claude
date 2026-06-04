@@ -12,14 +12,14 @@ risk: medium
 cost: medium
 description: Create draft PR immediately after PLAN phase and update it throughout development for early visibility and feedback
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Bash
   - Read
   - Write
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

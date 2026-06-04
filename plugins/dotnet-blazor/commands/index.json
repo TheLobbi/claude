@@ -2,10 +2,103 @@
   "version": 1,
   "plugin": "dotnet-blazor",
   "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
+      "name": "blazor-api",
+      "intent": "Create ASP.NET Core API endpoints with proper patterns, validation, and OpenAPI documentation",
+      "tags": [
+        "dotnet-blazor",
+        "command",
+        "api",
+        "aspnet",
+        "rest"
+      ],
+      "inputs": [
+        "entity-name",
+        "api-style",
+        "features"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/blazor-api.md"
+    },
+    {
+      "name": "blazor-component",
+      "intent": "Generate Blazor components with correct render modes, lifecycle methods, and best-practice patterns",
+      "tags": [
+        "dotnet-blazor",
+        "command",
+        "blazor",
+        "component"
+      ],
+      "inputs": [
+        "component-name",
+        "component-type",
+        "render-mode"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/blazor-component.md"
+    },
+    {
+      "name": "blazor-deploy",
+      "intent": "Deploy .NET Blazor apps to Azure, Docker, or Kubernetes with proper configuration",
+      "tags": [
+        "dotnet-blazor",
+        "command",
+        "deploy",
+        "azure",
+        "docker",
+        "kubernetes"
+      ],
+      "inputs": [
+        "target",
+        "environment"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/blazor-deploy.md"
+    },
+    {
+      "name": "blazor-microservice",
+      "intent": "Design and scaffold a .NET microservice with Aspire orchestration, inter-service communication, and resilience",
+      "tags": [
+        "dotnet-blazor",
+        "command",
+        "microservices",
+        "aspire",
+        "grpc"
+      ],
+      "inputs": [
+        "service-name",
+        "communication-pattern",
+        "features"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "commands/blazor-microservice.md"
+    },
+    {
+      "name": "blazor-migrate",
+      "intent": "Migrate .NET applications from older versions or other frameworks to .NET 10 Blazor",
+      "tags": [
+        "dotnet-blazor",
+        "command",
+        "migration",
+        "upgrade"
+      ],
+      "inputs": [
+        "source-framework",
+        "target"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "commands/blazor-migrate.md"
+    },
+    {
       "name": "blazor-new",
-      "intent": "Scaffold a new .NET 10 Blazor Web App, API project, or microservice solution",
+      "intent": "Scaffold a new .NET 10 Blazor Web App, API project, or microservice solution with best-practice structure",
       "tags": [
         "dotnet-blazor",
         "command",
@@ -24,100 +117,8 @@
       "path": "commands/blazor-new.md"
     },
     {
-      "name": "blazor-component",
-      "intent": "Generate Blazor components with correct render modes and lifecycle patterns",
-      "tags": [
-        "dotnet-blazor",
-        "command",
-        "blazor",
-        "component"
-      ],
-      "inputs": [
-        "component-name",
-        "component-type",
-        "render-mode"
-      ],
-      "risk": "low",
-      "cost": "low",
-      "path": "commands/blazor-component.md"
-    },
-    {
-      "name": "blazor-api",
-      "intent": "Create ASP.NET Core API endpoints with validation and OpenAPI docs",
-      "tags": [
-        "dotnet-blazor",
-        "command",
-        "api",
-        "aspnet",
-        "rest"
-      ],
-      "inputs": [
-        "entity-name",
-        "api-style",
-        "features"
-      ],
-      "risk": "low",
-      "cost": "low",
-      "path": "commands/blazor-api.md"
-    },
-    {
-      "name": "blazor-microservice",
-      "intent": "Design and scaffold a .NET microservice with Aspire orchestration",
-      "tags": [
-        "dotnet-blazor",
-        "command",
-        "microservices",
-        "aspire",
-        "grpc"
-      ],
-      "inputs": [
-        "service-name",
-        "communication-pattern",
-        "features"
-      ],
-      "risk": "medium",
-      "cost": "high",
-      "path": "commands/blazor-microservice.md"
-    },
-    {
-      "name": "blazor-deploy",
-      "intent": "Deploy .NET apps to Azure, Docker, or Kubernetes with CI/CD",
-      "tags": [
-        "dotnet-blazor",
-        "command",
-        "deploy",
-        "azure",
-        "docker"
-      ],
-      "inputs": [
-        "target",
-        "environment"
-      ],
-      "risk": "high",
-      "cost": "medium",
-      "path": "commands/blazor-deploy.md"
-    },
-    {
-      "name": "blazor-test",
-      "intent": "Generate tests for Blazor components, APIs, and services",
-      "tags": [
-        "dotnet-blazor",
-        "command",
-        "testing",
-        "xunit",
-        "bunit"
-      ],
-      "inputs": [
-        "target",
-        "test-type"
-      ],
-      "risk": "low",
-      "cost": "low",
-      "path": "commands/blazor-test.md"
-    },
-    {
       "name": "blazor-scaffold",
-      "intent": "Scaffold CRUD pages and forms from EF Core models",
+      "intent": "Scaffold CRUD pages, forms, and data grids from Entity Framework Core models",
       "tags": [
         "dotnet-blazor",
         "command",
@@ -134,21 +135,22 @@
       "path": "commands/blazor-scaffold.md"
     },
     {
-      "name": "blazor-migrate",
-      "intent": "Migrate .NET apps from older versions or other frameworks to .NET 10 Blazor",
+      "name": "blazor-test",
+      "intent": "Generate and run tests for Blazor components, APIs, and services using xUnit, bUnit, and integration testing",
       "tags": [
         "dotnet-blazor",
         "command",
-        "migration",
-        "upgrade"
+        "testing",
+        "xunit",
+        "bunit"
       ],
       "inputs": [
-        "source-framework",
-        "target"
+        "target",
+        "test-type"
       ],
-      "risk": "high",
-      "cost": "high",
-      "path": "commands/blazor-migrate.md"
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/blazor-test.md"
     }
   ]
 }

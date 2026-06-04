@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-next
+intent: Show next actionable tasks based on dependencies and priority
+tags:
+  - project-management-plugin
+  - command
+  - pm-next
+inputs: []
+risk: medium
+cost: medium
 description: Show next actionable tasks based on dependencies and priority
 ---
 

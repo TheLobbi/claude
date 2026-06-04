@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "plugin": "work-automation",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "wa-pipeline",
+      "intent": "Harness pipeline operations — list, get, execute, status, diagnose.",
+      "tags": [
+        "harness",
+        "ci-cd",
+        "pipeline"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/wa-pipeline.md"
+    },
+    {
+      "name": "wa-report",
+      "intent": "Generate an ULTRA §13-compliant Work Unit Report from the current session.",
+      "tags": [
+        "ultra",
+        "work-unit",
+        "reporting"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/wa-report.md"
+    },
+    {
+      "name": "wa-schedule",
+      "intent": "Create a Claude Desktop scheduled task via mcp__scheduled-tasks.",
+      "tags": [
+        "scheduled-tasks",
+        "automation",
+        "desktop"
+      ],
+      "inputs": [
+        "task name"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/wa-schedule.md"
+    },
+    {
+      "name": "wa-work-unit",
+      "intent": "Start a new work unit under ULTRA governance. Defines scope + completion criterion + pre-flight checklist.",
+      "tags": [
+        "ultra",
+        "work-unit",
+        "planning"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/wa-work-unit.md"
+    }
+  ]
+}

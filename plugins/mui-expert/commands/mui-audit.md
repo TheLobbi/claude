@@ -1,15 +1,15 @@
 ---
 name: mui-audit
 intent: Audit MUI usage for best practices, performance, and accessibility
+tags:
+  - mui-expert
+  - audit
 inputs:
   - scope (full|performance|a11y|patterns)
   - fix
   - path
 risk: low
 cost: high
-tags:
-  - mui-expert
-  - audit
 description: Scan project for MUI anti-patterns, deprecated APIs, a11y issues, and performance problems
 allowed-tools:
   - Read

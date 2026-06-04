@@ -1,10 +1,20 @@
 ---
 name: dependency-resolver
+intent: Builds and validates the task DAG. Detects cycles, computes critical path, returns the unblocked task set for the current execution cycle.
+tags:
+  - project-management-plugin
+  - agent
+  - dependency-resolver
+inputs: []
+risk: medium
+cost: medium
 description: Builds and validates the task DAG. Detects cycles, computes critical path, returns the unblocked task set for the current execution cycle.
 model: sonnet
+tools:
+  - Read
+  - Write
 effort: medium
 maxTurns: 10
-tools: ["Read", "Write"]
 ---
 
 # Dependency Resolver

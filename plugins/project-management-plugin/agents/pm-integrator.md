@@ -1,10 +1,22 @@
 ---
 name: pm-integrator
+intent: Connects and syncs with 9 PM platforms (GitHub Projects, Linear, Notion, Asana, Trello, ClickUp, Monday.com, Todoist, Local). Credentials from CLAUDE_PLUGIN_OPTION_* env vars.
+tags:
+  - project-management-plugin
+  - agent
+  - pm-integrator
+inputs: []
+risk: medium
+cost: medium
 description: Connects and syncs with 9 PM platforms (GitHub Projects, Linear, Notion, Asana, Trello, ClickUp, Monday.com, Todoist, Local). Credentials from CLAUDE_PLUGIN_OPTION_* env vars.
 model: sonnet
+tools:
+  - Read
+  - Write
+  - Bash
+  - Grep
 effort: medium
 maxTurns: 20
-tools: ["Read", "Write", "Bash", "Grep"]
 ---
 
 # PM Integrator

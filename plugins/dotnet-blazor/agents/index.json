@@ -2,41 +2,94 @@
   "version": 1,
   "plugin": "dotnet-blazor",
   "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
-      "name": "dotnet-blazor:blazor-architect",
-      "intent": "Design .NET Blazor solution architecture with render mode strategy and technology selection",
-      "tags": [
-        "dotnet-blazor",
-        "agent",
-        "architecture",
-        "blazor"
-      ],
-      "risk": "low",
-      "cost": "high",
-      "path": "agents/blazor-architect.md"
-    },
-    {
       "name": "dotnet-blazor:aspnet-api-engineer",
-      "intent": "Design and implement ASP.NET Core APIs with OpenAPI and validation",
+      "intent": "Design and implement high-quality ASP.NET Core APIs with proper patterns, security, and documentation",
       "tags": [
         "dotnet-blazor",
         "agent",
         "api",
-        "aspnet"
+        "aspnet",
+        "rest",
+        "grpc"
+      ],
+      "inputs": [
+        "api-requirements",
+        "entities"
       ],
       "risk": "low",
       "cost": "medium",
       "path": "agents/aspnet-api-engineer.md"
     },
     {
+      "name": "dotnet-blazor:blazor-architect",
+      "intent": "Design .NET Blazor solution architecture with proper project structure, render mode strategy, and technology selection",
+      "tags": [
+        "dotnet-blazor",
+        "agent",
+        "architecture",
+        "blazor",
+        "solution-design"
+      ],
+      "inputs": [
+        "requirements",
+        "constraints"
+      ],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/blazor-architect.md"
+    },
+    {
+      "name": "dotnet-blazor:csharp-expert",
+      "intent": "Provide expert C# language guidance including modern patterns, LINQ optimization, async/await, and source generators",
+      "tags": [
+        "dotnet-blazor",
+        "agent",
+        "csharp",
+        "language",
+        "patterns"
+      ],
+      "inputs": [
+        "code-context",
+        "question"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "agents/csharp-expert.md"
+    },
+    {
+      "name": "dotnet-blazor:dotnet-performance-engineer",
+      "intent": "Optimize .NET Blazor and ASP.NET Core application performance through profiling, caching, and best practices",
+      "tags": [
+        "dotnet-blazor",
+        "agent",
+        "performance",
+        "optimization",
+        "profiling"
+      ],
+      "inputs": [
+        "performance-issue",
+        "metrics"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/dotnet-performance-engineer.md"
+    },
+    {
       "name": "dotnet-blazor:microservices-designer",
-      "intent": "Design microservice architectures with .NET Aspire and communication patterns",
+      "intent": "Design microservice architectures with .NET Aspire, proper service boundaries, and communication patterns",
       "tags": [
         "dotnet-blazor",
         "agent",
         "microservices",
-        "aspire"
+        "aspire",
+        "architecture"
+      ],
+      "inputs": [
+        "domain-description",
+        "scale-requirements"
       ],
       "risk": "medium",
       "cost": "high",
@@ -44,42 +97,21 @@
     },
     {
       "name": "dotnet-blazor:syncfusion-ui-specialist",
-      "intent": "Integrate and customize Syncfusion Blazor UI components",
+      "intent": "Integrate and customize Syncfusion Blazor UI components for data-rich applications",
       "tags": [
         "dotnet-blazor",
         "agent",
         "syncfusion",
-        "ui"
+        "ui",
+        "components"
+      ],
+      "inputs": [
+        "component-needs",
+        "data-model"
       ],
       "risk": "low",
       "cost": "medium",
       "path": "agents/syncfusion-ui-specialist.md"
-    },
-    {
-      "name": "dotnet-blazor:dotnet-performance-engineer",
-      "intent": "Optimize .NET Blazor and ASP.NET Core performance",
-      "tags": [
-        "dotnet-blazor",
-        "agent",
-        "performance",
-        "optimization"
-      ],
-      "risk": "medium",
-      "cost": "medium",
-      "path": "agents/dotnet-performance-engineer.md"
-    },
-    {
-      "name": "dotnet-blazor:csharp-expert",
-      "intent": "Expert C# language guidance including modern patterns and async/await",
-      "tags": [
-        "dotnet-blazor",
-        "agent",
-        "csharp",
-        "language"
-      ],
-      "risk": "low",
-      "cost": "low",
-      "path": "agents/csharp-expert.md"
     }
   ]
 }

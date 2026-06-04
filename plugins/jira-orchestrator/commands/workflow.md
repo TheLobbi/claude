@@ -6,9 +6,7 @@ tags:
   - command
   - workflow
 inputs:
-  - name: action
-    description: "list | show <name> | run <name> | validate"
-    required: true
+  - action
 risk: medium
 cost: low
 description: List, inspect, validate, and run declarative multi-agent workflows (issue-delivery, bug-triage, epic-decomposition, sprint-planning, pr-review-board) defined under workflows/ and validated against workflow.schema.json

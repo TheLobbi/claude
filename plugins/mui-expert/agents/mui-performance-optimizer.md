@@ -1,9 +1,6 @@
 ---
 name: mui-performance-optimizer
 intent: Analyze and optimize MUI application performance
-model: claude-sonnet-4-6
-risk: low
-cost: high
 tags:
   - mui-expert
   - performance
@@ -13,11 +10,11 @@ inputs:
   - project source directory
   - package.json with MUI dependencies
   - webpack/vite/next config for bundler context
-description: >
-  Analyzes MUI applications for performance issues including bundle size,
-  render optimization, Emotion overhead, DataGrid performance, and SSR
-  efficiency. Produces prioritized recommendations with estimated impact
-  and auto-applies safe fixes.
+risk: low
+cost: high
+description: |
+  Analyzes MUI applications for performance issues including bundle size, render optimization, Emotion overhead, DataGrid performance, and SSR efficiency. Produces prioritized recommendations with estimated impact and auto-applies safe fixes.
+model: claude-sonnet-4-6
 tools:
   - Read
   - Glob

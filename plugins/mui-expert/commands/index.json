@@ -1,132 +1,30 @@
 {
-  "version": 2,
+  "version": 1,
   "plugin": "mui-expert",
   "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
-      "name": "mui:mui-theme",
-      "intent": "Generate or audit a MUI theme configuration",
-      "tags": [
-        "mui-expert",
-        "command",
-        "theme",
-        "design-system"
-      ],
-      "inputs": [
-        "--mode",
-        "--dark-mode",
-        "--palette",
-        "--typography",
-        "--audit-file"
-      ],
-      "risk": "low",
-      "cost": "medium",
-      "path": "commands/mui-theme.md"
-    },
-    {
-      "name": "mui:mui-component",
-      "intent": "Scaffold a MUI component following best practices",
-      "tags": [
-        "mui-expert",
-        "command",
-        "component",
-        "scaffold"
-      ],
-      "inputs": [
-        "--name",
-        "--type",
-        "--features",
-        "--with-test"
-      ],
-      "risk": "low",
-      "cost": "medium",
-      "path": "commands/mui-component.md"
-    },
-    {
-      "name": "mui:mui-audit",
+      "name": "mui-audit",
       "intent": "Audit MUI usage for best practices, performance, and accessibility",
       "tags": [
         "mui-expert",
-        "command",
-        "audit",
-        "a11y",
-        "performance"
+        "audit"
       ],
       "inputs": [
-        "--scope",
-        "--fix",
-        "--path"
+        "scope (full|performance|a11y|patterns)",
+        "fix",
+        "path"
       ],
       "risk": "low",
       "cost": "high",
       "path": "commands/mui-audit.md"
     },
     {
-      "name": "mui:mui-migrate",
-      "intent": "Migrate MUI code between versions (v4→v5, v5→v6)",
+      "name": "/mui-charts",
+      "intent": "Scaffold or configure MUI X Charts",
       "tags": [
         "mui-expert",
-        "command",
-        "migration",
-        "upgrade"
-      ],
-      "inputs": [
-        "--from",
-        "--to",
-        "--path",
-        "--dry-run"
-      ],
-      "risk": "medium",
-      "cost": "high",
-      "path": "commands/mui-migrate.md"
-    },
-    {
-      "name": "mui:mui-datagrid",
-      "intent": "Build or configure MUI X DataGrid with type-safe columns and server-side integration",
-      "tags": [
-        "mui-expert",
-        "command",
-        "data-grid",
-        "MUI-X"
-      ],
-      "inputs": [
-        "--mode",
-        "--features",
-        "--tier",
-        "--data-source"
-      ],
-      "risk": "low",
-      "cost": "medium",
-      "path": "commands/mui-datagrid.md"
-    },
-    {
-      "name": "mui:mui-design-system",
-      "intent": "Scaffold a complete design system with tokens, theme, component overrides, and white-label support",
-      "tags": [
-        "mui-expert",
-        "command",
-        "design-system",
-        "tokens",
-        "white-label"
-      ],
-      "inputs": [
-        "--brand",
-        "--colors",
-        "--font",
-        "--mode",
-        "--css-vars",
-        "--white-label"
-      ],
-      "risk": "low",
-      "cost": "high",
-      "path": "commands/mui-design-system.md"
-    },
-    {
-      "name": "mui:mui-charts",
-      "intent": "Scaffold MUI X Charts with composition API, custom tooltips, and theme integration",
-      "tags": [
-        "mui-expert",
-        "command",
         "charts",
         "data-visualization",
         "MUI-X"
@@ -143,14 +41,127 @@
       "path": "commands/mui-charts.md"
     },
     {
-      "name": "mui:mui-perf",
-      "intent": "Analyze and optimize MUI performance across bundle size, rendering, and SSR",
+      "name": "mui-component",
+      "intent": "Scaffold a MUI component following best practices",
       "tags": [
         "mui-expert",
-        "command",
+        "component"
+      ],
+      "inputs": [
+        "name",
+        "type (form|display|navigation|feedback|layout)",
+        "features (responsive,dark-mode,a11y,animation)",
+        "with-test"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/mui-component.md"
+    },
+    {
+      "name": "/mui-creative",
+      "intent": "Build highly creative, fluid MUI widgets with animations, micro-interactions, and unique visual patterns",
+      "tags": [
+        "mui-expert",
+        "creative",
+        "widgets",
+        "animation",
+        "micro-interaction",
+        "unique"
+      ],
+      "inputs": [
+        "--widget",
+        "--style",
+        "--with-motion"
+      ],
+      "risk": "low",
+      "cost": "high",
+      "path": "commands/mui-creative.md"
+    },
+    {
+      "name": "/mui-datagrid",
+      "intent": "Build or configure MUI X DataGrid",
+      "tags": [
+        "mui-expert",
+        "data-grid",
+        "MUI-X"
+      ],
+      "inputs": [
+        "--mode",
+        "--features",
+        "--tier",
+        "--data-source"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/mui-datagrid.md"
+    },
+    {
+      "name": "/mui-design-system",
+      "intent": "Scaffold a complete design system built on MUI",
+      "tags": [
+        "mui-expert",
+        "design-system",
+        "theme",
+        "tokens",
+        "white-label"
+      ],
+      "inputs": [
+        "--brand",
+        "--colors",
+        "--font",
+        "--mode",
+        "--css-vars",
+        "--white-label"
+      ],
+      "risk": "low",
+      "cost": "high",
+      "path": "commands/mui-design-system.md"
+    },
+    {
+      "name": "/mui-fingerprint",
+      "intent": "Scan and fingerprint an app, ask interactive questions, then build every MUI component needed",
+      "tags": [
+        "mui-expert",
+        "fingerprint",
+        "scan",
+        "scaffold",
+        "interactive",
+        "full-build"
+      ],
+      "inputs": [
+        "--path",
+        "--dry-run",
+        "--style"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "commands/mui-fingerprint.md"
+    },
+    {
+      "name": "mui-migrate",
+      "intent": "Migrate MUI code between versions",
+      "tags": [
+        "mui-expert",
+        "migration"
+      ],
+      "inputs": [
+        "from (v4|v5)",
+        "to (v5|v6)",
+        "path",
+        "dry-run"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "commands/mui-migrate.md"
+    },
+    {
+      "name": "/mui-perf",
+      "intent": "Analyze and optimize MUI performance",
+      "tags": [
+        "mui-expert",
         "performance",
-        "optimization",
-        "bundle-size"
+        "bundle-size",
+        "optimization"
       ],
       "inputs": [
         "--scope",
@@ -162,71 +173,13 @@
       "path": "commands/mui-perf.md"
     },
     {
-      "name": "mui:mui-ssr",
-      "intent": "Configure MUI for Next.js SSR with Emotion cache, CSS variables, and flash prevention",
+      "name": "/mui-setup",
+      "intent": "Set up MUI in a project with MCP server, LSP, packages, theme, and tooling",
       "tags": [
         "mui-expert",
-        "command",
-        "ssr",
-        "next-js",
-        "emotion"
-      ],
-      "inputs": [
-        "--router",
-        "--engine",
-        "--css-vars",
-        "--dark-mode"
-      ],
-      "risk": "low",
-      "cost": "medium",
-      "path": "commands/mui-ssr.md"
-    },
-    {
-      "name": "mui:mui-white-label",
-      "intent": "Generate multi-tenant white-label theme architecture with dynamic tenant branding",
-      "tags": [
-        "mui-expert",
-        "command",
-        "white-label",
-        "multi-tenant",
-        "theming"
-      ],
-      "inputs": [
-        "--tenants",
-        "--base-colors",
-        "--features",
-        "--source"
-      ],
-      "risk": "low",
-      "cost": "high",
-      "path": "commands/mui-white-label.md"
-    },
-    {
-      "name": "mui:mui-slots",
-      "intent": "Customize MUI component internals via slots API or migrate from deprecated patterns",
-      "tags": [
-        "mui-expert",
-        "command",
-        "slots",
-        "customization"
-      ],
-      "inputs": [
-        "--component",
-        "--slot",
-        "--mode"
-      ],
-      "risk": "low",
-      "cost": "medium",
-      "path": "commands/mui-slots.md"
-    },
-    {
-      "name": "mui:mui-setup",
-      "intent": "Set up MUI with packages, MCP server, LSP/editor tooling, starter theme, and framework integration",
-      "tags": [
-        "mui-expert",
-        "command",
         "setup",
         "mcp",
+        "lsp",
         "installation",
         "tooling"
       ],
@@ -243,44 +196,80 @@
       "path": "commands/mui-setup.md"
     },
     {
-      "name": "mui:mui-fingerprint",
-      "intent": "Scan app, ask interactive questions, then build every MUI component needed",
+      "name": "/mui-slots",
+      "intent": "Customize MUI component internals using the slots API",
       "tags": [
         "mui-expert",
-        "command",
-        "fingerprint",
-        "scan",
-        "scaffold",
-        "interactive"
+        "slots",
+        "customization",
+        "composition"
       ],
       "inputs": [
-        "--path",
-        "--dry-run",
-        "--style"
+        "--component",
+        "--slot",
+        "--mode"
       ],
-      "risk": "medium",
-      "cost": "high",
-      "path": "commands/mui-fingerprint.md"
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/mui-slots.md"
     },
     {
-      "name": "mui:mui-creative",
-      "intent": "Build highly creative fluid MUI widgets — sparkline grids, heatmaps, live data, AI assistant, animated wizards",
+      "name": "/mui-ssr",
+      "intent": "Configure MUI for server-side rendering with Next.js",
       "tags": [
         "mui-expert",
-        "command",
-        "creative",
-        "widgets",
-        "animation",
-        "unique"
+        "ssr",
+        "next.js",
+        "emotion",
+        "pigment-css"
       ],
       "inputs": [
-        "--widget",
-        "--style",
-        "--with-motion"
+        "--router",
+        "--engine",
+        "--css-vars",
+        "--dark-mode"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/mui-ssr.md"
+    },
+    {
+      "name": "/mui-theme",
+      "intent": "Generate or audit a MUI theme configuration",
+      "tags": [
+        "mui-expert",
+        "theme",
+        "design-system"
+      ],
+      "inputs": [
+        "--mode",
+        "--dark-mode",
+        "--palette",
+        "--typography",
+        "--audit-file"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/mui-theme.md"
+    },
+    {
+      "name": "/mui-white-label",
+      "intent": "Generate multi-tenant white-label theme architecture",
+      "tags": [
+        "mui-expert",
+        "white-label",
+        "multi-tenant",
+        "theming"
+      ],
+      "inputs": [
+        "--tenants",
+        "--base-colors",
+        "--features",
+        "--source"
       ],
       "risk": "low",
       "cost": "high",
-      "path": "commands/mui-creative.md"
+      "path": "commands/mui-white-label.md"
     }
   ]
 }

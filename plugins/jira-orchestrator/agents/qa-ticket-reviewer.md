@@ -12,14 +12,14 @@ risk: medium
 cost: medium
 description: Reviews JIRA tickets in QA status, improves content quality, condenses descriptions, and ensures completeness
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - mcp__plugin_jira-orchestrator_atlassian__getJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__editJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__searchJiraIssuesUsingJql
   - mcp__plugin_jira-orchestrator_atlassian__addCommentToJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__getAccessibleAtlassianResources
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

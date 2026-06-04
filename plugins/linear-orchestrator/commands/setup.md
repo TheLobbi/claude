@@ -8,10 +8,7 @@ tags:
   - auth
   - oauth
 inputs:
-  - name: mode
-    description: "apikey | oauth | mcp | webhook | bridges | all"
-    required: false
-    default: all
+  - mode
 risk: medium
 cost: low
 description: One-shot Linear setup — auth, MCP, webhooks, and bridges to Harness Code and Microsoft Planner

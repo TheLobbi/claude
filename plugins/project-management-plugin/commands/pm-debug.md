@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-debug
+intent: Inspect or repair project state files and caches
+tags:
+  - project-management-plugin
+  - command
+  - pm-debug
+inputs: []
+risk: medium
+cost: medium
 description: Inspect or repair project state files and caches
 ---
 

@@ -1,15 +1,15 @@
 ---
 name: blazor-test
 intent: Generate and run tests for Blazor components, APIs, and services using xUnit, bUnit, and integration testing
-inputs:
-  - target
-  - test-type
 tags:
   - dotnet-blazor
   - command
   - testing
   - xunit
   - bunit
+inputs:
+  - target
+  - test-type
 risk: low
 cost: low
 description: Creates comprehensive test suites for Blazor components (bUnit), API endpoints (WebApplicationFactory), and services (xUnit)

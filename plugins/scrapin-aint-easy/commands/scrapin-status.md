@@ -1,4 +1,13 @@
 ---
+name: scrapin-aint-easy:scrapin-status
+intent: Show overall system status — graph health, cron jobs, drift summary
+tags:
+  - scrapin-aint-easy
+  - command
+  - scrapin-status
+inputs: []
+risk: medium
+cost: medium
 description: Show overall system status — graph health, cron jobs, drift summary
 model: haiku
 allowed-tools:

@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Multi-level approval workflow orchestrator with gates, escalation rules, delegation, and comprehensive audit trails for PR, deployment, and release approvals
 model: sonnet
-effort: medium
-maxTurns: 60
 tools:
   - Read
   - Write
@@ -22,6 +20,8 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__transitionJiraIssue
+effort: medium
+maxTurns: 60
 memory: true
 background: false
 isolation: false

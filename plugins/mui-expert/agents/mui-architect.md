@@ -1,9 +1,6 @@
 ---
 name: mui-architect
 intent: Design MUI theme systems and component library architecture
-model: claude-opus-4-6
-risk: low
-cost: high
 tags:
   - mui-expert
   - architecture
@@ -14,11 +11,11 @@ inputs:
   - package.json with MUI version
   - tsconfig.json for TypeScript configuration
   - design requirements and brand tokens
-description: >
-  Designs scalable, maintainable Material UI theme systems and component
-  libraries. Produces architecture decision records covering token hierarchy,
-  palette structure, typography scale, spacing, breakpoints, dark mode
-  strategy, TypeScript augmentation, and component override patterns.
+risk: low
+cost: high
+description: |
+  Designs scalable, maintainable Material UI theme systems and component libraries. Produces architecture decision records covering token hierarchy, palette structure, typography scale, spacing, breakpoints, dark mode strategy, TypeScript augmentation, and component override patterns.
+model: claude-opus-4-6
 tools:
   - Read
   - Glob

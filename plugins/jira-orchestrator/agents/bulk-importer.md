@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Imports issues from CSV, Excel, and JSON files with field mapping, validation, duplicate detection, and comprehensive error handling
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Write
@@ -23,6 +21,8 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__editJiraIssue
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

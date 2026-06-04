@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Manages Confluence documentation based on Jira issues - reads requirements, writes technical docs, creates runbooks, syncs with Jira, maintains documentation lifecycle
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Write
@@ -28,6 +26,8 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

@@ -1,5 +1,13 @@
 ---
-description: Backlog grooming: reorder, refine, split, or archive tasks
+name: project-management-plugin:pm-backlog
+intent: /pm:backlog — Backlog Management
+tags:
+  - project-management-plugin
+  - command
+  - pm-backlog
+inputs: []
+risk: medium
+cost: medium
 ---
 
 # /pm:backlog — Backlog Management

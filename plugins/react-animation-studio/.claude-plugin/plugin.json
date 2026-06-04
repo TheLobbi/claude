@@ -62,12 +62,41 @@
       "**/node_modules/**",
       "**/dist/**",
       "**/build/**",
-      "**/*.zip"
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
     ],
     "lazyLoadSections": [
       "CLAUDE.md",
       "skills/*/SKILL.md",
       "commands/*.md"
     ]
+  },
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "react",
+      "animation",
+      "framer-motion",
+      "gsap",
+      "css-animations",
+      "typescript",
+      "motion-design",
+      "spring-physics"
+    ],
+    "requires": []
   }
 }

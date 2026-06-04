@@ -1,15 +1,15 @@
 ---
 name: blazor-scaffold
 intent: Scaffold CRUD pages, forms, and data grids from Entity Framework Core models
-inputs:
-  - entity-name
-  - scaffold-type
 tags:
   - dotnet-blazor
   - command
   - scaffold
   - crud
   - entity-framework
+inputs:
+  - entity-name
+  - scaffold-type
 risk: low
 cost: medium
 description: Generates complete CRUD UI (list, create, edit, detail, delete) from EF Core entity definitions with Syncfusion or standard components

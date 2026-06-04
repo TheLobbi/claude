@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Expert infrastructure agent for creating modular Harness repositories, managing Kubernetes deployments, Helm charts, and Terraform infrastructure with deep GitOps knowledge
 model: sonnet
-effort: medium
-maxTurns: 60
 tools:
   - Bash
   - Read
@@ -22,6 +20,8 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+effort: medium
+maxTurns: 60
 memory: true
 background: false
 isolation: false

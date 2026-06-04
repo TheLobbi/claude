@@ -1,5 +1,13 @@
 ---
 name: frontend-specialist
+intent: Frontend and UI/UX persona — prioritizes user experience, accessibility, and performance
+tags:
+  - scrapin-aint-easy
+  - agent
+  - frontend-specialist
+inputs: []
+risk: medium
+cost: medium
 description: Frontend and UI/UX persona — prioritizes user experience, accessibility, and performance
 model: sonnet
 allowed-tools:

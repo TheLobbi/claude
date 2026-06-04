@@ -1,5 +1,13 @@
 ---
-description: Task CRUD operations: add, edit, complete, or block a task
+name: project-management-plugin:pm-task
+intent: /pm:task — Task Management CRUD
+tags:
+  - project-management-plugin
+  - command
+  - pm-task
+inputs: []
+risk: medium
+cost: medium
 ---
 
 # /pm:task — Task Management CRUD

@@ -2,10 +2,24 @@
   "version": 1,
   "plugin": "cowork-marketplace",
   "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
+      "name": "export-packager",
+      "intent": "Package marketplace items as Cowork-compatible plugin ZIPs for distribution to Claude Desktop private marketplaces",
+      "tags": [
+        "cowork-marketplace",
+        "agent",
+        "export-packager"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/export-packager.md"
+    },
+    {
       "name": "marketplace-curator",
-      "intent": "Curate, recommend, and help users discover the right marketplace items",
+      "intent": "Curate, recommend, and help users discover the right cowork marketplace items for their needs",
       "tags": [
         "cowork-marketplace",
         "agent",
@@ -18,7 +32,7 @@
     },
     {
       "name": "session-orchestrator",
-      "intent": "Orchestrate cowork sessions by coordinating multiple plugin agents",
+      "intent": "Orchestrate cowork sessions by coordinating multiple plugin agents to complete tasks collaboratively",
       "tags": [
         "cowork-marketplace",
         "agent",
@@ -28,19 +42,6 @@
       "risk": "medium",
       "cost": "medium",
       "path": "agents/session-orchestrator.md"
-    },
-    {
-      "name": "export-packager",
-      "intent": "Package marketplace items as Cowork-compatible plugin ZIPs",
-      "tags": [
-        "cowork-marketplace",
-        "agent",
-        "export-packager"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "medium",
-      "path": "agents/export-packager.md"
     }
   ]
 }

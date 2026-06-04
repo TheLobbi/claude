@@ -8,12 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: >
-  The Diagram Architect is the master strategist for draw.io diagram creation. It combines
-  deep knowledge of every diagram type with expertise in draw.io XML internals to produce
-  publication-ready diagrams. It follows a self-editing workflow of generate, analyze, improve,
-  and finalize, ensuring every diagram meets professional standards for clarity, completeness,
-  and visual quality.
+description: |
+  The Diagram Architect is the master strategist for draw.io diagram creation. It combines deep knowledge of every diagram type with expertise in draw.io XML internals to produce publication-ready diagrams. It follows a self-editing workflow of generate, analyze, improve, and finalize, ensuring every diagram meets professional standards for clarity, completeness, and visual quality.
 model: opus
 tools:
   - Read

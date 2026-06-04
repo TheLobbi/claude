@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Deep analysis of Jira issue requirements to ensure clarity, completeness, and testability before implementation begins
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Grep
@@ -21,6 +19,8 @@ tools:
   - mcp__atlassian__jira_add_comment
   - mcp__atlassian__confluence_search_pages
   - mcp__atlassian__confluence_get_page
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-budget
+intent: Cap the number of tool calls allowed for the current task; nudges Claude at 80% and 120%
+tags:
+  - project-management-plugin
+  - command
+  - pm-budget
+inputs: []
+risk: medium
+cost: medium
 description: Cap the number of tool calls allowed for the current task; nudges Claude at 80% and 120%
 ---
 

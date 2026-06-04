@@ -6,9 +6,7 @@ tags:
   - command
   - advisor
 inputs:
-  - name: scope
-    description: "issue <KEY> | sprint <boardId> | pr <ref> | project <KEY> (default: active context)"
-    required: false
+  - scope
 risk: low
 cost: medium
 description: Invoke the jira-advisor agent to analyze current Jira/sprint/PR/CI state and recommend the next best actions, which workflow to launch, and which agents to deploy — read-only, no mutations

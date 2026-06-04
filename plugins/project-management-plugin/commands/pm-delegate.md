@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-delegate
+intent: Delegate a task to a specific specialized agent
+tags:
+  - project-management-plugin
+  - command
+  - pm-delegate
+inputs: []
+risk: medium
+cost: medium
 description: Delegate a task to a specific specialized agent
 ---
 

@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: low
 cost: medium
-description: >
-  Intelligent diagram generation engine that analyzes source code, git diffs, PR descriptions,
-  and conversation context to automatically select the optimal diagram type and produce
-  production-quality draw.io XML. Supports 12+ diagram types with self-editing refinement,
-  multi-file analysis, incremental updates, and deeply nested hierarchy detection.
+description: |
+  Intelligent diagram generation engine that analyzes source code, git diffs, PR descriptions, and conversation context to automatically select the optimal diagram type and produce production-quality draw.io XML. Supports 12+ diagram types with self-editing refinement, multi-file analysis, incremental updates, and deeply nested hierarchy detection.
 allowed-tools:
   - Read
   - Write

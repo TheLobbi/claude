@@ -12,12 +12,12 @@ risk: medium
 cost: medium
 description: Log all documentation and interactions to PR comments for complete audit trail
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - mcp__atlassian__addCommentToJiraIssue
   - Bash
   - Read
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

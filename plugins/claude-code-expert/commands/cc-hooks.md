@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-hooks
+intent: Install, list, remove, and debug Claude Code hook packs. Integrates with the 8 security-hardened packs in the plugin's MCP KB.
+tags:
+  - claude-code-expert
+  - command
+  - cc-hooks
+inputs: []
+risk: medium
+cost: medium
 description: Install, list, remove, and debug Claude Code hook packs. Integrates with the 8 security-hardened packs in the plugin's MCP KB.
 ---
 

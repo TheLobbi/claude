@@ -10,14 +10,14 @@ risk: medium
 cost: medium
 description: Coordinates real-time learning across all agents, manages knowledge consolidation, and optimizes agent selection based on historical performance
 model: sonnet
-effort: medium
-maxTurns: 60
 tools:
   - Read
   - Write
   - Grep
   - Glob
   - Bash
+effort: medium
+maxTurns: 60
 memory: true
 background: false
 isolation: false

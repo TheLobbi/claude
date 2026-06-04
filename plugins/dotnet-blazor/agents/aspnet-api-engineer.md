@@ -1,9 +1,6 @@
 ---
 name: dotnet-blazor:aspnet-api-engineer
 intent: Design and implement high-quality ASP.NET Core APIs with proper patterns, security, and documentation
-inputs:
-  - api-requirements
-  - entities
 tags:
   - dotnet-blazor
   - agent
@@ -11,6 +8,9 @@ tags:
   - aspnet
   - rest
   - grpc
+inputs:
+  - api-requirements
+  - entities
 risk: low
 cost: medium
 description: API engineering specialist for ASP.NET Core minimal APIs and controllers with OpenAPI, validation, caching, and rate limiting

@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-checkpoint
+intent: Save or restore project state checkpoints
+tags:
+  - project-management-plugin
+  - command
+  - pm-checkpoint
+inputs: []
+risk: medium
+cost: medium
 description: Save or restore project state checkpoints
 ---
 

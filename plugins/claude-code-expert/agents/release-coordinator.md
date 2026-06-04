@@ -1,5 +1,13 @@
 ---
 name: release-coordinator
+intent: Release planning and execution coordinator. Generates changelogs, tags versions, validates release readiness, coordinates with CI/CD. Emphasizes checklist-driven, reversible releases.
+tags:
+  - claude-code-expert
+  - agent
+  - release-coordinator
+inputs: []
+risk: medium
+cost: medium
 description: Release planning and execution coordinator. Generates changelogs, tags versions, validates release readiness, coordinates with CI/CD. Emphasizes checklist-driven, reversible releases.
 model: claude-sonnet-4-6
 allowed-tools:

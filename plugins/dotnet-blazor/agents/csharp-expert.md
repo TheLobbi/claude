@@ -1,15 +1,15 @@
 ---
 name: dotnet-blazor:csharp-expert
 intent: Provide expert C# language guidance including modern patterns, LINQ optimization, async/await, and source generators
-inputs:
-  - code-context
-  - question
 tags:
   - dotnet-blazor
   - agent
   - csharp
   - language
   - patterns
+inputs:
+  - code-context
+  - question
 risk: low
 cost: low
 description: C# language expert for modern patterns (primary constructors, records, pattern matching), LINQ, async/await, generics, and source generators

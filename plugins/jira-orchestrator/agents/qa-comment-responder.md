@@ -12,13 +12,13 @@ risk: medium
 cost: medium
 description: Monitors and responds to comments on QA tickets, providing clarifications and updates
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - mcp__plugin_jira-orchestrator_atlassian__getJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__addCommentToJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__searchJiraIssuesUsingJql
   - mcp__plugin_jira-orchestrator_atlassian__getAccessibleAtlassianResources
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

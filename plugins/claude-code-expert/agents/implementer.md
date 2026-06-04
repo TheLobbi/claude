@@ -1,5 +1,13 @@
 ---
 name: implementer
+intent: Focused implementation agent — writes code, edits files, runs builds. Restricted to write tools. Does not read broad context, only what's needed for the current task.
+tags:
+  - claude-code-expert
+  - agent
+  - implementer
+inputs: []
+risk: medium
+cost: medium
 description: Focused implementation agent — writes code, edits files, runs builds. Restricted to write tools. Does not read broad context, only what's needed for the current task.
 model: claude-sonnet-4-6
 allowed-tools:

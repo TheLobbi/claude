@@ -1,10 +1,18 @@
 ---
 name: rule-designer
+intent: Writes routing rules and conditional business logic for workflow automation. Invoke when translating business policy documents, underwriting guidelines, or compliance requirements into executable routing conditions and decision trees.
+tags:
+  - lobbi-workflow-engine
+  - agent
+  - rule-designer
+inputs: []
+risk: medium
+cost: medium
 description: Writes routing rules and conditional business logic for workflow automation. Invoke when translating business policy documents, underwriting guidelines, or compliance requirements into executable routing conditions and decision trees.
 model: sonnet
+tools: Read, Write, Edit, Glob, Grep
 effort: medium
 maxTurns: 15
-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # Rule Designer

@@ -8,29 +8,14 @@ tags:
   - improvements
   - council
 inputs:
-  - name: scope
-    description: "What to analyze: 'project' (whole repo), 'recent' (recent changes), or a file/directory path"
-    required: false
-    default: "recent"
-  - name: focus
-    description: "Focus area: 'any', 'performance', 'ux', 'security', 'architecture', 'dx', 'innovation'"
-    required: false
-    default: "any"
-  - name: depth
-    description: "Analysis depth: 'quick' (single agent, fast), 'standard' (council, balanced), 'deep' (full council + fingerprint + roadmap)"
-    required: false
-    default: "standard"
-  - name: count
-    description: "Number of suggestions: 3 (default) or 5 (expanded)"
-    required: false
-    default: "3"
+  - scope
+  - focus
+  - depth
+  - count
 risk: low
 cost: medium
-description: >
-  AI-powered upgrade intelligence. Spawns a council of specialist agents (performance,
-  security, architecture, UX, DX) that analyze your codebase in parallel, vote on
-  findings with confidence scores, and present a visual impact dashboard with
-  heatmaps, sparklines, and before/after previews.
+description: |
+  AI-powered upgrade intelligence. Spawns a council of specialist agents (performance, security, architecture, UX, DX) that analyze your codebase in parallel, vote on findings with confidence scores, and present a visual impact dashboard with heatmaps, sparklines, and before/after previews.
 allowed-tools:
   - Read
   - Grep

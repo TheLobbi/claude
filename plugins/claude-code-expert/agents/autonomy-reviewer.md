@@ -1,5 +1,13 @@
 ---
 name: autonomy-reviewer
+intent: Final review agent for autonomous work. Reads the plan from .claude/active-task.md, diffs changed files against the plan, reads each changed file, and issues BLOCK or APPROVE with specific findings. Invoked by /cc-autonomy review after the verifier passes. Never modifies files.
+tags:
+  - claude-code-expert
+  - agent
+  - autonomy-reviewer
+inputs: []
+risk: medium
+cost: medium
 description: Final review agent for autonomous work. Reads the plan from .claude/active-task.md, diffs changed files against the plan, reads each changed file, and issues BLOCK or APPROVE with specific findings. Invoked by /cc-autonomy review after the verifier passes. Never modifies files.
 model: claude-opus-4-6
 tools:

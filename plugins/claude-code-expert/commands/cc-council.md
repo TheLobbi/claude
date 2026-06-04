@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-council
+intent: Multi-agent council review — security + performance + test + architecture perspectives delivered in parallel with weighted synthesis. Uses blackboard pattern with council-coordinator.
+tags:
+  - claude-code-expert
+  - command
+  - cc-council
+inputs: []
+risk: medium
+cost: medium
 description: Multi-agent council review — security + performance + test + architecture perspectives delivered in parallel with weighted synthesis. Uses blackboard pattern with council-coordinator.
 ---
 

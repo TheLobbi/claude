@@ -1,16 +1,16 @@
 ---
 name: blazor-api
 intent: Create ASP.NET Core API endpoints with proper patterns, validation, and OpenAPI documentation
-inputs:
-  - entity-name
-  - api-style
-  - features
 tags:
   - dotnet-blazor
   - command
   - api
   - aspnet
   - rest
+inputs:
+  - entity-name
+  - api-style
+  - features
 risk: low
 cost: low
 description: Generates ASP.NET Core API endpoints using minimal APIs or controllers with full CRUD, validation, and docs

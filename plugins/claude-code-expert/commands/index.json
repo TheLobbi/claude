@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "plugin": "claude-code-expert",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "claude-code-expert:cc-autonomy",
+      "intent": "Configure Claude Code autonomous operating mode — profile selection (conservative, balanced, aggressive, unattended-review), permission block generation, gate agent wiring.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-autonomy"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-autonomy.md"
+    },
+    {
+      "name": "claude-code-expert:cc-channels",
+      "intent": "Install event-driven channel servers — CI webhook receiver, mobile approval relay, Discord bridge, fakechat dev profile. Integrates with MCP cc_kb_channel_server.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-channels"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-channels.md"
+    },
+    {
+      "name": "claude-code-expert:cc-council",
+      "intent": "Multi-agent council review — security + performance + test + architecture perspectives delivered in parallel with weighted synthesis. Uses blackboard pattern with council-coordinator.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-council"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-council.md"
+    },
+    {
+      "name": "claude-code-expert:cc-debug",
+      "intent": "Diagnose Claude Code issues — plugin load failures, MCP connection problems, hook misfiring, permission denials, skill/agent not triggering. Absorbs legacy cc-troubleshoot.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-debug"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-debug.md"
+    },
+    {
+      "name": "claude-code-expert:cc-help",
+      "intent": "Plugin help — task-routing table that maps \"I want to X\" to the right command, skill, or agent in the claude-code-expert plugin.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-help"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-help.md"
+    },
+    {
+      "name": "claude-code-expert:cc-hooks",
+      "intent": "Install, list, remove, and debug Claude Code hook packs. Integrates with the 8 security-hardened packs in the plugin's MCP KB.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-hooks"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-hooks.md"
+    },
+    {
+      "name": "claude-code-expert:cc-intel",
+      "intent": "Deep evidence-driven analysis for hard coding problems — architecture decisions, root-cause investigation, high-stakes refactor planning, performance bottleneck isolation. Invokes the principal-engineer-strategist agent.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-intel"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-intel.md"
+    },
+    {
+      "name": "claude-code-expert:cc-memory",
+      "intent": "Wrap engram for CC-scoped memory operations — search, export, consolidate, edit-always, review. Bridges engram (tier 1) and Obsidian vault (tier 2) via the memory-consolidator agent.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-memory"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-memory.md"
+    },
+    {
+      "name": "claude-code-expert:cc-orchestrate",
+      "intent": "Launch a multi-agent workflow by agentic pattern (chain, routing, parallelization, eval-optimizer, orchestrator-workers, reflection, ReAct, blackboard). Runs pattern-router to select if pattern isn't specified.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-orchestrate"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-orchestrate.md"
+    },
+    {
+      "name": "claude-code-expert:cc-setup",
+      "intent": "Deploy or audit the full 5-layer Claude Code stack (CLAUDE.md + skills + hooks + agents + memory) in the current repository. Absorbs the legacy cc-bootstrap command via --audit.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-setup"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-setup.md"
+    },
+    {
+      "name": "cc-skills",
+      "intent": "The claude-code-expert plugin ships ~54 skills. Reading CLAUDE.md and hunting for trigger keywords is not a good discovery UX. /cc-skills lists every skill in the plugin, grouped by category, with its trigger phrases and a one-line description so you can find the right one in",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-skills"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-skills.md"
+    },
+    {
+      "name": "claude-code-expert:cc-sync",
+      "intent": "Idempotent update of an existing Claude Code setup — re-fingerprint, propagate to sub-repos, refresh docs, section-merge CLAUDE.md. Absorbs legacy cc-config via --fix-drift.",
+      "tags": [
+        "claude-code-expert",
+        "command",
+        "cc-sync"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/cc-sync.md"
+    }
+  ]
+}

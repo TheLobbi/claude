@@ -88,6 +88,8 @@ function buildNormalizedFrontmatter({ data, body, pluginName, type, fileName }) 
     ...(data.memory !== undefined ? { memory: data.memory } : {}),
     ...(data.background !== undefined ? { background: data.background } : {}),
     ...(data.isolation !== undefined ? { isolation: data.isolation } : {}),
+    ...(data.flags ? { flags: data.flags } : {}),
+    ...(data.category ? { category: String(data.category) } : {}),
   };
 }
 

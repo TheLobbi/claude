@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Multi-project portfolio management with aggregated metrics, cross-project dependencies, resource allocation, strategic alignment, and executive-level reporting
 model: opus
-effort: high
-maxTurns: 50
 tools:
   - Read
   - Write
@@ -21,6 +19,8 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getVisibleJiraProjects
   - mcp__atlassian__createConfluencePage
+effort: high
+maxTurns: 50
 memory: true
 background: false
 isolation: false

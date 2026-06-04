@@ -13,7 +13,7 @@
         "auto-documenter"
       ],
       "inputs": [],
-      "risk": "low",
+      "risk": "medium",
       "cost": "medium",
       "path": "agents/auto-documenter.md"
     },

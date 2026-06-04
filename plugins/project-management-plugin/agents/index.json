@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "plugin": "project-management-plugin",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "checkpoint-manager",
+      "intent": "Serializes and restores project state. Writes phase checkpoints, enables resume from any checkpoint. Keeps rolling window of last 10 checkpoints.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "checkpoint-manager"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/checkpoint-manager.md"
+    },
+    {
+      "name": "context-guardian",
+      "intent": "Manages all state file reads and writes. Ensures session continuity across conversations. Handles atomic writes and corruption detection.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "context-guardian"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/context-guardian.md"
+    },
+    {
+      "name": "council-reviewer",
+      "intent": "Multi-perspective review board for /pm:review. Evaluates completed work from quality, security, architecture, and UX angles simultaneously.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "council-reviewer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/council-reviewer.md"
+    },
+    {
+      "name": "project-management-plugin:deep-researcher",
+      "intent": "Deep Researcher",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "deep-researcher"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/deep-researcher.md"
+    },
+    {
+      "name": "dependency-resolver",
+      "intent": "Builds and validates the task DAG. Detects cycles, computes critical path, returns the unblocked task set for the current execution cycle.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "dependency-resolver"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/dependency-resolver.md"
+    },
+    {
+      "name": "pattern-recognizer",
+      "intent": "Extracts reusable patterns from completed tasks. Builds a pattern library for faster future decomposition and research. Runs after project completion.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "pattern-recognizer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/pattern-recognizer.md"
+    },
+    {
+      "name": "pm-integrator",
+      "intent": "Connects and syncs with 9 PM platforms (GitHub Projects, Linear, Notion, Asana, Trello, ClickUp, Monday.com, Todoist, Local). Credentials from CLAUDE_PLUGIN_OPTION_* env vars.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "pm-integrator"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/pm-integrator.md"
+    },
+    {
+      "name": "progress-monitor",
+      "intent": "Tracks task completion counts and velocity. Picks the next task for execution. Updates progress/log.md. Lightweight — uses Haiku intentionally.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "progress-monitor"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/progress-monitor.md"
+    },
+    {
+      "name": "project-interviewer",
+      "intent": "Conducts the 8-phase discovery interview for /pm:init. Asks one question at a time, never rushes, adapts to surprising answers. Requires minimum 15 questions before generating output.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "project-interviewer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/project-interviewer.md"
+    },
+    {
+      "name": "project-orchestrator",
+      "intent": "Master coordinator for the autonomous project execution loop. Owns Phase 0-8 of /pm:auto, makes escalation decisions, manages HITL triggers, and coordinates all other agents.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "project-orchestrator"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/project-orchestrator.md"
+    },
+    {
+      "name": "quality-reviewer",
+      "intent": "Validates task completion against acceptance criteria. Each criterion is binary PASS or FAIL. Sets task COMPLETE or BLOCKED with specific evidence.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "quality-reviewer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/quality-reviewer.md"
+    },
+    {
+      "name": "research-dispatcher",
+      "intent": "Decides whether deep research is needed for a task, checks the research cache, and dispatches to deep-researcher. Returns cached brief if fresh (< 24h).",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "research-dispatcher"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/research-dispatcher.md"
+    },
+    {
+      "name": "risk-assessor",
+      "intent": "Identifies unknowns and high-risk tasks. Creates spike tasks for unknowns. Flags tasks requiring HITL. Scores risk 1-10.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "risk-assessor"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/risk-assessor.md"
+    },
+    {
+      "name": "scope-architect",
+      "intent": "Converts interview output into a structured project definition with phases, milestones, success criteria, and risk register. Runs after project-interviewer completes.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "scope-architect"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/scope-architect.md"
+    },
+    {
+      "name": "task-decomposer",
+      "intent": "Recursively decomposes phases into epics → stories → tasks → micro-tasks (5-15 min). Enforces INVEST principles and rejects tasks estimated over 30 minutes.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "task-decomposer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/task-decomposer.md"
+    },
+    {
+      "name": "task-executor",
+      "intent": "Implements one granular micro-task (5-15 min). Reads research brief first, implements atomically, saves artifacts. Refuses to execute without a research brief.",
+      "tags": [
+        "project-management-plugin",
+        "agent",
+        "task-executor"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/task-executor.md"
+    }
+  ]
+}

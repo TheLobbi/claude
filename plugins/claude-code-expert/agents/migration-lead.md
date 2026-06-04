@@ -1,5 +1,13 @@
 ---
 name: migration-lead
+intent: Migration planning and execution specialist for database schema changes, API version migrations, dependency upgrades, and large-scale refactors. Emphasis on zero-downtime and rollback safety.
+tags:
+  - claude-code-expert
+  - agent
+  - migration-lead
+inputs: []
+risk: medium
+cost: medium
 description: Migration planning and execution specialist for database schema changes, API version migrations, dependency upgrades, and large-scale refactors. Emphasis on zero-downtime and rollback safety.
 model: claude-opus-4-6
 allowed-tools:

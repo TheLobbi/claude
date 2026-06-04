@@ -1,4 +1,13 @@
 ---
+name: scrapin-aint-easy:scrapin-setup
+intent: Interactive project setup — conducts a thorough interview then generates complete Claude Code configuration
+tags:
+  - scrapin-aint-easy
+  - command
+  - scrapin-setup
+inputs: []
+risk: medium
+cost: medium
 description: Interactive project setup — conducts a thorough interview then generates complete Claude Code configuration
 model: opus
 allowed-tools:

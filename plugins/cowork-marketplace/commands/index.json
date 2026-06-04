@@ -2,10 +2,11 @@
   "version": 1,
   "plugin": "cowork-marketplace",
   "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
       "name": "cowork-marketplace:browse",
-      "intent": "Browse and search the cowork marketplace catalog",
+      "intent": "Browse and search the cowork marketplace catalog of templates, workflows, agent configs, skill packs, and session blueprints",
       "tags": [
         "cowork-marketplace",
         "command",
@@ -17,8 +18,73 @@
       "path": "commands/browse.md"
     },
     {
+      "name": "cowork-marketplace:bundle-export",
+      "intent": "Export a plugin bundle as a single Cowork-compatible plugin ZIP by merging commands, agents, and skills from multiple source plugins",
+      "tags": [
+        "cowork-marketplace",
+        "command",
+        "bundle-export"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/bundle-export.md"
+    },
+    {
+      "name": "cowork-marketplace:bundles",
+      "intent": "Browse pre-packaged plugin bundles that combine multiple Claude Code plugins into single Cowork-distributable packages",
+      "tags": [
+        "cowork-marketplace",
+        "command",
+        "bundles"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/bundles.md"
+    },
+    {
+      "name": "cowork-marketplace:collections",
+      "intent": "Browse curated collections of marketplace items grouped by domain and use case",
+      "tags": [
+        "cowork-marketplace",
+        "command",
+        "collections"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/collections.md"
+    },
+    {
+      "name": "cowork-marketplace:details",
+      "intent": "Show detailed information about a marketplace item including plugin bindings, trust score, and capabilities",
+      "tags": [
+        "cowork-marketplace",
+        "command",
+        "details"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/details.md"
+    },
+    {
+      "name": "cowork-marketplace:export",
+      "intent": "Export a marketplace item as a standalone Cowork plugin ZIP for distribution",
+      "tags": [
+        "cowork-marketplace",
+        "command",
+        "export"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/export.md"
+    },
+    {
       "name": "cowork-marketplace:install",
-      "intent": "Install a marketplace item and configure its plugin bindings",
+      "intent": "Install a cowork marketplace item and configure its plugin bindings",
       "tags": [
         "cowork-marketplace",
         "command",
@@ -31,7 +97,7 @@
     },
     {
       "name": "cowork-marketplace:launch",
-      "intent": "Launch a cowork session using an installed marketplace item",
+      "intent": "Launch a cowork session using an installed marketplace item with its bound agents and skills",
       "tags": [
         "cowork-marketplace",
         "command",
@@ -43,34 +109,8 @@
       "path": "commands/launch.md"
     },
     {
-      "name": "cowork-marketplace:details",
-      "intent": "Show detailed information about a marketplace item",
-      "tags": [
-        "cowork-marketplace",
-        "command",
-        "details"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "low",
-      "path": "commands/details.md"
-    },
-    {
-      "name": "cowork-marketplace:collections",
-      "intent": "Browse curated collections of marketplace items",
-      "tags": [
-        "cowork-marketplace",
-        "command",
-        "collections"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "low",
-      "path": "commands/collections.md"
-    },
-    {
       "name": "cowork-marketplace:stats",
-      "intent": "Show marketplace statistics",
+      "intent": "Show marketplace statistics including total items, plugins, agents, skills, and commands",
       "tags": [
         "cowork-marketplace",
         "command",
@@ -82,47 +122,8 @@
       "path": "commands/stats.md"
     },
     {
-      "name": "cowork-marketplace:export",
-      "intent": "Export a marketplace item as a Cowork plugin ZIP",
-      "tags": [
-        "cowork-marketplace",
-        "command",
-        "export"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "medium",
-      "path": "commands/export.md"
-    },
-    {
-      "name": "cowork-marketplace:bundles",
-      "intent": "Browse pre-packaged plugin bundles for Cowork distribution",
-      "tags": [
-        "cowork-marketplace",
-        "command",
-        "bundles"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "low",
-      "path": "commands/bundles.md"
-    },
-    {
-      "name": "cowork-marketplace:bundle-export",
-      "intent": "Export a plugin bundle as a single Cowork-compatible plugin ZIP",
-      "tags": [
-        "cowork-marketplace",
-        "command",
-        "bundle-export"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "medium",
-      "path": "commands/bundle-export.md"
-    },
-    {
       "name": "cowork-marketplace:update",
-      "intent": "Update an installed marketplace item by re-syncing plugin bindings and registry",
+      "intent": "Update an installed marketplace item by re-syncing its plugin bindings and registry entry",
       "tags": [
         "cowork-marketplace",
         "command",

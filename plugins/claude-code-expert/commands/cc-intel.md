@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-intel
+intent: Deep evidence-driven analysis for hard coding problems — architecture decisions, root-cause investigation, high-stakes refactor planning, performance bottleneck isolation. Invokes the principal-engineer-strategist agent.
+tags:
+  - claude-code-expert
+  - command
+  - cc-intel
+inputs: []
+risk: medium
+cost: medium
 description: Deep evidence-driven analysis for hard coding problems — architecture decisions, root-cause investigation, high-stakes refactor planning, performance bottleneck isolation. Invokes the principal-engineer-strategist agent.
 ---
 

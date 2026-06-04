@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Advanced quality analytics and intelligence system - tracks technical debt, quality trends, health scores, hotspots, security intelligence, and predictive quality metrics
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Write
@@ -22,6 +20,8 @@ tools:
   - mcp__ide__getDiagnostics
   - mcp__github__create_issue
   - mcp__github__list_commits
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

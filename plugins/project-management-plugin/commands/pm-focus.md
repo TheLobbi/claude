@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-focus
+intent: Narrow execution scope to a specific phase, epic, or story
+tags:
+  - project-management-plugin
+  - command
+  - pm-focus
+inputs: []
+risk: medium
+cost: medium
 description: Narrow execution scope to a specific phase, epic, or story
 ---
 

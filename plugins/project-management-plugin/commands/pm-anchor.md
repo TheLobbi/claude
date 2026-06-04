@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-anchor
+intent: Set or clear the focus anchor that keeps Claude on task across every turn
+tags:
+  - project-management-plugin
+  - command
+  - pm-anchor
+inputs: []
+risk: medium
+cost: medium
 description: Set or clear the focus anchor that keeps Claude on task across every turn
 ---
 

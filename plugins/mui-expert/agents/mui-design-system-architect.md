@@ -1,9 +1,6 @@
 ---
 name: mui-design-system-architect
 intent: Design and implement enterprise design systems on MUI
-model: claude-opus-4-6
-risk: low
-cost: high
 tags:
   - mui-expert
   - design-system
@@ -14,12 +11,11 @@ inputs:
   - brand requirements and design tokens
   - target platforms and MUI version
   - multi-tenant requirements (if applicable)
-description: >
-  Designs enterprise-grade design systems built on MUI. Covers design token
-  hierarchies, theme architecture, component library structure, CSS variables
-  strategy, white-label/multi-tenant theming, Pigment CSS migration, and
-  TypeScript augmentation. Produces architecture decisions with implementation
-  blueprints.
+risk: low
+cost: high
+description: |
+  Designs enterprise-grade design systems built on MUI. Covers design token hierarchies, theme architecture, component library structure, CSS variables strategy, white-label/multi-tenant theming, Pigment CSS migration, and TypeScript augmentation. Produces architecture decisions with implementation blueprints.
+model: claude-opus-4-6
 tools:
   - Read
   - Glob

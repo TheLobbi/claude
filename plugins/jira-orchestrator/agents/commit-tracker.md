@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Track commits, map them to Jira issues, and post detailed commit summaries with Confluence references
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - git
   - jira-api
@@ -19,6 +17,8 @@ tools:
   - confluence-api
   - file-analysis
   - timestamp-analysis
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

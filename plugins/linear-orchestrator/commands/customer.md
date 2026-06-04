@@ -7,9 +7,7 @@ tags:
   - customer
   - customer-requests
 inputs:
-  - name: action
-    description: "create-customer | create-request | link | list | merge"
-    required: true
+  - action
 risk: medium
 cost: low
 description: Customers + customer requests (linear.app/docs/customer-requests, linear.app/developers/managing-customers)

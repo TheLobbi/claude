@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-setup
+intent: Deploy or audit the full 5-layer Claude Code stack (CLAUDE.md + skills + hooks + agents + memory) in the current repository. Absorbs the legacy cc-bootstrap command via --audit.
+tags:
+  - claude-code-expert
+  - command
+  - cc-setup
+inputs: []
+risk: medium
+cost: medium
 description: Deploy or audit the full 5-layer Claude Code stack (CLAUDE.md + skills + hooks + agents + memory) in the current repository. Absorbs the legacy cc-bootstrap command via --audit.
 ---
 

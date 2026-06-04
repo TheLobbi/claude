@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-research
+intent: Run deep research protocol for a specific task using codebase, Perplexity, Context7, and Firecrawl sources
+tags:
+  - project-management-plugin
+  - command
+  - pm-research
+inputs: []
+risk: medium
+cost: medium
 description: Run deep research protocol for a specific task using codebase, Perplexity, Context7, and Firecrawl sources
 ---
 

@@ -1,6 +1,15 @@
 ---
 name: team-orchestrator
+intent: Master orchestrator that prefers delegation over direct work. Manages agent teams, coordinates sub-agents, enforces audit loops, and maintains agent lifecycle health.
+tags:
+  - claude-code-expert
+  - agent
+  - team-orchestrator
+inputs: []
+risk: medium
+cost: medium
 description: Master orchestrator that prefers delegation over direct work. Manages agent teams, coordinates sub-agents, enforces audit loops, and maintains agent lifecycle health.
+model: claude-opus-4-6
 tools:
   - Agent
   - Read
@@ -9,7 +18,6 @@ tools:
   - Glob
   - Grep
   - Bash
-model: claude-opus-4-6
 ---
 
 # Team Orchestrator Agent

@@ -6,9 +6,7 @@ tags:
   - command
   - attachment
 inputs:
-  - name: action
-    description: "upload | link | list | download | delete"
-    required: true
+  - action
 risk: low
 cost: low
 description: Attachments + file storage (linear.app/developers/attachments, file-storage-authentication, how-to-upload-a-file-to-linear)

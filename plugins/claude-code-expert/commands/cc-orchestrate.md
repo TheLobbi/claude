@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-orchestrate
+intent: Launch a multi-agent workflow by agentic pattern (chain, routing, parallelization, eval-optimizer, orchestrator-workers, reflection, ReAct, blackboard). Runs pattern-router to select if pattern isn't specified.
+tags:
+  - claude-code-expert
+  - command
+  - cc-orchestrate
+inputs: []
+risk: medium
+cost: medium
 description: Launch a multi-agent workflow by agentic pattern (chain, routing, parallelization, eval-optimizer, orchestrator-workers, reflection, ReAct, blackboard). Runs pattern-router to select if pattern isn't specified.
 ---
 

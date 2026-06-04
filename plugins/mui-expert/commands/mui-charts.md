@@ -1,37 +1,28 @@
 ---
 name: /mui-charts
 intent: Scaffold or configure MUI X Charts
+tags:
+  - mui-expert
+  - charts
+  - data-visualization
+  - MUI-X
 inputs:
-  - name: --type
-    type: enum
-    values: [bar, line, pie, scatter, composed, sparkline, gauge]
-    required: true
-  - name: --mode
-    type: enum
-    values: [scaffold, configure, composition]
-    required: false
-    default: scaffold
-  - name: --data-source
-    type: string
-    description: Description of data shape (e.g. "monthly revenue with category breakdown")
-    required: false
-  - name: --features
-    type: string
-    description: Comma-separated features (stacked, animation, click-handler, custom-tooltip, responsive, dual-axis, legend)
-    required: false
-    default: responsive,animation
-  - name: --theme-aware
-    type: boolean
-    description: Use theme palette colors and dark mode support
-    required: false
-    default: true
+  - '--type'
+  - '--mode'
+  - '--data-source'
+  - '--features'
+  - '--theme-aware'
 risk: low
 cost: medium
-tags: [mui-expert, charts, data-visualization, MUI-X]
-description: >
-  Scaffold MUI X Charts with typed data, responsive layout, custom tooltips,
-  click handlers, theme integration, and composition API patterns.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  Scaffold MUI X Charts with typed data, responsive layout, custom tooltips, click handlers, theme integration, and composition API patterns.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-charts

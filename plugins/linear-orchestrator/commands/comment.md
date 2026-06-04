@@ -6,12 +6,8 @@ tags:
   - command
   - comment
 inputs:
-  - name: id
-    description: Issue identifier or comment ID for replies
-    required: true
-  - name: body
-    description: Markdown body
-    required: true
+  - id
+  - body
 risk: low
 cost: low
 description: Comment on issues (linear.app/docs/comment-on-issues)

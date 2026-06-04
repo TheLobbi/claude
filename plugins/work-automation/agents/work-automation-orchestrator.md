@@ -1,8 +1,16 @@
 ---
 name: work-automation-orchestrator
+intent: Coordinates multi-step work units under ULTRA governance. Invoke when a task has 3+ artifacts, spans sub-repos, or needs parallel sub-agents. Delegates — does not do the work itself.
+tags:
+  - work-automation
+  - agent
+  - work-automation-orchestrator
+inputs: []
+risk: medium
+cost: medium
 description: Coordinates multi-step work units under ULTRA governance. Invoke when a task has 3+ artifacts, spans sub-repos, or needs parallel sub-agents. Delegates — does not do the work itself.
-tools: Agent, Read, Write, Edit, Glob, Grep, Bash, TodoWrite
 model: sonnet
+tools: Agent, Read, Write, Edit, Glob, Grep, Bash, TodoWrite
 ---
 
 # Work Automation Orchestrator

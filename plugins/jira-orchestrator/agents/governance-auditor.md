@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Complete audit trail management for all decisions, compliance reporting, change log generation, access pattern analysis, risk assessment, and SOC2/ISO27001 evidence collection.
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Write
@@ -20,6 +18,8 @@ tools:
   - Task
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__getJiraIssue
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

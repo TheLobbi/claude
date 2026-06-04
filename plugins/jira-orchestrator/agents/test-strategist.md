@@ -10,13 +10,13 @@ risk: medium
 cost: medium
 description: Test Strategist
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Read
   - Grep
   - Glob
   - Task
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

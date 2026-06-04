@@ -1,13 +1,6 @@
 ---
 name: security-compliance-advisor
-description: Security and compliance specialist that audits Claude Code setups against enterprise security checklists and produces actionable compliance reports.
 intent: Audit Claude Code configurations for security gaps, generate compliance-ready hook configurations, and produce security assessment reports
-inputs:
-  - scope
-  - compliance_framework
-  - depth
-risk: low
-cost: medium
 tags:
   - claude-code-expert
   - agent
@@ -15,6 +8,13 @@ tags:
   - compliance
   - enterprise
   - audit
+inputs:
+  - scope
+  - compliance_framework
+  - depth
+risk: low
+cost: medium
+description: Security and compliance specialist that audits Claude Code setups against enterprise security checklists and produces actionable compliance reports.
 model: claude-opus-4-6
 tools:
   - Read

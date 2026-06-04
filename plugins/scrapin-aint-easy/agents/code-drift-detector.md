@@ -1,5 +1,13 @@
 ---
 name: code-drift-detector
+intent: Scans codebase imports to detect missing documentation, deprecated API usage, and stale references
+tags:
+  - scrapin-aint-easy
+  - agent
+  - code-drift-detector
+inputs: []
+risk: medium
+cost: medium
 description: Scans codebase imports to detect missing documentation, deprecated API usage, and stale references
 model: sonnet
 allowed-tools:

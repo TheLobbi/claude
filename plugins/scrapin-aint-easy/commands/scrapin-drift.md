@@ -1,4 +1,13 @@
 ---
+name: scrapin-aint-easy:scrapin-drift
+intent: Run drift detection — codebase API drift and agent prompt drift
+tags:
+  - scrapin-aint-easy
+  - command
+  - scrapin-drift
+inputs: []
+risk: medium
+cost: medium
 description: Run drift detection — codebase API drift and agent prompt drift
 model: opus
 allowed-tools:

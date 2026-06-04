@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Linear step-by-step reasoning agent for sequential problem solving. ALWAYS queries Context7 for documentation before reasoning about any library, framework, or API.
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Grep
@@ -24,6 +22,8 @@ tools:
   - mcp__plugin_jira-orchestrator_memory__create_entities
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

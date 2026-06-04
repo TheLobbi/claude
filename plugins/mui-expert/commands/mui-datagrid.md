@@ -1,33 +1,26 @@
 ---
 name: /mui-datagrid
 intent: Build or configure MUI X DataGrid
+tags:
+  - mui-expert
+  - data-grid
+  - MUI-X
 inputs:
-  - name: --mode
-    type: enum
-    values: [scaffold, configure, optimize]
-    required: true
-  - name: --features
-    type: string
-    description: Comma-separated feature flags (sorting, filtering, pagination, editing, export, server-side)
-    required: false
-    default: sorting,filtering,pagination
-  - name: --tier
-    type: enum
-    values: [community, pro, premium]
-    required: false
-    default: community
-  - name: --data-source
-    type: string
-    description: Description of the data shape (e.g. "user records with id, name, email, role, createdAt")
-    required: false
+  - '--mode'
+  - '--features'
+  - '--tier'
+  - '--data-source'
 risk: low
 cost: medium
-tags: [mui-expert, data-grid, MUI-X]
-description: >
-  Scaffold a new MUI X DataGrid component, add features to an existing one,
-  or optimize an existing DataGrid for performance. Includes TypeScript types,
-  server-side integration patterns, and React Query/SWR data fetching.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  Scaffold a new MUI X DataGrid component, add features to an existing one, or optimize an existing DataGrid for performance. Includes TypeScript types, server-side integration patterns, and React Query/SWR data fetching.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-datagrid

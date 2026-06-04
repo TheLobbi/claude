@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-auto
+intent: Autonomous project execution loop that runs until completion or block
+tags:
+  - project-management-plugin
+  - command
+  - pm-auto
+inputs: []
+risk: medium
+cost: medium
 description: Autonomous project execution loop that runs until completion or block
 ---
 

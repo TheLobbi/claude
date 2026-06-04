@@ -135,6 +135,19 @@
       "path": "commands/layers.md"
     },
     {
+      "name": "drawio:mcp-setup",
+      "intent": "Configure draw.io MCP servers for AI-powered diagramming",
+      "tags": [
+        "drawio-diagramming",
+        "command",
+        "mcp-setup"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/mcp-setup.md"
+    },
+    {
       "name": "drawio:open",
       "intent": "Open draw.io diagrams in the desktop application or browser editor",
       "tags": [
@@ -147,19 +160,6 @@
       "risk": "low",
       "cost": "low",
       "path": "commands/open.md"
-    },
-    {
-      "name": "drawio:mcp-setup",
-      "intent": "Configure draw.io MCP servers for AI-powered diagramming",
-      "tags": [
-        "drawio-diagramming",
-        "command",
-        "mcp-setup"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "low",
-      "path": "commands/mcp-setup.md"
     },
     {
       "name": "drawio:style",

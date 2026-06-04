@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-retrospective
+intent: Post-completion retrospective analysis with lessons learned
+tags:
+  - project-management-plugin
+  - command
+  - pm-retrospective
+inputs: []
+risk: medium
+cost: medium
 description: Post-completion retrospective analysis with lessons learned
 ---
 

@@ -1,10 +1,20 @@
 ---
 name: project-interviewer
+intent: Conducts the 8-phase discovery interview for /pm:init. Asks one question at a time, never rushes, adapts to surprising answers. Requires minimum 15 questions before generating output.
+tags:
+  - project-management-plugin
+  - agent
+  - project-interviewer
+inputs: []
+risk: medium
+cost: medium
 description: Conducts the 8-phase discovery interview for /pm:init. Asks one question at a time, never rushes, adapts to surprising answers. Requires minimum 15 questions before generating output.
 model: opus
+tools:
+  - Read
+  - Write
 effort: high
 maxTurns: 40
-tools: ["Read", "Write"]
 ---
 
 # Project Interviewer

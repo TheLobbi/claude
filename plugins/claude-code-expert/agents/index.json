@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "plugin": "claude-code-expert",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "audit-reviewer",
+      "intent": "Second-round audit agent that reviews work produced by other agents. Finds gaps, missed edge cases, inconsistencies, and quality issues that first-pass agents missed. Uses Context7 to validate library usage against official docs.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "audit-reviewer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/audit-reviewer.md"
+    },
+    {
+      "name": "autonomy-planner",
+      "intent": "Decomposes any engineering task into a phased, risk-assessed plan with explicit verification steps and rollback paths. Invoked by /cc-autonomy plan \"<task>\". Writes the plan to .claude/active-task.md. Never implements — plan-only.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "autonomy-planner"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/autonomy-planner.md"
+    },
+    {
+      "name": "autonomy-reviewer",
+      "intent": "Final review agent for autonomous work. Reads the plan from .claude/active-task.md, diffs changed files against the plan, reads each changed file, and issues BLOCK or APPROVE with specific findings. Invoked by /cc-autonomy review after the verifier passes. Never modifies files.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "autonomy-reviewer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/autonomy-reviewer.md"
+    },
+    {
+      "name": "autonomy-verifier",
+      "intent": "Runs the verification suite after an implementation phase completes. Reads verification steps from .claude/active-task.md, detects project type, runs typecheck + lint + tests + diff check + secret scan, and produces a structured PASS or FAIL report. Never modifies files.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "autonomy-verifier"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/autonomy-verifier.md"
+    },
+    {
+      "name": "council-coordinator",
+      "intent": "Orchestrate multi-agent council reviews with structured deliberation, weighted voting, and fault-tolerant consensus",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "council",
+        "orchestration"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/council-coordinator.md"
+    },
+    {
+      "name": "debugger",
+      "intent": "Scope — generic code-level bugs in the user's codebase. Systematic root-cause tracer using hypothesis-driven investigation; read-only by default, proposes fixes without applying them unless explicitly authorized. For Claude Code itself (MCP, hooks, plugin install), use the `claude-code-debugger` agent instead.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "debugger"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/debugger.md"
+    },
+    {
+      "name": "dependency-auditor",
+      "intent": "Dependency health auditor — checks for security vulnerabilities, outdated packages, license issues, and bloat. Produces actionable upgrade reports. Read-only; does not modify package files.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "dependency-auditor"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/dependency-auditor.md"
+    },
+    {
+      "name": "evaluator-optimizer",
+      "intent": "Implements the Evaluator-Optimizer loop pattern — generates an artifact, evaluates it against a rubric, and iteratively refines until quality threshold is met or max iterations reached. Use for code generation, config authoring, and any task where output quality must be verified before acceptance.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "evaluator-optimizer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/evaluator-optimizer.md"
+    },
+    {
+      "name": "implementer",
+      "intent": "Focused implementation agent — writes code, edits files, runs builds. Restricted to write tools. Does not read broad context, only what's needed for the current task.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "implementer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/implementer.md"
+    },
+    {
+      "name": "claude-code-expert:memory-consolidator",
+      "intent": "Memory Consolidator",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "memory-consolidator"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/memory-consolidator.md"
+    },
+    {
+      "name": "migration-lead",
+      "intent": "Migration planning and execution specialist for database schema changes, API version migrations, dependency upgrades, and large-scale refactors. Emphasis on zero-downtime and rollback safety.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "migration-lead"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/migration-lead.md"
+    },
+    {
+      "name": "pattern-router",
+      "intent": "Analyzes incoming tasks and selects the optimal agentic design pattern (prompt chain, routing, parallelization, eval-optimizer, orchestrator-workers, reflection, or ReAct). Routes to the right pattern implementation to avoid over-engineering simple tasks or under-powering complex ones.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "pattern-router"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/pattern-router.md"
+    },
+    {
+      "name": "plugin-architect",
+      "intent": "Design, scaffold, validate, and improve Claude Code plugins — from initial architecture through manifest creation to marketplace publishing",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "plugin",
+        "development",
+        "scaffolding"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/plugin-architect.md"
+    },
+    {
+      "name": "principal-engineer-strategist",
+      "intent": "Act as a principal engineer for hard code problems by extracting invariants, spotting hidden coupling, comparing options, and pressure-testing implementation plans before changes land",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "architecture",
+        "debugging",
+        "reasoning",
+        "strategy"
+      ],
+      "inputs": [
+        "task",
+        "code_scope",
+        "constraints"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "agents/principal-engineer-strategist.md"
+    },
+    {
+      "name": "release-coordinator",
+      "intent": "Release planning and execution coordinator. Generates changelogs, tags versions, validates release readiness, coordinates with CI/CD. Emphasizes checklist-driven, reversible releases.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "release-coordinator"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/release-coordinator.md"
+    },
+    {
+      "name": "research-orchestrator",
+      "intent": "Routes research tasks to the optimal MCP tool chain — Perplexity for knowledge Q&A, Firecrawl for structured extraction, Context7 for library docs. Chains tools for comprehensive results.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "research-orchestrator"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/research-orchestrator.md"
+    },
+    {
+      "name": "security-compliance-advisor",
+      "intent": "Audit Claude Code configurations for security gaps, generate compliance-ready hook configurations, and produce security assessment reports",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "security",
+        "compliance",
+        "enterprise",
+        "audit"
+      ],
+      "inputs": [
+        "scope",
+        "compliance_framework",
+        "depth"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/security-compliance-advisor.md"
+    },
+    {
+      "name": "team-orchestrator",
+      "intent": "Master orchestrator that prefers delegation over direct work. Manages agent teams, coordinates sub-agents, enforces audit loops, and maintains agent lifecycle health.",
+      "tags": [
+        "claude-code-expert",
+        "agent",
+        "team-orchestrator"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/team-orchestrator.md"
+    }
+  ]
+}

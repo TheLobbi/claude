@@ -1,9 +1,6 @@
 ---
 name: mui-x-specialist
 intent: Expert on MUI X premium components — DataGrid, DatePicker, Charts, TreeView
-model: claude-sonnet-4-6
-risk: low
-cost: high
 tags:
   - mui-expert
   - MUI-X
@@ -15,12 +12,11 @@ inputs:
   - component type and requirements
   - MUI X license tier (community, pro, premium)
   - data source description
-description: >
-  Specialist in MUI X premium components. Handles advanced DataGrid patterns
-  (server-side data source, row grouping, aggregation, master-detail, Excel
-  export, cell selection, clipboard), Date/Time Pickers (timezone, custom
-  fields, validation, shortcuts), Charts (composition API, custom renderers,
-  dual axes), and Tree View (lazy loading, drag-drop, virtualization).
+risk: low
+cost: high
+description: |
+  Specialist in MUI X premium components. Handles advanced DataGrid patterns (server-side data source, row grouping, aggregation, master-detail, Excel export, cell selection, clipboard), Date/Time Pickers (timezone, custom fields, validation, shortcuts), Charts (composition API, custom renderers, dual axes), and Tree View (lazy loading, drag-drop, virtualization).
+model: claude-sonnet-4-6
 tools:
   - Read
   - Glob

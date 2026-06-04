@@ -6,9 +6,7 @@ tags:
   - command
   - documents
 inputs:
-  - name: action
-    description: "create | update | list | link"
-    required: true
+  - action
 risk: low
 cost: low
 description: Issue + project documents (linear.app/docs/issue-documents, linear.app/docs/project-documents)

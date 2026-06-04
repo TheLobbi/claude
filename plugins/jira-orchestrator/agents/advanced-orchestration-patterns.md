@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Implements sophisticated orchestration patterns including Blackboard, Circuit Breaker, Dynamic Replanning, Hierarchical Decomposition, and Saga patterns for resilient multi-agent coordination
 model: opus
-effort: high
-maxTurns: 50
 tools:
   - Task
   - Read
@@ -23,6 +21,8 @@ tools:
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__obsidian__append_to_file
   - mcp__obsidian__get_file_contents
+effort: high
+maxTurns: 50
 memory: true
 background: false
 isolation: false

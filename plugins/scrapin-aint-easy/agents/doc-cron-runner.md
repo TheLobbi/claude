@@ -1,5 +1,13 @@
 ---
 name: doc-cron-runner
+intent: Manages and monitors cron job execution for all scheduled tasks
+tags:
+  - scrapin-aint-easy
+  - agent
+  - doc-cron-runner
+inputs: []
+risk: medium
+cost: medium
 description: Manages and monitors cron job execution for all scheduled tasks
 model: haiku
 allowed-tools:

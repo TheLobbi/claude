@@ -1,5 +1,14 @@
 ---
 name: upgrade-analyst
+intent: Fast single-agent analyzer for quick mode — covers all dimensions in one pass
+tags:
+  - upgrade-suggestion
+  - agent
+  - analysis
+  - quick-mode
+inputs: []
+risk: medium
+cost: medium
 description: Fast single-agent analyzer for quick mode — covers all dimensions in one pass
 model: sonnet
 tools:
@@ -7,11 +16,6 @@ tools:
   - Grep
   - Glob
   - Bash
-tags:
-  - upgrade-suggestion
-  - agent
-  - analysis
-  - quick-mode
 ---
 
 # Upgrade Analyst Agent (Quick Mode)

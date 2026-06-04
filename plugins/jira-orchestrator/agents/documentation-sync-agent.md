@@ -10,8 +10,6 @@ risk: medium
 cost: medium
 description: Ensures Confluence documentation is created, updated, and linked for all Jira issues and sub-issues. Automatically syncs READMEs with Confluence pages and maintains bidirectional links between Jira, Confluence, and code repositories.
 model: sonnet
-effort: medium
-maxTurns: 35
 tools:
   - Read
   - Write
@@ -26,6 +24,8 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
 memory: true
 background: false
 isolation: false

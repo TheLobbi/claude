@@ -1,6 +1,15 @@
 ---
 name: audit-reviewer
+intent: Second-round audit agent that reviews work produced by other agents. Finds gaps, missed edge cases, inconsistencies, and quality issues that first-pass agents missed. Uses Context7 to validate library usage against official docs.
+tags:
+  - claude-code-expert
+  - agent
+  - audit-reviewer
+inputs: []
+risk: medium
+cost: medium
 description: Second-round audit agent that reviews work produced by other agents. Finds gaps, missed edge cases, inconsistencies, and quality issues that first-pass agents missed. Uses Context7 to validate library usage against official docs.
+model: claude-opus-4-6
 tools:
   - Read
   - Glob
@@ -8,7 +17,6 @@ tools:
   - Bash
   - mcp__plugin_context7_context7__resolve-library-id
   - mcp__plugin_context7_context7__query-docs
-model: claude-opus-4-6
 ---
 
 # Audit Reviewer Agent

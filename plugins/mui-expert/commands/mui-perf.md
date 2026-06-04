@@ -1,30 +1,26 @@
 ---
 name: /mui-perf
 intent: Analyze and optimize MUI performance
+tags:
+  - mui-expert
+  - performance
+  - bundle-size
+  - optimization
 inputs:
-  - name: --scope
-    type: enum
-    values: [full, bundle, render, datagrid, ssr]
-    required: false
-    default: full
-  - name: --fix
-    type: boolean
-    description: Auto-apply safe optimizations
-    required: false
-    default: false
-  - name: --path
-    type: string
-    description: Directory to scan
-    required: false
-    default: src/
+  - '--scope'
+  - '--fix'
+  - '--path'
 risk: low
 cost: high
-tags: [mui-expert, performance, bundle-size, optimization]
-description: >
-  Comprehensive MUI performance analysis covering bundle size, render
-  optimization, DataGrid performance, SSR efficiency, and Emotion caching.
-  Reports issues with severity and provides auto-fix for safe optimizations.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  Comprehensive MUI performance analysis covering bundle size, render optimization, DataGrid performance, SSR efficiency, and Emotion caching. Reports issues with severity and provides auto-fix for safe optimizations.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-perf

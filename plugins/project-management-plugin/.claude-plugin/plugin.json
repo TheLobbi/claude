@@ -71,5 +71,63 @@
         "CLAUDE_PROJECT_DIR": "${CLAUDE_PROJECT_DIR}"
       }
     }
-  }
+  },
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "project-management",
+      "task-decomposition",
+      "research-first",
+      "micro-tasks",
+      "autonomous",
+      "pm-integration",
+      "mcp"
+    ],
+    "requires": []
+  },
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "Project Management Plugin",
+    "summary": "Universal project manager with keep-Claude-on-task guardrails: focus anchor, scope lock, done-when contract, over-engineering detector, drift auditor, turn budget, user-prompt archive, and compaction-safe handoff. Plus interview-first init, micro-task decomposition, deep research",
+    "tags": [
+      "project-management",
+      "task-decomposition",
+      "research-first",
+      "micro-tasks",
+      "autonomous",
+      "pm-integration",
+      "mcp"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "skills/*/SKILL.md",
+      "commands/*.md"
+    ]
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md"
 }

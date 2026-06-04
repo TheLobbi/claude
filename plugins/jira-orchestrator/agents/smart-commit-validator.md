@@ -13,12 +13,12 @@ risk: medium
 cost: medium
 description: Pre-flight validation of smart commit parameters to prevent failed commits and ensure data integrity
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getTransitionsForJiraIssue
   - Bash
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false

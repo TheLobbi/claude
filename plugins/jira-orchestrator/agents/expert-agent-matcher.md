@@ -10,13 +10,13 @@ risk: medium
 cost: medium
 description: Advanced expertise matching system - Deep multi-dimensional analysis to select optimal experts with confidence scoring, team composition optimization, and load balancing
 model: haiku
-effort: low
-maxTurns: 20
 tools:
   - Read
   - Grep
   - Glob
   - mcp__atlassian__getJiraIssue
+effort: low
+maxTurns: 20
 memory: true
 background: false
 isolation: false
