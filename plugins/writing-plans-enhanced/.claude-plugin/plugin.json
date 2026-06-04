@@ -1,6 +1,6 @@
 {
   "name": "writing-plans-enhanced",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Enhanced writing-plans skill: 5-phase structure, task metadata (Type/Depends-on/Parallel-safe/Risk), non-TDD task templates, automated plan linter with self-tests. Standalone hub-hosted fork of superpowers:writing-plans.",
   "author": {
     "name": "Markus Ahling",

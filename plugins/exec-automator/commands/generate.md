@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Generate production-ready LangGraph workflow code from scored automation designs
-model: claude-sonnet-4-5
+model: sonnet
 allowed-tools:
   - Read
   - Write
@@ -94,8 +94,8 @@ Parse the user's command to extract:
   - `prototype` - Simplified code for quick testing
   - `tutorial` - Heavily commented code for learning
 
-- **--models**: LLM models to use (default: `claude-sonnet-4-5`)
-  - Comma-separated list: `claude-sonnet-4-5,gpt-4,gemini-pro`
+- **--models**: LLM models to use (default: `claude-sonnet-4-6`)
+  - Comma-separated list: `claude-sonnet-4-6,gpt-4,gemini-pro`
   - Generator will create model-specific configurations
 
 ---
@@ -438,7 +438,7 @@ def agent_analysis_node(state: Workflow{ID}State) -> Workflow{ID}State:
     try:
         # Initialize LLM
         llm = ChatAnthropic(
-            model="claude-sonnet-4-5-20250929",
+            model="claude-sonnet-4-6",
             temperature=0.3,
             max_tokens=4000
         )
@@ -997,7 +997,7 @@ For each workflow, generate agent configuration JSON:
 
   "llm_config": {
     "provider": "anthropic",
-    "model": "claude-sonnet-4-5-20250929",
+    "model": "claude-sonnet-4-6",
     "temperature": 0.3,
     "max_tokens": 4000,
     "top_p": 0.95,

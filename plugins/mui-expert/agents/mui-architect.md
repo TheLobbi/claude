@@ -15,7 +15,7 @@ risk: low
 cost: high
 description: |
   Designs scalable, maintainable Material UI theme systems and component libraries. Produces architecture decision records covering token hierarchy, palette structure, typography scale, spacing, breakpoints, dark mode strategy, TypeScript augmentation, and component override patterns.
-model: claude-opus-4-6
+model: opus
 tools:
   - Read
   - Glob

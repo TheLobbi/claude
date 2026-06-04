@@ -72,21 +72,21 @@ Use this agent when:
 Context: Creating a celebration effect for achievements
 user: "Create a confetti explosion animation when users complete a milestone"
 assistant: "I'm engaging the motion-designer agent to create an expressive celebration effect that delivers delightful feedback for user achievements."
-[Uses Task tool to invoke motion-designer agent]
+[Uses Agent tool to invoke motion-designer agent]
 </example>
 
 <example>
 Context: Building a fluid navigation indicator
 user: "I want the active tab indicator to flow like liquid when switching tabs"
 assistant: "I'll use the motion-designer agent to design a fluid morphing animation that creates organic, satisfying tab transitions."
-[Uses Task tool to invoke motion-designer agent]
+[Uses Agent tool to invoke motion-designer agent]
 </example>
 
 <example>
 Context: Adding personality to a loading state
 user: "Make the loading spinner more interesting and on-brand"
 assistant: "I'm delegating to the motion-designer agent to transform the loading state into an engaging, branded animation experience."
-[Uses Task tool to invoke motion-designer agent]
+[Uses Agent tool to invoke motion-designer agent]
 </example>
 
 ## Creative Animation Recipes

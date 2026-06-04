@@ -42,7 +42,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
 # Components
-llm = ChatAnthropic(model="claude-sonnet-4-5")
+llm = ChatAnthropic(model="claude-sonnet-4-6")
 prompt = ChatPromptTemplate.from_template(
     "You are an expert in {domain}. Answer this question: {question}"
 )
@@ -345,7 +345,7 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Create agent
-llm = ChatAnthropic(model="claude-sonnet-4-5")
+llm = ChatAnthropic(model="claude-sonnet-4-6")
 agent = create_tool_calling_agent(llm, tools, prompt)
 
 # Create executor
@@ -1065,7 +1065,7 @@ from langchain_anthropic import ChatAnthropic
 
 # Claude Sonnet
 llm = ChatAnthronic(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-4-6",
     temperature=0.7,
     max_tokens=4096,
     anthropic_api_key=os.getenv("ANTHROPIC_API_KEY")
@@ -1073,14 +1073,14 @@ llm = ChatAnthronic(
 
 # Claude Opus (for complex reasoning)
 opus_llm = ChatAnthropic(
-    model="claude-opus-4-5",
+    model="claude-opus-4-8",
     temperature=0.3,
     max_tokens=8192
 )
 
 # With thinking budget (extended thinking)
 thinking_llm = ChatAnthropic(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-4-6",
     temperature=0.5,
     max_tokens=16000,
     extra_headers={

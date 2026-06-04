@@ -13,7 +13,7 @@ inputs:
 risk: medium
 cost: high
 description: Microservice architecture specialist using .NET Aspire for orchestration with gRPC, messaging, and saga patterns
-model: claude-opus-4-6
+model: opus
 tools:
   - Read
   - Write

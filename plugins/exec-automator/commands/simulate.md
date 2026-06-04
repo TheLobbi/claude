@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Simulate workflow execution with test data to validate before deployment
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Workflow Simulation Command

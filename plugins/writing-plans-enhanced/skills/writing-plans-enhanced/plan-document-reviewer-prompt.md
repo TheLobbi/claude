@@ -9,7 +9,7 @@ Use this template when dispatching a plan document reviewer subagent.
 **When to dispatch:** Recommended for high-risk plans, plans with 10+ tasks, or when the implementer will be a fresh subagent with no spec exposure. Skip for small low-risk plans where the author is also the implementer.
 
 ```
-Task tool (general-purpose):
+Agent tool (general-purpose):
   description: "Review plan document"
   prompt: |
     You are a plan document reviewer. Verify this plan is complete and ready for implementation.

@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Autonomous social media management agent specializing in content strategy, multi-platform scheduling, engagement automation, and analytics-driven optimization across LinkedIn, Twitter/X, Facebook, and Instagram.
-model: claude-sonnet-4-5-20250929
+model: sonnet
 tools:
   - Bash
   - Read

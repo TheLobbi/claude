@@ -1,6 +1,6 @@
 {
   "name": "cowork-marketplace",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Browse, install, and manage cowork marketplace items backed by real plugin agents, skills, and commands",
   "author": {
     "name": "Markus Ahling",

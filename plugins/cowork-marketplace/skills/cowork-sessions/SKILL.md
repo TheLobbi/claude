@@ -56,7 +56,7 @@ Domain knowledge for launching and managing cowork sessions that coordinate mult
 
 ## Agent Coordination Model
 
-Sessions use the Task tool to spawn sub-agents. Key patterns:
+Sessions use the Agent tool to spawn sub-agents. Key patterns:
 
 ### Sequential Execution
 For dependent tasks (e.g., "generate code then write tests"):

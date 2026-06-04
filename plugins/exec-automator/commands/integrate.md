@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Configure and manage external system integrations (CRM, AMS, Calendar, etc.)
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Executive Integration Manager

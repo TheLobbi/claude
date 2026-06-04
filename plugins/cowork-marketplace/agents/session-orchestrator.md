@@ -33,7 +33,7 @@ Coordinates multi-agent cowork sessions by decomposing tasks, assigning agents, 
 - Mapping subtasks to the right specialist agents
 
 ### Agent Coordination
-- Spawning plugin agents via the Task tool
+- Spawning plugin agents via the Agent tool
 - Managing parallel vs sequential execution
 - Handling agent failures gracefully
 - Collecting and merging outputs from multiple agents
@@ -79,7 +79,7 @@ Pipeline execution        → Stage 1 → Stage 2 → Stage 3 (each may be paral
 6. Execute the plan
 
 ### During Execution
-1. Launch agents using the Task tool with appropriate subagent types
+1. Launch agents using the Agent tool with appropriate subagent types
 2. Use `run_in_background: true` for parallel agents
 3. Monitor progress and report status updates
 4. Handle individual agent failures without stopping the session

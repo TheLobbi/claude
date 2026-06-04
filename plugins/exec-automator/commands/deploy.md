@@ -132,7 +132,7 @@ Verify workflow integrity, validate configurations, check dependencies, run test
    Read file_path="{generation_output_dir}/{workflow}.py"
    ```
 
-2. **Validate Workflow Files** (Parallel execution via Task tool)
+2. **Validate Workflow Files** (Parallel execution via Agent tool)
 
    For each workflow:
    - Verify Python syntax is valid
@@ -1722,7 +1722,7 @@ When the user runs this command:
    - Phase 5: Monitoring Configuration
    - Phase 6: Health Checks & Verification
    - Phase 7: Documentation & Rollback Preparation
-3. **Use Task tool** to spawn 3-4 sub-agents per phase
+3. **Use Agent tool** to spawn 3-4 sub-agents per phase
 4. **Call MCP tools** for deployment operations
 5. **Track progress** with TodoWrite
 6. **Generate comprehensive deployment report**

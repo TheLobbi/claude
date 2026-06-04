@@ -13,7 +13,7 @@ inputs:
 risk: low
 cost: high
 description: Senior .NET architect agent that designs solution structures, selects technologies, plans render modes, and defines service boundaries for Blazor applications
-model: claude-opus-4-6
+model: opus
 tools:
   - Read
   - Write

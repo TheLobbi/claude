@@ -223,7 +223,7 @@ ANALYZE → MAP → SCORE → GENERATE → SIMULATE → DEPLOY
 # Required
 - Python 3.10+
 - Claude Code CLI
-- Anthropic API key (Claude Sonnet 4.5)
+- Anthropic API key (Claude Sonnet 4.6)
 
 # Optional (for advanced features)
 - OpenAI API key (GPT-4)
@@ -430,7 +430,7 @@ class MemberCommunicationState(TypedDict):
 
 def categorize_inquiry(state):
     # Use Claude to categorize member inquiry
-    llm = ChatAnthropic(model="claude-sonnet-4-5")
+    llm = ChatAnthropic(model="claude-sonnet-4-6")
     category = llm.invoke(f"Categorize this inquiry: {state['inquiry_text']}")
     return {"inquiry_category": category}
 
@@ -710,7 +710,7 @@ class BoardMeetingState(TypedDict):
     status: Literal["collecting", "drafting", "review", "scheduled", "completed"]
 
 # Initialize LLM
-llm = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0.3)
+llm = ChatAnthropic(model="claude-sonnet-4-6", temperature=0.3)
 
 # Node 1: Collect agenda items from committees
 def collect_agenda_items(state: BoardMeetingState) -> BoardMeetingState:
@@ -875,7 +875,7 @@ if __name__ == "__main__":
   "agent_name": "Board Meeting Coordinator",
   "agent_type": "langgraph_workflow",
   "workflow_file": "workflow-resp_001-board-meeting.py",
-  "model": "claude-sonnet-4-5-20250929",
+  "model": "claude-sonnet-4-6",
   "temperature": 0.3,
   "max_tokens": 4000,
   "tools": [
@@ -1477,7 +1477,7 @@ exec-automator includes **11 pre-built domain specialist agents** covering all m
 - Organizational complexity scoring
 - Stakeholder relationship mapping
 
-**Model**: Claude Sonnet 4.5
+**Model**: Claude Sonnet 4.6
 
 ### 2. **workflow-designer** - LangGraph Workflow Architect
 
@@ -1492,7 +1492,7 @@ exec-automator includes **11 pre-built domain specialist agents** covering all m
 - Error handling and retry logic
 - Human-in-the-loop checkpoint placement
 
-**Model**: Claude Opus 4.5 (requires strategic thinking)
+**Model**: Claude Opus 4.8 (requires strategic thinking)
 
 ### 3. **meeting-facilitator** - Meeting Automation Specialist
 
@@ -1507,7 +1507,7 @@ exec-automator includes **11 pre-built domain specialist agents** covering all m
 - Minute-taking assistance (transcription, summarization, action items)
 - Post-meeting follow-up (action item tracking, minute distribution)
 
-**Model**: Claude Sonnet 4.5
+**Model**: Claude Sonnet 4.6
 
 ### 4. **finance-manager** - Financial Operations Agent
 
@@ -1522,7 +1522,7 @@ exec-automator includes **11 pre-built domain specialist agents** covering all m
 - Expense categorization and GL coding
 - Financial dashboard updates
 
-**Model**: Claude Sonnet 4.5
+**Model**: Claude Sonnet 4.6
 
 ### 5. **member-comm-specialist** - Member Communication Manager
 
@@ -1537,7 +1537,7 @@ exec-automator includes **11 pre-built domain specialist agents** covering all m
 - Renewal reminder email sequences
 - Member satisfaction survey analysis
 
-**Model**: Claude Sonnet 4.5
+**Model**: Claude Sonnet 4.6
 
 ### 6. **program-coordinator** - Program & Event Manager
 
@@ -1613,7 +1613,7 @@ exec-automator includes **11 pre-built domain specialist agents** covering all m
 - Post-event survey distribution and analysis
 - Budget tracking and expense management
 
-**Model**: Claude Sonnet 4.5
+**Model**: Claude Sonnet 4.6
 
 ### 11. **sponsor-relations** - Sponsorship Management Agent
 
@@ -1629,7 +1629,7 @@ exec-automator includes **11 pre-built domain specialist agents** covering all m
 - Sponsor satisfaction surveys
 - Benefit customization and upsell opportunities
 
-**Model**: Claude Sonnet 4.5
+**Model**: Claude Sonnet 4.6
 
 ---
 
@@ -2363,8 +2363,8 @@ export OBSIDIAN_VAULT_PATH="/path/to/vault"
     "size": "medium"
   },
   "models": {
-    "default": "claude-sonnet-4-5-20250929",
-    "strategic": "claude-opus-4-5-20251101",
+    "default": "claude-sonnet-4-6",
+    "strategic": "claude-opus-4-8-20251101",
     "cost_effective": "claude-haiku-3-5-20250305"
   },
   "scoring": {

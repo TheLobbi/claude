@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1] - 2026-06-04
+
+### Changed
+- Refreshed Claude Code model references to the June 2026 generation: agent frontmatter
+  `model: claude-opus-4-6` → `opus` (alias, future-proof) in `blazor-architect` and
+  `microservices-designer`; the syncfusion-blazor skill's recommended-models note
+  `Claude Sonnet 4.5+` → `Claude Sonnet 4.6+`.
+
 ## [2.0.0] - 2026-03-29
 
 ### Added

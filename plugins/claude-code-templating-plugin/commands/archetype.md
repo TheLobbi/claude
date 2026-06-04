@@ -12,7 +12,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Complete archetype lifecycle - analyze projects, create templates, scaffold new projects, register architecture, generate Harness templates, and export diagrams
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Archetype Command - Complete Lifecycle
