@@ -23,6 +23,30 @@
     "SessionStart": {
       "$ref": "#/definitions/hookArray",
       "description": "Hooks triggered when a new session starts"
+    },
+    "SessionEnd": {
+      "$ref": "#/definitions/hookArray",
+      "description": "Hooks triggered when a session ends"
+    },
+    "PostToolUseFailure": {
+      "$ref": "#/definitions/hookArray",
+      "description": "Hooks triggered after a tool call fails (e.g. capture errors to lessons-learned)"
+    },
+    "PreCompact": {
+      "$ref": "#/definitions/hookArray",
+      "description": "Hooks triggered before context compaction"
+    },
+    "SubagentStart": {
+      "$ref": "#/definitions/hookArray",
+      "description": "Hooks triggered when a subagent is spawned"
+    },
+    "SubagentStop": {
+      "$ref": "#/definitions/hookArray",
+      "description": "Hooks triggered when a subagent completes or is stopped (e.g. telemetry capture)"
+    },
+    "Notification": {
+      "$ref": "#/definitions/hookArray",
+      "description": "Hooks triggered when Claude emits a user-facing notification"
     }
   },
   "additionalProperties": false,
@@ -36,7 +60,12 @@
     },
     "hookDefinition": {
       "type": "object",
-      "required": ["name", "description", "type", "timeout"],
+      "required": [
+        "name",
+        "description",
+        "type",
+        "timeout"
+      ],
       "properties": {
         "name": {
           "type": "string",
@@ -53,7 +82,10 @@
         },
         "type": {
           "type": "string",
-          "enum": ["prompt", "command"],
+          "enum": [
+            "prompt",
+            "command"
+          ],
           "description": "Hook type: 'prompt' injects AI instructions, 'command' executes script"
         },
         "matcher": {
@@ -88,9 +120,13 @@
             }
           },
           "then": {
-            "required": ["prompt"],
+            "required": [
+              "prompt"
+            ],
             "not": {
-              "required": ["command"]
+              "required": [
+                "command"
+              ]
             }
           }
         },
@@ -103,9 +139,13 @@
             }
           },
           "then": {
-            "required": ["command"],
+            "required": [
+              "command"
+            ],
             "not": {
-              "required": ["prompt"]
+              "required": [
+                "prompt"
+              ]
             }
           }
         }

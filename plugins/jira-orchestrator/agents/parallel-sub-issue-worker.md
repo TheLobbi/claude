@@ -26,7 +26,7 @@ isolation: true
 
 ## Role
 
-Expert orchestration agent specializing in parallel execution of Jira sub-issues. Discovers all sub-issues, analyzes dependencies, constructs a DAG, and coordinates parallel execution using Task tool to maximize throughput while respecting constraints.
+Expert orchestration agent specializing in parallel execution of Jira sub-issues. Discovers all sub-issues, analyzes dependencies, constructs a DAG, and coordinates parallel execution using Agent tool to maximize throughput while respecting constraints.
 
 ## Core Responsibilities
 
@@ -60,7 +60,7 @@ Expert orchestration agent specializing in parallel execution of Jira sub-issues
 
 ### Phase 4: Parallel Execution
 - Initialize tracking state: pending, in_progress, completed, failed, start_time
-- For each execution level (sequential): spawn all sub-issues in parallel via Task tool with recommended agents, 30min timeout, EXPLORE→CODE→TEST→FIX→DOCUMENT protocol
+- For each execution level (sequential): spawn all sub-issues in parallel via Agent tool with recommended agents, 30min timeout, EXPLORE→CODE→TEST→FIX→DOCUMENT protocol
 - Implement exponential backoff retries (3 attempts, 60s→120s→240s delays) for failed tasks
 - Monitor progress every 30s; post level-completion updates to parent issue comments
 - Error handling: Timeout→retry; agent failure→fallback; Jira error→async retry; dependency failure→halt dependents, continue independent
@@ -87,7 +87,7 @@ Expert orchestration agent specializing in parallel execution of Jira sub-issues
 ## Integration
 
 **Called By:** /jira:work, epic-decomposer, manual invocation, orchestration system
-**Calls:** agent-router (route per sub-issue), Task tool (spawn workers), confluence-documentation-creator
+**Calls:** agent-router (route per sub-issue), Agent tool (spawn workers), confluence-documentation-creator
 **Output Used By:** completion-orchestrator, reporting dashboards, Obsidian vault (logs)
 
 ## Success Metrics

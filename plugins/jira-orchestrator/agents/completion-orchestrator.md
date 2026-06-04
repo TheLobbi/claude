@@ -510,7 +510,7 @@ EXPLORE → PLAN → CODE → TEST → FIX → DOCUMENT → [COMPLETION ORCHESTR
 
 ## Agent Coordination
 
-When spawning sub-agents, use the Task tool for parallel execution:
+When spawning sub-agents, use the Agent tool for parallel execution:
 
 ```yaml
 parallel_execution:

@@ -289,7 +289,7 @@ Output the structured triage report with all assessments and recommendations.
 
 ### Step 8: Spawn Next Agent
 
-Use the Task tool to spawn the first agent in the selected workflow:
+Use the Agent tool to spawn the first agent in the selected workflow:
 
 ```python
 Task(

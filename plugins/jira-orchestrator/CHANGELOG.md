@@ -1,5 +1,33 @@
 # Changelog
 
+## v8.1.1 (2026-06-04) — Complete the Claude Code modernization (June 2026)
+
+Follow-up to v8.1.0: closes the gaps that pass left open against current Claude Code.
+No agent logic changed.
+
+### Models (a generation behind → current)
+- Updated the model-routing reference in `agents/agent-router.md` to current IDs:
+  `claude-opus-4-5` → `claude-opus-4-8`, `claude-sonnet-4-5` → `claude-sonnet-4-6`,
+  `claude-haiku-4-0` → `claude-haiku-4-5-20251001` (shown alongside the `opus`/`sonnet`/`haiku`
+  aliases the agent frontmatter already uses).
+- `commands/setup.md` frontmatter `model: claude-sonnet-4-5` → `model: sonnet` (future-proof alias,
+  matching the convention used by the other agents).
+- `examples/self-reflection-integration.ts` API call `claude-sonnet-4-5-20251101` → `claude-sonnet-4-6`.
+- Historical `Co-Authored-By: Claude Opus 4.5` attribution lines in the WORKSTREAM/summary docs were
+  left intact (provenance, not config).
+
+### Tooling terminology
+- Renamed the `Task tool` → `Agent tool` in the orchestration agents
+  (`parallel-sub-issue-worker`, `advanced-orchestration-patterns`, `completion-flow-orchestrator`,
+  `triage-agent`, `completion-orchestrator`) to match the current built-in tool name.
+
+### Hook schema correctness
+- `hooks/schema/hook-config.schema.json` had `additionalProperties: false` but only defined 5 events,
+  while `hooks.json` actually uses `SubagentStop` and `PostToolUseFailure` (added in v8.1.0's telemetry
+  work) — so the plugin's own hook config failed its own schema. Added `PostToolUseFailure`,
+  `SubagentStop`, plus the rest of the current lifecycle surface (`SessionEnd`, `PreCompact`,
+  `SubagentStart`, `Notification`). `hooks.json` now validates.
+
 ## v8.1.0 (2026-06-04) — Workflows, Advisor & Claude Code modernization
 
 Brings jira-orchestrator up to current Claude Code conventions without rewriting

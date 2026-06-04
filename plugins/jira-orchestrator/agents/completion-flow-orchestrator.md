@@ -131,7 +131,7 @@ REQUIRE_CONFLUENCE: true
 
 ## Performance Considerations
 
-- Use Task tool to spawn parallel agents for independent gaps
+- Use Agent tool to spawn parallel agents for independent gaps
 - Cache test results, coverage reports, linting results
 - Only analyze changes since last evaluation
 - Use async API calls when possible
