@@ -69,6 +69,21 @@ When to isolate:
 - Parallel agents investigate (read-only) → no, shared repo is fine
 - Agents share state via a coordinator file (blackboard) → no isolation, but strict write-discipline
 
+## Coordination mechanics (current Agent-tool surface)
+
+| Need | How |
+|---|---|
+| Spawn a teammate | `Agent` tool with `subagent_type`, `model`, and a focused prompt. A built-in `general-purpose` agent is always available. |
+| Address it later with context intact | give it a `name`/`team_name`, then **`SendMessage`** to that name/ID — a fresh `Agent` call instead starts a new context. |
+| Run non-blocking | `run_in_background: true` (tool) / `background: true` (frontmatter); you're notified on completion. Launch independent agents in one message to run them concurrently. |
+| Isolate the working copy | `isolation: "worktree"` (see below). |
+| Require a plan before it acts | `mode: "plan"` on the spawn. |
+| Cap runaway loops | `maxTurns` in the agent definition. |
+
+The agent's **final message is the only thing returned to the parent** — relay what matters; the
+user doesn't see a teammate's transcript. Keep spawn prompts under ~400 words and prefer named
+specialists over generics (see `prompt-budget-preflight`).
+
 ## Lifecycle management
 
 Long-running or idle agents waste tokens. `team-orchestrator` agent handles this:

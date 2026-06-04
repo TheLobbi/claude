@@ -24,13 +24,19 @@ Claude model choice is the biggest cost lever in Claude Code. Match the model to
 
 ## Cost table (approximate, check `cc_docs_model_recommend` for current)
 
-| Model | Input $/M | Output $/M | Relative |
-|---|---|---|---|
-| Opus 4.7 | ~$15 | ~$75 | 5× |
-| Sonnet 4.6 | ~$3 | ~$15 | 1× |
-| Haiku 4.5 | ~$0.80 | ~$4 | 0.3× |
+| Model | Alias / ID | Input $/M | Output $/M | Relative |
+|---|---|---|---|---|
+| Opus 4.8 | `opus` / `claude-opus-4-8` | ~$15 | ~$75 | 5× |
+| Sonnet 4.6 | `sonnet` / `claude-sonnet-4-6` | ~$3 | ~$15 | 1× |
+| Haiku 4.5 | `haiku` / `claude-haiku-4-5-20251001` | ~$0.80 | ~$4 | 0.3× |
 
 Output tokens are the dominant cost in most Claude Code sessions. Opus is ~5× the cost but ~2× the capability on hard tasks — use it where the capability matters.
+
+**Aliases auto-resolve to the latest generation** — prefer `opus`/`sonnet`/`haiku` over pinned IDs so a model refresh doesn't strand your config. Use `opusplan` for Opus-reasoning + Sonnet-execution, or `best` for "most capable available". Extended 1M-token context: `opus[1m]` / `sonnet[1m]`.
+
+**Fast mode** (`/fast` in-session, `--fast` at launch) keeps you on Opus (4.6/4.7/4.8) but optimizes for faster output — it does **not** downgrade to a smaller model. Toggle it when you want Opus-level reasoning without the usual latency.
+
+**Effort levels** scale reasoning depth independently of model: `low` · `medium` · `high` · `xhigh` · `max` (Opus 4.7/4.8 add `xhigh`). Set via `/effort`, `--effort <level>`, or `effort:` in skill/agent frontmatter — cheaper than jumping a model tier when you just need deeper thinking.
 
 ## Model cascading
 

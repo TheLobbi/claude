@@ -6,7 +6,7 @@
     { "role": "writer-a", "model": "claude-sonnet-4-6", "owns": "alphabetically first third of docs/" },
     { "role": "writer-b", "model": "claude-sonnet-4-6", "owns": "middle third" },
     { "role": "writer-c", "model": "claude-sonnet-4-6", "owns": "last third" },
-    { "role": "editor", "model": "claude-opus-4-6", "writes": "final touch-ups only" }
+    { "role": "editor", "model": "claude-opus-4-8", "writes": "final touch-ups only" }
   ],
   "file_ownership": "Sharded by alphabet to avoid collisions. No shared files. Each writer works in an isolated worktree.",
   "coordination": [

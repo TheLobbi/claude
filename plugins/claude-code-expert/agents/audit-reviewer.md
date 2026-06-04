@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Second-round audit agent that reviews work produced by other agents. Finds gaps, missed edge cases, inconsistencies, and quality issues that first-pass agents missed. Uses Context7 to validate library usage against official docs.
-model: claude-opus-4-6
+model: claude-opus-4-8
 tools:
   - Read
   - Glob

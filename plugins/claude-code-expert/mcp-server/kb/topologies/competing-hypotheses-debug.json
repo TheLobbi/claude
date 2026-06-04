@@ -6,7 +6,7 @@
     { "role": "investigator-a", "model": "claude-sonnet-4-6", "tools": ["Read", "Grep", "Glob", "Bash"], "hypothesis": "primary suspicion (e.g. race condition)" },
     { "role": "investigator-b", "model": "claude-sonnet-4-6", "tools": ["Read", "Grep", "Glob", "Bash"], "hypothesis": "secondary suspicion (e.g. cache staleness)" },
     { "role": "investigator-c", "model": "claude-sonnet-4-6", "tools": ["Read", "Grep", "Glob", "Bash"], "hypothesis": "outside-the-box (e.g. env-config divergence)" },
-    { "role": "synthesizer", "model": "claude-opus-4-6", "tools": ["Read"], "writes": false }
+    { "role": "synthesizer", "model": "claude-opus-4-8", "tools": ["Read"], "writes": false }
   ],
   "file_ownership": {
     "investigators": "each writes to .claude/investigations/{role}.md — evidence table, ruled-in/ruled-out, proposed fix",

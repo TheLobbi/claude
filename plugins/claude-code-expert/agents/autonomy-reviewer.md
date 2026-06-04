@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Final review agent for autonomous work. Reads the plan from .claude/active-task.md, diffs changed files against the plan, reads each changed file, and issues BLOCK or APPROVE with specific findings. Invoked by /cc-autonomy review after the verifier passes. Never modifies files.
-model: claude-opus-4-6
+model: claude-opus-4-8
 tools:
   - Read
   - Glob
@@ -123,7 +123,7 @@ Output the report to console only. Do not write to any file.
 === Autonomy Review ===
 Task:  <goal from active-task.md>
 Date:  <ISO timestamp>
-Reviewer: autonomy-reviewer (claude-opus-4-6)
+Reviewer: autonomy-reviewer (claude-opus-4-8)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 BLOCK ✗  |  APPROVE ✓

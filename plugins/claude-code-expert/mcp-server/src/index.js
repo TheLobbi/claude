@@ -300,7 +300,7 @@ function resolveTask(query) {
 
 // --- Model routing data for cc_docs_model_recommend ---
 const MODEL_DATA = {
-  "opus": { id: "claude-opus-4-6", inputCost: 15.00, outputCost: 75.00, cacheRead: 1.50, best: "architecture, complex debugging, security review" },
+  "opus": { id: "claude-opus-4-8", inputCost: 15.00, outputCost: 75.00, cacheRead: 1.50, best: "architecture, complex debugging, security review" },
   "sonnet": { id: "claude-sonnet-4-6", inputCost: 3.00, outputCost: 15.00, cacheRead: 0.30, best: "implementation, code review, refactoring, test writing" },
   "haiku": { id: "claude-haiku-4-5-20251001", inputCost: 0.80, outputCost: 4.00, cacheRead: 0.08, best: "lookups, research, docs, simple Q&A, commit messages" },
 };
@@ -1339,7 +1339,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         result.cron ? `- **Cron:** \`${result.cron}\`` : null,
         result.description ? `- **Description:** ${result.description}` : null,
         result.command ? `- **Command:** \`${result.command}\`` : null,
-        result.warning ? ``, result.warning ? result.warning : null,
+        result.warning ? result.warning : null,
         ``,
         `## Profile Notes`,
         result.profile === "cloud"

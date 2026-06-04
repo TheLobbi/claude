@@ -1,6 +1,6 @@
 ---
 name: hooks
-description: Design, install, and debug Claude Code hooks (PreToolUse, PostToolUse, Notification, Stop, UserPromptSubmit, SessionStart). Use this skill whenever a user asks to "install hooks", "add a pre-tool hook", "format on save", "block dangerous commands", "protect sensitive files", "restore context after compact", "enforce tests before stop", or runs /cc-hooks. Also triggers on "hooks not firing", "hook keeps blocking", or any configuration of .claude/settings.json hook sections.
+description: Design, install, and debug Claude Code hooks across the full lifecycle (PreToolUse, PostToolUse, PostToolUseFailure, UserPromptSubmit, Notification, Stop, SessionStart, SessionEnd, PreCompact, SubagentStart, SubagentStop, TeammateIdle, PermissionRequest, Setup). Use this skill whenever a user asks to "install hooks", "add a pre-tool hook", "format on save", "block dangerous commands", "protect sensitive files", "restore context after compact", "enforce tests before stop", capture subagent telemetry, or runs /cc-hooks. Also triggers on "hooks not firing", "hook keeps blocking", or any configuration of .claude/settings.json hook sections.
 ---
 
 # Hooks
@@ -9,15 +9,26 @@ Hooks are Claude Code's automation surface — deterministic bash (or any shell)
 
 ## Events (matcher + input + output)
 
-| Event | Fires | Input | Output shape |
+Every hook also receives common fields on stdin: `session_id`, `transcript_path`, `cwd`, `permission_mode`, and `hook_event_name` (plus `agent_id`/`agent_type` inside subagents).
+
+| Event | Fires | Input (event-specific) | Output shape |
 |---|---|---|---|
-| `PreToolUse` | Before any tool | `{tool_name, tool_input}` | `{decision, reason?}` — block prevents the tool call |
+| `PreToolUse` | Before any tool | `{tool_name, tool_input}` | `hookSpecificOutput.permissionDecision: allow\|deny\|ask\|defer`, `updatedInput?`, `additionalContext?` |
 | `PostToolUse` | After tool succeeds | `{tool_name, tool_input, tool_output}` | `{decision, reason?}` |
 | `PostToolUseFailure` | After tool fails | `{tool_name, tool_input, error}` | `{decision}` — almost always approve |
-| `Notification` | Claude needs input | `{message}` | `{decision}` |
-| `Stop` | Agent finishes turn | `{stop_reason}` | `{decision}` |
-| `UserPromptSubmit` | Prompt submitted | `{prompt}` | `{decision}` + optional modified prompt |
-| `SessionStart` | New session | `{}` | `{decision}` — usually for context injection |
+| `UserPromptSubmit` | Prompt submitted | `{prompt}` | `{decision}` + `additionalContext?` / optional modified prompt |
+| `Notification` | Claude emits a user-facing notification | `{message}` | `{decision}` |
+| `Stop` | Claude is about to stop responding | `{stop_reason}` | `{decision}` — block to force more work (e.g. tests must pass) |
+| `SessionStart` | New session begins | `{source}` | `additionalContext?` — context/rule injection |
+| `SessionEnd` | Session is ending | `{}` | `{decision}` — summarize, archive to memory |
+| `PreCompact` | Before `/compact` (manual or auto) | `{}` | save key context to memory before it's summarized |
+| `SubagentStart` | A subagent is spawned | `{agent_type}` | block to enforce budget / gate which agents may fire |
+| `SubagentStop` | A subagent completes or is stopped | `{agent_id, agent_type}` | collect telemetry, capture output |
+| `TeammateIdle` | A teammate process has been idle too long | `{agent_id}` | kill stale processes, alert |
+| `PermissionRequest` | A permission check fires | `{tool_name, tool_input}` | auto-approve/deny known-safe tools, add permission rules |
+| `Setup` | During initial session setup | `{}` | bootstrap rules, check environment |
+
+This is the practical working set. Hook events that block (return a deny/block decision): `PreToolUse`, `Stop`, `UserPromptSubmit`, `SubagentStart`, `TeammateIdle`, `PermissionRequest`. The rest are observe-only.
 
 ## Installing a hook pack
 
