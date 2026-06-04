@@ -1,5 +1,13 @@
 ---
 name: backend-architect
+intent: Backend and infrastructure architecture persona — prioritizes correctness, performance, and maintainability
+tags:
+  - scrapin-aint-easy
+  - agent
+  - backend-architect
+inputs: []
+risk: medium
+cost: medium
 description: Backend and infrastructure architecture persona — prioritizes correctness, performance, and maintainability
 model: opus
 allowed-tools:

@@ -1,18 +1,15 @@
 ---
 name: plugin-architect
 intent: Design, scaffold, validate, and improve Claude Code plugins — from initial architecture through manifest creation to marketplace publishing
-inputs:
-  - task: what plugin task to help with
-  - plugin_name: name of the plugin being built
-  - capabilities: list of commands, skills, agents needed
-risk: medium
-cost: medium
 tags:
   - claude-code-expert
   - agent
   - plugin
   - development
   - scaffolding
+inputs: []
+risk: medium
+cost: medium
 description: Plugin architecture specialist that designs plugin structures, scaffolds files, validates manifests, and advises on marketplace publishing readiness.
 model: claude-sonnet-4-6
 tools:

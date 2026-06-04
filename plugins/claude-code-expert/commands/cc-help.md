@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-help
+intent: Plugin help — task-routing table that maps "I want to X" to the right command, skill, or agent in the claude-code-expert plugin.
+tags:
+  - claude-code-expert
+  - command
+  - cc-help
+inputs: []
+risk: medium
+cost: medium
 description: Plugin help — task-routing table that maps "I want to X" to the right command, skill, or agent in the claude-code-expert plugin.
 ---
 

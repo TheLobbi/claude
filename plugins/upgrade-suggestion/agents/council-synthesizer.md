@@ -1,5 +1,14 @@
 ---
 name: council-synthesizer
+intent: Synthesizes findings from all council specialists into weighted, deduplicated recommendations
+tags:
+  - upgrade-suggestion
+  - agent
+  - synthesizer
+  - council
+inputs: []
+risk: medium
+cost: medium
 description: Synthesizes findings from all council specialists into weighted, deduplicated recommendations
 model: sonnet
 tools:
@@ -7,11 +16,6 @@ tools:
   - Grep
   - Glob
   - Bash
-tags:
-  - upgrade-suggestion
-  - agent
-  - synthesizer
-  - council
 ---
 
 # Council Synthesizer Agent

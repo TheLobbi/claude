@@ -22,6 +22,11 @@ tools:
   - mcp__atlassian__getConfluencePage
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__getJiraIssue
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Documentation Writer Agent

@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-done-when
+intent: Declare the binary-testable criteria Claude must verify before the session may end
+tags:
+  - project-management-plugin
+  - command
+  - pm-done-when
+inputs: []
+risk: medium
+cost: medium
 description: Declare the binary-testable criteria Claude must verify before the session may end
 ---
 

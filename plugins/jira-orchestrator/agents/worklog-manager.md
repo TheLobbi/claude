@@ -15,6 +15,11 @@ model: haiku
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addWorklogToJiraIssue
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Worklog Manager Agent

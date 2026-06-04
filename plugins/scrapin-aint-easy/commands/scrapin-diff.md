@@ -1,4 +1,13 @@
 ---
+name: scrapin-aint-easy:scrapin-diff
+intent: Show documentation changes since the last crawl for a source
+tags:
+  - scrapin-aint-easy
+  - command
+  - scrapin-diff
+inputs: []
+risk: medium
+cost: medium
 description: Show documentation changes since the last crawl for a source
 model: sonnet
 allowed-tools:

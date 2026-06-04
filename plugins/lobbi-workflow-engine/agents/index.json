@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "plugin": "lobbi-workflow-engine",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "escalation-manager",
+      "intent": "Defines escalation paths, SLA thresholds, and notification sequences for stalled workflows. Invoke when configuring automatic escalation for queues, setting up SLA breach alerts, or designing management dashboards for workflow health.",
+      "tags": [
+        "lobbi-workflow-engine",
+        "agent",
+        "escalation-manager"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/escalation-manager.md"
+    },
+    {
+      "name": "rule-designer",
+      "intent": "Writes routing rules and conditional business logic for workflow automation. Invoke when translating business policy documents, underwriting guidelines, or compliance requirements into executable routing conditions and decision trees.",
+      "tags": [
+        "lobbi-workflow-engine",
+        "agent",
+        "rule-designer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/rule-designer.md"
+    },
+    {
+      "name": "workflow-architect",
+      "intent": "Designs end-to-end approval workflows from business requirements. Invoke when the user needs to architect a complete workflow from intake to completion, including approval levels, routing, escalations, and notifications for insurance, mortgage, or financial services processes.",
+      "tags": [
+        "lobbi-workflow-engine",
+        "agent",
+        "workflow-architect"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/workflow-architect.md"
+    }
+  ]
+}

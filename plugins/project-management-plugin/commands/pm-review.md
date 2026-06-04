@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-review
+intent: Multi-agent quality council review of completed work
+tags:
+  - project-management-plugin
+  - command
+  - pm-review
+inputs: []
+risk: medium
+cost: medium
 description: Multi-agent quality council review of completed work
 ---
 

@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: low
 cost: medium
-description: >
-  Analyzes project context (code, conversation, explicit request) to automatically
-  select the best diagram type and generate production-quality draw.io XML with
-  proper mxGraphModel structure, style presets, color themes, multi-page support,
-  and layer organization.
+description: |
+  Analyzes project context (code, conversation, explicit request) to automatically select the best diagram type and generate production-quality draw.io XML with proper mxGraphModel structure, style presets, color themes, multi-page support, and layer organization.
 allowed-tools:
   - Read
   - Write

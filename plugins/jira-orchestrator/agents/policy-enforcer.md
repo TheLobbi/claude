@@ -17,6 +17,11 @@ tools:
   - Bash
   - Task
   - mcp__atlassian__addCommentToJiraIssue
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Policy Enforcer Agent

@@ -1,6 +1,6 @@
 ---
 name: harness-cd
-description: Harness CD (Continuous Delivery) for Kubernetes, Helm, Terraform, ECS, and serverless deployments with GitOps, approval gates, rollback strategies, and multi-environment promotion
+description: This skill should be used when the user asks to "deploy with Harness", "set up Harness CD", "configure a canary/blue-green/rolling deployment", "add approval gates", or "roll back a deployment" — Kubernetes, Helm, Terraform, ECS, and serverless delivery via Harness.
 allowed-tools:
   - Bash
   - Read

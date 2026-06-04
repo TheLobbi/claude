@@ -18,6 +18,11 @@ tools:
   - Bash
   - Read
   - Grep
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Sub-Item Documenter Agent

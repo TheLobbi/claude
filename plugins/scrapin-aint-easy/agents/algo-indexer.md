@@ -1,5 +1,13 @@
 ---
 name: algo-indexer
+intent: Indexes algorithm and coding pattern sources into the knowledge graph
+tags:
+  - scrapin-aint-easy
+  - agent
+  - algo-indexer
+inputs: []
+risk: medium
+cost: medium
 description: Indexes algorithm and coding pattern sources into the knowledge graph
 model: sonnet
 allowed-tools:

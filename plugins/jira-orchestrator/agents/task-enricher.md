@@ -19,6 +19,11 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Task Enricher Agent

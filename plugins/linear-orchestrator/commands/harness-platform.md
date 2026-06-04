@@ -11,9 +11,7 @@ tags:
   - approvals
   - connectors
 inputs:
-  - name: action
-    description: "api-keys | jwt | api-perms | quickstart | approvals | tags | triggers | variables | connectors | auth"
-    required: true
+  - action
 risk: high
 cost: medium
 description: Advanced Harness platform features wired to Linear (https://apidocs.harness.io/, developer.harness.io)

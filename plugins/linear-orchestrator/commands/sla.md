@@ -6,9 +6,7 @@ tags:
   - command
   - sla
 inputs:
-  - name: action
-    description: "policies | status | breaches | configure"
-    required: true
+  - action
 risk: medium
 cost: low
 description: SLA management (linear.app/docs/sla)

@@ -1,5 +1,13 @@
 ---
 name: doc-crawler
+intent: Crawls documentation sources, extracts content, and populates the knowledge graph
+tags:
+  - scrapin-aint-easy
+  - agent
+  - doc-crawler
+inputs: []
+risk: medium
+cost: medium
 description: Crawls documentation sources, extracts content, and populates the knowledge graph
 model: sonnet
 allowed-tools:

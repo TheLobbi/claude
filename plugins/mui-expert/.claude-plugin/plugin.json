@@ -141,7 +141,9 @@
       "**/node_modules/**",
       "**/dist/**",
       "**/build/**",
-      "**/*.zip"
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
     ],
     "lazyLoadSections": [
       "CLAUDE.md",

@@ -1,8 +1,16 @@
 ---
 name: work-unit-reporter
+intent: Generates ULTRA §13-compliant Work Unit Reports on demand. Verifies every claim against the filesystem before including it. Invoke at work-unit close or when user asks for a report.
+tags:
+  - work-automation
+  - agent
+  - work-unit-reporter
+inputs: []
+risk: medium
+cost: medium
 description: Generates ULTRA §13-compliant Work Unit Reports on demand. Verifies every claim against the filesystem before including it. Invoke at work-unit close or when user asks for a report.
-tools: Read, Glob, Grep, Bash
 model: sonnet
+tools: Read, Glob, Grep, Bash
 ---
 
 # Work Unit Reporter

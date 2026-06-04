@@ -171,7 +171,7 @@
       "path": "agents/commit-orchestrator.md"
     },
     {
-      "name": "commit-tracker",
+      "name": "Commit Tracker",
       "intent": "Track commits, map them to Jira issues, and post detailed commit summaries with Confluence references",
       "tags": [
         "jira-orchestrator",
@@ -517,6 +517,21 @@
       "risk": "medium",
       "cost": "medium",
       "path": "agents/issue-validator.md"
+    },
+    {
+      "name": "jira-orchestrator:jira-advisor",
+      "intent": "Advisory agent that analyzes current Jira, sprint, PR, and CI state and recommends the next best actions, workflows, and agents to deploy",
+      "tags": [
+        "jira-orchestrator",
+        "agent",
+        "advisor"
+      ],
+      "inputs": [
+        "scope"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/jira-advisor.md"
     },
     {
       "name": "learning-coordinator",
@@ -962,7 +977,7 @@
       "path": "agents/sub-item-documenter.md"
     },
     {
-      "name": "tag-manager",
+      "name": "jira-orchestrator:tag-manager",
       "intent": "Tag Manager Agent",
       "tags": [
         "jira-orchestrator",
@@ -1001,7 +1016,7 @@
       "path": "agents/team-capacity-planner.md"
     },
     {
-      "name": "test-strategist",
+      "name": "Test Strategist",
       "intent": "Test Strategist",
       "tags": [
         "jira-orchestrator",
@@ -1096,7 +1111,7 @@
       "path": "agents/worklog-manager.md"
     },
     {
-      "name": "worktree-orchestrator",
+      "name": "jira-orchestrator:worktree-orchestrator",
       "intent": "Worktree Orchestrator Agent",
       "tags": [
         "jira-orchestrator",

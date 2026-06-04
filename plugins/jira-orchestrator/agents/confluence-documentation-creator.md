@@ -20,6 +20,11 @@ tools:
   - mcp__atlassian__addCommentToJiraIssue
   - Read
   - Grep
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Confluence Documentation Creator

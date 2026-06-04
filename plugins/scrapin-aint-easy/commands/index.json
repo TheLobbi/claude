@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "plugin": "scrapin-aint-easy",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "scrapin-aint-easy:scrapin-algo",
+      "intent": "Query the algorithm library for implementations, patterns, and complexity analysis",
+      "tags": [
+        "scrapin-aint-easy",
+        "command",
+        "scrapin-algo"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/scrapin-algo.md"
+    },
+    {
+      "name": "scrapin-aint-easy:scrapin-crawl",
+      "intent": "Trigger a documentation crawl for a specific source or all sources",
+      "tags": [
+        "scrapin-aint-easy",
+        "command",
+        "scrapin-crawl"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/scrapin-crawl.md"
+    },
+    {
+      "name": "scrapin-aint-easy:scrapin-diff",
+      "intent": "Show documentation changes since the last crawl for a source",
+      "tags": [
+        "scrapin-aint-easy",
+        "command",
+        "scrapin-diff"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/scrapin-diff.md"
+    },
+    {
+      "name": "scrapin-aint-easy:scrapin-drift",
+      "intent": "Run drift detection — codebase API drift and agent prompt drift",
+      "tags": [
+        "scrapin-aint-easy",
+        "command",
+        "scrapin-drift"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/scrapin-drift.md"
+    },
+    {
+      "name": "scrapin-aint-easy:scrapin-search",
+      "intent": "Search the documentation knowledge graph for symbols, concepts, or patterns",
+      "tags": [
+        "scrapin-aint-easy",
+        "command",
+        "scrapin-search"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/scrapin-search.md"
+    },
+    {
+      "name": "scrapin-aint-easy:scrapin-setup",
+      "intent": "Interactive project setup — conducts a thorough interview then generates complete Claude Code configuration",
+      "tags": [
+        "scrapin-aint-easy",
+        "command",
+        "scrapin-setup"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/scrapin-setup.md"
+    },
+    {
+      "name": "scrapin-aint-easy:scrapin-status",
+      "intent": "Show overall system status — graph health, cron jobs, drift summary",
+      "tags": [
+        "scrapin-aint-easy",
+        "command",
+        "scrapin-status"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/scrapin-status.md"
+    }
+  ]
+}

@@ -1,3 +1,8 @@
+---
+name: agentic-patterns
+description: "Patterns from \"Agentic Design Patterns\" (Gulli & Sauco, 2025) applied to async Python API development, MongoDB/Beanie data modeling, and production-ready backend services"
+---
+
 # Agentic Design Patterns — FastAPI Backend
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to async Python API development, MongoDB/Beanie data modeling, and production-ready backend services

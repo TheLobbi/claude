@@ -1,16 +1,16 @@
 ---
 name: blazor-microservice
 intent: Design and scaffold a .NET microservice with Aspire orchestration, inter-service communication, and resilience
-inputs:
-  - service-name
-  - communication-pattern
-  - features
 tags:
   - dotnet-blazor
   - command
   - microservices
   - aspire
   - grpc
+inputs:
+  - service-name
+  - communication-pattern
+  - features
 risk: medium
 cost: high
 description: Creates a microservice within an Aspire-orchestrated solution with proper service boundaries, messaging, and health checks

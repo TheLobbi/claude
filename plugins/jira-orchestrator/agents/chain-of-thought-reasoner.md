@@ -22,6 +22,11 @@ tools:
   - mcp__plugin_jira-orchestrator_memory__create_entities
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Chain-of-Thought Reasoner Agent

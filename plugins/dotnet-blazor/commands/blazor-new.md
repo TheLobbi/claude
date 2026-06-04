@@ -1,17 +1,17 @@
 ---
 name: blazor-new
 intent: Scaffold a new .NET 10 Blazor Web App, API project, or microservice solution with best-practice structure
-inputs:
-  - project-type
-  - project-name
-  - render-mode
-  - features
 tags:
   - dotnet-blazor
   - command
   - scaffold
   - blazor
   - aspnet
+inputs:
+  - project-type
+  - project-name
+  - render-mode
+  - features
 risk: low
 cost: medium
 description: Creates a new .NET 10 solution with proper project structure, NuGet packages, and configuration

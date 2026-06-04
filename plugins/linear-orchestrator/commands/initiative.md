@@ -6,9 +6,7 @@ tags:
   - command
   - initiative
 inputs:
-  - name: action
-    description: "create | update | sub-create | sub-link | status | list"
-    required: true
+  - action
 risk: medium
 cost: low
 description: Initiatives + sub-initiatives + updates (linear.app/docs/initiatives, sub-initiatives, initiative-and-project-updates)

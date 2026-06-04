@@ -19,6 +19,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getVisibleJiraProjects
   - mcp__atlassian__createConfluencePage
+effort: high
+maxTurns: 50
+memory: true
+background: false
+isolation: false
 ---
 
 # Portfolio Manager Agent

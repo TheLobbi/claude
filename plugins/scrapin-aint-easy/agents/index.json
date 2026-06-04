@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "plugin": "scrapin-aint-easy",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "agent-drift-detector",
+      "intent": "Detects drift in agent definition files — content changes, schema breaks, and cross-agent contradictions",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "agent-drift-detector"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/agent-drift-detector.md"
+    },
+    {
+      "name": "algo-indexer",
+      "intent": "Indexes algorithm and coding pattern sources into the knowledge graph",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "algo-indexer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/algo-indexer.md"
+    },
+    {
+      "name": "backend-architect",
+      "intent": "Backend and infrastructure architecture persona — prioritizes correctness, performance, and maintainability",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "backend-architect"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/backend-architect.md"
+    },
+    {
+      "name": "code-drift-detector",
+      "intent": "Scans codebase imports to detect missing documentation, deprecated API usage, and stale references",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "code-drift-detector"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/code-drift-detector.md"
+    },
+    {
+      "name": "doc-crawler",
+      "intent": "Crawls documentation sources, extracts content, and populates the knowledge graph",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "doc-crawler"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/doc-crawler.md"
+    },
+    {
+      "name": "doc-cron-runner",
+      "intent": "Manages and monitors cron job execution for all scheduled tasks",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "doc-cron-runner"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/doc-cron-runner.md"
+    },
+    {
+      "name": "doc-diff-watcher",
+      "intent": "Monitors documentation sources for content changes and reports diffs",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "doc-diff-watcher"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/doc-diff-watcher.md"
+    },
+    {
+      "name": "doc-graph-builder",
+      "intent": "Builds and maintains the documentation knowledge graph structure",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "doc-graph-builder"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/doc-graph-builder.md"
+    },
+    {
+      "name": "doc-lsp-resolver",
+      "intent": "Resolves symbol lookups for the LSP server with graph-backed intelligence",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "doc-lsp-resolver"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/doc-lsp-resolver.md"
+    },
+    {
+      "name": "frontend-specialist",
+      "intent": "Frontend and UI/UX persona — prioritizes user experience, accessibility, and performance",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "frontend-specialist"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/frontend-specialist.md"
+    },
+    {
+      "name": "infra-guardian",
+      "intent": "Infrastructure guardian persona — conservative, safety-first approach to infrastructure changes",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "infra-guardian"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/infra-guardian.md"
+    },
+    {
+      "name": "qa-analyst",
+      "intent": "QA analyst persona — test design, bug hunting, quality assurance focus",
+      "tags": [
+        "scrapin-aint-easy",
+        "agent",
+        "qa-analyst"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/qa-analyst.md"
+    }
+  ]
+}

@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: >
-  The Style Engineer is the visual design authority for all draw.io diagrams. It masters
-  every style property, color palette, typography setting, and visual effect available
-  in draw.io. It creates consistent, branded, accessible diagram themes and ensures every
-  diagram meets professional presentation standards.
+description: |
+  The Style Engineer is the visual design authority for all draw.io diagrams. It masters every style property, color palette, typography setting, and visual effect available in draw.io. It creates consistent, branded, accessible diagram themes and ensures every diagram meets professional presentation standards.
 model: sonnet
 tools:
   - Read

@@ -57,7 +57,12 @@
     ],
     "maxTokens": 700,
     "excludeGlobs": [
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
     ],
     "lazyLoadSections": [
       "skills/*/SKILL.md"

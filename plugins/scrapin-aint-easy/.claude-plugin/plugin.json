@@ -20,11 +20,73 @@
   ],
   "mcpServers": {
     "scrapin-aint-easy": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "${CLAUDE_PLUGIN_ROOT}/dist/cli.js",
+        "-y",
+        "tsx",
+        "${CLAUDE_PLUGIN_ROOT}/src/cli.ts",
         "--mcp"
       ]
     }
-  }
+  },
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "documentation",
+      "algorithms",
+      "drift-detection",
+      "knowledge-graph",
+      "mcp",
+      "lsp",
+      "interview-setup",
+      "code-intelligence"
+    ],
+    "requires": []
+  },
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "Scrapin Aint Easy",
+    "summary": "Documentation intelligence engine, algorithm library, and codebase/agent drift detection system for Claude Code",
+    "tags": [
+      "documentation",
+      "algorithms",
+      "drift-detection",
+      "knowledge-graph",
+      "mcp",
+      "lsp",
+      "interview-setup",
+      "code-intelligence"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "skills/*/SKILL.md",
+      "commands/*.md"
+    ]
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md"
 }

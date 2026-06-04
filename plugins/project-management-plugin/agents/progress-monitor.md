@@ -1,10 +1,20 @@
 ---
 name: progress-monitor
+intent: Tracks task completion counts and velocity. Picks the next task for execution. Updates progress/log.md. Lightweight — uses Haiku intentionally.
+tags:
+  - project-management-plugin
+  - agent
+  - progress-monitor
+inputs: []
+risk: medium
+cost: medium
 description: Tracks task completion counts and velocity. Picks the next task for execution. Updates progress/log.md. Lightweight — uses Haiku intentionally.
 model: haiku
+tools:
+  - Read
+  - Write
 effort: low
 maxTurns: 5
-tools: ["Read", "Write"]
 ---
 
 # Progress Monitor

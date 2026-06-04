@@ -21,6 +21,11 @@ tools:
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__obsidian__append_to_file
   - mcp__obsidian__get_file_contents
+effort: high
+maxTurns: 50
+memory: true
+background: false
+isolation: false
 ---
 
 # Advanced Orchestration Patterns Agent

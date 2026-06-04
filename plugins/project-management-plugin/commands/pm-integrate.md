@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-integrate
+intent: Connect an external PM platform (Jira, Linear, Notion, Asana, Trello, ClickUp, Monday, Todoist, GitHub)
+tags:
+  - project-management-plugin
+  - command
+  - pm-integrate
+inputs: []
+risk: medium
+cost: medium
 description: Connect an external PM platform (Jira, Linear, Notion, Asana, Trello, ClickUp, Monday, Todoist, GitHub)
 ---
 

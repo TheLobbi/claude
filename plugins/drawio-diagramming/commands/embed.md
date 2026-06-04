@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: low
 cost: medium
-description: >
-  Generates platform-specific embedding code for draw.io diagrams across 7+
-  platforms including GitHub, Confluence, Jira, Azure DevOps, Notion, Microsoft
-  Teams, and Harness. Auto-detects target platform from context, handles image
-  sizing, responsive display, and links diagrams to source code.
+description: |
+  Generates platform-specific embedding code for draw.io diagrams across 7+ platforms including GitHub, Confluence, Jira, Azure DevOps, Notion, Microsoft Teams, and Harness. Auto-detects target platform from context, handles image sizing, responsive display, and links diagrams to source code.
 allowed-tools:
   - Read
   - Write

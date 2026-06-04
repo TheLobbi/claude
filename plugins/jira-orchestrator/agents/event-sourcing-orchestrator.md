@@ -17,6 +17,11 @@ tools:
   - Bash
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Event Sourcing Orchestrator

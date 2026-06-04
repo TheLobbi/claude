@@ -1,15 +1,15 @@
 ---
 name: blazor-component
 intent: Generate Blazor components with correct render modes, lifecycle methods, and best-practice patterns
-inputs:
-  - component-name
-  - component-type
-  - render-mode
 tags:
   - dotnet-blazor
   - command
   - blazor
   - component
+inputs:
+  - component-name
+  - component-type
+  - render-mode
 risk: low
 cost: low
 description: Creates Blazor components following .NET 10 patterns with proper render mode, parameters, and event handling

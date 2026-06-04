@@ -1,4 +1,13 @@
 ---
+name: scrapin-aint-easy:scrapin-search
+intent: Search the documentation knowledge graph for symbols, concepts, or patterns
+tags:
+  - scrapin-aint-easy
+  - command
+  - scrapin-search
+inputs: []
+risk: medium
+cost: medium
 description: Search the documentation knowledge graph for symbols, concepts, or patterns
 model: sonnet
 allowed-tools:

@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-channels
+intent: Install event-driven channel servers — CI webhook receiver, mobile approval relay, Discord bridge, fakechat dev profile. Integrates with MCP cc_kb_channel_server.
+tags:
+  - claude-code-expert
+  - command
+  - cc-channels
+inputs: []
+risk: medium
+cost: medium
 description: Install event-driven channel servers — CI webhook receiver, mobile approval relay, Discord bridge, fakechat dev profile. Integrates with MCP cc_kb_channel_server.
 ---
 

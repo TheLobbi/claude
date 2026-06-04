@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-status
+intent: ASCII progress dashboard for the active project
+tags:
+  - project-management-plugin
+  - command
+  - pm-status
+inputs: []
+risk: medium
+cost: medium
 description: ASCII progress dashboard for the active project
 ---
 

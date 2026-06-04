@@ -19,6 +19,11 @@ tools:
   - Task
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__getJiraIssue
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Export Generator Agent

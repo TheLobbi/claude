@@ -1,5 +1,13 @@
 ---
 name: doc-lsp-resolver
+intent: Resolves symbol lookups for the LSP server with graph-backed intelligence
+tags:
+  - scrapin-aint-easy
+  - agent
+  - doc-lsp-resolver
+inputs: []
+risk: medium
+cost: medium
 description: Resolves symbol lookups for the LSP server with graph-backed intelligence
 model: haiku
 allowed-tools:

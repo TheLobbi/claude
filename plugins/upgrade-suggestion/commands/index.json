@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "plugin": "upgrade-suggestion",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "suggest-upgrades",
+      "intent": "Multi-agent council analyzes your project and suggests 3-5 confidence-scored upgrades with visual impact dashboard",
+      "tags": [
+        "upgrade-suggestion",
+        "command",
+        "spark",
+        "improvements",
+        "council"
+      ],
+      "inputs": [
+        "scope",
+        "focus",
+        "depth",
+        "count"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/suggest-upgrades.md"
+    },
+    {
+      "name": "upgrade-deep-dive",
+      "intent": "Deep analysis of a specific upgrade with full impact report, implementation plan, and risk assessment",
+      "tags": [
+        "upgrade-suggestion",
+        "command",
+        "deep-dive",
+        "analysis"
+      ],
+      "inputs": [
+        "upgrade",
+        "format"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/upgrade-deep-dive.md"
+    },
+    {
+      "name": "upgrade-roadmap",
+      "intent": "Generate a sequenced upgrade implementation plan with dependency graphs and timeline",
+      "tags": [
+        "upgrade-suggestion",
+        "command",
+        "roadmap",
+        "planning"
+      ],
+      "inputs": [
+        "scope",
+        "horizon",
+        "team-size"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/upgrade-roadmap.md"
+    }
+  ]
+}

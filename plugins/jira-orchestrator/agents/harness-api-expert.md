@@ -19,6 +19,11 @@ tools:
   - Glob
   - WebFetch
   - WebSearch
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Harness API Expert Agent

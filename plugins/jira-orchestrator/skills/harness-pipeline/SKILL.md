@@ -1,6 +1,6 @@
 ---
 name: harness-pipeline
-description: Execute and monitor Harness pipelines with Jira integration
+description: This skill should be used when the user asks to "run a Harness pipeline", "trigger a deployment pipeline", "monitor a Harness execution", or "check pipeline status" — executing and watching Harness pipelines with Jira integration.
 scope: development, ci-cd, pipeline
 requires_env:
   - HARNESS_ACCOUNT_ID

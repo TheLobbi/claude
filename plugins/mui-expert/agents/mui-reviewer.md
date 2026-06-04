@@ -1,9 +1,6 @@
 ---
 name: mui-reviewer
 intent: Code review MUI implementations for best practices, accessibility, and performance
-model: claude-sonnet-4-6
-risk: low
-cost: medium
 tags:
   - mui-expert
   - review
@@ -13,12 +10,11 @@ inputs:
   - file paths or directories to review
   - MUI version context
   - optional focus area (accessibility, performance, theming, DataGrid, DatePicker)
-description: >
-  Reviews React code that uses Material UI and identifies issues related to
-  best practices, accessibility, performance, and correctness. Produces a
-  categorized report with file:line references and actionable fix code
-  covering imports, theming, styling approach, a11y, performance, component
-  usage, TypeScript typing, DataGrid, and DatePicker patterns.
+risk: low
+cost: medium
+description: |
+  Reviews React code that uses Material UI and identifies issues related to best practices, accessibility, performance, and correctness. Produces a categorized report with file:line references and actionable fix code covering imports, theming, styling approach, a11y, performance, component usage, TypeScript typing, DataGrid, and DatePicker patterns.
+model: claude-sonnet-4-6
 tools:
   - Read
   - Glob

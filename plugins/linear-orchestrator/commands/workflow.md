@@ -6,9 +6,7 @@ tags:
   - command
   - workflow
 inputs:
-  - name: action
-    description: "list | add-state | update-state | reorder | export | import"
-    required: true
+  - action
 risk: high
 cost: low
 description: Configure workflows (linear.app/docs/configuring-workflows)

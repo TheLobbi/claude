@@ -8,6 +8,17 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Manage git tags and release tagging for Jira-tracked work — create, list, and reconcile version tags with issue and PR metadata.
+model: sonnet
+tools:
+  - Bash
+  - Read
+  - Grep
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Tag Manager Agent

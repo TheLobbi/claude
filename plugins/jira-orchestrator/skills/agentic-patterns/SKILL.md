@@ -1,3 +1,10 @@
+---
+name: agentic-patterns
+description: This skill should be used when the user asks about "agentic design patterns", "multi-agent orchestration patterns", "routing/planning/reflection patterns", "the blackboard pattern", "coordinator-of-coordinators", or "saga/circuit-breaker for agents", or needs to apply agentic design patterns to Jira workflow orchestration and the 81-agent hierarchy.
+version: 1.0.0
+categories: ["agentic-patterns", "orchestration", "multi-agent", "architecture"]
+---
+
 # Agentic Design Patterns — Jira Orchestrator
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to enterprise Jira workflow orchestration, 81-agent hierarchy management, sprint planning, and issue lifecycle automation.

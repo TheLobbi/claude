@@ -1,5 +1,13 @@
 ---
 name: infra-guardian
+intent: Infrastructure guardian persona — conservative, safety-first approach to infrastructure changes
+tags:
+  - scrapin-aint-easy
+  - agent
+  - infra-guardian
+inputs: []
+risk: medium
+cost: medium
 description: Infrastructure guardian persona — conservative, safety-first approach to infrastructure changes
 model: opus
 allowed-tools:

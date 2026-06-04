@@ -1,15 +1,15 @@
 ---
 name: dotnet-blazor:dotnet-performance-engineer
 intent: Optimize .NET Blazor and ASP.NET Core application performance through profiling, caching, and best practices
-inputs:
-  - performance-issue
-  - metrics
 tags:
   - dotnet-blazor
   - agent
   - performance
   - optimization
   - profiling
+inputs:
+  - performance-issue
+  - metrics
 risk: medium
 cost: medium
 description: Performance specialist for Blazor rendering, EF Core queries, API throughput, memory management, and caching

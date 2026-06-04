@@ -15,6 +15,11 @@ tools:
   - Grep
   - Glob
   - Bash
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Pattern Analyzer Agent

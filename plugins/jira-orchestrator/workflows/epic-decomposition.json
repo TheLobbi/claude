@@ -1,0 +1,63 @@
+{
+  "name": "epic-decomposition",
+  "displayName": "Epic Decomposition",
+  "description": "Hierarchically decompose a Jira epic into well-formed stories and sub-tasks, then enrich each child issue with acceptance criteria and estimates.",
+  "version": "1.0.0",
+  "type": "hierarchical",
+  "category": "planning",
+  "triggers": [
+    { "type": "command", "pattern": "/jira:workflow run epic-decomposition" }
+  ],
+  "inputs": [
+    { "name": "epicKey", "type": "string", "description": "Jira epic key", "required": true }
+  ],
+  "outputs": [
+    { "name": "children", "type": "array", "description": "Created story/sub-task keys", "source": "decompose" }
+  ],
+  "coordination": {
+    "pattern": "hierarchical",
+    "coordinator": "epic-decomposer",
+    "messageFormat": "json",
+    "contextSharing": true
+  },
+  "steps": [
+    {
+      "id": "analyze",
+      "name": "Analyze epic requirements",
+      "type": "agent",
+      "agent": "requirements-analyzer",
+      "inputs": { "issueKey": "$.input.epicKey" },
+      "outputs": { "requirements": "$.output" }
+    },
+    {
+      "id": "decompose",
+      "name": "Decompose into stories",
+      "type": "agent",
+      "agent": "epic-decomposer",
+      "dependsOn": ["analyze"],
+      "inputs": { "epicKey": "$.input.epicKey", "requirements": "$.analyze.requirements" },
+      "outputs": { "children": "$.output.stories" }
+    },
+    {
+      "id": "enrich-children",
+      "name": "Enrich each child issue",
+      "type": "loop",
+      "dependsOn": ["decompose"],
+      "loop": {
+        "items": "$.decompose.children",
+        "variable": "story",
+        "steps": [
+          {
+            "id": "enrich-one",
+            "type": "agent",
+            "agent": "task-enricher",
+            "inputs": { "issueKey": "$.story.key" }
+          }
+        ]
+      }
+    }
+  ],
+  "errorHandling": { "strategy": "continue" },
+  "monitoring": { "enabled": true, "logLevel": "info", "checkpoints": true },
+  "metadata": { "author": "jira-orchestrator", "tags": ["jira", "epic", "planning"], "status": "stable" }
+}

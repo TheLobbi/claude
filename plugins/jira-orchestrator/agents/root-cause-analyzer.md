@@ -25,6 +25,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
+effort: high
+maxTurns: 50
+memory: true
+background: false
+isolation: false
 ---
 
 # Root Cause Analyzer Agent

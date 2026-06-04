@@ -1,3 +1,8 @@
+---
+name: agentic-patterns
+description: "Patterns from \"Agentic Design Patterns\" (Gulli & Sauco, 2025) applied to web animation composition, performance optimization, and multi-library orchestration for React and TypeScript."
+---
+
 # Agentic Design Patterns — React Animation Studio
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to web animation composition, performance optimization, and multi-library orchestration for React and TypeScript.

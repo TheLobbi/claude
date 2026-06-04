@@ -6,9 +6,7 @@ tags:
   - command
   - project
 inputs:
-  - name: action
-    description: "create | update | milestone | status | overview | template | list"
-    required: true
+  - action
 risk: medium
 cost: low
 description: Projects + milestones + status + templates + overview (linear.app/docs/projects, project-milestones, project-status, project-templates, project-overview)

@@ -1,16 +1,17 @@
 ---
 name: wa-report
 intent: Generate an ULTRA §13-compliant Work Unit Report from the current session.
-inputs:
-  - number: work unit number (e.g., "14")
-  - title: short slug (e.g., "refactor-01")
+tags:
+  - ultra
+  - work-unit
+  - reporting
+inputs: []
+risk: low
+cost: low
 flags:
   - name: save
     type: boolean
     description: Persist to docs/WORK-UNIT-<NN>-<slug>.md (default true)
-risk: low
-cost: low
-tags: [ultra, work-unit, reporting]
 ---
 
 # /wa-report

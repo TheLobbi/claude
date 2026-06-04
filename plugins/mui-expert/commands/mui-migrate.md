@@ -1,6 +1,9 @@
 ---
 name: mui-migrate
 intent: Migrate MUI code between versions
+tags:
+  - mui-expert
+  - migration
 inputs:
   - from (v4|v5)
   - to (v5|v6)
@@ -8,9 +11,6 @@ inputs:
   - dry-run
 risk: medium
 cost: high
-tags:
-  - mui-expert
-  - migration
 description: Analyze and execute MUI version migrations with codemods and manual transforms
 allowed-tools:
   - Read

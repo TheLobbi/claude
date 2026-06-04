@@ -1,5 +1,13 @@
 ---
 name: agent-drift-detector
+intent: Detects drift in agent definition files — content changes, schema breaks, and cross-agent contradictions
+tags:
+  - scrapin-aint-easy
+  - agent
+  - agent-drift-detector
+inputs: []
+risk: medium
+cost: medium
 description: Detects drift in agent definition files — content changes, schema breaks, and cross-agent contradictions
 model: opus
 allowed-tools:

@@ -1,3 +1,8 @@
+---
+name: svg-animations
+description: "Expert knowledge for SVG path animations, morphing shapes, and vector graphics effects that create stunning visual experiences with resolution-independent graphics."
+---
+
 # SVG Animations Skill
 
 Expert knowledge for SVG path animations, morphing shapes, and vector graphics effects that create stunning visual experiences with resolution-independent graphics.

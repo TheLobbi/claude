@@ -17,6 +17,11 @@ tools:
   - task-coordinator (spawn sub-agents for gap fixes)
   - file-system (read, analyze changed files)
   - github (PR creation/update)
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Completion Flow Orchestrator

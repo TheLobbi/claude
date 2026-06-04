@@ -1,6 +1,6 @@
 ---
 name: harness-ci
-description: Harness CI (Continuous Integration) for container-native builds with test intelligence, caching, parallelization, and build infrastructure management
+description: This skill should be used when the user asks to "set up Harness CI", "build a CI pipeline", "configure test intelligence", or "cache/parallelize builds" — container-native build infrastructure on Harness.
 allowed-tools: [Bash, Read, Write, Edit, Glob, Grep, Task, WebFetch, WebSearch]
 dependencies: [harness-mcp, harness-cd]
 triggers: [harness ci, harness build, build pipeline, ci pipeline, test intelligence, ci infrastructure]

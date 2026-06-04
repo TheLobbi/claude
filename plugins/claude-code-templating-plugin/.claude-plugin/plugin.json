@@ -55,12 +55,41 @@
       "**/node_modules/**",
       "**/dist/**",
       "**/build/**",
-      "**/*.zip"
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
     ],
     "lazyLoadSections": [
       "CLAUDE.md",
       "skills/*/SKILL.md",
       "commands/*.md"
     ]
+  },
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "templating",
+      "scaffolding",
+      "harness",
+      "pipelines",
+      "cookiecutter",
+      "copier",
+      "maven-archetype",
+      "mcp"
+    ],
+    "requires": []
   }
 }

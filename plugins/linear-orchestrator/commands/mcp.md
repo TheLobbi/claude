@@ -6,9 +6,7 @@ tags:
   - command
   - mcp
 inputs:
-  - name: action
-    description: "install | configure | tools | call"
-    required: true
+  - action
 risk: low
 cost: low
 description: Linear MCP integration (linear.app/docs/mcp)

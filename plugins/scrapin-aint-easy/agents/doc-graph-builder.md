@@ -1,5 +1,13 @@
 ---
 name: doc-graph-builder
+intent: Builds and maintains the documentation knowledge graph structure
+tags:
+  - scrapin-aint-easy
+  - agent
+  - doc-graph-builder
+inputs: []
+risk: medium
+cost: medium
 description: Builds and maintains the documentation knowledge graph structure
 model: sonnet
 allowed-tools:

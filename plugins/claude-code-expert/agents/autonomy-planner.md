@@ -1,5 +1,13 @@
 ---
 name: autonomy-planner
+intent: Decomposes any engineering task into a phased, risk-assessed plan with explicit verification steps and rollback paths. Invoked by /cc-autonomy plan "<task>". Writes the plan to .claude/active-task.md. Never implements — plan-only.
+tags:
+  - claude-code-expert
+  - agent
+  - autonomy-planner
+inputs: []
+risk: medium
+cost: medium
 description: Decomposes any engineering task into a phased, risk-assessed plan with explicit verification steps and rollback paths. Invoked by /cc-autonomy plan "<task>". Writes the plan to .claude/active-task.md. Never implements — plan-only.
 model: claude-opus-4-6
 tools:

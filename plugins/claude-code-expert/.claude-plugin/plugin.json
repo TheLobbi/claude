@@ -37,8 +37,16 @@
     "knowledge-graph"
   ],
   "permissions": {
-    "requires": ["read", "write", "bash"],
-    "optional": ["agent", "mcp", "network"]
+    "requires": [
+      "read",
+      "write",
+      "bash"
+    ],
+    "optional": [
+      "agent",
+      "mcp",
+      "network"
+    ]
   },
   "capabilities": {
     "provides": [
@@ -76,6 +84,21 @@
       "skills/claude-code-setup/SKILL.md",
       "memory/conventions.md",
       "agents/memory-consolidator.md"
+    ],
+    "entry": "CONTEXT_SUMMARY.md",
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "tags": [
+      "claude-code",
+      "second-brain",
+      "engram",
+      "obsidian",
+      "memory",
+      "configuration",
+      "hooks",
+      "mcp"
     ]
-  }
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md"
 }

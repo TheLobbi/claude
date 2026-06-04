@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: low
 cost: low
-description: >
-  Manage draw.io diagram layers for organizing complex multi-layered visualizations.
-  Create, toggle, lock, reorder, and export layers. Includes templates for infrastructure,
-  application, C4, DevOps, and security layer patterns. Supports cross-layer connections,
-  collapsible groups, layer-based selective export, and z-index management.
+description: |
+  Manage draw.io diagram layers for organizing complex multi-layered visualizations. Create, toggle, lock, reorder, and export layers. Includes templates for infrastructure, application, C4, DevOps, and security layer patterns. Supports cross-layer connections, collapsible groups, layer-based selective export, and z-index management.
 allowed-tools:
   - Read
   - Write

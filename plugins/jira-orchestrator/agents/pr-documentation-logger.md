@@ -16,6 +16,11 @@ tools:
   - mcp__atlassian__addCommentToJiraIssue
   - Bash
   - Read
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # PR Documentation Logger Agent

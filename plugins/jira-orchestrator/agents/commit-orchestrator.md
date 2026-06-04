@@ -20,6 +20,11 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
   - Bash
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Commit Orchestrator Agent

@@ -6,9 +6,7 @@ tags:
   - command
   - webhook
 inputs:
-  - name: action
-    description: "register | list | unregister | verify | replay | dlq"
-    required: true
+  - action
 risk: high
 cost: low
 description: Webhook lifecycle (linear.app/developers/webhooks)

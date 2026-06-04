@@ -1,10 +1,22 @@
 ---
 name: checkpoint-manager
+intent: Serializes and restores project state. Writes phase checkpoints, enables resume from any checkpoint. Keeps rolling window of last 10 checkpoints.
+tags:
+  - project-management-plugin
+  - agent
+  - checkpoint-manager
+inputs: []
+risk: medium
+cost: medium
 description: Serializes and restores project state. Writes phase checkpoints, enables resume from any checkpoint. Keeps rolling window of last 10 checkpoints.
 model: haiku
+tools:
+  - Read
+  - Write
+  - Glob
+  - Bash
 effort: low
 maxTurns: 10
-tools: ["Read", "Write", "Glob", "Bash"]
 ---
 
 # Checkpoint Manager

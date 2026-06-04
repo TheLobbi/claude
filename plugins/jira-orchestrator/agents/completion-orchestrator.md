@@ -21,6 +21,11 @@ tools:
   - mcp__github__create_pull_request
   - mcp__github__list_pull_requests
   - mcp__github__get_me
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Completion Orchestrator Agent

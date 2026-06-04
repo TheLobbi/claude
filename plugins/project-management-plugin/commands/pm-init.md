@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-init
+intent: 8-phase interview-first project initialization with micro-task decomposition
+tags:
+  - project-management-plugin
+  - command
+  - pm-init
+inputs: []
+risk: medium
+cost: medium
 description: 8-phase interview-first project initialization with micro-task decomposition
 ---
 

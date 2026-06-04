@@ -1,3 +1,8 @@
+---
+name: agentic-patterns
+description: "Patterns from \"Agentic Design Patterns\" (Gulli & Sauco, 2025) applied to AI-powered diagram generation and multi-platform embedding"
+---
+
 # Agentic Design Patterns — draw.io Diagramming
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to AI-powered diagram generation and multi-platform embedding

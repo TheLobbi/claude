@@ -8,10 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: >
-  The Data Connector specializes in binding external data sources to draw.io diagrams.
-  It implements conditional formatting, placeholder variables, live status dashboards,
-  and automated update scripts that keep diagrams synchronized with real-time system state.
+description: |
+  The Data Connector specializes in binding external data sources to draw.io diagrams. It implements conditional formatting, placeholder variables, live status dashboards, and automated update scripts that keep diagrams synchronized with real-time system state.
 model: sonnet
 tools:
   - Read

@@ -14,6 +14,11 @@ tools:
   - Read
   - Write
   - Bash
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Slack Notifier

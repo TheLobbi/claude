@@ -21,6 +21,11 @@ tools:
   - mcp__atlassian__jira_add_comment
   - harness_get_pull_request
   - harness_get_pull_request_activities
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Council Coordinator Agent

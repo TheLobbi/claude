@@ -8,12 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: high
-description: >
-  Bind draw.io diagram elements to external data sources such as Jira, GitHub Actions,
-  Kubernetes, Prometheus, and custom REST APIs. Apply conditional formatting based on
-  live status values, deploy state, test coverage, latency metrics, and resource utilization.
-  Uses draw.io custom properties, placeholder variables, and UserObject XML tags to create
-  data-driven diagrams that reflect real-time system state.
+description: |
+  Bind draw.io diagram elements to external data sources such as Jira, GitHub Actions, Kubernetes, Prometheus, and custom REST APIs. Apply conditional formatting based on live status values, deploy state, test coverage, latency metrics, and resource utilization. Uses draw.io custom properties, placeholder variables, and UserObject XML tags to create data-driven diagrams that reflect real-time system state.
 allowed-tools:
   - Read
   - Write

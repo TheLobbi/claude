@@ -16,6 +16,11 @@ tools:
   - Grep
   - Glob
   - Bash
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Learning Coordinator Agent

@@ -1,33 +1,28 @@
 ---
 name: /mui-ssr
 intent: Configure MUI for server-side rendering with Next.js
+tags:
+  - mui-expert
+  - ssr
+  - next.js
+  - emotion
+  - pigment-css
 inputs:
-  - name: --router
-    type: enum
-    values: [app, pages]
-    required: true
-  - name: --engine
-    type: enum
-    values: [emotion, pigment-css]
-    required: false
-    default: emotion
-  - name: --css-vars
-    type: boolean
-    description: Use CssVarsProvider with CSS variables
-    required: false
-    default: true
-  - name: --dark-mode
-    type: boolean
-    description: Include dark mode with flash prevention
-    required: false
-    default: true
+  - '--router'
+  - '--engine'
+  - '--css-vars'
+  - '--dark-mode'
 risk: low
 cost: medium
-tags: [mui-expert, ssr, next.js, emotion, pigment-css]
-description: >
-  Configure MUI for Next.js SSR with correct Emotion cache setup, CSS
-  variables, flash prevention, and React Server Components compatibility.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  Configure MUI for Next.js SSR with correct Emotion cache setup, CSS variables, flash prevention, and React Server Components compatibility.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-ssr

@@ -22,6 +22,11 @@ tools:
   - mcp__atlassian__transitionJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Batch Processor Agent

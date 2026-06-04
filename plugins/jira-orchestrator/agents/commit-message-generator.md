@@ -15,6 +15,11 @@ model: sonnet
 tools:
   - mcp__atlassian__getJiraIssue
   - Bash
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Commit Message Generator Agent

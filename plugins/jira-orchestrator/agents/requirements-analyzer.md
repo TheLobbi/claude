@@ -19,6 +19,11 @@ tools:
   - mcp__atlassian__jira_add_comment
   - mcp__atlassian__confluence_search_pages
   - mcp__atlassian__confluence_get_page
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Requirements Analyzer Agent

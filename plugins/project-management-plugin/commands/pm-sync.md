@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-sync
+intent: Bidirectional sync between local project state and integrated PM platform
+tags:
+  - project-management-plugin
+  - command
+  - pm-sync
+inputs: []
+risk: medium
+cost: medium
 description: Bidirectional sync between local project state and integrated PM platform
 ---
 

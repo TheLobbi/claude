@@ -1,3 +1,8 @@
+---
+name: scroll-animations
+description: "Expert knowledge for scroll-triggered animations, parallax effects, and scroll-linked interactions that create immersive storytelling experiences."
+---
+
 # Scroll Animations Skill
 
 Expert knowledge for scroll-triggered animations, parallax effects, and scroll-linked interactions that create immersive storytelling experiences.

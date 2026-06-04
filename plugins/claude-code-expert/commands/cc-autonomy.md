@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-autonomy
+intent: Configure Claude Code autonomous operating mode — profile selection (conservative, balanced, aggressive, unattended-review), permission block generation, gate agent wiring.
+tags:
+  - claude-code-expert
+  - command
+  - cc-autonomy
+inputs: []
+risk: medium
+cost: medium
 description: Configure Claude Code autonomous operating mode — profile selection (conservative, balanced, aggressive, unattended-review), permission block generation, gate agent wiring.
 ---
 

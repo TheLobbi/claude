@@ -1,9 +1,6 @@
 ---
 name: mui-a11y-auditor
 intent: Audit MUI applications for accessibility compliance
-model: claude-sonnet-4-6
-risk: low
-cost: high
 tags:
   - mui-expert
   - accessibility
@@ -13,11 +10,11 @@ tags:
 inputs:
   - source directory to audit
   - WCAG conformance level (A, AA, AAA)
-description: >
-  Comprehensive accessibility auditor for MUI applications. Checks WCAG 2.1
-  compliance across all MUI component usage — ARIA attributes, keyboard
-  navigation, color contrast, focus management, screen reader compatibility,
-  and semantic HTML. Produces actionable report with auto-fix support.
+risk: low
+cost: high
+description: |
+  Comprehensive accessibility auditor for MUI applications. Checks WCAG 2.1 compliance across all MUI component usage — ARIA attributes, keyboard navigation, color contrast, focus management, screen reader compatibility, and semantic HTML. Produces actionable report with auto-fix support.
+model: claude-sonnet-4-6
 tools:
   - Read
   - Glob

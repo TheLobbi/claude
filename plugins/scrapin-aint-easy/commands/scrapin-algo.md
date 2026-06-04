@@ -1,4 +1,13 @@
 ---
+name: scrapin-aint-easy:scrapin-algo
+intent: Query the algorithm library for implementations, patterns, and complexity analysis
+tags:
+  - scrapin-aint-easy
+  - command
+  - scrapin-algo
+inputs: []
+risk: medium
+cost: medium
 description: Query the algorithm library for implementations, patterns, and complexity analysis
 model: sonnet
 allowed-tools:

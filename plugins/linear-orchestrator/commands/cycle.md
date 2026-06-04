@@ -6,9 +6,7 @@ tags:
   - command
   - cycle
 inputs:
-  - name: action
-    description: "current | next | plan | update | report | carryover"
-    required: true
+  - action
 risk: medium
 cost: low
 description: Cycle management (linear.app/docs/use-cycles, linear.app/docs/update-cycles)

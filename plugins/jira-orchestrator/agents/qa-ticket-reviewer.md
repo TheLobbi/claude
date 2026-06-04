@@ -18,6 +18,11 @@ tools:
   - mcp__plugin_jira-orchestrator_atlassian__searchJiraIssuesUsingJql
   - mcp__plugin_jira-orchestrator_atlassian__addCommentToJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__getAccessibleAtlassianResources
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # QA Ticket Reviewer Agent

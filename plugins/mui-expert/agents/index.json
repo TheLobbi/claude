@@ -1,115 +1,138 @@
 {
-  "version": 2,
+  "version": 1,
   "plugin": "mui-expert",
   "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
-      "name": "mui:mui-architect",
+      "name": "mui-a11y-auditor",
+      "intent": "Audit MUI applications for accessibility compliance",
+      "tags": [
+        "mui-expert",
+        "accessibility",
+        "a11y",
+        "WCAG",
+        "audit"
+      ],
+      "inputs": [
+        "source directory to audit",
+        "WCAG conformance level (A, AA, AAA)"
+      ],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/mui-a11y-auditor.md"
+    },
+    {
+      "name": "mui-architect",
       "intent": "Design MUI theme systems and component library architecture",
       "tags": [
         "mui-expert",
-        "agent",
         "architecture",
         "theme",
         "design-system"
       ],
-      "inputs": [],
+      "inputs": [
+        "existing theme files and component library structure",
+        "package.json with MUI version",
+        "tsconfig.json for TypeScript configuration",
+        "design requirements and brand tokens"
+      ],
       "risk": "low",
       "cost": "high",
       "path": "agents/mui-architect.md"
     },
     {
-      "name": "mui:mui-design-system-architect",
-      "intent": "Design enterprise design systems with token hierarchies, multi-tenant themes, and Pigment CSS",
+      "name": "mui-design-system-architect",
+      "intent": "Design and implement enterprise design systems on MUI",
       "tags": [
         "mui-expert",
-        "agent",
         "design-system",
+        "architecture",
         "tokens",
-        "white-label",
-        "enterprise"
+        "white-label"
       ],
-      "inputs": [],
+      "inputs": [
+        "brand requirements and design tokens",
+        "target platforms and MUI version",
+        "multi-tenant requirements (if applicable)"
+      ],
       "risk": "low",
       "cost": "high",
       "path": "agents/mui-design-system-architect.md"
     },
     {
-      "name": "mui:mui-x-specialist",
-      "intent": "Expert on MUI X premium components — DataGrid Pro/Premium, DatePicker, Charts, TreeView",
+      "name": "mui-migration-specialist",
+      "intent": "Analyze and execute MUI version migrations",
       "tags": [
         "mui-expert",
-        "agent",
+        "migration",
+        "upgrade"
+      ],
+      "inputs": [
+        "package.json with current MUI version",
+        "target MUI version (v5 or v6)",
+        "source directories to migrate",
+        "optional dry-run flag"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "agents/mui-migration-specialist.md"
+    },
+    {
+      "name": "mui-performance-optimizer",
+      "intent": "Analyze and optimize MUI application performance",
+      "tags": [
+        "mui-expert",
+        "performance",
+        "optimization",
+        "bundle-size"
+      ],
+      "inputs": [
+        "project source directory",
+        "package.json with MUI dependencies",
+        "webpack/vite/next config for bundler context"
+      ],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/mui-performance-optimizer.md"
+    },
+    {
+      "name": "mui-reviewer",
+      "intent": "Code review MUI implementations for best practices, accessibility, and performance",
+      "tags": [
+        "mui-expert",
+        "review",
+        "best-practices",
+        "a11y"
+      ],
+      "inputs": [
+        "file paths or directories to review",
+        "MUI version context",
+        "optional focus area (accessibility, performance, theming, DataGrid, DatePicker)"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/mui-reviewer.md"
+    },
+    {
+      "name": "mui-x-specialist",
+      "intent": "Expert on MUI X premium components — DataGrid, DatePicker, Charts, TreeView",
+      "tags": [
+        "mui-expert",
         "MUI-X",
         "DataGrid",
         "DatePicker",
         "Charts",
         "TreeView"
       ],
-      "inputs": [],
+      "inputs": [
+        "component type and requirements",
+        "MUI X license tier (community, pro, premium)",
+        "data source description"
+      ],
       "risk": "low",
       "cost": "high",
       "path": "agents/mui-x-specialist.md"
-    },
-    {
-      "name": "mui:mui-performance-optimizer",
-      "intent": "Analyze and optimize MUI bundle size, render performance, DataGrid perf, and SSR efficiency",
-      "tags": [
-        "mui-expert",
-        "agent",
-        "performance",
-        "optimization",
-        "bundle-size"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "high",
-      "path": "agents/mui-performance-optimizer.md"
-    },
-    {
-      "name": "mui:mui-a11y-auditor",
-      "intent": "Audit MUI applications for WCAG 2.1 accessibility compliance with auto-fix",
-      "tags": [
-        "mui-expert",
-        "agent",
-        "accessibility",
-        "a11y",
-        "WCAG",
-        "audit"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "high",
-      "path": "agents/mui-a11y-auditor.md"
-    },
-    {
-      "name": "mui:mui-reviewer",
-      "intent": "Code review MUI implementations for best practices, accessibility, and performance",
-      "tags": [
-        "mui-expert",
-        "agent",
-        "review",
-        "a11y",
-        "performance"
-      ],
-      "inputs": [],
-      "risk": "low",
-      "cost": "medium",
-      "path": "agents/mui-reviewer.md"
-    },
-    {
-      "name": "mui:mui-migration-specialist",
-      "intent": "Analyze and execute MUI version migrations (v4→v5, v5→v6)",
-      "tags": [
-        "mui-expert",
-        "agent",
-        "migration",
-        "upgrade"
-      ],
-      "inputs": [],
-      "risk": "medium",
-      "cost": "high",
-      "path": "agents/mui-migration-specialist.md"
     }
   ]
 }

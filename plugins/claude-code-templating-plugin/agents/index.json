@@ -5,6 +5,19 @@
   "generatedBy": "scripts/generate-plugin-indexes.mjs",
   "entries": [
     {
+      "name": "claude-code-templating-plugin:README",
+      "intent": "Harness Expert Agent",
+      "tags": [
+        "claude-code-templating-plugin",
+        "agent",
+        "README"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/README.md"
+    },
+    {
       "name": "archetype-creator",
       "intent": "Creates reusable project archetypes from existing projects, designs template variable schemas, generates archetype configurations (Maven, Cookiecutter, Copier), and integrates with Structurizr for automatic architecture registration",
       "tags": [

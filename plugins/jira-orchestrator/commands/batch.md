@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Jira Batch Operations
 ---
 
 # Jira Batch Operations

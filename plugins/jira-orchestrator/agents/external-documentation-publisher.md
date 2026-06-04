@@ -22,6 +22,11 @@ tools:
   - mcp__atlassian__getConfluencePage
   - mcp__github__create_pull_request
   - mcp__github__get_repository
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # External Documentation Publisher Agent

@@ -1,0 +1,45 @@
+{
+  "name": "pr-review-board",
+  "displayName": "PR Review Board",
+  "description": "Run a parallel multi-agent review of a pull request — code quality, security/governance, and QA — then synthesize a single verdict via the council coordinator.",
+  "version": "1.0.0",
+  "type": "parallel",
+  "category": "analysis",
+  "triggers": [
+    { "type": "command", "pattern": "/jira:workflow run pr-review-board" }
+  ],
+  "inputs": [
+    { "name": "prRef", "type": "string", "description": "Pull request reference or URL", "required": true }
+  ],
+  "outputs": [
+    { "name": "verdict", "type": "object", "description": "Synthesized review verdict", "source": "synthesize" }
+  ],
+  "coordination": {
+    "pattern": "broadcast",
+    "messageFormat": "json",
+    "contextSharing": true
+  },
+  "steps": [
+    {
+      "id": "reviews",
+      "name": "Parallel reviews",
+      "type": "parallel",
+      "parallel": [
+        { "id": "code", "type": "agent", "agent": "code-reviewer", "inputs": { "prRef": "$.input.prRef" } },
+        { "id": "security", "type": "agent", "agent": "governance-auditor", "inputs": { "prRef": "$.input.prRef" } },
+        { "id": "qa", "type": "agent", "agent": "qa-ticket-reviewer", "inputs": { "prRef": "$.input.prRef" } }
+      ]
+    },
+    {
+      "id": "synthesize",
+      "name": "Synthesize verdict (blackboard)",
+      "type": "agent",
+      "agent": "council-coordinator",
+      "dependsOn": ["reviews"],
+      "outputs": { "verdict": "$.output" }
+    }
+  ],
+  "errorHandling": { "strategy": "continue" },
+  "monitoring": { "enabled": true, "logLevel": "info", "metrics": ["review_duration", "findings_count"], "checkpoints": true },
+  "metadata": { "author": "jira-orchestrator", "tags": ["jira", "pr", "review", "council"], "status": "stable" }
+}

@@ -1,5 +1,15 @@
 ---
 name: dx-specialist
+intent: Council specialist focused on developer experience, tooling, and workflow improvements
+tags:
+  - upgrade-suggestion
+  - agent
+  - dx
+  - developer-experience
+  - council-member
+inputs: []
+risk: medium
+cost: medium
 description: Council specialist focused on developer experience, tooling, and workflow improvements
 model: sonnet
 tools:
@@ -7,12 +17,6 @@ tools:
   - Grep
   - Glob
   - Bash
-tags:
-  - upgrade-suggestion
-  - agent
-  - dx
-  - developer-experience
-  - council-member
 ---
 
 # DX Specialist Agent

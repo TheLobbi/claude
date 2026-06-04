@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Harness PR Review Command
 ---
 
 # Harness PR Review Command

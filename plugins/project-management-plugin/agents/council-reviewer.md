@@ -1,10 +1,22 @@
 ---
 name: council-reviewer
+intent: Multi-perspective review board for /pm:review. Evaluates completed work from quality, security, architecture, and UX angles simultaneously.
+tags:
+  - project-management-plugin
+  - agent
+  - council-reviewer
+inputs: []
+risk: medium
+cost: medium
 description: Multi-perspective review board for /pm:review. Evaluates completed work from quality, security, architecture, and UX angles simultaneously.
 model: opus
+tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
 effort: high
 maxTurns: 20
-tools: ["Read", "Grep", "Glob", "Bash"]
 ---
 
 # Council Reviewer

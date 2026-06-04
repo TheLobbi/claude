@@ -20,6 +20,11 @@ tools:
   - mcp__atlassian__jira_transition_issue
   - Bash
   - Read
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Review Orchestrator Agent

@@ -8,6 +8,85 @@
     "email": "mahling@taia.us"
   },
   "category": "automation",
-  "tags": ["ultra-mode", "work-unit-protocol", "harness", "claude-code", "internal", "automation", "universal"],
-  "keywords": ["harness", "claude-code", "automation", "work-unit", "ultra", "pipeline", "ci-cd", "hooks", "skills", "agents"]
+  "tags": [
+    "ultra-mode",
+    "work-unit-protocol",
+    "harness",
+    "claude-code",
+    "internal",
+    "automation",
+    "universal"
+  ],
+  "keywords": [
+    "harness",
+    "claude-code",
+    "automation",
+    "work-unit",
+    "ultra",
+    "pipeline",
+    "ci-cd",
+    "hooks",
+    "skills",
+    "agents"
+  ],
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "harness",
+      "claude-code",
+      "automation",
+      "work-unit",
+      "ultra",
+      "pipeline",
+      "ci-cd",
+      "hooks"
+    ],
+    "requires": []
+  },
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "Work Automation",
+    "summary": "Universal internal work-automation kit. ULTRA-mode constitution, Work Unit Protocol, Claude Code automation patterns (hooks, skills, plugins, agents, schedules, MCP, SDK, headless, fullscreen), and Harness pipeline ops. Project-agnostic. Glues existing plugins (harness-platform, ",
+    "tags": [
+      "harness",
+      "claude-code",
+      "automation",
+      "work-unit",
+      "ultra",
+      "pipeline",
+      "ci-cd",
+      "hooks"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "skills/*/SKILL.md",
+      "commands/*.md"
+    ]
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md"
 }

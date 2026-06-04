@@ -1,14 +1,14 @@
 ---
 name: blazor-migrate
 intent: Migrate .NET applications from older versions or other frameworks to .NET 10 Blazor
-inputs:
-  - source-framework
-  - target
 tags:
   - dotnet-blazor
   - command
   - migration
   - upgrade
+inputs:
+  - source-framework
+  - target
 risk: high
 cost: high
 description: Guides and executes migration from .NET 6/7/8/9 to .NET 10, or from MVC/Razor Pages/Web Forms to Blazor

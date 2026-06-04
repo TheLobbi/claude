@@ -1,3 +1,8 @@
+---
+name: agentic-patterns
+description: "Patterns from \"Agentic Design Patterns\" (Gulli & Sauco, 2025) applied to enterprise Microsoft ecosystem orchestration for multi-entity, multi-tenant deployment"
+---
+
 # Agentic Design Patterns — TVS Microsoft Deploy
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to enterprise Microsoft ecosystem orchestration for multi-entity, multi-tenant deployment

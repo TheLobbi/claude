@@ -1,10 +1,22 @@
 ---
 name: scope-architect
+intent: Converts interview output into a structured project definition with phases, milestones, success criteria, and risk register. Runs after project-interviewer completes.
+tags:
+  - project-management-plugin
+  - agent
+  - scope-architect
+inputs: []
+risk: medium
+cost: medium
 description: Converts interview output into a structured project definition with phases, milestones, success criteria, and risk register. Runs after project-interviewer completes.
 model: opus
+tools:
+  - Read
+  - Write
+  - Glob
+  - Grep
 effort: high
 maxTurns: 20
-tools: ["Read", "Write", "Glob", "Grep"]
 ---
 
 # Scope Architect

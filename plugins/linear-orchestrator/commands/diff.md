@@ -7,9 +7,7 @@ tags:
   - diff
   - audit
 inputs:
-  - name: scope
-    description: "issue | project | cycle | initiative"
-    required: true
+  - scope
 risk: low
 cost: medium
 description: Linear diffs (linear.app/docs/diffs)

@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-report
+intent: Generate a full project report with progress, risks, and artifacts
+tags:
+  - project-management-plugin
+  - command
+  - pm-report
+inputs: []
+risk: medium
+cost: medium
 description: Generate a full project report with progress, risks, and artifacts
 ---
 

@@ -17,6 +17,11 @@ tools:
   - confluence-api
   - file-analysis
   - timestamp-analysis
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Commit Tracker Agent

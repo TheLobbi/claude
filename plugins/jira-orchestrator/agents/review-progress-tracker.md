@@ -18,6 +18,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Review Progress Tracker Agent

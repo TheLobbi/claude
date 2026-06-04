@@ -1,15 +1,15 @@
 ---
 name: dotnet-blazor:microservices-designer
 intent: Design microservice architectures with .NET Aspire, proper service boundaries, and communication patterns
-inputs:
-  - domain-description
-  - scale-requirements
 tags:
   - dotnet-blazor
   - agent
   - microservices
   - aspire
   - architecture
+inputs:
+  - domain-description
+  - scale-requirements
 risk: medium
 cost: high
 description: Microservice architecture specialist using .NET Aspire for orchestration with gRPC, messaging, and saga patterns

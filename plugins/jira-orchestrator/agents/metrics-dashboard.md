@@ -24,6 +24,11 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__obsidian__vault_add
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Metrics Dashboard Agent

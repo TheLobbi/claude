@@ -7,9 +7,7 @@ tags:
   - query
   - graphql
 inputs:
-  - name: query
-    description: GraphQL query string OR a path to .graphql file
-    required: true
+  - query
 risk: low
 cost: medium
 description: GraphQL query cookbook (linear.app/developers/filtering, pagination, rate-limiting; studio.apollographql.com/public/Linear-API)

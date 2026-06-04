@@ -17,6 +17,11 @@ tools:
   - Bash
   - Edit
   - mcp__ide__getDiagnostics
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Quality Enhancer Agent

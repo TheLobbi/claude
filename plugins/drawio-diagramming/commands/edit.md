@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: low
 cost: medium
-description: >
-  Reads and parses existing .drawio XML files to add, remove, or modify cells
-  (shapes, edges, labels), update styles, adjust layouts, manage layers, merge
-  diagrams, diff versions, and perform bulk operations while preserving diagram
-  integrity.
+description: |
+  Reads and parses existing .drawio XML files to add, remove, or modify cells (shapes, edges, labels), update styles, adjust layouts, manage layers, merge diagrams, diff versions, and perform bulk operations while preserving diagram integrity.
 allowed-tools:
   - Read
   - Write

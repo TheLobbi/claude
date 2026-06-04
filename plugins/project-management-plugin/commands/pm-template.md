@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-template
+intent: Use or create reusable project templates (webapp, api-service, ml-pipeline, mobile-app, infrastructure)
+tags:
+  - project-management-plugin
+  - command
+  - pm-template
+inputs: []
+risk: medium
+cost: medium
 description: Use or create reusable project templates (webapp, api-service, ml-pipeline, mobile-app, infrastructure)
 ---
 

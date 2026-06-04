@@ -1,3 +1,8 @@
+---
+name: 3d-animations
+description: "Expert knowledge for CSS/JS-based 3D animations - perspective transforms, depth effects, card flips, cube rotations, and parallax depth without WebGL."
+---
+
 # 3D Animations Skill
 
 Expert knowledge for CSS/JS-based 3D animations - perspective transforms, depth effects, card flips, cube rotations, and parallax depth without WebGL.

@@ -1,15 +1,15 @@
 ---
 name: dotnet-blazor:syncfusion-ui-specialist
 intent: Integrate and customize Syncfusion Blazor UI components for data-rich applications
-inputs:
-  - component-needs
-  - data-model
 tags:
   - dotnet-blazor
   - agent
   - syncfusion
   - ui
   - components
+inputs:
+  - component-needs
+  - data-model
 risk: low
 cost: medium
 description: Syncfusion Blazor expert for DataGrid, Charts, Scheduler, RichTextEditor, PDF, and 80+ components with theming

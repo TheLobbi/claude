@@ -1,30 +1,29 @@
 ---
 name: /mui-creative
 intent: Build highly creative, fluid MUI widgets with animations, micro-interactions, and unique visual patterns
+tags:
+  - mui-expert
+  - creative
+  - widgets
+  - animation
+  - micro-interaction
+  - unique
 inputs:
-  - name: --widget
-    type: enum
-    values: [sparkline-grid, heatmap-grid, live-data-grid, ai-grid, progress-cells, stat-dashboard, animated-wizard, hardware-switch, tree-browser, date-range-smart, chart-grid-sync, grid-as-form, all]
-    required: true
-  - name: --style
-    type: enum
-    values: [glassmorphism, neumorphism, gradient, neon, minimal-motion, material-plus]
-    required: false
-    default: material-plus
-  - name: --with-motion
-    type: boolean
-    description: Add Framer Motion micro-interactions
-    required: false
-    default: true
+  - '--widget'
+  - '--style'
+  - '--with-motion'
 risk: low
 cost: high
-tags: [mui-expert, creative, widgets, animation, micro-interaction, unique]
-description: >
-  Build highly creative, fluid MUI widgets that go far beyond standard Material
-  Design. Sparkline-in-grid cells, heatmap DataGrids, real-time WebSocket grids,
-  AI assistant panels, animated wizards, hardware-style switches, interactive
-  tree browsers, bi-directional chart+grid sync, and more.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent]
+description: |
+  Build highly creative, fluid MUI widgets that go far beyond standard Material Design. Sparkline-in-grid cells, heatmap DataGrids, real-time WebSocket grids, AI assistant panels, animated wizards, hardware-style switches, interactive tree browsers, bi-directional chart+grid sync, and more.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
+  - Agent
 ---
 
 # /mui-creative

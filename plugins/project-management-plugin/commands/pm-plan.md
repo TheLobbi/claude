@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-plan
+intent: Recursive task decomposition from phases to stories to micro-tasks (5-15 min)
+tags:
+  - project-management-plugin
+  - command
+  - pm-plan
+inputs: []
+risk: medium
+cost: medium
 description: Recursive task decomposition from phases to stories to micro-tasks (5-15 min)
 ---
 

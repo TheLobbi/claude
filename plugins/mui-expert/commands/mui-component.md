@@ -1,6 +1,9 @@
 ---
 name: mui-component
 intent: Scaffold a MUI component following best practices
+tags:
+  - mui-expert
+  - component
 inputs:
   - name
   - type (form|display|navigation|feedback|layout)
@@ -8,9 +11,6 @@ inputs:
   - with-test
 risk: low
 cost: medium
-tags:
-  - mui-expert
-  - component
 description: Scaffold a production-ready MUI component with proper theming, accessibility, and TypeScript types
 allowed-tools:
   - Read

@@ -17,6 +17,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getTransitionsForJiraIssue
   - Bash
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Smart Commit Validator Agent

@@ -1,10 +1,18 @@
 ---
 name: workflow-architect
+intent: Designs end-to-end approval workflows from business requirements. Invoke when the user needs to architect a complete workflow from intake to completion, including approval levels, routing, escalations, and notifications for insurance, mortgage, or financial services processes.
+tags:
+  - lobbi-workflow-engine
+  - agent
+  - workflow-architect
+inputs: []
+risk: medium
+cost: medium
 description: Designs end-to-end approval workflows from business requirements. Invoke when the user needs to architect a complete workflow from intake to completion, including approval levels, routing, escalations, and notifications for insurance, mortgage, or financial services processes.
 model: sonnet
+tools: Read, Write, Edit, Bash, Glob, Grep
 effort: medium
 maxTurns: 20
-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # Workflow Architect

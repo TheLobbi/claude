@@ -1,34 +1,27 @@
 ---
 name: /mui-white-label
 intent: Generate multi-tenant white-label theme architecture
+tags:
+  - mui-expert
+  - white-label
+  - multi-tenant
+  - theming
 inputs:
-  - name: --tenants
-    type: string
-    description: Comma-separated tenant names (e.g. acme,globex,initech)
-    required: true
-  - name: --base-colors
-    type: string
-    description: Base brand primary color (e.g. #2563eb)
-    required: false
-  - name: --features
-    type: string
-    description: Comma-separated features (dark-mode,css-vars,font-loading,logo-swap,component-variants)
-    required: false
-    default: dark-mode,css-vars
-  - name: --source
-    type: enum
-    values: [static, api, env]
-    required: false
-    default: static
-    description: Where tenant config comes from (static files, API endpoint, environment variables)
+  - '--tenants'
+  - '--base-colors'
+  - '--features'
+  - '--source'
 risk: low
 cost: high
-tags: [mui-expert, white-label, multi-tenant, theming]
-description: >
-  Generate a complete multi-tenant white-label theming architecture with
-  tenant-specific branding, component variant overrides, dynamic theme
-  loading, and CSS variables support.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  Generate a complete multi-tenant white-label theming architecture with tenant-specific branding, component variant overrides, dynamic theme loading, and CSS variables support.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-white-label

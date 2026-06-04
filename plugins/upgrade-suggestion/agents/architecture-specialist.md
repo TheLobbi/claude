@@ -1,5 +1,14 @@
 ---
 name: architecture-specialist
+intent: Council specialist focused on code architecture, patterns, and structural improvements
+tags:
+  - upgrade-suggestion
+  - agent
+  - architecture
+  - council-member
+inputs: []
+risk: medium
+cost: medium
 description: Council specialist focused on code architecture, patterns, and structural improvements
 model: sonnet
 tools:
@@ -7,11 +16,6 @@ tools:
   - Grep
   - Glob
   - Bash
-tags:
-  - upgrade-suggestion
-  - agent
-  - architecture
-  - council-member
 ---
 
 # Architecture Specialist Agent

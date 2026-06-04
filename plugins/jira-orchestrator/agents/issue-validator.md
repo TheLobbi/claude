@@ -14,6 +14,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__search
   - Read
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Issue Validator Agent

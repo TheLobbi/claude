@@ -1,0 +1,346 @@
+{
+  "version": 1,
+  "plugin": "project-management-plugin",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "project-management-plugin:pm-anchor",
+      "intent": "Set or clear the focus anchor that keeps Claude on task across every turn",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-anchor"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-anchor.md"
+    },
+    {
+      "name": "project-management-plugin:pm-auto",
+      "intent": "Autonomous project execution loop that runs until completion or block",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-auto"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-auto.md"
+    },
+    {
+      "name": "project-management-plugin:pm-backlog",
+      "intent": "/pm:backlog — Backlog Management",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-backlog"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-backlog.md"
+    },
+    {
+      "name": "project-management-plugin:pm-budget",
+      "intent": "Cap the number of tool calls allowed for the current task; nudges Claude at 80% and 120%",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-budget"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-budget.md"
+    },
+    {
+      "name": "project-management-plugin:pm-checkpoint",
+      "intent": "Save or restore project state checkpoints",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-checkpoint"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-checkpoint.md"
+    },
+    {
+      "name": "project-management-plugin:pm-debug",
+      "intent": "Inspect or repair project state files and caches",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-debug"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-debug.md"
+    },
+    {
+      "name": "project-management-plugin:pm-delegate",
+      "intent": "Delegate a task to a specific specialized agent",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-delegate"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-delegate.md"
+    },
+    {
+      "name": "project-management-plugin:pm-done-when",
+      "intent": "Declare the binary-testable criteria Claude must verify before the session may end",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-done-when"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-done-when.md"
+    },
+    {
+      "name": "project-management-plugin:pm-drift",
+      "intent": "Audit the breadcrumb trail for scope drift, over-engineering, and criterion advancement",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-drift"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-drift.md"
+    },
+    {
+      "name": "project-management-plugin:pm-focus",
+      "intent": "Narrow execution scope to a specific phase, epic, or story",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-focus"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-focus.md"
+    },
+    {
+      "name": "project-management-plugin:pm-handoff",
+      "intent": "Snapshot active task state for post-/compact resume, or display the current handoff",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-handoff"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-handoff.md"
+    },
+    {
+      "name": "project-management-plugin:pm-init",
+      "intent": "8-phase interview-first project initialization with micro-task decomposition",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-init"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-init.md"
+    },
+    {
+      "name": "project-management-plugin:pm-integrate",
+      "intent": "Connect an external PM platform (Jira, Linear, Notion, Asana, Trello, ClickUp, Monday, Todoist, GitHub)",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-integrate"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-integrate.md"
+    },
+    {
+      "name": "project-management-plugin:pm-next",
+      "intent": "Show next actionable tasks based on dependencies and priority",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-next"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-next.md"
+    },
+    {
+      "name": "project-management-plugin:pm-plan",
+      "intent": "Recursive task decomposition from phases to stories to micro-tasks (5-15 min)",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-plan"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-plan.md"
+    },
+    {
+      "name": "project-management-plugin:pm-report",
+      "intent": "Generate a full project report with progress, risks, and artifacts",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-report"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-report.md"
+    },
+    {
+      "name": "project-management-plugin:pm-research",
+      "intent": "Run deep research protocol for a specific task using codebase, Perplexity, Context7, and Firecrawl sources",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-research"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-research.md"
+    },
+    {
+      "name": "project-management-plugin:pm-retrospective",
+      "intent": "Post-completion retrospective analysis with lessons learned",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-retrospective"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-retrospective.md"
+    },
+    {
+      "name": "project-management-plugin:pm-review",
+      "intent": "Multi-agent quality council review of completed work",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-review"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-review.md"
+    },
+    {
+      "name": "project-management-plugin:pm-risk",
+      "intent": "Assess project risks with severity scoring and mitigation suggestions",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-risk"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-risk.md"
+    },
+    {
+      "name": "project-management-plugin:pm-scope",
+      "intent": "Manage the file/command allowlist that blocks out-of-scope edits during the active task",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-scope"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-scope.md"
+    },
+    {
+      "name": "project-management-plugin:pm-status",
+      "intent": "ASCII progress dashboard for the active project",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-status"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-status.md"
+    },
+    {
+      "name": "project-management-plugin:pm-sync",
+      "intent": "Bidirectional sync between local project state and integrated PM platform",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-sync"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-sync.md"
+    },
+    {
+      "name": "project-management-plugin:pm-task",
+      "intent": "/pm:task — Task Management CRUD",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-task"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-task.md"
+    },
+    {
+      "name": "project-management-plugin:pm-template",
+      "intent": "Use or create reusable project templates (webapp, api-service, ml-pipeline, mobile-app, infrastructure)",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-template"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-template.md"
+    },
+    {
+      "name": "project-management-plugin:pm-work",
+      "intent": "/pm:work — Research-First Task Execution",
+      "tags": [
+        "project-management-plugin",
+        "command",
+        "pm-work"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pm-work.md"
+    }
+  ]
+}

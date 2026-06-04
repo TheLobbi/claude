@@ -1,5 +1,14 @@
 ---
 name: security-specialist
+intent: Council specialist focused on security vulnerabilities and hardening opportunities
+tags:
+  - upgrade-suggestion
+  - agent
+  - security
+  - council-member
+inputs: []
+risk: medium
+cost: medium
 description: Council specialist focused on security vulnerabilities and hardening opportunities
 model: sonnet
 tools:
@@ -7,11 +16,6 @@ tools:
   - Grep
   - Glob
   - Bash
-tags:
-  - upgrade-suggestion
-  - agent
-  - security
-  - council-member
 ---
 
 # Security Specialist Agent

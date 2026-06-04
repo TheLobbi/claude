@@ -17,6 +17,11 @@ tools:
   - Glob
   - Bash
   - mcp__atlassian__getJiraIssue
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Notification Router

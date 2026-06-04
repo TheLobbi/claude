@@ -39,3 +39,10 @@ Commands: 21 | Agents: 26 | Skills: 49
 | Need to export or bundle plugins | `commands/export.md`, `commands/bundle-export.md` |
 | Need catalog knowledge or stats | `skills/plugin-catalog/SKILL.md`, `commands/stats.md` |
 | Need to launch a cowork session | `commands/launch.md`, `skills/cowork-sessions/SKILL.md` |
+
+## When to open deeper docs
+| Signal | Open docs | Why |
+| --- | --- | --- |
+| You need setup or usage details | README.md | Install steps and command/usage reference. |
+| You are changing plugin behavior | the relevant commands/, agents/, or skills/ file | Source of truth for behavior. |
+| You need the full inventory | commands/, agents/, skills/ directories | Complete list beyond this summary. |

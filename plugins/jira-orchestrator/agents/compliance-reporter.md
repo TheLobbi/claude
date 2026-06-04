@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Compliance Reporter Agent
 model: sonnet
 tools:
   - Read
@@ -18,6 +19,11 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__obsidian__vault_search
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Compliance Reporter Agent

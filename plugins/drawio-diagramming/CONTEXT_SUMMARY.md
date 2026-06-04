@@ -42,3 +42,10 @@ Intelligent draw.io diagramming plugin with AI-powered diagram generation, multi
 - `skills/platform-integrations/`
 - `skills/conditional-formatting/`
 - `skills/desktop-integration/`
+
+## When to open deeper docs
+| Signal | Open docs | Why |
+| --- | --- | --- |
+| You need setup or usage details | README.md | Install steps and command/usage reference. |
+| You are changing plugin behavior | the relevant commands/, agents/, or skills/ file | Source of truth for behavior. |
+| You need the full inventory | commands/, agents/, skills/ directories | Complete list beyond this summary. |

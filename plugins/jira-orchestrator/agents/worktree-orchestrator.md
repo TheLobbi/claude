@@ -8,6 +8,18 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Orchestrate git worktrees for parallel Jira issue work — create, track, and clean up isolated worktrees per issue and branch.
+model: sonnet
+tools:
+  - Bash
+  - Read
+  - Grep
+  - Glob
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: true
 ---
 
 # Worktree Orchestrator Agent

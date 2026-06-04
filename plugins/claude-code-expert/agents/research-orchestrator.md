@@ -1,13 +1,21 @@
 ---
 name: research-orchestrator
+intent: Routes research tasks to the optimal MCP tool chain — Perplexity for knowledge Q&A, Firecrawl for structured extraction, Context7 for library docs. Chains tools for comprehensive results.
+tags:
+  - claude-code-expert
+  - agent
+  - research-orchestrator
+inputs: []
+risk: medium
+cost: medium
 description: Routes research tasks to the optimal MCP tool chain — Perplexity for knowledge Q&A, Firecrawl for structured extraction, Context7 for library docs. Chains tools for comprehensive results.
+model: claude-sonnet-4-6
 tools:
   - Agent
   - Read
   - Glob
   - Grep
   - Bash
-model: claude-sonnet-4-6
 ---
 
 # Research Orchestrator Agent

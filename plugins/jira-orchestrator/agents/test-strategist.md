@@ -8,12 +8,18 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-model: claude-haiku-4
+description: Test Strategist
+model: haiku
 tools:
   - Read
   - Grep
   - Glob
   - Task
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Test Strategist

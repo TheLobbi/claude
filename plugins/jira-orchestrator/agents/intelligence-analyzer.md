@@ -18,6 +18,11 @@ tools:
   - Bash
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Intelligence Analyzer Agent

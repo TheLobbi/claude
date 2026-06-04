@@ -1,5 +1,13 @@
 ---
 name: autonomy-verifier
+intent: Runs the verification suite after an implementation phase completes. Reads verification steps from .claude/active-task.md, detects project type, runs typecheck + lint + tests + diff check + secret scan, and produces a structured PASS or FAIL report. Never modifies files.
+tags:
+  - claude-code-expert
+  - agent
+  - autonomy-verifier
+inputs: []
+risk: medium
+cost: medium
 description: Runs the verification suite after an implementation phase completes. Reads verification steps from .claude/active-task.md, detects project type, runs typecheck + lint + tests + diff check + secret scan, and produces a structured PASS or FAIL report. Never modifies files.
 model: claude-sonnet-4-6
 tools:

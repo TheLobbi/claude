@@ -15,6 +15,11 @@ tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_transition_issue
   - mcp__atlassian__jira_search
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # QA Transition Agent

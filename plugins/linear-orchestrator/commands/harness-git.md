@@ -10,9 +10,7 @@ tags:
   - bidir-sync
   - signed-commits
 inputs:
-  - name: action
-    description: "enable | configure | bidir | autocreate | sign | cache | settings | oauth | environments | pipelines | overview"
-    required: true
+  - action
 risk: high
 cost: medium
 description: Harness Git Experience advanced features integrated with Linear sync

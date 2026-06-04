@@ -6,9 +6,7 @@ tags:
   - command
   - triage
 inputs:
-  - name: action
-    description: "list | accept | decline | route | rules"
-    required: true
+  - action
 risk: medium
 cost: low
 description: Triage workflow (linear.app/docs/triage)

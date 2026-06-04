@@ -1,3 +1,8 @@
+---
+name: css-animations
+description: "Expert knowledge for pure CSS animations - lightweight, performant animations using CSS keyframes, transitions, and modern CSS features without JavaScript dependencies."
+---
+
 # CSS Animations Skill
 
 Expert knowledge for pure CSS animations - lightweight, performant animations using CSS keyframes, transitions, and modern CSS features without JavaScript dependencies.

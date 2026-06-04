@@ -1,3 +1,8 @@
+---
+name: ha-automation
+description: "Automation YAML patterns, triggers, conditions, actions, and best practices for Home Assistant."
+---
+
 # Home Assistant Automation Skill
 
 Automation YAML patterns, triggers, conditions, actions, and best practices for Home Assistant.

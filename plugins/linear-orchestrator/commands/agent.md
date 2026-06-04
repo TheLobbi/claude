@@ -7,9 +7,7 @@ tags:
   - agent
   - aig
 inputs:
-  - name: action
-    description: "register | list | signal | interact | revoke"
-    required: true
+  - action
 risk: high
 cost: low
 description: Linear agents + AIG (linear.app/developers/agents, agent-interaction, agent-signals, aig)

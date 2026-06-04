@@ -20,6 +20,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__createConfluencePage
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Dependency Mapper Agent

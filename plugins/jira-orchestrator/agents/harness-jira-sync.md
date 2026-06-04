@@ -42,6 +42,11 @@ tools:
   - harness_get_pull_request_checks
   - harness_get_pull_request_activities
   - WebFetch
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Harness-Jira Synchronization Agent

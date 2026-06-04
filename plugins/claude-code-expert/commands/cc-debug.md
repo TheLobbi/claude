@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-debug
+intent: Diagnose Claude Code issues — plugin load failures, MCP connection problems, hook misfiring, permission denials, skill/agent not triggering. Absorbs legacy cc-troubleshoot.
+tags:
+  - claude-code-expert
+  - command
+  - cc-debug
+inputs: []
+risk: medium
+cost: medium
 description: Diagnose Claude Code issues — plugin load failures, MCP connection problems, hook misfiring, permission denials, skill/agent not triggering. Absorbs legacy cc-troubleshoot.
 ---
 

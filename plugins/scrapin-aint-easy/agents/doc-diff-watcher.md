@@ -1,5 +1,13 @@
 ---
 name: doc-diff-watcher
+intent: Monitors documentation sources for content changes and reports diffs
+tags:
+  - scrapin-aint-easy
+  - agent
+  - doc-diff-watcher
+inputs: []
+risk: medium
+cost: medium
 description: Monitors documentation sources for content changes and reports diffs
 model: sonnet
 allowed-tools:

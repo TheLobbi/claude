@@ -8,9 +8,7 @@ tags:
   - bridge
   - two-way-sync
 inputs:
-  - name: action
-    description: "enable | disable | status | reconcile | branch | deploy"
-    required: true
+  - action
 risk: high
 cost: medium
 description: Two-way Harness Code ↔ Linear sync (https://apidocs.harness.io/tag/Code-Repositories)

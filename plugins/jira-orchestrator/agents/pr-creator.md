@@ -30,6 +30,11 @@ tools:
   - harness_get_pull_request_activities
   - harness_list_repositories
   - harness_get_repository
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # PR Creator Agent

@@ -8,11 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: >
-  The Auto-Documenter analyzes codebases to automatically generate draw.io diagrams that
-  accurately represent system architecture, data models, API flows, and infrastructure.
-  It detects code changes, updates affected diagrams incrementally, and maintains a
-  diagram inventory to prevent documentation drift.
+description: |
+  The Auto-Documenter analyzes codebases to automatically generate draw.io diagrams that accurately represent system architecture, data models, API flows, and infrastructure. It detects code changes, updates affected diagrams incrementally, and maintains a diagram inventory to prevent documentation drift.
 model: sonnet
 tools:
   - Read

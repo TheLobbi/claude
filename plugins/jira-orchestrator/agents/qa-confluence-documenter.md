@@ -23,6 +23,11 @@ tools:
   - mcp__plugin_jira-orchestrator_atlassian__getPagesInConfluenceSpace
   - mcp__plugin_jira-orchestrator_atlassian__getAccessibleAtlassianResources
   - mcp__plugin_jira-orchestrator_atlassian__addCommentToJiraIssue
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # QA Confluence Documenter Agent

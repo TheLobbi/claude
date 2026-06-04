@@ -1,12 +1,12 @@
 # jira-orchestrator
 
-**Version:** 7.5.0 | **License:** MIT | **Callsign:** Arbiter
+**Version:** 8.1.0 | **License:** MIT | **Callsign:** Arbiter
 **Author:** Markus Ahling (markus@lobbi.io)
 
 ## Purpose
 
 Arbiter is an enterprise Jira orchestration platform with 82 agents organized into
-16 teams, 46 commands, and 11+ skills. It exists because large-scale software delivery
+16 teams, 48 commands, 14 skills, and 5 declarative workflows. It exists because large-scale software delivery
 across multiple Jira projects requires coordination that exceeds what manual workflows
 can sustain -- sprint planning, code review, PR management, compliance reporting,
 notifications, and documentation must all flow together.
@@ -23,15 +23,40 @@ task complexity.
 jira-orchestrator/
   .claude-plugin/plugin.json
   CLAUDE.md / CONTEXT_SUMMARY.md
-  agents/                        # 82 agents
-  commands/                      # 46 commands
-  skills/                        # 11+ skills (subdirectories with SKILL.md)
+  agents/                        # 82 agents (incl. read-only jira-advisor)
+  commands/                      # 48 commands
+  skills/                        # 14 skills (subdirectories with SKILL.md)
+  workflows/                     # 5 schema-validated declarative workflows
   config/                        # File-agent mapping, MCP configs
-  hooks/                         # 6 workflow hooks
+  hooks/                         # workflow + telemetry hooks (SubagentStop, PostToolUseFailure)
   registry/                      # Agent, command, workflow indexes
   sessions/                      # Intelligence, patterns, velocity tracking
   docs/                          # Deep-dive documentation, Harness knowledge base
 ```
+
+## Workflows & Advisor (v8.1)
+
+**Declarative workflows** turn the agent/command building blocks into explicit,
+reviewable execution graphs. Definitions live in `workflows/*.json` and validate
+against `workflows/schema/workflow.schema.json` (`node workflows/validate.mjs`).
+
+| Workflow | Type | Purpose |
+|----------|------|---------|
+| `issue-delivery` | sequential | Triage → prepare → work → review → PR → ship |
+| `bug-triage` | conditional | Classify a bug, then escalate or enter the normal pipeline |
+| `epic-decomposition` | hierarchical | Decompose an epic into enriched stories |
+| `sprint-planning` | sequential | Capacity → plan → balance → roadmap |
+| `pr-review-board` | parallel | Parallel code/security/QA review, then synthesized verdict |
+
+Run them with `/jira:workflow run <name>`; list/inspect with `/jira:workflow list|show <name>`.
+
+**Advisor.** The read-only `jira-advisor` agent analyzes current Jira/sprint/PR/CI
+state and recommends the next best actions, which workflow to launch, and which agents
+to deploy — it advises, it never mutates Jira. Invoke via `/jira:advise`.
+
+**Lifecycle telemetry.** `SubagentStop` and `PostToolUseFailure` hooks append JSONL to
+`.claude/orchestration/telemetry/` so the advisor and metrics agents can reason about
+agent usage, reject rates, and recurring failures.
 
 ## 12 Primary Commands
 

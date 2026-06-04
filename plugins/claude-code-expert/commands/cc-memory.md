@@ -1,4 +1,13 @@
 ---
+name: claude-code-expert:cc-memory
+intent: Wrap engram for CC-scoped memory operations — search, export, consolidate, edit-always, review. Bridges engram (tier 1) and Obsidian vault (tier 2) via the memory-consolidator agent.
+tags:
+  - claude-code-expert
+  - command
+  - cc-memory
+inputs: []
+risk: medium
+cost: medium
 description: Wrap engram for CC-scoped memory operations — search, export, consolidate, edit-always, review. Bridges engram (tier 1) and Obsidian vault (tier 2) via the memory-consolidator agent.
 ---
 

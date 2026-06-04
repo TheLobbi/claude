@@ -16,6 +16,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getTransitionsForJiraIssue
   - mcp__atlassian__transitionJiraIssue
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Transition Manager Agent

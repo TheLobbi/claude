@@ -1,64 +1,173 @@
 {
-  "agents": [
+  "version": 1,
+  "plugin": "linear-orchestrator",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
     {
-      "name": "linear-architect",
-      "file": "linear-architect.md",
-      "model": "opus"
-    },
-    {
-      "name": "linear-graphql-expert",
-      "file": "linear-graphql-expert.md",
-      "model": "sonnet"
-    },
-    {
-      "name": "linear-issue-curator",
-      "file": "linear-issue-curator.md",
-      "model": "sonnet"
-    },
-    {
-      "name": "linear-cycle-planner",
-      "file": "linear-cycle-planner.md",
-      "model": "sonnet"
-    },
-    {
-      "name": "linear-triage-officer",
-      "file": "linear-triage-officer.md",
-      "model": "sonnet"
-    },
-    {
-      "name": "linear-customer-liaison",
-      "file": "linear-customer-liaison.md",
-      "model": "sonnet"
-    },
-    {
-      "name": "linear-sla-monitor",
-      "file": "linear-sla-monitor.md",
-      "model": "haiku"
-    },
-    {
-      "name": "linear-webhook-engineer",
-      "file": "linear-webhook-engineer.md",
-      "model": "sonnet"
+      "name": "harness-linear-bridge",
+      "intent": "Run the two-way Harness Code ↔ Linear sync — branches, PRs, deploys, Git Experience, custom approvals, triggers",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "harness",
+        "bridge",
+        "two-way-sync"
+      ],
+      "inputs": [],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/harness-linear-bridge.md"
     },
     {
       "name": "linear-agent-orchestrator",
-      "file": "linear-agent-orchestrator.md",
-      "model": "opus"
+      "intent": "Coordinate Linear agents (AIG) — register, route signals, manage actor tokens, escalate to humans",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "aig",
+        "orchestration"
+      ],
+      "inputs": [],
+      "risk": "high",
+      "cost": "high",
+      "path": "agents/linear-agent-orchestrator.md"
+    },
+    {
+      "name": "linear-architect",
+      "intent": "Architecture decisions for Linear integrations — data model trade-offs, sync patterns, multi-tenant considerations, performance budgets",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "architect"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/linear-architect.md"
+    },
+    {
+      "name": "linear-customer-liaison",
+      "intent": "Route customer requests, deduplicate, attribute revenue weight, and surface aggregate demand",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "customer"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/linear-customer-liaison.md"
+    },
+    {
+      "name": "linear-cycle-planner",
+      "intent": "Plan and reconcile Linear cycles (sprints) using velocity history, scope budget, and carry-over rules",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "cycle",
+        "planning"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/linear-cycle-planner.md"
+    },
+    {
+      "name": "linear-graphql-expert",
+      "intent": "Optimize GraphQL queries, navigate the Linear schema, flag deprecations, and generate typed query strings",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "graphql"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/linear-graphql-expert.md"
     },
     {
       "name": "linear-initiative-planner",
-      "file": "linear-initiative-planner.md",
-      "model": "opus"
+      "intent": "Plan multi-quarter initiatives, decompose into projects, generate sub-initiatives, and roll up status",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "initiative",
+        "planning"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/linear-initiative-planner.md"
     },
     {
-      "name": "harness-linear-bridge",
-      "file": "harness-linear-bridge.md",
-      "model": "sonnet"
+      "name": "linear-issue-curator",
+      "intent": "Manage issue lifecycle — creation, sub-issues, templates, labels, parent linkage, and metadata hygiene",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "issue",
+        "curator"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/linear-issue-curator.md"
+    },
+    {
+      "name": "linear-sla-monitor",
+      "intent": "Watch SLA breaches across teams, escalate, and aggregate into reports",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "sla"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "low",
+      "path": "agents/linear-sla-monitor.md"
+    },
+    {
+      "name": "linear-triage-officer",
+      "intent": "Process the Linear triage queue using configurable rules; route, accept, decline, escalate",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "triage"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "low",
+      "path": "agents/linear-triage-officer.md"
+    },
+    {
+      "name": "linear-webhook-engineer",
+      "intent": "Design, debug, and harden webhook handlers — signature verification, idempotency, DLQ, replay",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "webhooks"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/linear-webhook-engineer.md"
     },
     {
       "name": "planner-linear-bridge",
-      "file": "planner-linear-bridge.md",
-      "model": "sonnet"
+      "intent": "Run the two-way Microsoft Planner ↔ Linear sync via Microsoft Graph delta queries",
+      "tags": [
+        "linear-orchestrator",
+        "agent",
+        "planner",
+        "microsoft-graph",
+        "bridge",
+        "two-way-sync"
+      ],
+      "inputs": [],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/planner-linear-bridge.md"
     }
   ]
 }

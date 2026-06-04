@@ -16,6 +16,11 @@ tools:
   - Grep
   - Glob
   - Bash
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Performance Tracker Agent

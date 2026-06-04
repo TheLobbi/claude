@@ -1,0 +1,69 @@
+{
+  "name": "bug-triage",
+  "displayName": "Bug Triage & Routing",
+  "description": "Classify an incoming bug, then branch: critical bugs escalate to SLA monitoring and on-call, everything else flows into the normal prepare/work pipeline.",
+  "version": "1.0.0",
+  "type": "conditional",
+  "category": "triage",
+  "triggers": [
+    { "type": "command", "pattern": "/jira:workflow run bug-triage" },
+    { "type": "webhook" }
+  ],
+  "inputs": [
+    { "name": "issueKey", "type": "string", "description": "Jira bug issue key", "required": true }
+  ],
+  "steps": [
+    {
+      "id": "classify",
+      "name": "Root-cause & severity classification",
+      "type": "agent",
+      "agent": "triage-agent",
+      "inputs": { "issueKey": "$.input.issueKey" },
+      "outputs": { "severity": "$.output.severity" }
+    },
+    {
+      "id": "route",
+      "name": "Severity gate",
+      "type": "condition",
+      "condition": "$.classify.severity == 'critical'",
+      "dependsOn": ["classify"],
+      "branches": {
+        "if": [
+          {
+            "id": "root-cause",
+            "name": "Deep root-cause analysis",
+            "type": "agent",
+            "agent": "root-cause-analyzer",
+            "inputs": { "issueKey": "$.input.issueKey" }
+          },
+          {
+            "id": "escalate",
+            "name": "Escalate to on-call",
+            "type": "agent",
+            "agent": "escalation-manager",
+            "dependsOn": ["root-cause"]
+          },
+          {
+            "id": "sla",
+            "name": "Attach SLA monitoring",
+            "type": "agent",
+            "agent": "sla-monitor",
+            "dependsOn": ["escalate"]
+          }
+        ],
+        "else": [
+          {
+            "id": "normal",
+            "name": "Enter normal pipeline",
+            "type": "command",
+            "command": "/jira:prepare",
+            "inputs": { "issueKey": "$.input.issueKey" }
+          }
+        ]
+      }
+    }
+  ],
+  "errorHandling": { "strategy": "continue" },
+  "monitoring": { "enabled": true, "logLevel": "info", "checkpoints": true },
+  "metadata": { "author": "jira-orchestrator", "tags": ["jira", "bug", "triage"], "status": "stable" }
+}

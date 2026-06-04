@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-drift
+intent: Audit the breadcrumb trail for scope drift, over-engineering, and criterion advancement
+tags:
+  - project-management-plugin
+  - command
+  - pm-drift
+inputs: []
+risk: medium
+cost: medium
 description: Audit the breadcrumb trail for scope drift, over-engineering, and criterion advancement
 ---
 

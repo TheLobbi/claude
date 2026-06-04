@@ -15,6 +15,11 @@ tools:
   - Grep
   - Glob
   - mcp__atlassian__getJiraIssue
+effort: low
+maxTurns: 20
+memory: true
+background: false
+isolation: false
 ---
 
 # Expert Agent Matcher

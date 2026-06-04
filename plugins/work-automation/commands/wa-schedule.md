@@ -1,17 +1,18 @@
 ---
 name: wa-schedule
 intent: Create a Claude Desktop scheduled task via mcp__scheduled-tasks.
+tags:
+  - scheduled-tasks
+  - automation
+  - desktop
 inputs:
-  - name: task name
-  - cron: cron expression (e.g., "0 9 * * *")
-  - prompt: the prompt Claude will execute
+  - task name
+risk: medium
+cost: low
 flags:
   - name: dry-run
     type: boolean
     description: Show what would be created without committing
-risk: medium
-cost: low
-tags: [scheduled-tasks, automation, desktop]
 ---
 
 # /wa-schedule

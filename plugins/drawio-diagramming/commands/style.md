@@ -8,12 +8,8 @@ tags:
 inputs: []
 risk: low
 cost: low
-description: >
-  Comprehensive styling engine for draw.io diagrams. Apply theme presets (Professional,
-  Sketch, Dark Mode, Blueprint, Minimal, Colorful, Corporate), bulk restyle operations,
-  and fine-grained control over every visual property including fills, strokes, shapes,
-  text, labels, edges, and arrows. Includes style inheritance validation and consistency
-  checking across diagram elements.
+description: |
+  Comprehensive styling engine for draw.io diagrams. Apply theme presets (Professional, Sketch, Dark Mode, Blueprint, Minimal, Colorful, Corporate), bulk restyle operations, and fine-grained control over every visual property including fills, strokes, shapes, text, labels, edges, and arrows. Includes style inheritance validation and consistency checking across diagram elements.
 allowed-tools:
   - Read
   - Write

@@ -1,3 +1,8 @@
+---
+name: agentic-patterns
+description: "Patterns from \"Agentic Design Patterns\" (Gulli & Sauco, 2025) applied to plugin marketplace architecture — federated registry, supply chain security, intent-based composition, and trust-scored plugin discovery."
+---
+
 # Agentic Design Patterns — Marketplace Pro
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to plugin marketplace architecture — federated registry, supply chain security, intent-based composition, and trust-scored plugin discovery.

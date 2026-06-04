@@ -1,10 +1,13 @@
 ---
-name: deep-researcher
-description: Performs deep pre-execution research for a task. Uses 4-source protocol: codebase grep first, then Perplexity/web search, then Context7 for library docs, then Firecrawl for specific URLs.
-model: sonnet
-effort: medium
-maxTurns: 15
-tools: ["Read", "Grep", "Glob", "Bash"]
+name: project-management-plugin:deep-researcher
+intent: Deep Researcher
+tags:
+  - project-management-plugin
+  - agent
+  - deep-researcher
+inputs: []
+risk: medium
+cost: medium
 ---
 
 # Deep Researcher

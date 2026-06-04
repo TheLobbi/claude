@@ -1,33 +1,29 @@
 ---
 name: /mui-fingerprint
 intent: Scan and fingerprint an app, ask interactive questions, then build every MUI component needed
+tags:
+  - mui-expert
+  - fingerprint
+  - scan
+  - scaffold
+  - interactive
+  - full-build
 inputs:
-  - name: --path
-    type: string
-    description: Root directory to scan
-    required: false
-    default: src/
-  - name: --dry-run
-    type: boolean
-    description: Only analyze and report — don't build components
-    required: false
-    default: false
-  - name: --style
-    type: enum
-    values: [minimal, standard, premium, creative]
-    required: false
-    default: standard
-    description: Visual style level for generated components
+  - '--path'
+  - '--dry-run'
+  - '--style'
 risk: medium
 cost: high
-tags: [mui-expert, fingerprint, scan, scaffold, interactive, full-build]
-description: >
-  Interactive app fingerprinting command. Scans the project to detect existing
-  MUI components, pages, routing, data models, and API endpoints. Asks targeted
-  questions about missing functionality. Then systematically builds every MUI
-  component the app needs — layouts, forms, data tables, navigation, feedback,
-  and custom widgets.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent]
+description: |
+  Interactive app fingerprinting command. Scans the project to detect existing MUI components, pages, routing, data models, and API endpoints. Asks targeted questions about missing functionality. Then systematically builds every MUI component the app needs — layouts, forms, data tables, navigation, feedback, and custom widgets.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
+  - Agent
 ---
 
 # /mui-fingerprint

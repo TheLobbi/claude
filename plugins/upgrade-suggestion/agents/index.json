@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "plugin": "upgrade-suggestion",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "architecture-specialist",
+      "intent": "Council specialist focused on code architecture, patterns, and structural improvements",
+      "tags": [
+        "upgrade-suggestion",
+        "agent",
+        "architecture",
+        "council-member"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/architecture-specialist.md"
+    },
+    {
+      "name": "council-synthesizer",
+      "intent": "Synthesizes findings from all council specialists into weighted, deduplicated recommendations",
+      "tags": [
+        "upgrade-suggestion",
+        "agent",
+        "synthesizer",
+        "council"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/council-synthesizer.md"
+    },
+    {
+      "name": "dx-specialist",
+      "intent": "Council specialist focused on developer experience, tooling, and workflow improvements",
+      "tags": [
+        "upgrade-suggestion",
+        "agent",
+        "dx",
+        "developer-experience",
+        "council-member"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/dx-specialist.md"
+    },
+    {
+      "name": "performance-specialist",
+      "intent": "Council specialist focused on performance optimization opportunities",
+      "tags": [
+        "upgrade-suggestion",
+        "agent",
+        "performance",
+        "council-member"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/performance-specialist.md"
+    },
+    {
+      "name": "security-specialist",
+      "intent": "Council specialist focused on security vulnerabilities and hardening opportunities",
+      "tags": [
+        "upgrade-suggestion",
+        "agent",
+        "security",
+        "council-member"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/security-specialist.md"
+    },
+    {
+      "name": "upgrade-analyst",
+      "intent": "Fast single-agent analyzer for quick mode — covers all dimensions in one pass",
+      "tags": [
+        "upgrade-suggestion",
+        "agent",
+        "analysis",
+        "quick-mode"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/upgrade-analyst.md"
+    },
+    {
+      "name": "ux-specialist",
+      "intent": "Council specialist focused on user experience, accessibility, and UI innovation",
+      "tags": [
+        "upgrade-suggestion",
+        "agent",
+        "ux",
+        "accessibility",
+        "council-member"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/ux-specialist.md"
+    }
+  ]
+}

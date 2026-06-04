@@ -1,9 +1,6 @@
 ---
 name: mui-migration-specialist
 intent: Analyze and execute MUI version migrations
-model: claude-sonnet-4-6
-risk: medium
-cost: high
 tags:
   - mui-expert
   - migration
@@ -13,11 +10,11 @@ inputs:
   - target MUI version (v5 or v6)
   - source directories to migrate
   - optional dry-run flag
-description: >
-  Analyzes codebases for MUI version compatibility and executes migrations
-  between MUI v4→v5 or v5→v6. Detects breaking changes, generates a
-  file-by-file migration plan with effort estimates, applies codemods and
-  manual transforms, and verifies results with TypeScript compilation.
+risk: medium
+cost: high
+description: |
+  Analyzes codebases for MUI version compatibility and executes migrations between MUI v4→v5 or v5→v6. Detects breaking changes, generates a file-by-file migration plan with effort estimates, applies codemods and manual transforms, and verifies results with TypeScript compilation.
+model: claude-sonnet-4-6
 tools:
   - Read
   - Glob

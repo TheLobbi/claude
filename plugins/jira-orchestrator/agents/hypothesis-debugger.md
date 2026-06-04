@@ -24,6 +24,11 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__ide__getDiagnostics
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Hypothesis-Driven Debugger Agent

@@ -1,35 +1,27 @@
 ---
 name: /mui-theme
 intent: Generate or audit a MUI theme configuration
+tags:
+  - mui-expert
+  - theme
+  - design-system
 inputs:
-  - name: --mode
-    type: enum
-    values: [generate, audit]
-    required: true
-  - name: --dark-mode
-    type: boolean
-    required: false
-    default: false
-  - name: --palette
-    type: string
-    description: Custom color definitions (e.g. primary=#1976d2,secondary=#9c27b0)
-    required: false
-  - name: --typography
-    type: string
-    description: Font family preference (e.g. Inter, Roboto, system-ui)
-    required: false
-  - name: --audit-file
-    type: string
-    description: Path to existing theme file for audit mode
-    required: false
+  - '--mode'
+  - '--dark-mode'
+  - '--palette'
+  - '--typography'
+  - '--audit-file'
 risk: low
 cost: medium
-tags: [mui-expert, theme, design-system]
-description: >
-  Generate a complete MUI createTheme() configuration with palette, typography,
-  spacing, shape, breakpoints, and component overrides — or audit an existing
-  theme file for missing best practices, accessibility issues, and TypeScript gaps.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  Generate a complete MUI createTheme() configuration with palette, typography, spacing, shape, breakpoints, and component overrides — or audit an existing theme file for missing best practices, accessibility issues, and TypeScript gaps.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-theme

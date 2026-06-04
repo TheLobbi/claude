@@ -7,24 +7,13 @@ tags:
   - roadmap
   - planning
 inputs:
-  - name: scope
-    description: "What to analyze: 'project' (whole repo), 'recent' (recent changes), or a file/directory path"
-    required: false
-    default: "project"
-  - name: horizon
-    description: "Planning horizon: 'sprint' (1-2 weeks), 'quarter' (1-3 months), 'year' (strategic)"
-    required: false
-    default: "sprint"
-  - name: team-size
-    description: "Team size for effort estimates: 1 (solo), 2-3 (small), 4-8 (medium), 9+ (large)"
-    required: false
-    default: "1"
+  - scope
+  - horizon
+  - team-size
 risk: low
 cost: medium
-description: >
-  Generates a prioritized, sequenced upgrade roadmap showing what to implement first,
-  dependency chains between upgrades, estimated effort, and cumulative impact curves.
-  Visualizes the optimal implementation path as a directed graph.
+description: |
+  Generates a prioritized, sequenced upgrade roadmap showing what to implement first, dependency chains between upgrades, estimated effort, and cumulative impact curves. Visualizes the optimal implementation path as a directed graph.
 allowed-tools:
   - Read
   - Grep

@@ -1,4 +1,13 @@
 ---
+name: scrapin-aint-easy:scrapin-crawl
+intent: Trigger a documentation crawl for a specific source or all sources
+tags:
+  - scrapin-aint-easy
+  - command
+  - scrapin-crawl
+inputs: []
+risk: medium
+cost: medium
 description: Trigger a documentation crawl for a specific source or all sources
 model: sonnet
 allowed-tools:

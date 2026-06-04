@@ -20,6 +20,11 @@ tools:
   - mcp__ide__getDiagnostics
   - mcp__github__create_issue
   - mcp__github__list_commits
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Quality Intelligence Agent

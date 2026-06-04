@@ -18,6 +18,11 @@ tools:
   - Glob
   - Grep
   - Task
+effort: high
+maxTurns: 50
+memory: true
+background: false
+isolation: false
 ---
 
 # Code Quality Enforcer Agent

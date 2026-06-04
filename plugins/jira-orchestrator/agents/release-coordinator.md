@@ -24,6 +24,11 @@ tools:
   - mcp__atlassian__transitionJiraIssue
   - mcp__atlassian__createConfluencePage
   - mcp__atlassian__updateConfluencePage
+effort: medium
+maxTurns: 60
+memory: true
+background: false
+isolation: false
 ---
 
 # Release Coordinator Agent

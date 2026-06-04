@@ -1,5 +1,15 @@
 ---
 name: ux-specialist
+intent: Council specialist focused on user experience, accessibility, and UI innovation
+tags:
+  - upgrade-suggestion
+  - agent
+  - ux
+  - accessibility
+  - council-member
+inputs: []
+risk: medium
+cost: medium
 description: Council specialist focused on user experience, accessibility, and UI innovation
 model: sonnet
 tools:
@@ -7,12 +17,6 @@ tools:
   - Grep
   - Glob
   - Bash
-tags:
-  - upgrade-suggestion
-  - agent
-  - ux
-  - accessibility
-  - council-member
 ---
 
 # UX Specialist Agent

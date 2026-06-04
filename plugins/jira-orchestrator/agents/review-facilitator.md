@@ -18,6 +18,11 @@ tools:
   - mcp__atlassian__jira_search
   - Bash
   - Read
+effort: medium
+maxTurns: 35
+memory: true
+background: false
+isolation: false
 ---
 
 # Review Facilitator Agent

@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-scope
+intent: Manage the file/command allowlist that blocks out-of-scope edits during the active task
+tags:
+  - project-management-plugin
+  - command
+  - pm-scope
+inputs: []
+risk: medium
+cost: medium
 description: Manage the file/command allowlist that blocks out-of-scope edits during the active task
 ---
 

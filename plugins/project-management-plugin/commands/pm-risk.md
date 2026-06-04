@@ -1,4 +1,13 @@
 ---
+name: project-management-plugin:pm-risk
+intent: Assess project risks with severity scoring and mitigation suggestions
+tags:
+  - project-management-plugin
+  - command
+  - pm-risk
+inputs: []
+risk: medium
+cost: medium
 description: Assess project risks with severity scoring and mitigation suggestions
 ---
 

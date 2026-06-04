@@ -6,12 +6,8 @@ tags:
   - command
   - assign
 inputs:
-  - name: id
-    description: Issue identifier (e.g. ENG-123) or comma-separated list
-    required: true
-  - name: assignee
-    description: Email, name, or user ID; "@me" or "unassigned" supported
-    required: true
+  - id
+  - assignee
 risk: low
 cost: low
 description: Issue assignment with single/bulk/round-robin modes (linear.app/docs/assigning-issues)

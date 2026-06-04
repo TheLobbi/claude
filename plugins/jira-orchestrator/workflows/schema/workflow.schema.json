@@ -1,0 +1,416 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://anthropic.com/claude-code/workflow.schema.v1.json",
+  "title": "Claude Code Workflow Definition",
+  "description": "Schema for defining multi-step workflows with agent coordination patterns",
+  "type": "object",
+  "required": ["name", "description", "type", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Workflow name in kebab-case",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable workflow name",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of workflow purpose",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Workflow version (semver)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["sequential", "parallel", "hierarchical", "mesh", "adaptive", "group-chat", "conditional"],
+      "description": "Workflow execution pattern"
+    },
+    "category": {
+      "type": "string",
+      "description": "Workflow category",
+      "examples": ["ci-cd", "testing", "deployment", "analysis", "development"]
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Events or conditions that trigger this workflow",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["manual", "file-change", "git-commit", "schedule", "webhook", "command"]
+          },
+          "pattern": {
+            "type": "string",
+            "description": "Pattern for file-change or command triggers"
+          },
+          "schedule": {
+            "type": "string",
+            "description": "Cron expression for scheduled triggers"
+          }
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "description": "Workflow input parameters",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Input parameter name"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["string", "number", "boolean", "object", "array"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean",
+            "default": false
+          },
+          "default": {
+            "description": "Default value"
+          },
+          "validation": {
+            "type": "object",
+            "description": "Validation rules"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "description": "Workflow output values",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["string", "number", "boolean", "object", "array"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "description": "Which step provides this output"
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "Workflow steps",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique step identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Step name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Step description"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["agent", "command", "bash", "workflow", "condition", "loop", "parallel", "wait"],
+            "description": "Step type"
+          },
+          "agent": {
+            "type": "string",
+            "description": "Agent to use (for agent steps)"
+          },
+          "command": {
+            "type": "string",
+            "description": "Command to execute (for command/bash steps)"
+          },
+          "workflow": {
+            "type": "string",
+            "description": "Workflow to invoke (for workflow steps)"
+          },
+          "condition": {
+            "type": "string",
+            "description": "Condition expression (for condition steps)"
+          },
+          "branches": {
+            "type": "object",
+            "description": "Conditional branches",
+            "properties": {
+              "if": {
+                "type": "array",
+                "description": "Steps if condition is true",
+                "items": {
+                  "$ref": "#/properties/steps/items"
+                }
+              },
+              "else": {
+                "type": "array",
+                "description": "Steps if condition is false",
+                "items": {
+                  "$ref": "#/properties/steps/items"
+                }
+              }
+            }
+          },
+          "loop": {
+            "type": "object",
+            "description": "Loop configuration",
+            "properties": {
+              "items": {
+                "type": "string",
+                "description": "Expression that evaluates to array of items"
+              },
+              "variable": {
+                "type": "string",
+                "description": "Variable name for current item"
+              },
+              "steps": {
+                "type": "array",
+                "description": "Steps to execute for each item",
+                "items": {
+                  "$ref": "#/properties/steps/items"
+                }
+              }
+            }
+          },
+          "parallel": {
+            "type": "array",
+            "description": "Steps to execute in parallel",
+            "items": {
+              "$ref": "#/properties/steps/items"
+            }
+          },
+          "inputs": {
+            "type": "object",
+            "description": "Step input values (can reference outputs from previous steps)"
+          },
+          "outputs": {
+            "type": "object",
+            "description": "Step output mapping"
+          },
+          "dependsOn": {
+            "type": "array",
+            "description": "Step IDs this step depends on",
+            "items": {
+              "type": "string"
+            }
+          },
+          "continueOnError": {
+            "type": "boolean",
+            "default": false,
+            "description": "Continue workflow if this step fails"
+          },
+          "timeout": {
+            "type": "number",
+            "description": "Step timeout in milliseconds"
+          },
+          "retries": {
+            "type": "object",
+            "description": "Retry configuration",
+            "properties": {
+              "max": {
+                "type": "number",
+                "minimum": 1
+              },
+              "backoff": {
+                "type": "string",
+                "enum": ["fixed", "exponential", "linear"]
+              },
+              "delayMs": {
+                "type": "number"
+              }
+            }
+          },
+          "when": {
+            "type": "string",
+            "description": "Condition for step execution"
+          }
+        }
+      }
+    },
+    "errorHandling": {
+      "type": "object",
+      "description": "Error handling strategy",
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": ["abort", "continue", "rollback"],
+          "default": "abort"
+        },
+        "rollbackSteps": {
+          "type": "array",
+          "description": "Steps to execute on rollback",
+          "items": {
+            "$ref": "#/properties/steps/items"
+          }
+        },
+        "notifications": {
+          "type": "array",
+          "description": "Error notification configuration",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["email", "slack", "webhook"]
+              },
+              "target": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "coordination": {
+      "type": "object",
+      "description": "Agent coordination configuration (for multi-agent workflows)",
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "enum": ["hierarchical", "peer-to-peer", "broadcast", "request-response"],
+          "description": "Communication pattern"
+        },
+        "coordinator": {
+          "type": "string",
+          "description": "Coordinator agent (for hierarchical pattern)"
+        },
+        "messageFormat": {
+          "type": "string",
+          "enum": ["json", "xml", "text"],
+          "default": "json"
+        },
+        "contextSharing": {
+          "type": "boolean",
+          "default": true,
+          "description": "Share context between agents"
+        }
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Workflow permission requirements",
+      "properties": {
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mcpServers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filesystem": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "access"],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "access": {
+                "type": "string",
+                "enum": ["read", "write", "readwrite"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "description": "Workflow monitoring configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "logLevel": {
+          "type": "string",
+          "enum": ["debug", "info", "warn", "error"],
+          "default": "info"
+        },
+        "metrics": {
+          "type": "array",
+          "description": "Metrics to track",
+          "items": {
+            "type": "string"
+          }
+        },
+        "checkpoints": {
+          "type": "boolean",
+          "default": true,
+          "description": "Create checkpoints after each step"
+        }
+      }
+    },
+    "variables": {
+      "type": "object",
+      "description": "Workflow-level variables",
+      "additionalProperties": true
+    },
+    "timeout": {
+      "type": "number",
+      "description": "Overall workflow timeout in milliseconds",
+      "minimum": 1000
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["experimental", "beta", "stable", "deprecated"]
+        }
+      }
+    }
+  }
+}

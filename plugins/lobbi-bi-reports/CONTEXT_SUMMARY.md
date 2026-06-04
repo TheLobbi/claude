@@ -18,3 +18,10 @@ Business intelligence and reporting for insurance and financial services executi
 
 ## When-to-load guidance
 Load this summary first. Open specific skill files based on the BI component being designed or built.
+
+## When to open deeper docs
+| Signal | Open docs | Why |
+| --- | --- | --- |
+| You need setup or usage details | README.md | Install steps and command/usage reference. |
+| You are changing plugin behavior | the relevant commands/, agents/, or skills/ file | Source of truth for behavior. |
+| You need the full inventory | commands/, agents/, skills/ directories | Complete list beyond this summary. |

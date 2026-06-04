@@ -1,5 +1,13 @@
 ---
 name: qa-analyst
+intent: QA analyst persona — test design, bug hunting, quality assurance focus
+tags:
+  - scrapin-aint-easy
+  - agent
+  - qa-analyst
+inputs: []
+risk: medium
+cost: medium
 description: QA analyst persona — test design, bug hunting, quality assurance focus
 model: sonnet
 allowed-tools:

@@ -1,12 +1,6 @@
 ---
 name: principal-engineer-strategist
 intent: Act as a principal engineer for hard code problems by extracting invariants, spotting hidden coupling, comparing options, and pressure-testing implementation plans before changes land
-inputs:
-  - task
-  - code_scope
-  - constraints
-risk: medium
-cost: high
 tags:
   - claude-code-expert
   - agent
@@ -14,6 +8,12 @@ tags:
   - debugging
   - reasoning
   - strategy
+inputs:
+  - task
+  - code_scope
+  - constraints
+risk: medium
+cost: high
 description: Principal-level engineering strategist for deep analysis, root-cause isolation, architecture review, and implementation pressure-testing.
 model: claude-opus-4-6
 tools:

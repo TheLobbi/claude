@@ -1,27 +1,26 @@
 ---
 name: /mui-slots
 intent: Customize MUI component internals using the slots API
+tags:
+  - mui-expert
+  - slots
+  - customization
+  - composition
 inputs:
-  - name: --component
-    type: string
-    description: MUI component to customize (e.g. Autocomplete, DataGrid, DatePicker, Slider)
-    required: true
-  - name: --slot
-    type: string
-    description: Specific slot to customize (e.g. paper, toolbar, day, thumb)
-    required: false
-  - name: --mode
-    type: enum
-    values: [list, customize, migrate]
-    required: false
-    default: customize
+  - '--component'
+  - '--slot'
+  - '--mode'
 risk: low
 cost: medium
-tags: [mui-expert, slots, customization, composition]
-description: >
-  List available slots for a component, generate custom slot implementations,
-  or migrate from deprecated components/componentsProps to the slots API.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  List available slots for a component, generate custom slot implementations, or migrate from deprecated components/componentsProps to the slots API.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-slots

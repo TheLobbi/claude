@@ -1,44 +1,31 @@
 ---
 name: /mui-setup
 intent: Set up MUI in a project with MCP server, LSP, packages, theme, and tooling
+tags:
+  - mui-expert
+  - setup
+  - mcp
+  - lsp
+  - installation
+  - tooling
 inputs:
-  - name: --scope
-    type: enum
-    values: [full, mcp-only, packages, theme, tooling]
-    required: false
-    default: full
-  - name: --framework
-    type: enum
-    values: [nextjs, vite, cra, remix]
-    required: false
-    default: vite
-  - name: --mui-version
-    type: enum
-    values: [v5, v6]
-    required: false
-    default: v6
-  - name: --tier
-    type: enum
-    values: [community, pro, premium]
-    required: false
-    default: community
-  - name: --css-engine
-    type: enum
-    values: [emotion, pigment-css]
-    required: false
-    default: emotion
-  - name: --with-tailwind
-    type: boolean
-    required: false
-    default: false
+  - '--scope'
+  - '--framework'
+  - '--mui-version'
+  - '--tier'
+  - '--css-engine'
+  - '--with-tailwind'
 risk: low
 cost: medium
-tags: [mui-expert, setup, mcp, lsp, installation, tooling]
-description: >
-  Complete MUI project setup — installs packages, configures the MUI MCP server
-  for Claude Code, sets up LSP/editor tooling, generates starter theme, and
-  configures SSR/bundler integration. One command to go from zero to production-ready MUI.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+description: |
+  Complete MUI project setup — installs packages, configures the MUI MCP server for Claude Code, sets up LSP/editor tooling, generates starter theme, and configures SSR/bundler integration. One command to go from zero to production-ready MUI.
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # /mui-setup

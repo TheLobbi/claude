@@ -1,12 +1,20 @@
 ---
 name: pattern-router
+intent: Analyzes incoming tasks and selects the optimal agentic design pattern (prompt chain, routing, parallelization, eval-optimizer, orchestrator-workers, reflection, or ReAct). Routes to the right pattern implementation to avoid over-engineering simple tasks or under-powering complex ones.
+tags:
+  - claude-code-expert
+  - agent
+  - pattern-router
+inputs: []
+risk: medium
+cost: medium
 description: Analyzes incoming tasks and selects the optimal agentic design pattern (prompt chain, routing, parallelization, eval-optimizer, orchestrator-workers, reflection, or ReAct). Routes to the right pattern implementation to avoid over-engineering simple tasks or under-powering complex ones.
+model: claude-sonnet-4-6
 tools:
   - Read
   - Glob
   - Grep
   - Agent
-model: claude-sonnet-4-6
 ---
 
 # Pattern Router Agent

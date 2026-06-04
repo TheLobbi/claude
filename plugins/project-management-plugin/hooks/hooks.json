@@ -1,4 +1,7 @@
 {
+  "$schema": "../../../schemas/hooks.schema.json",
+  "version": "2.0.0",
+  "plugin": "project-management-plugin",
   "hooks": {
     "SessionStart": [
       {
