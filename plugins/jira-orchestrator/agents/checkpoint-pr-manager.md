@@ -13,12 +13,16 @@ cost: medium
 description: Manage incremental draft PRs during CODE phase when splitting strategy requires multiple PRs
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - Bash
   - Read
   - Write
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Checkpoint PR Manager Agent

@@ -11,6 +11,7 @@ cost: medium
 description: Workload distribution analysis and balancing with rebalancing recommendations, bottleneck identification, context switching analysis, meeting load impact assessment, and burnout risk detection.
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -21,6 +22,9 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Workload Balancer Agent

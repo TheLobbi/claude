@@ -20,9 +20,11 @@
   ],
   "mcpServers": {
     "scrapin-aint-easy": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "${CLAUDE_PLUGIN_ROOT}/dist/cli.js",
+        "-y",
+        "tsx",
+        "${CLAUDE_PLUGIN_ROOT}/src/cli.ts",
         "--mcp"
       ]
     }

@@ -11,6 +11,7 @@ cost: medium
 description: Automated sprint planning with capacity calculation, velocity tracking, backlog prioritization, commitment suggestions, sprint health monitoring, and adaptive learning from past sprint outcomes
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -21,6 +22,9 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Sprint Planner Agent

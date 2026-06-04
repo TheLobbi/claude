@@ -11,6 +11,7 @@ cost: medium
 description: Expert agent for enforcing SOLID principles, clean code standards, and architectural patterns across the codebase with automated analysis and refactoring suggestions
 model: opus
 effort: high
+maxTurns: 50
 tools:
   - Bash
   - Read
@@ -19,6 +20,9 @@ tools:
   - Glob
   - Grep
   - Task
+memory: true
+background: false
+isolation: false
 ---
 
 # Code Quality Enforcer Agent

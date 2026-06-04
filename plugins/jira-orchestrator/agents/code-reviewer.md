@@ -11,6 +11,7 @@ cost: medium
 description: Comprehensive code reviewer for orchestration workflow - deep analysis of logic, security, performance, accessibility, test coverage, and documentation quality before PR creation
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -18,6 +19,9 @@ tools:
   - Bash
   - Edit
   - mcp__ide__getDiagnostics
+memory: true
+background: false
+isolation: false
 ---
 
 # Code Reviewer Agent

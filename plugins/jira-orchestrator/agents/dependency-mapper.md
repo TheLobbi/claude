@@ -11,6 +11,7 @@ cost: medium
 description: Cross-project dependency detection, visualization, impact analysis, circular dependency detection, critical path calculation, and blocking issue identification
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Write
@@ -21,6 +22,9 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__createConfluencePage
+memory: true
+background: false
+isolation: false
 ---
 
 # Dependency Mapper Agent

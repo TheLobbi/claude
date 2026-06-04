@@ -11,6 +11,7 @@ cost: medium
 description: Coordinates agent council reviews using the blackboard pattern for collaborative multi-agent analysis
 model: sonnet
 effort: medium
+maxTurns: 60
 tools:
   - Task
   - Read
@@ -22,6 +23,9 @@ tools:
   - mcp__atlassian__jira_add_comment
   - harness_get_pull_request
   - harness_get_pull_request_activities
+memory: true
+background: false
+isolation: false
 ---
 
 # Council Coordinator Agent

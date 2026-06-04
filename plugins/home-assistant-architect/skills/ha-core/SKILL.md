@@ -1,3 +1,8 @@
+---
+name: ha-core
+description: "Core Home Assistant API integration patterns, authentication, and entity management."
+---
+
 # Home Assistant Core Skill
 
 Core Home Assistant API integration patterns, authentication, and entity management.

@@ -13,6 +13,7 @@ cost: medium
 description: Orchestrate code review workflows from creation to completion with progress tracking
 model: sonnet
 effort: medium
+maxTurns: 60
 tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_create_issue
@@ -21,6 +22,9 @@ tools:
   - mcp__atlassian__jira_transition_issue
   - Bash
   - Read
+memory: true
+background: false
+isolation: false
 ---
 
 # Review Orchestrator Agent

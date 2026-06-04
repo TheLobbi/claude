@@ -11,6 +11,7 @@ cost: medium
 description: Branching exploration agent for problems with multiple solution paths. ALWAYS queries Context7 for documentation and explores trade-offs systematically.
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -23,6 +24,9 @@ tools:
   - mcp__plugin_jira-orchestrator_memory__create_entities
   - mcp__plugin_jira-orchestrator_memory__create_relations
   - mcp__atlassian__getJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Tree-of-Thought Reasoner Agent

@@ -11,6 +11,7 @@ cost: medium
 description: Visual roadmap generation with timeline planning, dependency-aware scheduling, release train coordination, milestone tracking, and capacity-based forecasting
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Write
@@ -21,6 +22,9 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__createConfluencePage
+memory: true
+background: false
+isolation: false
 ---
 
 # Roadmap Planner Agent

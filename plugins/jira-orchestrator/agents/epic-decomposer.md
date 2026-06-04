@@ -11,6 +11,7 @@ cost: medium
 description: Breaks down epics into manageable user stories and tasks using INVEST principles, user journey analysis, dependency mapping, and adaptive learning from past decompositions
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -20,6 +21,9 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+memory: true
+background: false
+isolation: false
 ---
 
 # Epic Decomposer Agent

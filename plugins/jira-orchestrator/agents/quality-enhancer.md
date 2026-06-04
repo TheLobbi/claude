@@ -11,6 +11,7 @@ cost: medium
 description: Enhanced code quality reviewer for orchestration workflow - validates best practices, security, performance, accessibility, and documentation
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -18,6 +19,9 @@ tools:
   - Bash
   - Edit
   - mcp__ide__getDiagnostics
+memory: true
+background: false
+isolation: false
 ---
 
 # Quality Enhancer Agent

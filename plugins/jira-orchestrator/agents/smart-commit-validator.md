@@ -14,10 +14,14 @@ cost: medium
 description: Pre-flight validation of smart commit parameters to prevent failed commits and ensure data integrity
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getTransitionsForJiraIssue
   - Bash
+memory: true
+background: false
+isolation: false
 ---
 
 # Smart Commit Validator Agent

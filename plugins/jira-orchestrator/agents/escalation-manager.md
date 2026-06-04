@@ -11,6 +11,7 @@ cost: medium
 description: Escalation Manager Agent
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -23,6 +24,9 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__obsidian__vault_search
   - mcp__obsidian__get_file_contents
+memory: true
+background: false
+isolation: false
 ---
 
 # Escalation Manager Agent

@@ -11,6 +11,7 @@ cost: medium
 description: Policy definition and evaluation engine for code quality gates, security requirements, review policies, branch protection, and compliance checks
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Write
@@ -18,6 +19,9 @@ tools:
   - Bash
   - Task
   - mcp__atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Policy Enforcer Agent

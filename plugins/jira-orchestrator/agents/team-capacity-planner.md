@@ -11,6 +11,7 @@ cost: medium
 description: Advanced team capacity planning with workload tracking, availability management, sprint forecasting, over-allocation detection, resource leveling, and velocity analysis
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -21,6 +22,9 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Team Capacity Planner Agent

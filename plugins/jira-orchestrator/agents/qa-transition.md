@@ -12,10 +12,14 @@ cost: medium
 description: Transition Jira issues and all sub-items to QA status after work completion
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_transition_issue
   - mcp__atlassian__jira_search
+memory: true
+background: false
+isolation: false
 ---
 
 # QA Transition Agent

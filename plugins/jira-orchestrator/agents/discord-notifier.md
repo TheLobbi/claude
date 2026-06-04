@@ -11,10 +11,14 @@ cost: medium
 description: Sends notifications to Discord channels using Discord API with rich embeds, mentions, and threading support
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - Read
   - Write
   - Bash
+memory: true
+background: false
+isolation: false
 ---
 
 # Discord Notifier Agent

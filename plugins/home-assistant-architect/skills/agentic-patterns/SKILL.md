@@ -1,3 +1,8 @@
+---
+name: agentic-patterns
+description: "Patterns from \"Agentic Design Patterns\" (Gulli & Sauco, 2025) applied to smart home automation and IoT orchestration"
+---
+
 # Agentic Design Patterns — Home Assistant Architect
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to smart home automation and IoT orchestration

@@ -15,12 +15,16 @@ cost: medium
 description: Unified commit operations agent - generate, validate, and track commits with Jira smart commit integration
 model: sonnet
 effort: medium
+maxTurns: 60
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getTransitionsForJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
   - Bash
+memory: true
+background: false
+isolation: false
 ---
 
 # Commit Orchestrator Agent

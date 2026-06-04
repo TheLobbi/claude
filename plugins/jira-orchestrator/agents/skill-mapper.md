@@ -11,6 +11,7 @@ cost: medium
 description: Team skills inventory management with expertise tracking, skill gap analysis, training recommendations, optimal task assignment, knowledge transfer tracking, and skill coverage reporting
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -20,6 +21,9 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Skill Mapper Agent

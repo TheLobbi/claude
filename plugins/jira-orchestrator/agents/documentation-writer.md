@@ -11,6 +11,7 @@ cost: medium
 description: Comprehensive documentation writer for DOCUMENT phase - creates README, API docs, ADRs, code comments, changelogs, Confluence pages, user guides, and runbooks
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - Read
   - Write
@@ -23,6 +24,9 @@ tools:
   - mcp__atlassian__getConfluencePage
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__getJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Documentation Writer Agent

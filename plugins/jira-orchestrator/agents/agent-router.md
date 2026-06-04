@@ -11,11 +11,15 @@ cost: medium
 description: Dynamic agent discovery and routing - queries main registry to select specialized code agents based on Jira context, file patterns, and task keywords
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - Read
   - Grep
   - Glob
   - mcp__atlassian__getJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Agent Router

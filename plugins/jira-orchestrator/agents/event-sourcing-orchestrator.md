@@ -11,6 +11,7 @@ cost: medium
 description: Event sourcing system for complete orchestration audit trail, state reconstruction, time-travel debugging, and event replay capabilities
 model: sonnet
 effort: medium
+maxTurns: 60
 tools:
   - Read
   - Write
@@ -18,6 +19,9 @@ tools:
   - Bash
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Event Sourcing Orchestrator

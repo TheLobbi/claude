@@ -11,6 +11,7 @@ cost: medium
 description: Unified documentation agent for TDD, ADR, API docs, runbooks, Confluence pages, and Jira-Confluence linking with optimized CQL queries
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Write
@@ -27,6 +28,9 @@ tools:
   - mcp__atlassian__editJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__atlassian__searchJiraIssuesUsingJql
+memory: true
+background: false
+isolation: false
 ---
 
 # Documentation Hub Agent

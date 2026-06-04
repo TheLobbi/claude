@@ -13,9 +13,13 @@ cost: medium
 description: Manages Jira time tracking and worklog entries with smart time parsing, validation, and remaining estimate tracking
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addWorklogToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Worklog Manager Agent

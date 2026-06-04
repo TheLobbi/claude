@@ -15,6 +15,7 @@ cost: medium
 description: Publishes documentation to external platforms beyond Confluence - GitHub Wiki, API docs sites, GitBook, Notion, automated README updates, and blog posts
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Write
@@ -23,6 +24,9 @@ tools:
   - mcp__atlassian__getConfluencePage
   - mcp__github__create_pull_request
   - mcp__github__get_repository
+memory: true
+background: false
+isolation: false
 ---
 
 # External Documentation Publisher Agent

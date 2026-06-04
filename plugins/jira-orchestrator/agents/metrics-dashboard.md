@@ -15,6 +15,7 @@ cost: medium
 description: Real-time orchestration metrics dashboard with SLA tracking, quality metrics, throughput analysis, and agent performance monitoring
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - Read
   - Write
@@ -25,6 +26,9 @@ tools:
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__obsidian__vault_add
+memory: true
+background: false
+isolation: false
 ---
 
 # Metrics Dashboard Agent

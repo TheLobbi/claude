@@ -11,6 +11,7 @@ cost: medium
 description: Hypothesis-driven debugging agent that systematically tests theories to find root causes. ALWAYS checks documentation for expected behavior before forming hypotheses.
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Grep
@@ -25,6 +26,9 @@ tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__addCommentToJiraIssue
   - mcp__ide__getDiagnostics
+memory: true
+background: false
+isolation: false
 ---
 
 # Hypothesis-Driven Debugger Agent

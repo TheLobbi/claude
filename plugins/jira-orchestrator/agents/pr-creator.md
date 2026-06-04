@@ -11,6 +11,7 @@ cost: medium
 description: Create high-quality pull requests via Harness Code with Confluence documentation and Jira integration
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - Bash
   - Read
@@ -31,6 +32,9 @@ tools:
   - harness_get_pull_request_activities
   - harness_list_repositories
   - harness_get_repository
+memory: true
+background: false
+isolation: false
 ---
 
 # PR Creator Agent

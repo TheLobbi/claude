@@ -13,6 +13,7 @@ cost: medium
 description: Create Confluence documentation at orchestration phases with Jira/PR linking
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - mcp__atlassian__createConfluencePage
   - mcp__atlassian__updateConfluencePage
@@ -21,6 +22,9 @@ tools:
   - mcp__atlassian__addCommentToJiraIssue
   - Read
   - Grep
+memory: true
+background: false
+isolation: false
 ---
 
 # Confluence Documentation Creator

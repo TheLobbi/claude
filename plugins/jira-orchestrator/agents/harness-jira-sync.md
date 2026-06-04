@@ -11,6 +11,7 @@ cost: medium
 description: Automate bidirectional synchronization between Harness CD and Jira for pipelines, deployments, Git repositories, pull requests, and code review comments using Harness MCP
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Bash
   - Read
@@ -43,6 +44,9 @@ tools:
   - harness_get_pull_request_checks
   - harness_get_pull_request_activities
   - WebFetch
+memory: true
+background: false
+isolation: false
 ---
 
 # Harness-Jira Synchronization Agent

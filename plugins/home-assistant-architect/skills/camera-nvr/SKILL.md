@@ -1,3 +1,8 @@
+---
+name: camera-nvr
+description: "Home Assistant camera integration and Frigate NVR patterns."
+---
+
 # Camera and NVR Skill
 
 Home Assistant camera integration and Frigate NVR patterns.

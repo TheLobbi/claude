@@ -1,3 +1,8 @@
+---
+name: text-animations
+description: "Expert knowledge for creative text animations - typewriter effects, character-by-character reveals, kinetic typography, split text animations, and expressive text motion."
+---
+
 # Text Animations Skill
 
 Expert knowledge for creative text animations - typewriter effects, character-by-character reveals, kinetic typography, split text animations, and expressive text motion.

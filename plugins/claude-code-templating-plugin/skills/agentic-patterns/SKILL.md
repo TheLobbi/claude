@@ -1,3 +1,8 @@
+---
+name: agentic-patterns
+description: "Patterns from \"Agentic Design Patterns\" (Gulli & Sauco, 2025) applied to universal project templating and scaffold automation"
+---
+
 # Agentic Design Patterns — Claude Code Templating Plugin
 
 > Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to universal project templating and scaffold automation

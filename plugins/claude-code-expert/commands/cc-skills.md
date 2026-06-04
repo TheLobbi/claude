@@ -1,3 +1,8 @@
+---
+name: cc-skills
+description: "The claude-code-expert plugin ships ~54 skills. Reading CLAUDE.md and hunting for trigger keywords is not a good discovery UX. /cc-skills lists every skill in the plugin, grouped by category, with its trigger phrases and a one-line description so you can find the right one in"
+---
+
 # /cc-skills — Browsable Skill Index
 
 The claude-code-expert plugin ships ~54 skills. Reading `CLAUDE.md` and hunting for trigger

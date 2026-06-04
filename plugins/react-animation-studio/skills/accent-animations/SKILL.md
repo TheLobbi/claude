@@ -1,3 +1,8 @@
+---
+name: accent-animations
+description: "Expert knowledge for decorative accent animations - floating shapes, glowing orbs, animated borders, sparkle effects, and embellishments that add visual polish and delight to interfaces."
+---
+
 # Accent Animations Skill
 
 Expert knowledge for decorative accent animations - floating shapes, glowing orbs, animated borders, sparkle effects, and embellishments that add visual polish and delight to interfaces.

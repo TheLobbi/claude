@@ -12,6 +12,7 @@ cost: medium
 description: Break down PR reviews into small, manageable tasks that can be reviewed independently in 5-15 minute chunks
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - mcp__atlassian__jira_get_issue
   - mcp__atlassian__jira_create_issue
@@ -19,6 +20,9 @@ tools:
   - mcp__atlassian__jira_search
   - Bash
   - Read
+memory: true
+background: false
+isolation: false
 ---
 
 # Review Facilitator Agent

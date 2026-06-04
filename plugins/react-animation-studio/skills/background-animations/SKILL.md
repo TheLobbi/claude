@@ -1,3 +1,8 @@
+---
+name: background-animations
+description: "Expert knowledge for creating stunning animated backgrounds - gradient flows, particle systems, mesh gradients, aurora effects, wave patterns, and dynamic textures that bring depth and life to your interfaces."
+---
+
 # Background Animations Skill
 
 Expert knowledge for creating stunning animated backgrounds - gradient flows, particle systems, mesh gradients, aurora effects, wave patterns, and dynamic textures that bring depth and life to your interfaces.

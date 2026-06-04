@@ -11,6 +11,7 @@ cost: medium
 description: Generates PDF reports, Excel/CSV exports, and JSON exports with custom templates, scheduling, and distribution capabilities
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - Read
   - Write
@@ -20,6 +21,9 @@ tools:
   - Task
   - mcp__atlassian__searchJiraIssuesUsingJql
   - mcp__atlassian__getJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Export Generator Agent

@@ -13,10 +13,14 @@ cost: medium
 description: Intelligent Jira workflow state management with fuzzy matching and validation
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - mcp__atlassian__getJiraIssue
   - mcp__atlassian__getTransitionsForJiraIssue
   - mcp__atlassian__transitionJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # Transition Manager Agent

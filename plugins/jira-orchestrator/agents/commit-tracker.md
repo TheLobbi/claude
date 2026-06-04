@@ -11,6 +11,7 @@ cost: medium
 description: Track commits, map them to Jira issues, and post detailed commit summaries with Confluence references
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - git
   - jira-api
@@ -18,6 +19,9 @@ tools:
   - confluence-api
   - file-analysis
   - timestamp-analysis
+memory: true
+background: false
+isolation: false
 ---
 
 # Commit Tracker Agent

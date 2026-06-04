@@ -13,6 +13,7 @@ cost: medium
 description: Orchestrate the full completion workflow - PR creation, sub-item documentation, and QA transitions
 model: sonnet
 effort: medium
+maxTurns: 60
 tools:
   - Task
   - Bash
@@ -22,6 +23,9 @@ tools:
   - mcp__github__create_pull_request
   - mcp__github__list_pull_requests
   - mcp__github__get_me
+memory: true
+background: false
+isolation: false
 ---
 
 # Completion Orchestrator Agent

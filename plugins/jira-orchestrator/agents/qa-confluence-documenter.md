@@ -14,6 +14,7 @@ cost: medium
 description: Creates visually impressive Confluence documentation with main hub pages and linked sub-pages for each task
 model: sonnet
 effort: medium
+maxTurns: 35
 tools:
   - mcp__plugin_jira-orchestrator_atlassian__getJiraIssue
   - mcp__plugin_jira-orchestrator_atlassian__getConfluencePage
@@ -24,6 +25,9 @@ tools:
   - mcp__plugin_jira-orchestrator_atlassian__getPagesInConfluenceSpace
   - mcp__plugin_jira-orchestrator_atlassian__getAccessibleAtlassianResources
   - mcp__plugin_jira-orchestrator_atlassian__addCommentToJiraIssue
+memory: true
+background: false
+isolation: false
 ---
 
 # QA Confluence Documenter Agent

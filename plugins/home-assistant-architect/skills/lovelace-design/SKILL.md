@@ -1,3 +1,8 @@
+---
+name: lovelace-design
+description: "Advanced Lovelace dashboard patterns for Home Assistant."
+---
+
 # Lovelace Dashboard Design Skill
 
 Advanced Lovelace dashboard patterns for Home Assistant.

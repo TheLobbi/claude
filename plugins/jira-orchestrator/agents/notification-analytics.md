@@ -12,10 +12,14 @@ cost: medium
 description: Analyzes notification delivery metrics, user engagement, channel performance, and provides insights for optimization
 model: haiku
 effort: low
+maxTurns: 20
 tools:
   - Read
   - Write
   - Bash
+memory: true
+background: false
+isolation: false
 ---
 
 # Notification Analytics Agent
