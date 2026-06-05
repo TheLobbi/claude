@@ -84,7 +84,7 @@ from langchain_core.messages import HumanMessage
 
 def agent_node(state: WorkflowState) -> WorkflowState:
     """LLM agent decision node."""
-    llm = ChatAnthropic(model="claude-sonnet-4-5")
+    llm = ChatAnthropic(model="claude-sonnet-4-6")
 
     messages = state["messages"]
     context = state["context"]
@@ -629,7 +629,7 @@ def tool_executor_node(state: WorkflowState) -> WorkflowState:
     """Execute tools based on state."""
     tools = [search_documents, update_record]
 
-    llm = ChatAnthropic(model="claude-sonnet-4-5")
+    llm = ChatAnthropic(model="claude-sonnet-4-6")
     agent = create_tool_calling_agent(llm, tools)
     executor = AgentExecutor(agent=agent, tools=tools)
 

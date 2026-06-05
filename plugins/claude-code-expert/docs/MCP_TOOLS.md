@@ -1,6 +1,6 @@
-# MCP Tools Reference — v5.0.0
+# MCP Tools Reference — MCP server v5.0.0 (plugin v8.1)
 
-22 tools in the plugin's MCP server. All tools are lazy-loaded on call; none consume context when idle beyond their metadata.
+22 tools in the plugin's MCP server. All tools are lazy-loaded on call; none consume context when idle beyond their metadata. With Claude Code's default Tool Search, even these tool *schemas* are deferred until `ToolSearch` matches them to a task — set `"alwaysLoad": true` on the server entry to override.
 
 ## Reference tools (15, `cc_docs_*`)
 

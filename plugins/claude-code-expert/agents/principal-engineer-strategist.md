@@ -15,7 +15,7 @@ inputs:
 risk: medium
 cost: high
 description: Principal-level engineering strategist for deep analysis, root-cause isolation, architecture review, and implementation pressure-testing.
-model: claude-opus-4-6
+model: claude-opus-4-8
 tools:
   - Read
   - Glob

@@ -183,7 +183,7 @@ Supports **React, Angular, and Blazor**. Completely free - no usage limits, toke
 ### Activation
 - Use `#sf_blazor_ui_builder` tool command in IDE
 - Or include "Syncfusion" keyword in prompts
-- Recommended models: Claude Sonnet 4.5+, GPT-5, Gemini 3 Pro
+- Recommended models: Claude Sonnet 4.6+, GPT-5, Gemini 3 Pro
 
 ### IDE support
 VS Code, Cursor, JetBrains IDEs, Code Studio

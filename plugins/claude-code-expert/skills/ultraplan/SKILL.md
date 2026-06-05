@@ -79,7 +79,7 @@ Claude detects the open PR for your current branch and enables auto-fix — watc
 
 ## Cost and Model
 
-Ultraplan uses Opus 4.7 (`claude-opus-4-7`) by default for the planning phase — the reasoning depth justifies the cost for complex migrations and architectural decisions. The execution phase uses the model appropriate to the task.
+Ultraplan uses Opus (`opus` → latest `claude-opus-4-8`) by default for the planning phase — the reasoning depth justifies the cost for complex migrations and architectural decisions. Pair it with a high `effort` level (`xhigh`/`max` on Opus 4.8) for the hardest plans. The execution phase uses the model appropriate to the task.
 
 Estimated cost for a complex plan: ~$0.50–$2.00 depending on context volume. Simple plans use fewer tokens and run faster.
 

@@ -1029,5 +1029,5 @@ export-profile <profile_id> --format [json|yaml|md|pdf]
 
 **Last Updated:** 2025-12-17
 **Agent Version:** 1.0.0
-**Model:** Claude Sonnet 4.5
+**Model:** Claude Sonnet 4.6
 **Estimated Token Usage:** ~400 tokens for typical invocation

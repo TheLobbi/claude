@@ -137,7 +137,7 @@ Spawn 3-5 specialized analysis agents in parallel:
    - Support multiple formats: PDF, DOCX, MD, TXT, HTML
    - Extract raw text and preserve structure
 
-2. **Parallel Analysis** (Use Task tool)
+2. **Parallel Analysis** (Use Agent tool)
    - Spawn Document Parser Agent to extract structured data
    - Spawn Responsibility Extractor Agent to identify all duties
    - Spawn Pattern Recognition Agent to find common workflows
@@ -247,7 +247,7 @@ Spawn 2-4 specialized mapping agents in parallel:
    - Read `responsibilities-extracted.json`
    - Load patterns and categories
 
-2. **Parallel Mapping** (Use Task tool)
+2. **Parallel Mapping** (Use Agent tool)
    - Spawn Process Mapper Agent for each major responsibility category
    - Spawn Dependency Analyzer Agent to create dependency graph
    - Spawn Workflow Documenter Agent to generate Mermaid diagrams
@@ -343,7 +343,7 @@ Spawn 3-4 specialized scoring agents in parallel:
    - **Error-Prone** (0-10): How often do mistakes occur?
    - **Integration-Ready** (0-10): Are APIs/systems available?
 
-3. **Parallel Scoring** (Use Task tool)
+3. **Parallel Scoring** (Use Agent tool)
    - Spawn Automation Scoring Agent to score each responsibility
    - Spawn ROI Calculator Agent to calculate savings
    - Spawn Risk Assessor Agent to identify implementation risks
@@ -462,7 +462,7 @@ Spawn 4-6 specialized generation agents in parallel:
    - Identify required tools and integrations
    - Plan human-in-the-loop checkpoints
 
-3. **Parallel Generation** (Use Task tool)
+3. **Parallel Generation** (Use Agent tool)
    - Spawn LangGraph Architect Agent to design each workflow
    - Spawn Agent Configuration Agent to create agent configs
    - Spawn Tool Integration Agent to set up API connections
@@ -513,7 +513,7 @@ Spawn 4-6 specialized generation agents in parallel:
        human_feedback: str | None
 
    # Initialize LLM
-   llm = ChatAnthropic(model="claude-sonnet-4-5-20250929")
+   llm = ChatAnthropic(model="claude-sonnet-4-6")
 
    # Define workflow nodes
    def node_1_name(state: WorkflowState) -> WorkflowState:
@@ -545,7 +545,7 @@ Spawn 4-6 specialized generation agents in parallel:
      "agent_id": "agent_{responsibility_id}",
      "agent_name": "{responsibility_title} Assistant",
      "agent_type": "langgraph_workflow",
-     "model": "claude-sonnet-4-5-20250929",
+     "model": "claude-sonnet-4-6",
      "temperature": 0.3,
      "max_tokens": 4000,
      "tools": [
@@ -616,7 +616,7 @@ Spawn 3-4 specialized simulation agents in parallel:
      - **Error case** - Invalid input (test error handling)
      - **Stress case** - Large volume or complex data
 
-3. **Parallel Simulation** (Use Task tool)
+3. **Parallel Simulation** (Use Agent tool)
    - Spawn Workflow Simulator Agent for each workflow
    - Spawn Output Validator Agent to check results
    - Spawn Error Detector Agent to identify issues
@@ -758,7 +758,7 @@ Spawn 3-4 specialized deployment agents in parallel:
    }
    ```
 
-3. **Parallel Deployment** (Use Task tool)
+3. **Parallel Deployment** (Use Agent tool)
    - Spawn Deployment Manager Agent to deploy workflows
    - Spawn Agent Registry Agent to register agents
    - Spawn Monitoring Setup Agent to configure dashboards
@@ -1179,7 +1179,7 @@ You are now the **Master Orchestrator**. When the user runs this command:
 1. **Parse arguments** - Extract document path, phase, interactive mode, output dir
 2. **Create output directory structure**
 3. **Execute requested phase(s)** - Follow detailed instructions above
-4. **Use Task tool** to spawn 3-13 sub-agents per phase
+4. **Use Agent tool** to spawn 3-13 sub-agents per phase
 5. **Call MCP tools** for LangGraph workflow operations
 6. **Track progress** with TodoWrite
 7. **Generate comprehensive reports** after each phase

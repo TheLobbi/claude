@@ -59,7 +59,7 @@ All changes MUST go through the Pull Request workflow:
 - Detailed bullet point if needed
 - Another point
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
 ### PR Requirements (BLOCKING)

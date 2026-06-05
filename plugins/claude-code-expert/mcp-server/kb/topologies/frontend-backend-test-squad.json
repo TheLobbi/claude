@@ -6,7 +6,7 @@
     { "role": "frontend-agent", "model": "claude-sonnet-4-6", "owns": "src/components/**, src/pages/**, src/hooks/**" },
     { "role": "backend-agent", "model": "claude-sonnet-4-6", "owns": "src/api/**, src/services/**, src/db/**" },
     { "role": "test-agent", "model": "claude-sonnet-4-6", "owns": "**/*.test.*, **/*.spec.*, src/test/**" },
-    { "role": "coordinator", "model": "claude-opus-4-6", "writes": false, "note": "Runs in main context; decomposes, merges, resolves conflicts" }
+    { "role": "coordinator", "model": "claude-opus-4-8", "writes": false, "note": "Runs in main context; decomposes, merges, resolves conflicts" }
   ],
   "coordination": [
     "Phase 1 (parallel): frontend-agent + backend-agent implement their slices in separate worktrees.",

@@ -91,7 +91,7 @@ Parse → Extract → Categorize → Identify Org → Score → Generate Profile
 Analyze Responsibility → Generate Workflow Spec
 ```
 - 2 nodes
-- Uses Claude Opus 4.5 for strategic thinking
+- Uses Claude Opus 4.8 for strategic thinking
 - Produces complete LangGraph specifications
 
 **Deployment Workflow:**
@@ -163,16 +163,16 @@ Prepare → Deploy → Verify
 
 | Domain | Model | Focus |
 |--------|-------|-------|
-| Governance | Sonnet 4.5 | Board relations, policy, compliance |
-| Financial | Sonnet 4.5 | Budgeting, reporting, audit |
-| Operations | Sonnet 4.5 | Process optimization, facilities |
-| Strategic | **Opus 4.5** | Planning, partnerships, growth |
-| Communications | Sonnet 4.5 | Marketing, PR, member comms |
-| Membership | Sonnet 4.5 | Recruitment, retention, engagement |
-| Programs | Sonnet 4.5 | Events, education, certification |
-| Staff | Sonnet 4.5 | Hiring, training, performance |
-| Technology | Sonnet 4.5 | Systems, digital transformation |
-| External Relations | Sonnet 4.5 | Government relations, advocacy |
+| Governance | Sonnet 4.6 | Board relations, policy, compliance |
+| Financial | Sonnet 4.6 | Budgeting, reporting, audit |
+| Operations | Sonnet 4.6 | Process optimization, facilities |
+| Strategic | **Opus 4.8** | Planning, partnerships, growth |
+| Communications | Sonnet 4.6 | Marketing, PR, member comms |
+| Membership | Sonnet 4.6 | Recruitment, retention, engagement |
+| Programs | Sonnet 4.6 | Events, education, certification |
+| Staff | Sonnet 4.6 | Hiring, training, performance |
+| Technology | Sonnet 4.6 | Systems, digital transformation |
+| External Relations | Sonnet 4.6 | Government relations, advocacy |
 
 Each agent includes:
 - Specialized system prompt
@@ -375,7 +375,7 @@ OPENAI_API_KEY=sk-...
 CHECKPOINT_DIR=./checkpoints
 PATTERN_LIBRARY=./data/patterns.json
 TEMPLATES_DIR=./templates
-DEFAULT_MODEL=claude-sonnet-4-5
+DEFAULT_MODEL=claude-sonnet-4-6
 MAX_RETRIES=3
 ENABLE_STREAMING=true
 ```

@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Generate comprehensive automation analysis and ROI reports with executive summaries, performance metrics, cost savings analysis, and strategic recommendations
-model: claude-sonnet-4-5
+model: sonnet
 allowed-tools:
   - Read
   - Write
@@ -953,7 +953,7 @@ asyncio=={version}
 
 | Model | Requests | Avg Tokens | Latency | Cost |
 |-------|----------|------------|---------|------|
-| Claude Sonnet 4.5 | {count} | {tokens} | {ms}ms | ${amount} |
+| Claude Sonnet 4.6 | {count} | {tokens} | {ms}ms | ${amount} |
 | GPT-4 | {count} | {tokens} | {ms}ms | ${amount} |
 | Gemini Pro | {count} | {tokens} | {ms}ms | ${amount} |
 

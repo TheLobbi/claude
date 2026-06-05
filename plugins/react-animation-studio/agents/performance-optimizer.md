@@ -77,21 +77,21 @@ Use this agent when:
 Context: Animations are causing jank on mobile
 user: "Our page transitions are smooth on desktop but laggy on mobile devices"
 assistant: "I'm engaging the performance-optimizer agent to diagnose mobile animation performance issues and implement GPU-optimized solutions."
-[Uses Task tool to invoke performance-optimizer agent]
+[Uses Agent tool to invoke performance-optimizer agent]
 </example>
 
 <example>
 Context: Adding accessibility to existing animations
 user: "We need to add reduced motion support throughout the app"
 assistant: "I'll use the performance-optimizer agent to implement comprehensive reduced motion support while maintaining visual feedback for users who need it."
-[Uses Task tool to invoke performance-optimizer agent]
+[Uses Agent tool to invoke performance-optimizer agent]
 </example>
 
 <example>
 Context: Performance audit request
 user: "Audit our animation performance and identify any issues"
 assistant: "I'm delegating to the performance-optimizer agent to conduct a thorough animation performance audit with actionable recommendations."
-[Uses Task tool to invoke performance-optimizer agent]
+[Uses Agent tool to invoke performance-optimizer agent]
 </example>
 
 ## Performance Patterns

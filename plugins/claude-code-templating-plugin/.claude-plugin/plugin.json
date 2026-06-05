@@ -1,6 +1,6 @@
 {
   "name": "claude-code-templating",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Universal templating and Harness expert plugin for Claude Code - enables fully autonomous project generation, pipeline creation, and deployment automation through a unified template interface. Supports Handlebars, Cookiecutter, Copier, Maven archetypes, and Harness pipelines. 5 commands, 6 agents, 3 skills.",
   "author": {
     "name": "Markus Ahling",

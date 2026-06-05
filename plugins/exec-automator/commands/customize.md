@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Customize automation workflows, scoring weights, and agent behaviors
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Executive Automation Customization

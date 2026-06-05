@@ -68,7 +68,7 @@ export OPENAI_API_KEY="your-key"
 export CHECKPOINT_DIR="./checkpoints"
 export PATTERN_LIBRARY="./data/patterns.json"
 export TEMPLATES_DIR="./templates"
-export DEFAULT_MODEL="claude-sonnet-4-5"
+export DEFAULT_MODEL="claude-sonnet-4-6"
 ```
 
 ## Usage
@@ -139,7 +139,7 @@ result = await mcp.call_tool("generate_workflow", {
     "responsibility_id": "resp_001",
     "workflow_type": "human_in_loop",  # or "autonomous", "assisted", "advisory"
     "options": {
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-4-6",
         "approval_threshold": 0.8
     }
 })
@@ -294,16 +294,16 @@ The server includes 10 specialized domain agents:
 
 | Domain | Description | Model |
 |--------|-------------|-------|
-| **governance** | Board relations, policy, compliance | Sonnet 4.5 |
-| **financial** | Budgeting, financial reporting, audit | Sonnet 4.5 |
-| **operations** | Process optimization, facilities, vendors | Sonnet 4.5 |
-| **strategic** | Strategic planning, partnerships, growth | Opus 4.5 |
-| **communications** | Marketing, PR, member communications | Sonnet 4.5 |
-| **membership** | Recruitment, retention, engagement | Sonnet 4.5 |
-| **programs** | Events, education, certification | Sonnet 4.5 |
-| **staff** | Hiring, training, performance management | Sonnet 4.5 |
-| **technology** | Systems, digital transformation, IT | Sonnet 4.5 |
-| **external_relations** | Government relations, coalitions, advocacy | Sonnet 4.5 |
+| **governance** | Board relations, policy, compliance | Sonnet 4.6 |
+| **financial** | Budgeting, financial reporting, audit | Sonnet 4.6 |
+| **operations** | Process optimization, facilities, vendors | Sonnet 4.6 |
+| **strategic** | Strategic planning, partnerships, growth | Opus 4.8 |
+| **communications** | Marketing, PR, member communications | Sonnet 4.6 |
+| **membership** | Recruitment, retention, engagement | Sonnet 4.6 |
+| **programs** | Events, education, certification | Sonnet 4.6 |
+| **staff** | Hiring, training, performance management | Sonnet 4.6 |
+| **technology** | Systems, digital transformation, IT | Sonnet 4.6 |
+| **external_relations** | Government relations, coalitions, advocacy | Sonnet 4.6 |
 
 Each agent has:
 - Specialized system prompt
@@ -425,7 +425,7 @@ def create_my_workflow() -> StateGraph:
 DOMAIN_AGENTS["my_domain"] = {
     "name": "My Domain Agent",
     "description": "...",
-    "model": "claude-sonnet-4-5",
+    "model": "claude-sonnet-4-6",
     "system_prompt": "...",
     "tools": [...],
     "capabilities": [...]

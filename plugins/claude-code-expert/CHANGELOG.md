@@ -1,5 +1,46 @@
 # Changelog
 
+## v8.1.0 (2026-06-04) — Capability Refresh (June 2026)
+
+Brings every Claude Code reference in the plugin current with what the tool can do as of
+June 1, 2026, and fixes documentation drift accumulated since the v8.0 redesign.
+
+### Models
+
+- **Opus 4.8** is now the latest Opus: bumped pinned `claude-opus-4-6` → `claude-opus-4-8` across all
+  9 Opus agents, the MCP `MODEL_DATA` table, and the 5 topology kits.
+- `model-routing` and `ultraplan` skills updated: Opus 4.8 pricing/IDs, alias guidance
+  (`opus`/`sonnet`/`haiku` auto-resolve; `opusplan`, `best`, `[1m]` variants), **fast mode** (`/fast`),
+  and **effort levels** (`low`→`max`, `xhigh` on Opus 4.7/4.8).
+
+### New capabilities documented
+
+- Added [`docs/CC-CAPABILITIES-2026-06.md`](docs/CC-CAPABILITIES-2026-06.md) — authoritative June-2026
+  baseline (models, the current built-in tool surface, hooks, agent teams, permissions, web/remote,
+  memory). Wired into `CLAUDE.md` and `README.md` as the source of truth.
+- `hooks` skill + `hook-event-matrix.md`: expanded from 7 to the full **14-event** working set
+  (adds SessionEnd, PreCompact, SubagentStart/Stop, TeammateIdle, PermissionRequest, Setup), documented
+  common stdin fields and the `hookSpecificOutput.permissionDecision` (`allow|deny|ask|defer`) contract.
+- `mcp` skill: documented **Tool Search / deferred tools** (`ToolSearch`, `alwaysLoad`,
+  `ENABLE_TOOL_SEARCH`, `MAX_MCP_OUTPUT_TOKENS`) and corrected the per-turn tool cost model;
+  marked SSE transport deprecated in favor of HTTP.
+- Captured the newer built-in tools (`Agent`/`ToolSearch`/`AskUserQuestion`/`Monitor`/`SendUserFile`/
+  `PushNotification`/`EnterPlanMode`/worktree tools), agent teams + `SendMessage`, background agents,
+  the `auto` permission mode, and Claude Code on the web / remote execution.
+
+### Fixes (documentation drift)
+
+- **README.md** rewritten from the stale v6.1 header (17 commands / 34 skills / 16 agents / 10-tool
+  MCP) to accurate v8 reality: **12 commands, 21 skills, 18 agents, 22 MCP tools**, with current models.
+- `CONTEXT_SUMMARY.md` and `plugin.json` count mismatches reconciled (14→21 skills, 11→12 commands).
+- `agents/memory-consolidator.md` was missing `description:` and `model:` frontmatter (cache-error
+  risk) — added both (Opus).
+- `commands/cc-skills.md` stale skill count corrected (~54 → 21).
+- `docs/MCP_TOOLS.md` header clarified (MCP server v5.0.0 / plugin v8.1) + Tool Search note.
+- **`mcp-server/src/index.js`**: fixed a pre-existing syntax error in `cc_docs_schedule_recommend`'s
+  output builder (`result.warning ? \`\`, ...`) that made the entire MCP server fail to load
+  (`node --check`). The server now parses and starts.
+
 ## v8.0.0 (2026-04-16) — Second-Brain Redesign
 
 **Major rewrite.** Consolidates v7's 49 skills / 21 commands / 26 agents into a modern, progressively-disclosed architecture with true three-tier memory.

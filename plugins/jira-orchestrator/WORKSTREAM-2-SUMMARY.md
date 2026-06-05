@@ -222,7 +222,7 @@ FILES:
 Resolves: AI-1099
 Related: Workstream 2 - Context7 & Request Optimization
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
 ---

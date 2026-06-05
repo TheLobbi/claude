@@ -15,7 +15,7 @@ inputs:
 risk: low
 cost: medium
 description: Security and compliance specialist that audits Claude Code setups against enterprise security checklists and produces actionable compliance reports.
-model: claude-opus-4-6
+model: claude-opus-4-8
 tools:
   - Read
   - Glob

@@ -1,8 +1,8 @@
 {
   "$schema": "https://claude.local/schemas/plugin.schema.json",
   "name": "claude-code-expert",
-  "version": "8.0.0",
-  "description": "Modern Claude Code second brain: 5-layer stack deploy + three-tier memory (engram + Obsidian vault + plugin rules) + 22-tool MCP reference server. 14 behavior-triggering skills, 11 single-intent commands, 18 role-scoped agents bridging engram and Obsidian.",
+  "version": "8.1.0",
+  "description": "Modern Claude Code second brain: 5-layer stack deploy + three-tier memory (engram + Obsidian vault + plugin rules) + 22-tool MCP reference server. 21 behavior-triggering skills, 12 single-intent commands, 18 role-scoped agents bridging engram and Obsidian. Tracks current Claude Code capabilities (Opus 4.8, agent teams, Tool Search, web/remote).",
   "author": {
     "name": "Markus Ahling"
   },
@@ -64,7 +64,7 @@
   },
   "context": {
     "title": "Claude Code Expert v8",
-    "summary": "Modern second brain for Claude Code: deploys the 5-layer stack (CLAUDE.md + skills + hooks + agents + memory), bridges engram (tier-1 working memory) with the user's Obsidian vault (tier-2 durable knowledge) via a memory-consolidator agent, and ships 14 behavior-triggering skills + 11 commands + 18 agents + a 22-tool MCP reference server. Route tasks via /cc-help.",
+    "summary": "Modern second brain for Claude Code: deploys the 5-layer stack (CLAUDE.md + skills + hooks + agents + memory), bridges engram (tier-1 working memory) with the user's Obsidian vault (tier-2 durable knowledge) via a memory-consolidator agent, and ships 21 behavior-triggering skills + 12 commands + 18 agents + a 22-tool MCP reference server. Route tasks via /cc-help.",
     "maxTokens": 500,
     "excludeGlobs": [
       "**/node_modules/**",

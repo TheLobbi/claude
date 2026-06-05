@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Harness CI/CD operations - create and validate pipelines, manage templates (step/stage/pipeline), list templates, and trigger deployments
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Harness CI/CD Command

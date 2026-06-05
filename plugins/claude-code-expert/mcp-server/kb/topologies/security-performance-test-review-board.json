@@ -7,7 +7,7 @@
     { "role": "performance-reviewer", "model": "claude-sonnet-4-6", "focus": "N+1 queries, O(n²), cache invalidation, memory leaks, bundle size" },
     { "role": "test-reviewer", "model": "claude-sonnet-4-6", "focus": "coverage gaps, flaky patterns, test quality, missing edge cases" },
     { "role": "style-reviewer", "model": "claude-sonnet-4-6", "focus": "naming, dead code, comments, consistency with existing patterns" },
-    { "role": "synthesizer", "model": "claude-opus-4-6", "writes": false }
+    { "role": "synthesizer", "model": "claude-opus-4-8", "writes": false }
   ],
   "file_ownership": {
     "specialists": "each writes .claude/reviews/{role}.md — one section per finding (severity, location, suggested fix)",

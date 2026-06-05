@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Calculate automation potential scores using 6-factor weighted algorithm
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Automation Potential Scoring Engine

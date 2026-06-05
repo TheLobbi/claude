@@ -73,21 +73,21 @@ Use this agent when:
 Context: Button needs satisfying click feedback
 user: "Make the submit button feel more satisfying to click"
 assistant: "I'm engaging the interaction-specialist agent to create a tactile button interaction with press feedback that delivers clear, satisfying user response."
-[Uses Task tool to invoke interaction-specialist agent]
+[Uses Agent tool to invoke interaction-specialist agent]
 </example>
 
 <example>
 Context: Building a swipeable card interface
 user: "Implement swipe-to-dismiss cards like in mobile apps"
 assistant: "I'll use the interaction-specialist agent to build gesture-driven swipe interactions with physics-based momentum and snap points."
-[Uses Task tool to invoke interaction-specialist agent]
+[Uses Agent tool to invoke interaction-specialist agent]
 </example>
 
 <example>
 Context: Form needs validation feedback
 user: "Add animated validation feedback to our form inputs"
 assistant: "I'm delegating to the interaction-specialist agent to implement clear, accessible validation animations that guide users through form completion."
-[Uses Task tool to invoke interaction-specialist agent]
+[Uses Agent tool to invoke interaction-specialist agent]
 </example>
 
 ## Micro-interaction Recipes

@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Analyze organizational documents to extract executive director responsibilities and automation opportunities
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Executive Document Analysis - Extract Responsibilities & Automation Opportunities
@@ -538,7 +538,7 @@ Total: [count] responsibilities
 ---
 
 **Analysis completed by:** Brookside BI Exec-Automator Platform
-**Powered by:** Claude Sonnet 4.5
+**Powered by:** Claude Sonnet 4.6
 **Report generated:** [Timestamp]
 **Contact:** support@brooksidebi.com
 ```

@@ -73,21 +73,21 @@ Use this agent when:
 Context: Adding transitions to Next.js App Router
 user: "Add smooth page transitions to our Next.js app"
 assistant: "I'm engaging the transition-engineer agent to implement seamless page transitions that maintain context and create smooth navigation experiences."
-[Uses Task tool to invoke transition-engineer agent]
+[Uses Agent tool to invoke transition-engineer agent]
 </example>
 
 <example>
 Context: Building a photo gallery with shared element transitions
 user: "Create a gallery where clicking a thumbnail expands it to full screen with a smooth animation"
 assistant: "I'll use the transition-engineer agent to build shared element transitions that create a seamless zoom-to-detail experience."
-[Uses Task tool to invoke transition-engineer agent]
+[Uses Agent tool to invoke transition-engineer agent]
 </example>
 
 <example>
 Context: List reordering animations
 user: "Animate our task list when items are reordered"
 assistant: "I'm delegating to the transition-engineer agent to implement smooth layout animations for list reordering that maintain spatial awareness."
-[Uses Task tool to invoke transition-engineer agent]
+[Uses Agent tool to invoke transition-engineer agent]
 </example>
 
 ## Transition Recipes

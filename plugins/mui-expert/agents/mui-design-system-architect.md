@@ -15,7 +15,7 @@ risk: low
 cost: high
 description: |
   Designs enterprise-grade design systems built on MUI. Covers design token hierarchies, theme architecture, component library structure, CSS variables strategy, white-label/multi-tenant theming, Pigment CSS migration, and TypeScript augmentation. Produces architecture decisions with implementation blueprints.
-model: claude-opus-4-6
+model: opus
 tools:
   - Read
   - Glob

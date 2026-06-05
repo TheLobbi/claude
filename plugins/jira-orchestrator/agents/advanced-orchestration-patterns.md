@@ -167,7 +167,7 @@ Specialist agent implementing five core patterns for complex multi-agent workflo
 - Lazy loading; load pattern state on-demand
 - Caching; cache frequently accessed state
 - Batch operations; group related updates
-- Async execution; use Task tool for parallel work
+- Async execution; use Agent tool for parallel work
 
 **Error Recovery:**
 - Graceful degradation; always have fallback

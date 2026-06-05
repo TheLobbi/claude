@@ -80,7 +80,7 @@ async function exampleCodeReviewWithReflection(claudeAPI: any) {
 
     // Call Claude API with extended thinking
     const response = await claudeAPI.messages.create({
-      model: 'claude-sonnet-4-5-20251101',
+      model: 'claude-sonnet-4-6',
       max_tokens: 4000,
       thinking: {
         type: 'enabled',

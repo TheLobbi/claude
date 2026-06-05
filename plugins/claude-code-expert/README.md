@@ -1,138 +1,130 @@
-# Claude Code Expert Plugin v6.1
+# Claude Code Expert Plugin v8
 
-A high-intelligence Claude Code copilot with **17 commands**, **34 skills**, **16 agents**, and a **10-tool MCP server**. Features deep code reasoning, evidence-driven planning, orchestration-first execution, model routing, CI/CD integration, enterprise security, context budgeting, plugin development guidance, prompt engineering, performance profiling, interactive tutorials, and idempotent project sync with sub-repo propagation and docs/context scaffolding.
+A modern **Claude Code second brain**: a 5-layer stack deployer, a three-tier memory system
+(engram + Obsidian vault + plugin rules), and a 22-tool MCP reference server — plus
+**21 behavior-triggering skills**, **12 single-intent commands**, and **18 role-scoped agents**.
 
-**New in v6.1:**
-- **Project Sync** — `/cc-sync` command for idempotent setup updates: re-fingerprint, propagate `.claude/` to sub-repos, scaffold `docs/context/` knowledge base, section-merge README/CLAUDE.md, auto-install LSPs, and delta-tracked scoring
-- **Enhanced cc-setup** — Phases 10A-10D: sub-repo discovery, docs/context scaffolding (22 templates), `.claude/` enrichment (templates, skills, agents), comprehensive README generation, CLAUDE.md cross-references, LSP auto-install, sync state persistence
+It keeps your Claude Code setup current with what the tool can actually do. The authoritative
+capability snapshot lives in [`docs/CC-CAPABILITIES-2026-06.md`](docs/CC-CAPABILITIES-2026-06.md)
+(models, tools, hooks, agent teams, permissions, web/remote, memory) — when a skill disagrees with
+it, the skill gets fixed.
 
-**From v6.0:** Model routing, context budgeting, CI/CD integration, enterprise security, plugin development, prompt engineering, performance profiling, interactive tutorials, advanced agent teams, MCP server v3.0.
-**From v5.0:** Deep Code Intelligence, Principal Engineer Strategist, smarter MCP retrieval, bootstrap context.
-**From v4.x:** Research routing, context anchoring, self-healing, orchestration-first, agent lifecycle, council review.
+**Current models:** Opus 4.8 (`claude-opus-4-8`) · Sonnet 4.6 (`claude-sonnet-4-6`) · Haiku 4.5
+(`claude-haiku-4-5-20251001`). Aliases `opus`/`sonnet`/`haiku` auto-resolve to the latest;
+`/fast` keeps Opus reasoning with faster output; `effort` (`low`→`max`, `xhigh` on Opus 4.7/4.8)
+scales thinking depth without changing model.
 
-Includes a **10-tool MCP server** for querying documentation, model recommendations, checklists, and comparisons programmatically.
-
-## The 4-Layer Extension Stack
-
-Power users use all four layers together for transformative productivity gains:
+## The 5-layer extension stack
 
 | Layer | What | Impact |
 |-------|------|--------|
 | **CLAUDE.md** | Routing OS — project rules, decision trees, build commands | Agent navigates your codebase correctly |
-| **Skills** | Capability packs — domain playbooks loaded on demand | 82% token savings vs loading everything |
-| **Hooks** | Guardrails — auto-format, security, error capture | Compliance without asking |
-| **Agents** | Specialized workers — code review, security, testing | Parallel expert analysis |
+| **Skills** | Capability packs loaded on demand (descriptions deferred until used) | Big token savings vs. loading everything |
+| **Hooks** | Guardrails — auto-format, security, error capture, telemetry | Compliance without asking |
+| **Agents** | Specialized workers — review, security, debugging, orchestration | Parallel expert analysis |
+| **Memory** | Three tiers — engram (working) + Obsidian vault (durable) + plugin rules (baseline) | Knowledge that survives sessions |
 
-## What's Included
+## What's included
 
-### Agents (16)
-| Agent | Domain |
-|-------|--------|
-| `claude-code-architect` | Overall Claude Code setup, project structure, CLAUDE.md |
-| `claude-code-debugger` | Diagnose and fix ALL Claude Code setup/runtime issues |
-| `council-coordinator` | Multi-agent council reviews with deliberation protocols + Context7 |
-| `hooks-specialist` | Hook system design, lifecycle events, security patterns |
-| `mcp-configurator` | MCP server setup, configuration, custom servers |
-| `sdk-guide` | Claude Agent SDK, building custom agents, tool use |
-| `ide-integration-specialist` | VS Code, JetBrains, Vim/Neovim integration |
-| `permissions-security-advisor` | Permission model, security best practices |
-| `team-orchestrator` | Master orchestrator — delegates, monitors, audits, routes research |
-| `audit-reviewer` | Second-round auditor with Context7 library validation |
-| `agent-lifecycle-manager` | Agent health checks, idle cleanup, retention policies |
-| `research-orchestrator` | Routes research to Perplexity/Firecrawl/Context7 based on task |
-| `principal-engineer-strategist` | Principal-level reasoning for architecture, debugging, tradeoffs, and hidden constraints |
-| **`plugin-architect`** | Plugin design, scaffolding, manifest validation, marketplace publishing |
-| **`security-compliance-advisor`** | Enterprise security audit, SOC2/HIPAA/GDPR compliance, remediation planning |
-| **`teams-architect`** | Agent Team topology design, sizing, cost estimation, coordination optimization |
-
-### Skills (34)
-| Skill | Coverage |
-|-------|----------|
-| `cli-reference` | Every CLI flag, argument, and environment variable |
-| `configuration` | settings.json, CLAUDE.md, .claude/ directory, .mcp.json |
-| `hooks-system` | PreToolUse, PostToolUse, Notification, Stop, SubagentStop hooks |
-| `mcp-servers` | MCP protocol, server config, built-in and custom servers |
-| `agent-sdk` | Claude Agent SDK, spawning agents, tool schemas, multi-agent patterns |
-| `ide-integrations` | VS Code extension, JetBrains plugin, terminal, remote dev |
-| `permissions-security` | Permission modes, allowlists/denylists, enterprise security |
-| `slash-commands` | Built-in slash commands, keyboard shortcuts, custom commands |
-| `context-management` | Context window, /compact, /clear, conversation flow |
-| `memory-instructions` | CLAUDE.md hierarchy, project/user instructions, auto-memory, rules |
-| `tools-reference` | All built-in tools: Read, Write, Edit, Glob, Grep, Bash, Agent, etc. |
-| `extended-thinking` | Extended thinking, ultrathink, thinking budget configuration |
-| `git-integration` | Git workflows, commits, PRs, branch management, safety rules |
-| `testing-workflows` | Test running, TDD patterns, test frameworks, coverage |
-| `cost-optimization` | Token usage, model routing, caching, batch processing, cost reduction |
-| `troubleshooting` | Common errors, debugging, diagnostics, self-healing protocol |
-| `teams-collaboration` | Team plans, Agent Teams, enterprise settings, multi-user workflows, onboarding |
-| `settings-deep-dive` | Complete settings.json schema, every permission pattern, feature flags |
-| `agent-lifecycle` | Agent health checks, idle detection, cleanup, retention, audit loops |
-| `research-routing` | Optimal routing: Perplexity (Q&A), Firecrawl (extraction), Context7 (docs) |
-| `context-anchoring` | Preserve critical info across /compact — PreCompact/PostCompact hooks |
-| `self-healing-advanced` | Pattern detection, rotation, rule promotion, cross-agent learning |
-| `deep-code-intelligence` | Evidence-driven workflow for hard bugs, architecture choices, and high-stakes implementation plans |
-| `council-review` | Deliberation protocols, scoring systems, weighted voting |
-| **`model-routing`** | Intelligent model selection with decision matrices, cost tables, budget planning |
-| **`context-budgeting`** | Token arithmetic, anchor budget math, compact strategies, progressive loading |
-| **`cicd-integration`** | GitHub Actions, headless mode, automated PR reviews, secrets management |
-| **`plugin-development`** | Building plugins: manifest schema, command/skill/agent/hook authoring, marketplace publishing |
-| **`prompt-engineering`** | Effective CLAUDE.md, rules, agent prompts, task framing, template library |
-| **`session-analytics`** | Token tracking, bottleneck identification, caching behavior, cost estimation |
-| **`enterprise-security`** | Audit logging, SOC2/HIPAA/GDPR compliance, secrets management, permission hardening |
-| **`worked-examples`** | 8 end-to-end tutorials: setup, hooks, review, agents, optimization, debugging, memory, CI/CD |
-| **`agent-teams-advanced`** | Agent Teams topology design, worktree coordination, failure handling, custom templates |
-| **`project-sync`** | Reusable sync workflow: sub-repo discovery, docs/context scaffolding, config drift detection, section-aware merging |
-
-### Commands (17)
+### Commands (12)
 
 | Command | Purpose |
 |---------|---------|
-| `/cc-setup` | **Full repo analysis & 4-layer deployment** — detect stack, deploy all layers, install MCP, configure memory, propagate to sub-repos, scaffold docs |
-| **`/cc-sync`** | **Idempotent setup sync** — re-fingerprint, update config, propagate `.claude/` to sub-repos, scaffold `docs/context/`, section-merge README/CLAUDE.md, install LSPs |
-| `/cc-memory` | **Hybrid memory architecture** — split rule files, MCP-backed long-term memory, rotation, audit |
-| `/cc-orchestrate` | **Agent team templates** — builder-validator, QA swarm, feature squad, research council, and more |
-| `/cc-intel` | Deep code intelligence mode — repo fingerprinting, hypothesis trees, option scoring, validation strategy |
-| `/cc-council` | Multi-agent council review with 6 protocols, scoped scoring, weighted voting |
-| `/cc-help` | Interactive Claude Code documentation lookup |
-| `/cc-config` | Generate or audit Claude Code configuration |
-| `/cc-hooks` | Design and implement Claude Code hooks |
-| `/cc-mcp` | Configure and troubleshoot MCP servers |
-| `/cc-agent` | Build custom agents with the Agent SDK |
-| `/cc-troubleshoot` | Diagnose and fix Claude Code issues |
-| `/cc-debug` | Comprehensive debugger for Claude Code setup |
-| **`/cc-budget`** | Context budget calculator — audit token consumers, optimize allocation, plan anchor strategies |
-| **`/cc-cicd`** | CI/CD pipeline generator — GitHub Actions, GitLab CI, pre-commit hooks, automated PR review |
-| **`/cc-perf`** | Session performance analyzer — token tracking, bottleneck identification, cost optimization |
-| **`/cc-learn`** | Interactive tutorials — 8 step-by-step walkthroughs for common Claude Code workflows |
+| `/cc-setup` | Deploy or audit the full 5-layer stack — detect stack, deploy layers, install MCP, configure memory, propagate to sub-repos |
+| `/cc-sync` | Idempotent update of an existing setup — re-fingerprint, propagate `.claude/` to sub-repos, fix drift |
+| `/cc-memory` | CC-scoped memory ops over engram — search, export, consolidate, edit-always, review, status |
+| `/cc-orchestrate` | Launch a multi-agent workflow by agentic pattern (chain, routing, parallelization, eval-optimizer, …) |
+| `/cc-council` | Multi-agent council review — security + performance + test + architecture perspectives, scoped scoring |
+| `/cc-intel` | Deep evidence-driven analysis for hard problems — architecture decisions, root-cause, option scoring |
+| `/cc-autonomy` | Configure autonomous operating mode — profile selection (conservative / balanced / aggressive) |
+| `/cc-channels` | Install event-driven channel servers — CI webhook receiver, mobile approval relay, Discord bridge |
+| `/cc-hooks` | Install, list, remove, and debug hook packs (8 security-hardened packs) |
+| `/cc-skills` | Browsable skill index — every skill grouped by category with trigger phrases |
+| `/cc-help` | Task-routing table mapping "I want to X" to the right command, skill, or agent |
+| `/cc-debug` | Diagnose CC issues — plugin load failures, MCP connection problems, hook misfires |
 
-### Custom MCP Server v3.0 (10 tools)
-| Tool | Purpose |
-|------|---------|
-| `cc_docs_search` | Search documentation by topic keyword |
-| `cc_docs_list_topics` | List all available documentation topics |
-| `cc_docs_full_reference` | Get complete docs for a specific topic |
-| `cc_docs_env_vars` | Environment variables reference |
-| `cc_docs_settings_schema` | Complete settings.json schema |
-| `cc_docs_troubleshoot` | Troubleshooting guidance for specific issues |
-| `cc_docs_resolve_task` | Recommend the best commands, agents, and docs for a natural-language engineering task |
-| **`cc_docs_model_recommend`** | Recommend optimal model for a task with cost estimate and budget awareness |
-| **`cc_docs_checklist`** | Step-by-step checklists for setup, review, debug, deploy, and security tasks |
-| **`cc_docs_compare`** | Side-by-side comparison of any 2-3 commands, skills, or agents |
+### Agents (18)
+
+Role-scoped, model-deliberate, tool-restricted. Opus for reasoning/review gates, Sonnet for
+implementation, Haiku for retrieval.
+
+| Agent | Model | Role |
+|-------|-------|------|
+| `team-orchestrator` | Opus | Master orchestrator — delegates, coordinates teams, audits |
+| `principal-engineer-strategist` | Opus | Principal-level analysis, root-cause isolation, tradeoffs |
+| `council-coordinator` | Opus | Fan-out/fan-in council with blackboard pattern |
+| `audit-reviewer` | Opus | Second-round auditor; validates library usage via Context7 |
+| `evaluator-optimizer` | Opus | Evaluator-Optimizer loop — generate, evaluate, refine |
+| `debugger` | Opus | Systematic root-cause tracer for code-level bugs |
+| `migration-lead` | Opus | Schema/API/framework migration planning and execution |
+| `security-compliance-advisor` | Opus | Enterprise security + compliance audit (SOC2/HIPAA/GDPR) |
+| `memory-consolidator` | Opus | Bridges engram → Obsidian vault → plugin rules (read-only on engram) |
+| `autonomy-planner` | Opus | Decomposes tasks into phased, risk-assessed plans |
+| `autonomy-reviewer` | Opus | Final BLOCK/APPROVE review for autonomous work |
+| `autonomy-verifier` | Sonnet | Runs the verification suite after each phase |
+| `implementer` | Sonnet | Focused code-writing agent (restricted to write tools) |
+| `pattern-router` | Sonnet | Selects the optimal agentic design pattern for a task |
+| `plugin-architect` | Sonnet | Designs/scaffolds/validates plugin structures |
+| `release-coordinator` | Sonnet | Changelogs, version tags, release validation |
+| `research-orchestrator` | Sonnet | Routes research to Perplexity / Firecrawl / Context7 |
+| `dependency-auditor` | Haiku | Dependency vulnerabilities, outdated packages, licenses |
+
+### Skills (21)
+
+Behavior-triggering, ≤500 lines each, heavy reference content in `references/` or the MCP KB.
+
+| Skill | Coverage |
+|-------|----------|
+| `claude-code-setup` | Deploy/audit the 5-layer stack |
+| `claude-code-sync` | Idempotent setup updates + sub-repo propagation |
+| `cc-second-brain` | Three-tier memory (engram + Obsidian + plugin rules) + topic-key taxonomy |
+| `model-routing` | Pick Opus/Sonnet/Haiku, effort levels, fast mode, cost tables |
+| `context-budgeting` | Token arithmetic, `/compact` strategy, anchor preservation |
+| `hooks` | Full hook lifecycle (14 events), JSON contract, security patterns |
+| `mcp` | MCP config, transports, Tool Search / deferred tools, channels |
+| `agent-teams` | Multi-agent topologies, role squads, lifecycle, worktree coordination |
+| `agentic-patterns` | Reflection, chaining, routing, parallelization, eval-optimizer |
+| `orchestration-blackboard` | Shared filesystem blackboard for parallel agent runs |
+| `prompt-budget-preflight` | Pre-flight before any Agent spawn — avoid prompt-too-long rejects |
+| `verify-between-waves` | tsc/test/commit cadence between refactor waves |
+| `worktree-management` | Git worktree isolation, parallel tasks, `EnterWorktree`/`ExitWorktree` |
+| `monitor-tool` | Stream background process events into the conversation (Monitor tool) |
+| `auto-mode` | Auto-mode permission handling — classifier approvals, defer flow |
+| `autonomy` | Configure autonomous operating profiles |
+| `ultraplan` | Cloud planning — plan in the cloud, review in browser, execute remote or local |
+| `deep-code-intelligence` | Evidence-driven workflow for hard bugs and high-stakes decisions |
+| `security-compliance` | Permissions model, settings allowlists/denylists, hardening |
+| `plugin-development` | Build/validate/publish plugins — manifest schema, authoring |
+| `prompt-engineering` | Effective CLAUDE.md routing, agent prompts, skill descriptions |
+
+### MCP reference server (22 tools)
+
+The plugin ships an MCP server so Claude can query its knowledge programmatically instead of
+loading heavy reference content into context.
+
+- **`cc_docs_*` (15)** — search, topic lists, full references, settings schema, env vars,
+  troubleshooting, task resolution, model recommendation, checklists, comparisons, topology and
+  hook-pack recommendation.
+- **`cc_kb_*` (7)** — fetch hook recipes, topology kits, workflow packs, channel servers, LSP
+  configs, pattern templates, and autonomy profiles. Every KB artifact is ≤2 KB and lazy-loaded.
+
+Full list in [`docs/MCP_TOOLS.md`](docs/MCP_TOOLS.md).
 
 ## Installation
 
 ```bash
-/plugin-install claude-code-expert
+/plugin install claude-code-expert
 ```
 
-### Enable MCP Server
+### Enable the MCP server
 
-Add to your `.mcp.json`:
+Add to `.mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "claude-code-docs": {
+      "type": "stdio",
       "command": "node",
       "args": ["plugins/claude-code-expert/mcp-server/src/index.js"]
     }
@@ -140,119 +132,37 @@ Add to your `.mcp.json`:
 }
 ```
 
-Then install MCP server dependencies:
+Then install dependencies:
+
 ```bash
 cd plugins/claude-code-expert/mcp-server && npm install
 ```
 
-## Quick Start
+> Tool Search is on by default, so the server's tools load on demand via `ToolSearch` rather than
+> consuming context every turn. Set `"alwaysLoad": true` on the server entry to force eager loading.
 
-### Full Setup (Recommended)
-```bash
-/cc-setup                              # Interactive 10-phase setup
-/cc-setup --auto                       # Non-interactive best-guess
-/cc-setup --preset power-user          # Maximum configuration
-/cc-setup --dry-run                    # Preview without writing files
-```
+## Quick start
 
-### Memory Architecture
 ```bash
-/cc-memory --init                      # Set up split memory files
-/cc-memory --mcp                       # Add MCP-backed persistent memory
-/cc-memory --status                    # Check memory usage & token estimates
-/cc-memory --audit                     # Find bloat, duplicates, stale entries
-/cc-memory --rotate                    # Archive old session summaries
-/cc-memory --dry-run                   # Preview without writing files
-```
-
-### Agent Orchestration
-```bash
-/cc-orchestrate --list                 # See all templates
-/cc-orchestrate --template builder-validator    # Standard build + review
-/cc-orchestrate --template qa-swarm            # Multi-perspective testing
-/cc-orchestrate --template feature-squad       # Full-stack feature team
-/cc-orchestrate --template research-council    # Evaluate multiple approaches
-/cc-orchestrate --template pr-review-board     # Critical PR multi-review
-/cc-orchestrate --worktree                     # Git worktrees for parallel agents
-/cc-orchestrate --dry-run --template qa-swarm  # Preview without deploying
-```
-
-### New in v6.0
-```bash
-/cc-budget audit                   # See what consumes your context window
-/cc-cicd generate github-actions   # Generate CI/CD workflow with Claude Code
-/cc-perf analyze                   # Find token waste and optimize costs
-/cc-learn setup                    # Interactive tutorial for new users
-```
-
-### Other Commands
-```bash
+/cc-setup                      # Deploy or audit the full 5-layer stack
+/cc-setup --audit              # Score an existing setup without writing
+/cc-sync                       # Idempotently update an existing setup
+/cc-memory --status            # Inspect CC-scoped memory
+/cc-orchestrate --list         # Browse agentic-pattern workflows
+/cc-council                    # Multi-perspective review of a change
+/cc-hooks                      # Install/debug hook packs
 /cc-help "How do I configure hooks?"
-/cc-config --audit
-/cc-hooks create security-guard
-/cc-mcp add postgres
-/cc-agent create my-custom-agent
-/cc-troubleshoot auth
-/cc-debug --fix
+/cc-debug                      # Diagnose a broken setup
 ```
 
-### MCP Tools (after enabling server)
-The MCP server provides tools that Claude can use directly:
-```
-mcp__claude-code-docs__cc_docs_search("hooks")
-mcp__claude-code-docs__cc_docs_full_reference("settings-deep-dive")
-mcp__claude-code-docs__cc_docs_troubleshoot("MCP server not starting")
-```
+## Documentation
 
-## Setup Presets
+- [`docs/CC-CAPABILITIES-2026-06.md`](docs/CC-CAPABILITIES-2026-06.md) — authoritative June-2026 capability baseline
+- [`docs/MCP_TOOLS.md`](docs/MCP_TOOLS.md) — the 22 MCP tools + KB artifacts
+- [`docs/MEMORY_ARCHITECTURE.md`](docs/MEMORY_ARCHITECTURE.md) — three-tier memory design
+- [`docs/MIGRATION.md`](docs/MIGRATION.md) — v7 → v8 migration guide
+- [`CLAUDE.md`](CLAUDE.md) — plugin routing and operating rules
+- [`CHANGELOG.md`](CHANGELOG.md) — version history
 
-| Preset | Layers | MCP | Memory | Cost | Best For |
-|--------|--------|-----|--------|------|----------|
-| `minimal` | CLAUDE.md only | None | Default | Lowest | Small/personal projects |
-| `developer` | All 4 | 2-3 detected | Split files | Low | Standard development |
-| `power-user` | All 4 + full | All detected | Split + MCP memory | Medium | Maximum productivity |
-| `ci-cd` | CLAUDE.md + hooks | GitHub only | None | Very low | CI/CD pipelines |
-| `secure` | CLAUDE.md + hooks | None | None | Low | Security-first environments |
-| `team` | All 4 (shared) | Project-scoped | Shared rules | Medium | Team projects |
-
-## Orchestration Templates
-
-| Template | Type | Agents | Audit | Use Case |
-|----------|------|--------|-------|----------|
-| `builder-validator` | Subagent | 2 | Single review | Standard feature work |
-| **`audited-builder`** | Subagent | 3 | Full audit loop | Quality-critical features |
-| `qa-swarm` | Agent Team | 4-6 | Peer review | Thorough testing |
-| `feature-squad` | Agent Team | 3-4 | Lead review | Full-stack features |
-| **`audited-squad`** | Agent Team | 5 | Cross-audit + final | Critical full-stack work |
-| `research-council` | Subagent | 2-3 | Source validation | Design decisions |
-| `refactor-pipeline` | Subagent | 3 | Verifier step | Large refactors |
-| `pr-review-board` | Agent Team | 3 | Cross-review | Critical PR reviews |
-| `docs-sprint` | Agent Team | 3-4 | Accuracy check | Documentation updates |
-| `continuous-monitor` | Headless | 1-4 | Automated | Ongoing automation |
-
-## Documentation Coverage
-
-This plugin provides deep knowledge across these areas:
-
-- **CLI**: Every flag, argument, pipe mode, output format
-- **Configuration**: CLAUDE.md, settings.json, .mcp.json, rules, .claude/ directory
-- **Settings**: Complete schema, permission patterns, hook config, env vars, feature flags
-- **Hooks**: All 6 hook events, matchers, input/output schemas, example scripts
-- **MCP**: Server configuration, 20+ known servers, custom server development, MCP prompts
-- **Agent SDK**: Programmatic usage, streaming, multi-agent patterns, CI/CD
-- **IDE**: VS Code, JetBrains, terminal, remote dev, Codespaces
-- **Permissions**: Modes, allow/deny lists, patterns, enterprise controls
-- **Commands**: All built-in slash commands, keyboard shortcuts, custom commands
-- **Context**: Window management, /compact, /clear, token reduction strategies
-- **Memory**: 3-tier hybrid architecture, split files, MCP-backed persistence, rotation
-- **Research Routing**: Perplexity (knowledge), Firecrawl (extraction), Context7 (library docs), chaining strategies
-- **Anchoring**: Context preservation, PreCompact/PostCompact hooks, anchor budgets, state recovery
-- **Self-Healing**: Pattern detection, lessons rotation, rule promotion, cross-agent learning, health scoring
-- **Orchestration**: Subagents, Agent Teams, 10 templates, audit loops, lifecycle management, worktrees, headless/cron
-- **Tools**: Every built-in tool with parameters and best practices
-- **Thinking**: Extended thinking, budget config, API usage
-- **Git**: Commit workflow, PR creation, worktrees, parallel development
-- **Testing**: TDD, test frameworks, QA swarms, coverage
-- **Cost**: Model cascading, progressive skill loading, context budgeting
-- **Teams**: Team plans, enterprise settings, shared config, onboarding
-- **Debugging**: Systematic diagnostics, common fixes, self-healing protocol
+`archive/v7.6.0/` preserves the pre-redesign v7 tree; `commands-old/` and `skills-old/` are
+historical and not loaded.

@@ -354,19 +354,19 @@ execution_order:
 
 ### Model Assignment Strategy
 
-**Opus (claude-opus-4-5):**
+**Opus (claude-opus-4-8):**
 - Strategic planning (PLAN phase)
 - Complex architectural decisions
 - Multi-domain coordination
 - Rare: Only when complexity demands it
 
-**Sonnet (claude-sonnet-4-5):**
+**Sonnet (claude-sonnet-4-6):**
 - Code implementation (CODE phase)
 - Testing and validation
 - Code review and analysis
 - Default for most agent work
 
-**Haiku (claude-haiku-4-0):**
+**Haiku (claude-haiku-4-5-20251001):**
 - Documentation generation
 - Simple validation tasks
 - Quick analysis and reporting

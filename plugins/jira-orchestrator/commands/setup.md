@@ -14,7 +14,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Interactive setup wizard v7.5.0 - OAuth auth, Neon PostgreSQL, Redis, Temporal workflows
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Jira Orchestrator v7.5.0 - Interactive Setup Wizard

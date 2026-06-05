@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Migration planning and execution specialist for database schema changes, API version migrations, dependency upgrades, and large-scale refactors. Emphasis on zero-downtime and rollback safety.
-model: claude-opus-4-6
+model: claude-opus-4-8
 allowed-tools:
   - Read
   - Write

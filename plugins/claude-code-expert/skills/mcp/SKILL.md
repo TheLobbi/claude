@@ -15,7 +15,7 @@ Model Context Protocol servers extend Claude Code with tools, resources, and pro
 | **Resources** | On request | Static content Claude can list and fetch |
 | **Prompts** | On request | Pre-composed conversation starters for complex workflows |
 
-**Cost model:** each tool's name + description + JSON schema consumes context every turn. With 30+ tools the drain is measurable. Prefer **MCP Prompts** for heavy reference material Claude loads only when asked.
+**Cost model:** historically every tool's name + description + JSON schema consumed context every turn. As of 2026, Claude Code **defers tool schemas by default** and discovers them via `ToolSearch` (see below), so the per-turn drain is mostly limited to built-ins and `alwaysLoad` servers. Still prefer **MCP Prompts/Resources** for heavy reference material Claude loads only when asked.
 
 ## Configuration files
 
@@ -31,8 +31,22 @@ Project-scoped is almost always better — avoids global context cost when you'r
 
 | Transport | When |
 |---|---|
-| `stdio` | Local servers; fastest; the default |
-| `http` / `sse` | Remote servers; required for cloud-hosted MCPs |
+| `stdio` | Local servers; fastest; the default for plugin/child-process servers |
+| `http` | Remote servers — **recommended** for cloud-hosted MCPs; supports OAuth and async reconnection |
+| `sse` | Legacy remote transport, **deprecated** in favor of `http`; no OAuth |
+
+Declare the transport explicitly with `"type": "http" | "stdio" | "sse"` in the server entry. HTTP/SSE servers use `url` (+ optional `headers`/`oauth`); stdio servers use `command`/`args`/`env`.
+
+## Tool Search & deferred tools
+
+As of 2026, Claude Code **defers MCP tool schemas by default** instead of loading every tool's name + description + JSON schema into context up front. Claude discovers tools on demand via the built-in **`ToolSearch`** tool, then calls them normally. This is what lets a session connect to dozens of MCP servers (thousands of tools) without drowning the context window.
+
+- **Default behavior**: a connecting server's tools appear by *name only*; their schemas load when `ToolSearch` matches them to the task.
+- **Force a server's tools to always load** (skip deferral): set `"alwaysLoad": true` on the server entry — use only for small, always-needed servers.
+- **Disable globally**: `ENABLE_TOOL_SEARCH=false` (rarely worth it — you trade context for eager loading). With deferral off, `WaitForMcpServers` is available to block until background servers finish connecting.
+- **Output caps**: large tool results are truncated at a default token ceiling; raise it per session with `MAX_MCP_OUTPUT_TOKENS`.
+
+Implication for this plugin's design: the old "every tool costs context every turn" math is now mostly paid only for `alwaysLoad` servers and built-ins. Still prefer **MCP Prompts/Resources** for heavy reference material, but the deferral default means a few extra servers are no longer the liability they once were.
 
 ## Top recommendations (every project)
 

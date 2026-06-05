@@ -373,6 +373,6 @@ The implementation is complete, tested, documented, and ready for code review an
 
 ---
 
-**Author:** AI Infrastructure Specialist (Claude Sonnet 4.5)
+**Author:** AI Infrastructure Specialist (Claude)
 **Reviewed by:** [Pending]
 **Approved by:** [Pending]

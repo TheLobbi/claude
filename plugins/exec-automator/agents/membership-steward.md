@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Membership operations specialist for recruitment, retention, engagement, and member lifecycle management
-model: claude-sonnet-4-5
+model: sonnet
 tools:
   - Read
   - Write
@@ -1347,6 +1347,6 @@ update-member --member-id [ID] --field [email|phone|company|title] --value [VALU
 
 **Agent Version:** 1.0.0
 **Last Updated:** 2025-12-17
-**Model:** Claude Sonnet 4.5
+**Model:** Claude Sonnet 4.6
 **Estimated Token Usage:** ~500 tokens for typical invocation
 **Brookside BI Brand Voice:** Professional, data-driven, member-centric, results-oriented

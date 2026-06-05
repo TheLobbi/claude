@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Generate code, models, and tests from schemas and specifications - API clients, data models, test suites, database migrations
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Code Generation Command

@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Export automation configurations, workflows, reports, and data from the exec-automator platform
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Executive Automation Export - Configuration & Data Backup
@@ -166,9 +166,9 @@ Extract and export core platform settings:
       "monitoring_level": "comprehensive"
     },
     "ai_models": {
-      "primary_model": "claude-sonnet-4-5-20250929",
-      "fallback_model": "claude-haiku-4-0",
-      "analysis_model": "claude-opus-4-5",
+      "primary_model": "claude-sonnet-4-6",
+      "fallback_model": "claude-haiku-4-5-20251001",
+      "analysis_model": "claude-opus-4-8",
       "temperature": 0.3,
       "max_tokens": 4000,
       "rate_limits": {
@@ -296,7 +296,7 @@ Extract and export core platform settings:
         "created_date": "2025-02-01",
         "last_modified": "2025-12-15",
         "configuration": {
-          "model": "claude-sonnet-4-5-20250929",
+          "model": "claude-sonnet-4-6",
           "temperature": 0.5,
           "max_tokens": 8000,
           "system_prompt": "You are an expert grant writer specializing in nonprofit funding...",
@@ -323,7 +323,7 @@ Extract and export core platform settings:
         "created_date": "2025-02-05",
         "last_modified": "2025-12-10",
         "configuration": {
-          "model": "claude-sonnet-4-5-20250929",
+          "model": "claude-sonnet-4-6",
           "temperature": 0.2,
           "max_tokens": 4000,
           "system_prompt": "You are a board meeting coordination assistant...",
@@ -414,7 +414,7 @@ For each active workflow, export:
           "node_id": "research_node",
           "node_name": "Research and Discovery",
           "node_type": "ai_agent",
-          "model": "claude-sonnet-4-5",
+          "model": "claude-sonnet-4-6",
           "tools": ["research_search", "funder_database"],
           "average_duration_seconds": 35
         },
@@ -422,7 +422,7 @@ For each active workflow, export:
           "node_id": "drafting_node",
           "node_name": "Grant Narrative Drafting",
           "node_type": "ai_agent",
-          "model": "claude-sonnet-4-5",
+          "model": "claude-sonnet-4-6",
           "tools": ["document_generator", "template_library"],
           "average_duration_seconds": 67
         },
@@ -430,7 +430,7 @@ For each active workflow, export:
           "node_id": "budget_node",
           "node_name": "Budget Generation",
           "node_type": "ai_agent",
-          "model": "claude-sonnet-4-5",
+          "model": "claude-sonnet-4-6",
           "tools": ["financial_calculator", "accounting_integration"],
           "average_duration_seconds": 18
         },
@@ -474,7 +474,7 @@ For each active workflow, export:
     "configuration_version": "1.3.0",
     "base_configuration": {
       "model_provider": "anthropic",
-      "model_name": "claude-sonnet-4-5-20250929",
+      "model_name": "claude-sonnet-4-6",
       "temperature": 0.5,
       "max_tokens": 8000,
       "top_p": 0.95,
@@ -798,7 +798,7 @@ Gather all generated reports from:
         "prompt_id": "prompt_grant_research_001",
         "prompt_name": "Grant Research Prompt",
         "prompt_category": "grant_writing",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-4-6",
         "version": "1.4.0",
         "prompt_text": "You are conducting research for a grant application...",
         "variables": ["funder_name", "grant_program", "organization_mission"],
@@ -811,7 +811,7 @@ Gather all generated reports from:
         "prompt_id": "prompt_member_email_001",
         "prompt_name": "Member Newsletter Draft Prompt",
         "prompt_category": "communications",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-4-6",
         "version": "2.1.0",
         "prompt_text": "You are drafting a monthly member newsletter...",
         "variables": ["month", "highlights", "upcoming_events", "member_spotlight"],

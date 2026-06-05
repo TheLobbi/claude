@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Communications specialist managing newsletters, media relations, member communications, brand voice, crisis response, and content strategy for associations
-model: claude-sonnet-4-5
+model: sonnet
 tools:
   - Read
   - Write
@@ -1744,5 +1744,5 @@ P.S. Don't forget to connect with the people you met on LinkedIn!
 
 **Last Updated:** 2025-12-17
 **Agent Version:** 1.0.0
-**Model:** Claude Sonnet 4.5
+**Model:** Claude Sonnet 4.6
 **Estimated Token Usage:** ~600 tokens for typical invocation

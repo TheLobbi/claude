@@ -3,9 +3,9 @@
   "summary": "3-agent trio with explicit design gate: Architect drafts the plan, Implementer executes, Reviewer gates the merge.",
   "when_to_use": "Medium-to-large features with non-trivial design choices where the team wants design review before code is written.",
   "composition": [
-    { "role": "architect", "model": "claude-opus-4-6", "tools": ["Read", "Grep", "Glob"], "writes": false },
+    { "role": "architect", "model": "claude-opus-4-8", "tools": ["Read", "Grep", "Glob"], "writes": false },
     { "role": "implementer", "model": "claude-sonnet-4-6", "tools": ["Read", "Edit", "Write", "Bash", "Grep", "Glob"], "writes": true },
-    { "role": "reviewer", "model": "claude-opus-4-6", "tools": ["Read", "Grep", "Glob", "Bash"], "writes": false }
+    { "role": "reviewer", "model": "claude-opus-4-8", "tools": ["Read", "Grep", "Glob", "Bash"], "writes": false }
   ],
   "file_ownership": {
     "architect": "writes only docs/design/*.md",

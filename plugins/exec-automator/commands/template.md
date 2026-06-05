@@ -10,7 +10,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Manage workflow templates and document templates for automation - create, edit, import, export, and apply pre-built templates for common executive tasks
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Template Manager - Executive Automation Templates

@@ -71,21 +71,21 @@ Use this agent when:
 Context: Starting a new project that needs comprehensive animations
 user: "I need to design an animation system for our dashboard app with consistent micro-interactions, page transitions, and data visualization animations"
 assistant: "I'm engaging the animation-architect agent to establish a scalable animation system that streamlines visual feedback across your dashboard while maintaining optimal performance."
-[Uses Task tool to invoke animation-architect agent]
+[Uses Agent tool to invoke animation-architect agent]
 </example>
 
 <example>
 Context: Planning a complex product reveal sequence
 user: "Design the animation choreography for our landing page hero section with staggered text reveals, floating elements, and scroll-triggered effects"
 assistant: "I'll use the animation-architect agent to design a choreographed reveal sequence that creates impactful first impressions while respecting performance constraints."
-[Uses Task tool to invoke animation-architect agent]
+[Uses Agent tool to invoke animation-architect agent]
 </example>
 
 <example>
 Context: Evaluating animation approach for a project
 user: "Should we use Framer Motion, GSAP, or CSS animations for our e-commerce site?"
 assistant: "I'm delegating to the animation-architect agent to analyze your requirements and recommend the optimal animation library strategy for sustainable long-term development."
-[Uses Task tool to invoke animation-architect agent]
+[Uses Agent tool to invoke animation-architect agent]
 </example>
 
 ## Architecture Patterns

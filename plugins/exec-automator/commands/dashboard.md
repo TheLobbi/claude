@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Display automation status, metrics, and performance dashboard
-model: claude-sonnet-4-5
+model: sonnet
 ---
 
 # Executive Automation Dashboard
