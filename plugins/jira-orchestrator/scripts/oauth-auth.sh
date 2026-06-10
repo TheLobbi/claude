@@ -65,7 +65,7 @@ echo ""
 echo -e "${CYAN}Step 2: Adding Atlassian MCP Server...${NC}"
 echo ""
 
-MCP_URL="https://mcp.atlassian.com/v1/sse"
+MCP_URL="https://mcp.atlassian.com/v1/mcp/authv2"
 
 if [ "$CLAUDE_CLI" = true ]; then
     echo -e "${BLUE}Adding Atlassian MCP server via Claude CLI...${NC}"
@@ -150,7 +150,7 @@ console.log('Starting Atlassian MCP connection test...');
 console.log('If a browser window opens, please authenticate.');
 console.log('');
 
-const proc = spawn('npx', ['-y', 'mcp-remote', 'https://mcp.atlassian.com/v1/sse'], {
+const proc = spawn('npx', ['-y', 'mcp-remote', 'https://mcp.atlassian.com/v1/mcp/authv2'], {
     stdio: 'inherit'
 });
 

@@ -1,5 +1,41 @@
 # Changelog
 
+## v8.2.0 (2026-06-10) — Atlassian MCP HTTP migration, Fable 5 tier, effort-based reasoning
+
+### Atlassian MCP: SSE → streamable HTTP (action required before 2026-06-30)
+
+- Atlassian retires `https://mcp.atlassian.com/v1/sse` on **June 30, 2026**. Migrated `.mcp.json`
+  to `{"type": "http", "url": "https://mcp.atlassian.com/v1/mcp/authv2"}` and updated every live
+  install path: `INSTALLATION.md`, `README.md`, `INSTALL-CHECKLIST.md`, `commands/setup.md`,
+  `lib/atlassian-tool-mapping.md`, `scripts/{setup.sh,install.sh,oauth-auth.sh,README.md}`, and
+  `docs/CONFLUENCE-DOCUMENTATION.md`. Existing installs should re-run setup (or
+  `claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2`).
+  Historical `docs/archive/` left as-is.
+
+### Models
+
+- **Fable 5** (`claude-fable-5`, Claude 5 tier above Opus) added to `agents/agent-router.md`'s
+  Model Assignment Strategy (long-horizon orchestration, Opus-failed problems, large parallel
+  fleets; not for security-scanning analysis) and to `config/reasoning/reasoning-config.yaml`
+  escalation rules (`upgrade_to_fable`).
+
+### Reasoning config modernized (effort levels)
+
+- `config/reasoning/reasoning-config.yaml` v1.1.0: complexity tiers now map to **effort levels**
+  (`low`/`medium`/`high`/`xhigh`); per-agent `thinking_budget` and `temperature` replaced with
+  `effort` (temperature is rejected by Opus 4.7+/Fable 5; fixed thinking budgets are deprecated
+  under adaptive thinking). Legacy `budgets:` block retained for
+  `lib/self-reflection-engine.ts` internals only.
+- `agents/{learning-coordinator,pattern-analyzer}.md`: `--thinking-budget=N` example flags
+  replaced with `--effort=high|xhigh`.
+
+### Orchestration docs
+
+- `skills/agentic-patterns/SKILL.md`: new **Coordination Surface** section mapping the book
+  patterns onto the current Agent-tool primitives (`SendMessage` teammate continuation,
+  `run_in_background`, `isolation: "worktree"`, `mode: "plan"`, Fable 5 coordinators);
+  corrected "81-agent hierarchy" → 82.
+
 ## v8.1.1 (2026-06-04) — Complete the Claude Code modernization (June 2026)
 
 Follow-up to v8.1.0: closes the gaps that pass left open against current Claude Code.

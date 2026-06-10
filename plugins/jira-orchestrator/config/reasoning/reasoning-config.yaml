@@ -1,7 +1,7 @@
 # Reasoning Framework Configuration
 # Configures how reasoning agents operate within jira-orchestrator
 
-version: "1.0.0"
+version: "1.1.0"
 description: "Configuration for reasoning and problem-solving capabilities"
 
 # Documentation-First Protocol
@@ -33,14 +33,24 @@ documentation_first:
 sequential_thinking:
   enabled: true
 
-  # Default thinking budgets by complexity
+  # Reasoning depth by complexity, expressed as effort levels.
+  # Current models (Sonnet 4.6 / Opus 4.8 / Fable 5) use adaptive thinking;
+  # fixed token budgets (budget_tokens) are deprecated and 400 on Opus 4.7+.
+  effort_levels:
+    simple: low
+    moderate: medium
+    complex: high
+    critical: xhigh
+
+  # Legacy token budgets — kept for backward compatibility with
+  # lib/self-reflection-engine.ts internals only. Do not pass to the API.
   budgets:
     simple: 2000
     moderate: 5000
     complex: 8000
     critical: 15000
 
-  # When to use extended thinking
+  # When to raise reasoning depth
   triggers:
     - keyword: "debug"
       budget: "complex"
@@ -91,12 +101,13 @@ memory:
     archive_after_days: 90
 
 # Reasoning Agents Configuration
+# Note: temperature is removed on Opus 4.7+ and Fable 5 (the API rejects it);
+# steer behavior through prompts and effort instead.
 agents:
   chain-of-thought-reasoner:
     enabled: true
     model: sonnet
-    temperature: 0.3
-    thinking_budget: 5000
+    effort: medium
     auto_doc_lookup: true
     use_cases:
       - sequential_problems
@@ -106,8 +117,7 @@ agents:
   tree-of-thought-reasoner:
     enabled: true
     model: sonnet
-    temperature: 0.5
-    thinking_budget: 8000
+    effort: high
     auto_doc_lookup: true
     use_cases:
       - multiple_alternatives
@@ -117,8 +127,7 @@ agents:
   hypothesis-debugger:
     enabled: true
     model: sonnet
-    temperature: 0.3
-    thinking_budget: 8000
+    effort: high
     auto_doc_lookup: true
     use_cases:
       - complex_bugs
@@ -128,8 +137,7 @@ agents:
   root-cause-analyzer:
     enabled: true
     model: opus
-    temperature: 0.4
-    thinking_budget: 10000
+    effort: xhigh
     auto_doc_lookup: true
     use_cases:
       - post_mortems
@@ -222,10 +230,18 @@ metrics:
 escalation:
   # When to escalate to more powerful model
   upgrade_to_opus:
-    - thinking_budget_exceeded: 10000
+    - effort_at_max_insufficient: true
     - complexity_score_above: 80
     - incident_severity: "critical"
     - multiple_hypotheses_failed: 3
+
+  # Fable 5 (claude-fable-5) is the tier above Opus — reserve for runs
+  # above Opus's ceiling. Not for security-scanning analysis (cyber
+  # classifiers can refuse).
+  upgrade_to_fable:
+    - opus_failed_attempts: 2
+    - run_horizon: "multi-hour"
+    - parallel_subagents_above: 8
 
   # When to request human review
   request_human:

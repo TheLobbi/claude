@@ -185,15 +185,15 @@ The plugin requires the Atlassian MCP server to interact with Jira.
 
 **MCP Server Details:**
 - Name: `atlassian`
-- URL: `https://mcp.atlassian.com/v1/sse`
-- Command: `npx -y mcp-remote https://mcp.atlassian.com/v1/sse`
+- URL: `https://mcp.atlassian.com/v1/mcp/authv2`
+- Command: `npx -y mcp-remote https://mcp.atlassian.com/v1/mcp/authv2`
 
 **Manual Installation:**
 
 If automatic installation fails, add manually:
 
 ```bash
-claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/sse
+claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 **Verify Installation:**

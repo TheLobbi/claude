@@ -121,7 +121,7 @@ When significant events occur (every 5-10 tasks or critical failures):
 claude-agent pattern-analyzer \
   --agent="code-reviewer" \
   --recent-tasks=10 \
-  --thinking-budget=8000
+  --effort=high
 ```
 
 #### Step 2.2: Review Extracted Patterns

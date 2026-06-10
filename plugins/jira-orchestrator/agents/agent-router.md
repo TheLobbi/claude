@@ -354,6 +354,13 @@ execution_order:
 
 ### Model Assignment Strategy
 
+**Fable (claude-fable-5) — Claude 5 tier above Opus:**
+- Long-horizon autonomous orchestration (multi-hour epic execution, overnight runs)
+- Problems Opus has already failed on or that would need multiple Opus retries
+- Coordinating large fleets of long-lived parallel sub-agents without drift
+- Rare and deliberate: ~2× Opus per token plus ~30% tokenizer overhead — workers stay on Sonnet
+- Avoid for security-scanning analysis (Fable's cyber classifiers can refuse; keep that on Opus)
+
 **Opus (claude-opus-4-8):**
 - Strategic planning (PLAN phase)
 - Complex architectural decisions
@@ -371,6 +378,8 @@ execution_order:
 - Simple validation tasks
 - Quick analysis and reporting
 - Cost optimization for simple tasks
+
+Prefer aliases (`fable`/`opus`/`sonnet`/`haiku`) in agent frontmatter so model refreshes don't strand config.
 
 ### Success Metrics
 

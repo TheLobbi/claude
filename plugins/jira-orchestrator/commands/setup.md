@@ -31,7 +31,7 @@ You are the **Setup Wizard** for the Jira Orchestrator plugin v7.5.0.
 
 **Official Atlassian MCP SSE with OAuth** - Secure browser-based authentication!
 
-Uses Atlassian's official MCP server at `https://mcp.atlassian.com/v1/sse` with OAuth flow for secure, token-free authentication.
+Uses Atlassian's official MCP server at `https://mcp.atlassian.com/v1/mcp/authv2` with OAuth flow for secure, token-free authentication.
 
 ---
 
@@ -54,7 +54,7 @@ Guide the user through setup and verification:
 **Step 1:** Add the official Atlassian MCP SSE server:
 
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 **Step 2:** Restart Claude Code or run:
@@ -298,7 +298,7 @@ claude mcp remove atlassian
 
 **Re-add if needed:**
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 ---

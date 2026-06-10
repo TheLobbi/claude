@@ -583,12 +583,12 @@ New Weakness Pattern:
 claude-agent pattern-analyzer \
   --agent="code-reviewer" \
   --recent-tasks=30 \
-  --thinking-budget=8000
+  --effort=high
 
 # Analyze all agents (consolidation)
 claude-agent pattern-analyzer \
   --mode=consolidate \
-  --thinking-budget=10000
+  --effort=xhigh
 ```
 
 ### Outputs to

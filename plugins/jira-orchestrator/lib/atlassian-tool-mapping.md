@@ -4,7 +4,7 @@
 
 This plugin ONLY uses the official Atlassian MCP SSE connector:
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 ## Tool Reference

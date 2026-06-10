@@ -73,7 +73,7 @@ This project uses the **jira-orchestrator** plugin for Atlassian integration.
 
 **Required:** Atlassian MCP SSE must be configured:
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 ## Available Tools
@@ -166,7 +166,7 @@ update_claude_md() {
 
 **MCP Required:**
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 **Issue Hierarchy:** Initiative -> Epic -> Story -> Task -> Subtask
@@ -193,7 +193,7 @@ verify_mcp() {
       log_success "Atlassian MCP is configured."
     else
       log_warn "Atlassian MCP not found. Run:"
-      echo "  claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse"
+      echo "  claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2"
     fi
   else
     log_warn "Claude CLI not found. Cannot verify MCP configuration."
