@@ -84,6 +84,13 @@ The agent's **final message is the only thing returned to the parent** — relay
 user doesn't see a teammate's transcript. Keep spawn prompts under ~400 words and prefer named
 specialists over generics (see `prompt-budget-preflight`).
 
+**Fable 5 for long-horizon coordinators.** When a team runs for hours (overnight builds, multi-wave
+migrations), put the coordinator on `model: fable` — Fable 5 reliably sustains ongoing messaging
+with long-running async subagents and doesn't drift across waves the way smaller orchestrators can.
+Workers stay on Sonnet; the tier premium (~2× Opus per token) only pays off on the coordinator
+role. Old "don't over-delegate" guardrails written for prior models should be relaxed on Fable —
+delegation is dependable there.
+
 ## Lifecycle management
 
 Long-running or idle agents waste tokens. `team-orchestrator` agent handles this:

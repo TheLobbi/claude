@@ -1,5 +1,32 @@
 # Changelog
 
+## v8.2.0 (2026-06-10) — Claude 5 Family (Fable 5 / Mythos 5)
+
+### Models
+
+- **Fable 5** (`claude-fable-5`) documented across the plugin as the new Mythos-class tier *above*
+  Opus: added to `docs/CC-CAPABILITIES-2026-06.md` (with a dedicated Fable/Mythos section — always-on
+  thinking, effort-only depth control, 1M default context, longer turns, dependable async delegation,
+  refusal classifiers, no fast mode), `model-routing` skill, `agent-teams` skill, `ultraplan` skill,
+  `/cc-orchestrate`, plugin `CLAUDE.md`, and `README.md`. **Mythos 5** (`claude-mythos-5`) noted as the
+  same model for approved orgs (Project Glasswing).
+- **Pricing corrections** in `model-routing` and the MCP `MODEL_DATA` table: Opus 4.8 is $5/$25 per
+  MTok (was wrongly listed at $15/$75), Haiku 4.5 is $1/$5; Fable 5 added at $10/$50. Relative-cost
+  guidance updated (Opus ≈ 1.7× Sonnet, Fable ≈ 3.3× plus ~30% tokenizer overhead).
+- MCP `cc_docs_model_recommend`: `fable` routing tier added (long-horizon/overnight/autonomous-run
+  patterns), budget fallback chain now Fable → Opus → Sonnet → Haiku; `fable`/`mythos` added to the
+  model topic matcher.
+
+### Orchestration
+
+- `/cc-orchestrate`: new **Model tiers** section (when to escalate the orchestrator to Fable 5) and a
+  **Coordination surface** section (concurrent spawns, `run_in_background`, `SendMessage` continuation,
+  final-message-only return, `AskUserQuestion` discipline).
+- `agent-teams`: guidance on Fable 5 coordinators for multi-hour teams and relaxing prior-model
+  anti-delegation guardrails.
+- `model-routing`: Fable upgrade triggers, cascading row for overnight runs, anti-pattern for
+  defaulting to Fable; removed dead `references/cost-table.md` link.
+
 ## v8.1.0 (2026-06-04) — Capability Refresh (June 2026)
 
 Brings every Claude Code reference in the plugin current with what the tool can do as of

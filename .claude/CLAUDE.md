@@ -93,6 +93,7 @@ unless the plugin includes a postinstall build hook.
 ## Models
 | Model | Use |
 |-------|-----|
+| fable | Hardest long-horizon autonomous runs, problems Opus failed on (Claude 5 tier above Opus) |
 | opus | Architecture, complex decisions, security review |
 | sonnet | Development, implementation, test writing |
 | haiku | Research, fast lookups, docs |

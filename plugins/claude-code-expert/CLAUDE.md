@@ -5,7 +5,8 @@ Modern second brain for Claude Code. Five-layer stack deploy + three-tier memory
 > **Capability baseline:** what current Claude Code can do (models, tools, hooks, agent teams,
 > permissions, web/remote, memory) is tracked in [`docs/CC-CAPABILITIES-2026-06.md`](docs/CC-CAPABILITIES-2026-06.md).
 > It is the source of truth — when a skill or command disagrees with it, fix the skill. Latest models:
-> Opus 4.8 (`claude-opus-4-8`), Sonnet 4.6 (`claude-sonnet-4-6`), Haiku 4.5 (`claude-haiku-4-5-20251001`).
+> Fable 5 (`claude-fable-5`, new Mythos-class tier above Opus), Opus 4.8 (`claude-opus-4-8`),
+> Sonnet 4.6 (`claude-sonnet-4-6`), Haiku 4.5 (`claude-haiku-4-5-20251001`).
 
 ## Fast routing
 
