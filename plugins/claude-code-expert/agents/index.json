@@ -124,7 +124,7 @@
     },
     {
       "name": "claude-code-expert:memory-consolidator",
-      "intent": "Memory Consolidator",
+      "intent": "Consolidates working memory (engram) into durable knowledge (Obsidian vault) and baseline plugin rules, with strict read-only access to engram and user-curated notes.",
       "tags": [
         "claude-code-expert",
         "agent",

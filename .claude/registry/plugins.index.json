@@ -12,7 +12,7 @@
       "dependencies": {}
     },
     "claude-code-templating-plugin": {
-      "version": "2.0.0",
+      "version": "2.0.1",
       "path": "../plugins/claude-code-templating-plugin",
       "source": "local",
       "installedAt": "2026-01-08T00:00:00.000Z",
@@ -26,7 +26,7 @@
       "dependencies": {}
     },
     "exec-automator": {
-      "version": "2.0.0",
+      "version": "2.0.1",
       "path": "../plugins/exec-automator",
       "source": "local",
       "installedAt": "2026-01-01T00:00:00.000Z",
@@ -61,7 +61,7 @@
       "dependencies": {}
     },
     "jira-orchestrator": {
-      "version": "8.0.0",
+      "version": "8.2.0",
       "path": "../plugins/jira-orchestrator",
       "source": "local",
       "installedAt": "2026-01-01T00:00:00.000Z",
@@ -82,7 +82,7 @@
       "dependencies": {}
     },
     "react-animation-studio": {
-      "version": "2.0.0",
+      "version": "2.0.1",
       "path": "../plugins/react-animation-studio",
       "source": "local",
       "installedAt": "2026-01-01T00:00:00.000Z",
@@ -116,21 +116,21 @@
       "dependencies": {}
     },
     "claude-code-expert": {
-      "version": "7.9.0",
+      "version": "8.2.0",
       "path": "../plugins/claude-code-expert",
       "source": "local",
       "installedAt": "2026-04-17T00:00:00.000Z",
       "dependencies": {}
     },
     "cowork-marketplace": {
-      "version": "2.0.0",
+      "version": "2.1.1",
       "path": "../plugins/cowork-marketplace",
       "source": "local",
       "installedAt": "2026-02-23T00:00:00.000Z",
       "dependencies": {}
     },
     "mui-expert": {
-      "version": "2.1.0",
+      "version": "2.1.1",
       "path": "../plugins/mui-expert",
       "source": "local",
       "installedAt": "2026-03-28T00:00:00.000Z",
@@ -145,7 +145,7 @@
       "dependencies": {}
     },
     "dotnet-blazor": {
-      "version": "2.0.0",
+      "version": "2.0.1",
       "path": "../plugins/dotnet-blazor",
       "source": "local",
       "installedAt": "2026-03-29T00:00:00.000Z",
@@ -166,7 +166,7 @@
       "dependencies": {}
     },
     "project-management-plugin": {
-      "version": "1.0.0",
+      "version": "1.4.0",
       "path": "../plugins/project-management-plugin",
       "source": "local",
       "installedAt": "2026-04-21T00:00:00.000Z",
