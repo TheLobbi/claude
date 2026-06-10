@@ -3,11 +3,11 @@
   "summary": "4 parallel Sonnet specialists review the same diff from different angles, Opus synth produces the final verdict.",
   "when_to_use": "PR review where discipline specialists are cheaper per issue caught than a generalist reviewer.",
   "composition": [
-    { "role": "security-reviewer", "model": "claude-sonnet-4-6", "focus": "OWASP, auth, secrets, injection, authz, crypto misuse" },
-    { "role": "performance-reviewer", "model": "claude-sonnet-4-6", "focus": "N+1 queries, O(n²), cache invalidation, memory leaks, bundle size" },
-    { "role": "test-reviewer", "model": "claude-sonnet-4-6", "focus": "coverage gaps, flaky patterns, test quality, missing edge cases" },
-    { "role": "style-reviewer", "model": "claude-sonnet-4-6", "focus": "naming, dead code, comments, consistency with existing patterns" },
-    { "role": "synthesizer", "model": "claude-opus-4-8", "writes": false }
+    { "role": "security-reviewer", "model": "sonnet", "focus": "OWASP, auth, secrets, injection, authz, crypto misuse" },
+    { "role": "performance-reviewer", "model": "sonnet", "focus": "N+1 queries, O(n²), cache invalidation, memory leaks, bundle size" },
+    { "role": "test-reviewer", "model": "sonnet", "focus": "coverage gaps, flaky patterns, test quality, missing edge cases" },
+    { "role": "style-reviewer", "model": "sonnet", "focus": "naming, dead code, comments, consistency with existing patterns" },
+    { "role": "synthesizer", "model": "opus", "writes": false }
   ],
   "file_ownership": {
     "specialists": "each writes .claude/reviews/{role}.md — one section per finding (severity, location, suggested fix)",

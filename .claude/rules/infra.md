@@ -49,7 +49,7 @@ paths:
 - Hooks read context from stdin as JSON — parse with `jq`, not string matching
 - Hook exit code 0 means the JSON response is authoritative; non-zero is treated as an error
 - Register hooks in `.claude/settings.json` under the `hooks` key with the correct event name
-- Valid hook events: `PreToolUse`, `PostToolUse`, `PreSubagentCreate`, `PostToolUseFailure`, `Notification`, `Stop`
+- Valid hook events: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `UserPromptSubmit`, `Notification`, `Stop`, `SessionStart`, `SessionEnd`, `PreCompact`, `SubagentStart`, `SubagentStop`, `TeammateIdle`, `PermissionRequest`, `Setup`
 
 ## Helm / Kubernetes
 

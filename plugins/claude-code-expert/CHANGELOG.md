@@ -27,6 +27,13 @@
 - `model-routing`: Fable upgrade triggers, cascading row for overnight runs, anti-pattern for
   defaulting to Fable; removed dead `references/cost-table.md` link.
 
+### Consistency upgrades
+
+- **Pinned model IDs → aliases** across all 18 agents, the 5 topology kits, and the
+  `plugin-development` example, per the capability baseline's own policy ("prefer aliases so a
+  model refresh doesn't strand config"). Frontmatter now reads `model: opus|sonnet|haiku`.
+- Plugin `CLAUDE.md` architecture summary corrected: 12 commands (was 11).
+
 ## v8.1.0 (2026-06-04) — Capability Refresh (June 2026)
 
 Brings every Claude Code reference in the plugin current with what the tool can do as of

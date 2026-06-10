@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Analyzes incoming tasks and selects the optimal agentic design pattern (prompt chain, routing, parallelization, eval-optimizer, orchestrator-workers, reflection, or ReAct). Routes to the right pattern implementation to avoid over-engineering simple tasks or under-powering complex ones.
-model: claude-sonnet-4-6
+model: sonnet
 tools:
   - Read
   - Glob

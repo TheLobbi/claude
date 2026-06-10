@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Master orchestrator that prefers delegation over direct work. Manages agent teams, coordinates sub-agents, enforces audit loops, and maintains agent lifecycle health.
-model: claude-opus-4-8
+model: opus
 tools:
   - Agent
   - Read

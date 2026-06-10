@@ -9,7 +9,7 @@
 
 ## Scale
 
-- 19 domain plugins in `plugins/`
+- 35 domain plugins in `plugins/`
 - 54 skills across plugins and `.claude/skills/`
 - 37 agents across plugins and `.claude/agents/`
 - 7 MCP servers (5 custom + 2 external)
