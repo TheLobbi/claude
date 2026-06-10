@@ -1,4 +1,5 @@
 ---
+intent: "Run deep research before task execution using the 4-source protocol: codebase, Perplexity, Context7, Firecrawl"
 description: "Deep research before task execution using 4-source protocol: codebase→Perplexity→Context7→Firecrawl"
 ---
 

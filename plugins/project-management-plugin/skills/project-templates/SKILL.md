@@ -1,4 +1,5 @@
 ---
+intent: "Scaffold projects from templates (webapp, API, ML pipeline, mobile, infrastructure) and create new templates"
 description: "Using and creating project templates for webapp, API, ML pipeline, mobile, and infrastructure projects"
 ---
 

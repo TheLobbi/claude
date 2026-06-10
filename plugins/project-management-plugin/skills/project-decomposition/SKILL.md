@@ -1,4 +1,5 @@
 ---
+intent: "Decompose projects into granular micro-tasks using a 5-level hierarchy and INVEST principles"
 description: "Decomposing projects into granular micro-tasks using 5-level hierarchy and INVEST principles"
 ---
 
