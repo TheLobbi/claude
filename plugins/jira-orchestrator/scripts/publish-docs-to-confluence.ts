@@ -1,7 +1,7 @@
 /**
  * Publish Jira Orchestrator documentation to Confluence using MCP Atlassian tools.
  * 
- * This script uses the official Atlassian MCP SSE tools to:
+ * This script uses the official Atlassian MCP (HTTP transport) tools to:
  * 1. Get accessible Atlassian resources (to find cloud ID)
  * 2. Get Confluence spaces
  * 3. Create the documentation page

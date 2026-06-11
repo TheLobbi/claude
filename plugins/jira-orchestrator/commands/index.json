@@ -493,7 +493,7 @@
     },
     {
       "name": "jira:setup",
-      "intent": "Interactive setup wizard v7.5.0 - OAuth auth, Neon PostgreSQL, Redis, Temporal workflows",
+      "intent": "Interactive setup wizard - OAuth auth, Neon PostgreSQL, Redis, Temporal workflows",
       "tags": [
         "jira",
         "setup",

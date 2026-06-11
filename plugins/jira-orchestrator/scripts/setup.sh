@@ -71,7 +71,7 @@ This project uses the **jira-orchestrator** plugin for Atlassian integration.
 
 ## MCP Configuration
 
-**Required:** Atlassian MCP SSE must be configured:
+**Required:** Atlassian MCP (HTTP transport) must be configured:
 ```bash
 claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```

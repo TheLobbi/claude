@@ -35,7 +35,7 @@ sequential_thinking:
 
   # Reasoning depth by complexity, expressed as effort levels.
   # Current models (Sonnet 4.6 / Opus 4.8 / Fable 5) use adaptive thinking;
-  # fixed token budgets (budget_tokens) are deprecated and 400 on Opus 4.7+.
+  # fixed token budgets (budget_tokens) are deprecated and rejected with an HTTP 400 error on Opus 4.7+.
   effort_levels:
     simple: low
     moderate: medium

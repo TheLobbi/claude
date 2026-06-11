@@ -1,8 +1,8 @@
-# Atlassian MCP SSE Tool Mapping
+# Atlassian MCP Tool Mapping (HTTP transport)
 
 ## Official Tools (mcp__atlassian__*)
 
-This plugin ONLY uses the official Atlassian MCP SSE connector:
+This plugin ONLY uses the official Atlassian MCP connector (HTTP transport):
 ```bash
 claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
