@@ -1,6 +1,6 @@
 ---
 name: project-management-plugin:deep-researcher
-intent: Deep Researcher
+intent: Produces a research brief before task execution via fixed 4-source protocol (codebase-first, then web, Context7, Firecrawl) to prevent re-implementation and surface existing patterns.
 tags:
   - project-management-plugin
   - agent
@@ -8,6 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Produces a research brief before task execution via fixed 4-source protocol (codebase-first, then web, Context7, Firecrawl) to prevent re-implementation and surface existing patterns.
+model: sonnet
 ---
 
 # Deep Researcher

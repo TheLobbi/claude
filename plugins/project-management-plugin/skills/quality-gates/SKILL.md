@@ -1,4 +1,5 @@
 ---
+intent: "Validate task completion against acceptance criteria with per-type automated checks"
 description: "Validating task completion against acceptance criteria with per-type automated checks"
 ---
 

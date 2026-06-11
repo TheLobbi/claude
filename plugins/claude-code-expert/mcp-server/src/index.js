@@ -179,7 +179,7 @@ const TASK_HINTS = [
   },
   {
     kind: "model",
-    match: ["model", "cost", "budget", "routing", "expensive", "cheap", "haiku", "sonnet", "opus"],
+    match: ["model", "cost", "budget", "routing", "expensive", "cheap", "haiku", "sonnet", "opus", "fable", "mythos"],
     docs: ["model-routing", "cost-optimization", "cc-perf"],
   },
   {
@@ -300,12 +300,14 @@ function resolveTask(query) {
 
 // --- Model routing data for cc_docs_model_recommend ---
 const MODEL_DATA = {
-  "opus": { id: "claude-opus-4-8", inputCost: 15.00, outputCost: 75.00, cacheRead: 1.50, best: "architecture, complex debugging, security review" },
+  "fable": { id: "claude-fable-5", inputCost: 10.00, outputCost: 50.00, cacheRead: 1.00, best: "long-horizon autonomous runs, hardest reasoning above Opus's ceiling, multi-hour orchestration" },
+  "opus": { id: "claude-opus-4-8", inputCost: 5.00, outputCost: 25.00, cacheRead: 0.50, best: "architecture, complex debugging, security review" },
   "sonnet": { id: "claude-sonnet-4-6", inputCost: 3.00, outputCost: 15.00, cacheRead: 0.30, best: "implementation, code review, refactoring, test writing" },
-  "haiku": { id: "claude-haiku-4-5-20251001", inputCost: 0.80, outputCost: 4.00, cacheRead: 0.08, best: "lookups, research, docs, simple Q&A, commit messages" },
+  "haiku": { id: "claude-haiku-4-5-20251001", inputCost: 1.00, outputCost: 5.00, cacheRead: 0.10, best: "lookups, research, docs, simple Q&A, commit messages" },
 };
 
 const TASK_MODEL_MAP = [
+  { patterns: ["long-horizon", "overnight", "multi-day", "autonomous run", "end-to-end migration", "hardest"], model: "fable", reason: "Long-horizon autonomous work above Opus's ceiling — Fable 5 sustains multi-hour runs and async subagent fleets" },
   { patterns: ["architecture", "design", "complex", "security review", "audit"], model: "opus", reason: "Deep multi-step reasoning required" },
   { patterns: ["debug", "root cause", "hard bug", "race condition", "flaky"], model: "opus", reason: "Complex hypothesis evaluation" },
   { patterns: ["implement", "build", "create", "add feature", "refactor", "code review", "test"], model: "sonnet", reason: "Best cost/quality for code generation" },
@@ -329,7 +331,7 @@ function recommendModel(task, budget) {
   if (budget) {
     const budgetNum = parseFloat(budget.replace("$", ""));
     if (!isNaN(budgetNum) && estCost > budgetNum && rec.model !== "haiku") {
-      const fallback = rec.model === "opus" ? "sonnet" : "haiku";
+      const fallback = rec.model === "fable" ? "opus" : rec.model === "opus" ? "sonnet" : "haiku";
       const fbData = MODEL_DATA[fallback];
       const fbCost = (estInputTokens / 1e6) * fbData.inputCost + (estOutputTokens / 1e6) * fbData.outputCost;
       return {

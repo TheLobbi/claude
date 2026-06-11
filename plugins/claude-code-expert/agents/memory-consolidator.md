@@ -1,8 +1,6 @@
 ---
 name: claude-code-expert:memory-consolidator
 intent: Consolidates working memory (engram) into durable knowledge (Obsidian vault) and baseline plugin rules, with strict read-only access to engram and user-curated notes.
-description: Bridges the three memory tiers — reads engram (tier 1, never writes), promotes reusable patterns and decisions into the Obsidian vault (tier 2) and plugin baseline rules (tier 3). Read-only on engram and on user-curated Obsidian notes; writes only auto-generated notes. Invoke for memory consolidation, vault sync, or promoting session learnings into durable storage.
-model: claude-opus-4-8
 tags:
   - claude-code-expert
   - agent
@@ -10,6 +8,8 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Bridges the three memory tiers — reads engram (tier 1, never writes), promotes reusable patterns and decisions into the Obsidian vault (tier 2) and plugin baseline rules (tier 3). Read-only on engram and on user-curated Obsidian notes; writes only auto-generated notes. Invoke for memory consolidation, vault sync, or promoting session learnings into durable storage.
+model: opus
 ---
 
 # Memory Consolidator

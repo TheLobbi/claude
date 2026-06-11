@@ -70,6 +70,7 @@ All project state is in `.claude/projects/{project-id}/`:
 - `temp/.write-{uuid}` — temporary files used during atomic rename
 
 ## Agent Routing
+- **Fable** (escalation only): project-orchestrator on multi-hour/overnight autonomous runs or after repeated Opus failures — Fable 5 (`claude-fable-5`) is the Claude 5 tier above Opus; workers stay on Sonnet
 - **Opus**: project-orchestrator, project-interviewer, scope-architect, council-reviewer, adaptive replanning
 - **Sonnet**: task-decomposer, dependency-resolver, deep-researcher, task-executor, quality-reviewer, risk-assessor, pm-integrator
 - **Haiku**: progress-monitor, context-guardian, pattern-recognizer, checkpoint-manager, project-reporter

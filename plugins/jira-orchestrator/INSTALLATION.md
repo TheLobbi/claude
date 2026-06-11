@@ -134,7 +134,7 @@ The plugin automatically installs the Atlassian MCP server during setup.
 
 **What it does:**
 - Adds the `atlassian` MCP server to Claude Code
-- Configures it to use: `npx -y mcp-remote https://mcp.atlassian.com/v1/sse`
+- Configures it to use: `npx -y mcp-remote https://mcp.atlassian.com/v1/mcp/authv2`
 - Enables Jira tool access
 
 **Verify Installation:**
@@ -147,7 +147,7 @@ claude mcp list
 **Manual Installation (if auto-install fails):**
 
 ```bash
-claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/sse
+claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 ### Environment Variables
@@ -294,7 +294,7 @@ claude /jira:triage PROJECT-123
 1. Check npm/npx available: `which npx`
 2. Try manual installation:
    ```bash
-   claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/sse
+   claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/mcp/authv2
    ```
 3. Check internet connection
 4. Review installation log: `cat logs/install-*.log`

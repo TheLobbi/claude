@@ -1,4 +1,5 @@
 ---
+intent: "Connect and sync project state with external PM platforms (GitHub Projects, Linear, Notion, Asana, Trello, ClickUp, Monday.com, Todoist, Local)"
 description: "Connecting and syncing with GitHub Projects, Linear, Notion, Asana, Trello, ClickUp, Monday.com, Todoist, and Local"
 ---
 

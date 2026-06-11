@@ -262,7 +262,7 @@ claude /jira:triage PROJECT-123
 **Solution:**
 ```bash
 # Try manual installation
-claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/sse
+claude mcp add atlassian -- npx -y mcp-remote https://mcp.atlassian.com/v1/mcp/authv2
 
 # Verify
 claude mcp list

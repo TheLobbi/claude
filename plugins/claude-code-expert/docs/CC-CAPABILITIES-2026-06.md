@@ -1,6 +1,6 @@
 # Claude Code Capability Baseline — June 2026
 
-Authoritative snapshot of what Claude Code can do as of **June 1, 2026**, used to keep this
+Authoritative snapshot of what Claude Code can do as of **June 10, 2026**, used to keep this
 plugin's skills, commands, and agents current. When a skill or command contradicts this file,
 this file wins — update the skill. Sourced from `code.claude.com/docs` plus the live runtime
 tool surface.
@@ -15,18 +15,43 @@ tool surface.
 
 | Alias | Latest ID | Use |
 |---|---|---|
+| `fable` | `claude-fable-5` | Hardest long-horizon agentic runs, overnight builds, deepest reasoning — the Claude 5 / Mythos-class tier above Opus |
 | `opus` | `claude-opus-4-8` | Architecture, hard debugging, security review, planning/review gates |
 | `sonnet` | `claude-sonnet-4-6` | Implementation, code review, refactoring, test writing |
 | `haiku` | `claude-haiku-4-5-20251001` | Retrieval, research, docs, bulk mechanical edits |
 
 Helper aliases: `best` (most capable available), `opusplan` (Opus reasoning → Sonnet execution),
 `opus[1m]` / `sonnet[1m]` (extended 1M-token context). `default` resolves per plan tier.
+The `Agent` tool's `model` override accepts `fable` alongside `sonnet`/`opus`/`haiku`.
+
+### Claude Fable 5 / Mythos 5 (new tier, June 2026)
+
+**Fable 5** (`claude-fable-5`) is the first Claude 5 model — a Mythos-class tier *above* Opus
+in capability, not an Opus replacement. **Mythos 5** (`claude-mythos-5`) is the same underlying
+model without Fable's additional dual-use safety measures, available only to approved
+organizations (Project Glasswing). See https://www.anthropic.com/news/claude-fable-5-mythos-5.
+
+What changes in practice when routing to Fable 5:
+
+- **1M context by default** (128K max output); `claude-fable-5[1m]` is the long-context ID form.
+- **Thinking is always on** — there is no thinking toggle; depth is controlled purely by
+  `effort` (`low` → `max`, including `xhigh`). Even `low` effort on Fable often beats `max` on
+  prior models for routine work.
+- **Longer turns** — single hard-task turns can run many minutes; plan for async check-ins and
+  background agents rather than blocking.
+- **Dependable parallel/async delegation** — sustains long-running subagents and teammate
+  messaging well; prior-model guardrails that suppressed delegation should be relaxed.
+- **~3.3× Sonnet pricing** ($10/$50 per MTok) vs Opus 4.8's ~1.7× ($5/$25) — reserve it for
+  work above what Opus handles, not as a blanket default.
+- Safety classifiers may refuse research-bio / most cybersecurity content (`refusal` stop
+  reason); requires 30-day data retention (not available under ZDR).
 
 - **Effort levels** (reasoning depth, independent of model): `low` · `medium` · `high` · `xhigh` · `max`.
-  Opus 4.7/4.8 add `xhigh`. Set with `/effort`, `--effort <level>`, or `effort:` in skill/agent frontmatter.
-  Bumping effort is cheaper than jumping a model tier when you only need deeper thinking.
+  Opus 4.7/4.8 and Fable 5 support `xhigh`. Set with `/effort`, `--effort <level>`, or `effort:` in
+  skill/agent frontmatter. Bumping effort is cheaper than jumping a model tier when you only need
+  deeper thinking.
 - **Fast mode** (`/fast`, `--fast`): keeps you on Opus (4.6/4.7/4.8) with faster output — it does
-  **not** downgrade to a smaller model.
+  **not** downgrade to a smaller model. Not available on Fable 5.
 
 ---
 

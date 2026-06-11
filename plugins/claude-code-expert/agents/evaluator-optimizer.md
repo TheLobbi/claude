@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Implements the Evaluator-Optimizer loop pattern — generates an artifact, evaluates it against a rubric, and iteratively refines until quality threshold is met or max iterations reached. Use for code generation, config authoring, and any task where output quality must be verified before acceptance.
-model: claude-opus-4-8
+model: opus
 tools:
   - Read
   - Write

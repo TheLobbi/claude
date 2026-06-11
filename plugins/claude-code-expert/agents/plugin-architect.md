@@ -11,7 +11,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Plugin architecture specialist that designs plugin structures, scaffolds files, validates manifests, and advises on marketplace publishing readiness.
-model: claude-sonnet-4-6
+model: sonnet
 tools:
   - Read
   - Write

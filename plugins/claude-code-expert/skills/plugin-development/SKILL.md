@@ -99,7 +99,7 @@ The command body is plain markdown executed as a prompt when the user runs `/plu
 ---
 name: agent-name
 description: When to invoke; ≥3 trigger phrases.
-model: claude-sonnet-4-6
+model: sonnet
 allowed-tools:
   - Read
   - Grep

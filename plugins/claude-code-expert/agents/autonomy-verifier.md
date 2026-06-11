@@ -9,7 +9,7 @@ inputs: []
 risk: medium
 cost: medium
 description: Runs the verification suite after an implementation phase completes. Reads verification steps from .claude/active-task.md, detects project type, runs typecheck + lint + tests + diff check + secret scan, and produces a structured PASS or FAIL report. Never modifies files.
-model: claude-sonnet-4-6
+model: sonnet
 tools:
   - Bash
   - Read

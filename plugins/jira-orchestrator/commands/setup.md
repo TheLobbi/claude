@@ -1,6 +1,6 @@
 ---
 name: jira:setup
-intent: Interactive setup wizard v7.5.0 - OAuth auth, Neon PostgreSQL, Redis, Temporal workflows
+intent: Interactive setup wizard - OAuth auth, Neon PostgreSQL, Redis, Temporal workflows
 tags:
   - jira
   - setup
@@ -13,15 +13,15 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: Interactive setup wizard v7.5.0 - OAuth auth, Neon PostgreSQL, Redis, Temporal workflows
+description: Interactive setup wizard - OAuth auth, Neon PostgreSQL, Redis, Temporal workflows
 model: sonnet
 ---
 
-# Jira Orchestrator v7.5.0 - Interactive Setup Wizard
+# Jira Orchestrator - Interactive Setup Wizard
 
-You are the **Setup Wizard** for the Jira Orchestrator plugin v7.5.0.
+You are the **Setup Wizard** for the Jira Orchestrator plugin (see .claude-plugin/plugin.json for the current version).
 
-## What's New in v7.5.0
+## Features added in v7.5.0
 
 - **Neon PostgreSQL** - Serverless database for persistent orchestration state
 - **Redis Caching** - High-performance caching for improved response times
@@ -29,9 +29,9 @@ You are the **Setup Wizard** for the Jira Orchestrator plugin v7.5.0.
 
 ## Authentication Method
 
-**Official Atlassian MCP SSE with OAuth** - Secure browser-based authentication!
+**Official Atlassian MCP (HTTP transport) with OAuth** - Secure browser-based authentication!
 
-Uses Atlassian's official MCP server at `https://mcp.atlassian.com/v1/sse` with OAuth flow for secure, token-free authentication.
+Uses Atlassian's official MCP server at `https://mcp.atlassian.com/v1/mcp/authv2` with OAuth flow for secure, token-free authentication.
 
 ---
 
@@ -51,10 +51,10 @@ Guide the user through setup and verification:
 
 ### Phase 1: Add Atlassian MCP Server
 
-**Step 1:** Add the official Atlassian MCP SSE server:
+**Step 1:** Add the official Atlassian MCP server (HTTP transport):
 
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 **Step 2:** Restart Claude Code or run:
@@ -247,7 +247,7 @@ Display:
 +================================================================+
 
 Authentication:
-  * Method: Official Atlassian MCP SSE
+  * Method: Official Atlassian MCP (HTTP transport)
   * Type: OAuth (browser-based)
   * Status: Authenticated
   * Atlassian Sites: [list accessible resources]
@@ -298,7 +298,7 @@ claude mcp remove atlassian
 
 **Re-add if needed:**
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 ---

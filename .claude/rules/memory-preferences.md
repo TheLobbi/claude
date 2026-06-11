@@ -15,6 +15,7 @@
 
 | Model | Use Case |
 |-------|----------|
+| Fable | Long-horizon autonomous runs, overnight builds, hardest reasoning (tier above Opus — reserve for work above Opus's ceiling) |
 | Opus | Architecture decisions, complex refactoring, multi-file analysis |
 | Sonnet | Feature implementation, bug fixes, code generation |
 | Haiku | Research lookups, documentation queries, fast searches |

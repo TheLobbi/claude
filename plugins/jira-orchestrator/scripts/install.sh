@@ -18,9 +18,9 @@ NC='\033[0m' # No Color
 
 # Plugin information
 PLUGIN_NAME="jira-orchestrator"
-PLUGIN_VERSION="7.1.0"
+PLUGIN_VERSION="8.2.0"
 MCP_SERVER_NAME="atlassian"
-MCP_SERVER_URL="https://mcp.atlassian.com/v1/sse"
+MCP_SERVER_URL="https://mcp.atlassian.com/v1/mcp/authv2"
 
 # Directories
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

@@ -866,3 +866,9 @@ Node.js v24.14.1
 - **Error:** Exit code 128
 fatal: option '--stat' must come before non-option arguments
 - **Status:** NEEDS_FIX - Claude should document the fix here after resolving
+
+### Error: Read failure (2026-06-10T21:36:17Z)
+- **Tool:** Read
+- **Input:** `/home/user/claude/plugins/jira-orchestrator/workflows`
+- **Error:** EISDIR: illegal operation on a directory, read '/home/user/claude/plugins/jira-orchestrator/workflows'
+- **Status:** NEEDS_FIX - Claude should document the fix here after resolving

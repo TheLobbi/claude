@@ -1,4 +1,5 @@
 ---
+intent: "Manage project and task state in .claude/projects/{id}/ with atomic writes and session continuity"
 description: "Managing project and task state in .claude/projects/{id}/ with atomic writes and session continuity"
 ---
 

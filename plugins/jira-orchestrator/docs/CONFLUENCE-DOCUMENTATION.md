@@ -427,7 +427,7 @@ claude /jira:setup
 
 **Setup Atlassian MCP:**
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 **Available Tools:**

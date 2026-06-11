@@ -1,8 +1,8 @@
 # Project Instructions
 
 ## Overview
-Claude Code Plugin Marketplace — curated collection of 27 Claude Code plugins
-(21 in `plugins/`, 6 sub-plugins in `.claude/plugins/`) with marketplace-wide
+Claude Code Plugin Marketplace — curated collection of 41 Claude Code plugins
+(35 in `plugins/`, 6 sub-plugins in `.claude/plugins/`) with marketplace-wide
 validation and developer tooling. Pure marketplace repository; no application
 frontend.
 
@@ -28,7 +28,7 @@ EXPLORE → PLAN → CODE → TEST → FIX → DOCUMENT
 
 ## Key Paths
 - Marketplace manifest: `.claude-plugin/marketplace.json`
-- Installed plugins: `plugins/` (21 plugins)
+- Installed plugins: `plugins/` (35 plugins)
 - Sub-marketplace plugins: `.claude/plugins/` (6 plugins)
 - Rules: `.claude/rules/` (modular, path-scoped instructions)
 - Platform skills: `.claude/skills/`
@@ -93,6 +93,7 @@ unless the plugin includes a postinstall build hook.
 ## Models
 | Model | Use |
 |-------|-----|
+| fable | Hardest long-horizon autonomous runs, problems Opus failed on (Claude 5 tier above Opus) |
 | opus | Architecture, complex decisions, security review |
 | sonnet | Development, implementation, test writing |
 | haiku | Research, fast lookups, docs |

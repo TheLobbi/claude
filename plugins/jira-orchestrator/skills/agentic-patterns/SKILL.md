@@ -1,13 +1,13 @@
 ---
 name: agentic-patterns
-description: This skill should be used when the user asks about "agentic design patterns", "multi-agent orchestration patterns", "routing/planning/reflection patterns", "the blackboard pattern", "coordinator-of-coordinators", or "saga/circuit-breaker for agents", or needs to apply agentic design patterns to Jira workflow orchestration and the 81-agent hierarchy.
+description: This skill should be used when the user asks about "agentic design patterns", "multi-agent orchestration patterns", "routing/planning/reflection patterns", "the blackboard pattern", "coordinator-of-coordinators", or "saga/circuit-breaker for agents", or needs to apply agentic design patterns to Jira workflow orchestration and the 82-agent hierarchy.
 version: 1.0.0
 categories: ["agentic-patterns", "orchestration", "multi-agent", "architecture"]
 ---
 
 # Agentic Design Patterns — Jira Orchestrator
 
-> Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to enterprise Jira workflow orchestration, 81-agent hierarchy management, sprint planning, and issue lifecycle automation.
+> Patterns from "Agentic Design Patterns" (Gulli & Sauco, 2025) applied to enterprise Jira workflow orchestration, 82-agent hierarchy management, sprint planning, and issue lifecycle automation.
 
 ## Applied Patterns
 
@@ -22,7 +22,7 @@ categories: ["agentic-patterns", "orchestration", "multi-agent", "architecture"]
 **Enhancement**: Adopt ReAct-style planning with explicit Thought → Action → Observation cycles logged to Temporal workflow state. Each planning decision references the Jira issue it modifies, creating a full audit trail.
 
 ### 3. Multi-Agent
-**Relevance**: The 81-agent hierarchy — organized into 16 specialized teams — is the core architectural pattern. No single agent has sufficient context or authority to handle complex enterprise workflows alone.
+**Relevance**: The 82-agent hierarchy — organized into 16 specialized teams — is the core architectural pattern. No single agent has sufficient context or authority to handle complex enterprise workflows alone.
 **Current Implementation**: Teams include Code Team (6 agents), QA Team (6 agents), Security Team (4 agents), DevOps Team (5 agents), Analytics Team (4 agents), and 11 additional specialized teams. Each team has a coordinator agent.
 **Enhancement**: Implement a Coordinator-of-Coordinators (CoC) pattern where team coordinators report status to a central orchestrator via the blackboard. The CoC resolves cross-team conflicts (e.g., QA blocking DevOps deploy) and escalates to HITL when consensus is not reached.
 
@@ -119,6 +119,22 @@ Incoming Jira Request
 | Evaluation | `/jira:metrics`, `/jira:quality` | Sprint/agent scoring |
 | Prioritization | `/backlog-groom`, `/jira:intelligence` | Backlog ordering |
 | Goal Setting | `/jira:sprint`, `/jira:release` | Sprint/release goals |
+
+
+## Coordination Surface (current Claude Code Agent tool)
+
+Implementing these patterns today maps onto the runtime's native primitives:
+
+| Need | How |
+|---|---|
+| Spawn a specialist | `Agent` tool (the tool formerly named `Task`) with `subagent_type`, `model` (`fable`/`opus`/`sonnet`/`haiku` aliases), and a focused prompt |
+| Run teams concurrently | Issue independent spawns in one message; `run_in_background: true` for non-blocking workers |
+| Continue a teammate with its context intact | Give it a `name` at spawn, then `SendMessage` to that name — a fresh `Agent` call starts a new context |
+| Prevent file contention between parallel coders | `isolation: "worktree"` (auto-cleaned if unchanged) |
+| Force plan-first behavior | `mode: "plan"` on the spawn |
+| Long-horizon coordinator (multi-hour epics, overnight runs) | Put the coordinator on `model: fable` — Fable 5 sustains long-lived async sub-agent fleets without drift; keep workers on Sonnet |
+
+Only a teammate's **final message** returns to the coordinator — require workers to end with a structured summary (blackboard writes happen via files, not transcripts).
 
 ## References
 - Gulli, A. & Sauco, M. (2025). *Agentic Design Patterns*. O'Reilly Media.

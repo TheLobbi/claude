@@ -20,8 +20,8 @@
     },
     {
       "name": "claude-code-expert",
-      "description": "Modern Claude Code second brain: 5-layer stack deploy + three-tier memory (engram + Obsidian vault + plugin rules) + 22-tool MCP reference server. 14 behavior-triggering skills, 11 single-intent commands, 18 role-scoped agents bridging engram and Obsidian.",
-      "version": "8.0.0",
+      "description": "Modern Claude Code second brain: 5-layer stack deploy + three-tier memory (engram + Obsidian vault + plugin rules) + 22-tool MCP reference server. 21 behavior-triggering skills, 12 single-intent commands, 18 role-scoped agents bridging engram and Obsidian. Tracks current Claude Code capabilities (Fable 5 + Opus 4.8, agent teams, Tool Search, web/remote).",
+      "version": "8.2.0",
       "author": {
         "name": "Markus Ahling"
       },
@@ -30,7 +30,7 @@
     {
       "name": "claude-code-templating",
       "description": "Universal templating and Harness expert plugin for Claude Code - enables fully autonomous project generation, pipeline creation, and deployment automation through a unified template interface. Supports Handlebars, Cookiecutter, Copier, Maven archetypes, and Harness pipelines. 5 commands, 6 agents, 3 skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "Markus Ahling",
         "url": "https://thelobbi.io"
@@ -40,7 +40,7 @@
     {
       "name": "cowork-marketplace",
       "description": "Browse, install, and manage cowork marketplace items backed by real plugin agents, skills, and commands",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "author": {
         "name": "Markus Ahling",
         "email": "markus@lobbi.co"
@@ -59,7 +59,7 @@
     {
       "name": "dotnet-blazor",
       "description": "Comprehensive .NET 10, Blazor, ASP.NET Core, C#, and Syncfusion expert plugin for building modern web apps, microservices, and cloud-native solutions",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "Markus Ahling"
       },
@@ -78,7 +78,7 @@
     {
       "name": "exec-automator",
       "description": "Genesis (Forerunner) - AI-Powered Executive Director Automation Platform. Analyze organizational responsibilities, score automation potential with 6-factor algorithm, generate LangGraph workflows, and deploy 11 specialized agents for trade associations and nonprofits.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "Brookside BI",
         "email": "dev@brooksidebi.com"
@@ -125,8 +125,8 @@
     },
     {
       "name": "jira-orchestrator",
-      "description": "Enterprise Jira orchestration with 81 agents, 16 teams, 46 commands, 11 skills. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, and structured reasoning frameworks.",
-      "version": "8.0.0",
+      "description": "Enterprise Jira orchestration with 82 agents, 16 teams, 48 commands, 14 skills, 5 schema-validated workflows, and a read-only advisor. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, declarative workflow definitions, lifecycle telemetry hooks, and structured reasoning frameworks.",
+      "version": "8.2.0",
       "author": {
         "name": "Markus Ahling",
         "email": "markus@lobbi.io"
@@ -135,7 +135,7 @@
     },
     {
       "name": "linear-orchestrator",
-      "description": "Advanced Linear integration with two-way sync to Harness Code and Microsoft Planner. 24 commands, 10 skills, 12 agents covering Linear GraphQL, OAuth 2.0 + actor authorization, webhooks, attachments, agents (AIG), MCP, cycles, projects, initiatives, customer requests, SLA, triage, templates, diffs, plus deep Harness Git Experience, custom approvals, triggers, connectors-as-YAML, and Microsoft Graph delta sync.",
+      "description": "Advanced Linear integration with two-way sync to Harness Code and Microsoft Planner. Covers Linear GraphQL API, OAuth 2.0, webhooks, attachments, agents (AIG), MCP, cycles, projects, initiatives, customer requests, SLA, triage, templates, sub-issues, and diffs. 22 commands, 10 skills, 12 agents.",
       "version": "1.0.0",
       "author": {
         "name": "Markus Ahling",
@@ -264,8 +264,8 @@
     },
     {
       "name": "mui-expert",
-      "description": "Comprehensive Material UI (MUI) expert plugin \u2014 26 skills, 14 commands, 7 agents covering theming, CSS variables, Pigment CSS, components, sx/styled, slots API, MUI X (DataGrid, DatePickers, Charts, TreeView), accessibility, performance, SSR/Next.js, animations, virtualization, forms, white-label/multi-tenant, headless (MUI Base), Joy UI, i18n/RTL, testing, migration, entity-driven CRUD, ecosystem integrations, and 200+ creative widget patterns.",
-      "version": "2.1.0",
+      "description": "Comprehensive Material UI (MUI) expert plugin — 26 skills, 14 commands, 7 agents covering theming, CSS variables, Pigment CSS, components, sx/styled, slots API, MUI X (DataGrid, DatePickers, Charts, TreeView), accessibility, performance, SSR/Next.js, animations, virtualization, forms, white-label/multi-tenant, headless (MUI Base), Joy UI, i18n/RTL, testing, migration, entity-driven CRUD, ecosystem integrations, and 200+ creative widget patterns.",
+      "version": "2.1.1",
       "author": {
         "name": "Claude Code",
         "url": "https://github.com/markus41/claude"
@@ -275,7 +275,7 @@
     {
       "name": "project-management-plugin",
       "description": "Universal project manager with keep-Claude-on-task guardrails: focus anchor, scope lock, done-when contract, over-engineering detector, drift auditor, turn budget, user-prompt archive, and compaction-safe handoff. Plus interview-first init, micro-task decomposition, deep research, transactional state MCP, and 9 PM platform integrations.",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "author": {
         "name": "Markus Ahling",
         "email": "Markus@thelobbi.io"
@@ -285,7 +285,7 @@
     {
       "name": "react-animation-studio",
       "description": "Create beautiful, performant web animations for React and TypeScript applications. Includes background effects, text animations, 3D transforms, creative visual effects, Framer Motion, GSAP, and more.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "Brookside BI",
         "email": "plugins@brooksidebi.com",
@@ -333,8 +333,8 @@
     },
     {
       "name": "writing-plans-enhanced",
-      "description": "Enhanced fork of superpowers:writing-plans with pre-writing phase, task metadata, non-TDD templates, and automated plan linter with self-tests.",
-      "version": "1.0.0",
+      "description": "Enhanced writing-plans skill: 5-phase structure, task metadata (Type/Depends-on/Parallel-safe/Risk), non-TDD task templates, automated plan linter with self-tests. Standalone hub-hosted fork of superpowers:writing-plans.",
+      "version": "1.0.1",
       "author": {
         "name": "Markus Ahling",
         "email": "markus@thelobbi.io"
@@ -343,7 +343,7 @@
     },
     {
       "name": "work-automation",
-      "description": "Universal internal work-automation kit. ULTRA-mode constitution, Work Unit Protocol, Claude Code automation patterns, Harness pipeline ops.",
+      "description": "Universal internal work-automation kit. ULTRA-mode constitution, Work Unit Protocol, Claude Code automation patterns (hooks, skills, plugins, agents, schedules, MCP, SDK, headless, fullscreen), and Harness pipeline ops. Project-agnostic. Glues existing plugins (harness-platform, claude-code-expert, tenant-management-kit) with reusable workflows.",
       "version": "1.0.0",
       "author": {
         "name": "Markus Ahling",

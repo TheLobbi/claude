@@ -3,10 +3,10 @@
   "summary": "3 Sonnet writers + 1 Opus editor. Bulk migration of docs (framework version bumps, brand renames, terminology changes).",
   "when_to_use": "Large doc-only migrations with clear find-replace pattern but requiring context-aware rewriting (not a pure sed pass).",
   "composition": [
-    { "role": "writer-a", "model": "claude-sonnet-4-6", "owns": "alphabetically first third of docs/" },
-    { "role": "writer-b", "model": "claude-sonnet-4-6", "owns": "middle third" },
-    { "role": "writer-c", "model": "claude-sonnet-4-6", "owns": "last third" },
-    { "role": "editor", "model": "claude-opus-4-8", "writes": "final touch-ups only" }
+    { "role": "writer-a", "model": "sonnet", "owns": "alphabetically first third of docs/" },
+    { "role": "writer-b", "model": "sonnet", "owns": "middle third" },
+    { "role": "writer-c", "model": "sonnet", "owns": "last third" },
+    { "role": "editor", "model": "opus", "writes": "final touch-ups only" }
   ],
   "file_ownership": "Sharded by alphabet to avoid collisions. No shared files. Each writer works in an isolated worktree.",
   "coordination": [

@@ -1,4 +1,5 @@
 ---
+intent: "Render ASCII progress dashboards with phase/epic/task breakdown and velocity metrics"
 description: "Rendering ASCII progress dashboards with phase/epic/task breakdown and velocity metrics"
 ---
 

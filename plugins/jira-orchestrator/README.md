@@ -121,7 +121,7 @@ agent usage, reject rates, and recurring failures.
 ## MCP Integration
 
 ```bash
-claude mcp add --transport sse atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2
 ```
 
 Tools: `mcp__atlassian__getJiraIssue`, `mcp__atlassian__createJiraIssue`,
