@@ -35,6 +35,7 @@ paths:
 - Use OIDC for cloud authentication (Azure, AWS) — never store long-lived cloud credentials as secrets
 - Set minimum required permissions with `permissions:` block
 - Use `concurrency` groups to prevent duplicate workflow runs
+- GitHub Pages: the workflow `GITHUB_TOKEN` with `pages: write` can *deploy* to Pages but cannot *create* the Pages site. `actions/configure-pages` with `enablement: true` fails with `Resource not accessible by integration` when Pages was never enabled. First-time enablement (Settings → Pages → Source: GitHub Actions) is a repo-admin/UI action the Actions token cannot perform. To avoid a red workflow before that one-time toggle, preflight `GET /repos/{owner}/{repo}/pages` (404 ⇒ not enabled) and gate `configure-pages`/`upload-pages-artifact`/the deploy job behind it — skip with an `::notice::` instead of failing.
 
 ## MCP Servers
 

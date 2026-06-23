@@ -115,8 +115,14 @@ npx serve site         # or: python3 -m http.server -d site 8080
 
 The `Deploy GitHub Pages` workflow (`.github/workflows/pages.yml`) rebuilds the data and
 publishes `site/` whenever the manifest, a plugin manifest, or the site changes on `main`.
-It self-provisions the Pages site via `actions/configure-pages` (`enablement: true`), so no
-manual Settings toggle is required — assuming GitHub Pages is permitted for the repository.
+
+**First-time setup (one-time):** enable Pages at
+**Settings → Pages → Build and deployment → Source: _GitHub Actions_**. The workflow's
+`GITHUB_TOKEN` can _deploy_ to Pages (`pages: write`) but cannot _create_ the Pages site —
+that needs repo-admin, so the initial enablement must be done in the UI. Until then the
+workflow detects the missing Pages site and **skips the deploy with a notice instead of
+failing**, so `main` stays green. Once Pages is enabled, every push to `main` deploys
+automatically (or re-run the workflow to publish immediately).
 
 ## Contributing
 
