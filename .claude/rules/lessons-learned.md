@@ -906,4 +906,15 @@ grep -c 'themeToggle\|id="sort"\|id="stackGrid"\|skiplink\|canonical' site/index
 200  /robots.txt 79 bytes
 === index references theme/sort/stacks? ===
 grep: site/index.html: No such file or directory
-- **Status:** NEEDS_FIX - Claude should document the fix here after resolving
+- **Status:** RESOLVED
+- **Fix:** A previous Bash command ran `cd /home/user/claude/site` to start a local node server; the Bash tool's working directory persists across calls, so the later relative path `site/index.html` resolved to `site/site/index.html`. Re-ran with an absolute path / from the repo root.
+- **Prevention:** The Bash tool shares one persistent cwd across calls. Avoid `cd` into a subdir for one-off commands — prefer absolute paths (or `node -e` with absolute paths, or `git -C <repo>`). If a server must run from a dir, start it with `(cd dir && …)` in a subshell so the parent cwd is unchanged, or `cd` back afterward.
+
+### Error: Bash failure (2026-06-23T17:38:03Z)
+- **Tool:** Bash
+- **Input:** `grep -n 'card__details\|card.is-open\|card__detailsinner\|^\.kv\|card__desc' site/assets/styles.css`
+- **Error:** Exit code 2
+grep: site/assets/styles.css: No such file or directory
+- **Status:** RESOLVED
+- **Fix:** Same persistent-cwd cause as the entry above (shell still in `site/`). Switched to the Grep tool with an absolute path, which is also the preferred tool for content search.
+- **Prevention:** Prefer the Grep/Glob tools over shell `grep`/`find`; when shelling out, use absolute paths because the Bash cwd persists between calls.

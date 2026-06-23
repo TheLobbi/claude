@@ -33,6 +33,7 @@ async function init() {
   wireCopyButtons();
   wireBackToTop();
   wireShortcuts();
+  renderSkeletons();
 
   try {
     const res = await fetch('./data/plugins.json', { cache: 'no-cache' });
@@ -53,6 +54,103 @@ async function init() {
   wireSearch();
   observeStats();
   injectJsonLd(state.data);
+  wireModal();
+  wirePalette();
+  wireScrollspy();
+  syncHash();
+}
+
+/* ── loading skeletons ─────────────────────────────────────── */
+function renderSkeletons(n = 6) {
+  const grid = $('#pluginGrid');
+  if (grid) grid.innerHTML = Array.from({ length: n }, () => '<div class="skeleton" aria-hidden="true"></div>').join('');
+}
+
+/* ── scrollspy (active nav link) ───────────────────────────── */
+function wireScrollspy() {
+  const links = $$('.nav__links a[href^="#"]');
+  const map = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+  const sections = [...map.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        links.forEach((a) => a.classList.remove('is-current'));
+        map.get(e.target.id)?.classList.add('is-current');
+      });
+    },
+    { rootMargin: '-45% 0px -50% 0px' },
+  );
+  sections.forEach((s) => io.observe(s));
+}
+
+/* ── command palette (⌘K) ──────────────────────────────────── */
+function wirePalette() {
+  const pal = $('#palette');
+  const input = $('#paletteInput');
+  const results = $('#paletteResults');
+  let items = [];
+  let active = 0;
+
+  const sections = [
+    { type: 'section', icon: '◳', name: 'Catalog', sub: 'Browse plugins', href: '#catalog' },
+    { type: 'section', icon: '✦', name: 'Curated stacks', sub: 'Bundles', href: '#stacks' },
+    { type: 'section', icon: '①', name: 'How it works', sub: 'Get started', href: '#how' },
+    { type: 'section', icon: '◎', name: 'Architecture', sub: 'Anatomy', href: '#architecture' },
+    { type: 'section', icon: '⬇', name: 'Install', sub: 'Setup', href: '#install' },
+  ];
+
+  function build(q) {
+    const query = q.trim().toLowerCase();
+    const plugins = state.data.plugins
+      .filter((p) => !query || p.name.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || (p.keywords || []).some((k) => k.includes(query)))
+      .slice(0, 8)
+      .map((p) => ({ type: 'plugin', icon: '◆', name: p.name, sub: p.category, plugin: p.name }));
+    const secs = sections.filter((s) => !query || s.name.toLowerCase().includes(query));
+    items = query ? [...plugins, ...secs] : [...secs, ...plugins];
+    active = 0;
+    paint();
+  }
+
+  function paint() {
+    if (!items.length) { results.innerHTML = '<li class="palette__empty">No matches</li>'; return; }
+    results.innerHTML = items
+      .map((it, i) => `<li class="palette__item${i === active ? ' is-active' : ''}" role="option" data-i="${i}"><span class="pi-icon">${esc(it.icon)}</span><span class="pi-name">${esc(it.name)}</span><span class="pi-sub">${esc(it.sub)}</span></li>`)
+      .join('');
+  }
+
+  function choose(it) {
+    if (!it) return;
+    close();
+    if (it.type === 'plugin') openPlugin(it.plugin);
+    else document.querySelector(it.href)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function open() {
+    pal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    input.value = '';
+    build('');
+    setTimeout(() => input.focus(), 30);
+  }
+  function close() {
+    pal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  $('#paletteOpen')?.addEventListener('click', open);
+  pal.addEventListener('click', (e) => { if (e.target.closest('[data-palette-close]')) close(); });
+  results.addEventListener('click', (e) => { const li = e.target.closest('.palette__item'); if (li) choose(items[+li.dataset.i]); });
+  input.addEventListener('input', () => build(input.value));
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % items.length; paint(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); active = (active - 1 + items.length) % items.length; paint(); }
+    else if (e.key === 'Enter') { e.preventDefault(); choose(items[active]); }
+    else if (e.key === 'Escape') { close(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); pal.hidden ? open() : close(); }
+  });
 }
 
 /* ── theme ─────────────────────────────────────────────────── */
@@ -238,14 +336,8 @@ function cardHtml(p, i) {
     p.mcp ? '<span class="metric metric--mcp">◆ MCP</span>' : '',
   ].join('');
 
-  const tags = (p.keywords || []).slice(0, 8).map((k) => `<span class="tag">${esc(k)}</span>`).join('');
-  const repoUrl = `${state.data.meta.repo}/tree/main/${p.source.replace(/^\.\//, '')}`;
-  const author = p.authorUrl
-    ? `<a href="${esc(p.authorUrl)}" target="_blank" rel="noopener">${esc(p.author)}</a>`
-    : esc(p.author);
-
   return `
-  <article class="card" style="--accent:${accent};animation-delay:${Math.min(i * 35, 500)}ms">
+  <article class="card" data-plugin="${esc(p.name)}" tabindex="0" role="button" aria-label="${esc(p.name)} — view details" style="--accent:${accent};animation-delay:${Math.min(i * 30, 450)}ms">
     <div class="card__body">
       <div class="card__top">
         <span class="card__cat">${esc(p.category)}</span>
@@ -254,39 +346,22 @@ function cardHtml(p, i) {
       <h3 class="card__name">${esc(p.name)}</h3>
       <p class="card__desc">${esc(p.description)}</p>
       <div class="card__metrics">${metrics}</div>
-
-      <div class="card__details">
-        <div class="card__detailsinner">
-          <div class="kv"><span>Author</span><span>${author}</span></div>
-          <div class="kv"><span>License</span><span>${esc(p.license)}</span></div>
-          ${tags ? `<div class="tags">${tags}</div>` : ''}
-          <div class="card__install">
-            <code>/plugin install ${esc(p.name)}</code>
-            <button class="card__copy" data-card-copy="/plugin install ${esc(p.name)}" aria-label="Copy install command" title="Copy">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-            </button>
-          </div>
-          <a class="card__toggle" href="${esc(repoUrl)}" target="_blank" rel="noopener" style="text-decoration:none">View source on GitHub →</a>
-        </div>
-      </div>
     </div>
     <div class="card__foot">
-      <span class="card__author">by ${author}</span>
-      <button class="card__toggle" data-expand aria-expanded="false">
-        Details
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <span class="card__author">by ${esc(p.author)}</span>
+      <button class="card__toggle" data-card-copy="/plugin install ${esc(p.name)}" aria-label="Copy install command">
+        Copy install
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
       </button>
     </div>
   </article>`;
 }
 
 function wireCards(grid) {
-  $$('[data-expand]', grid).forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.card');
-      const open = card.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', String(open));
-    });
+  $$('.card', grid).forEach((card) => {
+    const open = () => openPlugin(card.dataset.plugin);
+    card.addEventListener('click', (e) => { if (!e.target.closest('[data-card-copy]')) open(); });
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
   });
   $$('[data-card-copy]', grid).forEach((btn) => {
     btn.addEventListener('click', async (e) => {
@@ -298,6 +373,81 @@ function wireCards(grid) {
       } catch { /* clipboard unavailable */ }
     });
   });
+}
+
+/* ── plugin detail modal ───────────────────────────────────── */
+function openPlugin(name) {
+  const p = state.data.plugins.find((x) => x.name === name);
+  if (!p) return;
+  const accent = CATEGORY_ACCENT[p.category] || 'var(--ember)';
+  const c = p.counts;
+  const repoUrl = `${state.data.meta.repo}/tree/main/${p.source.replace(/^\.\//, '')}`;
+  const author = p.authorUrl
+    ? `<a href="${esc(p.authorUrl)}" target="_blank" rel="noopener">${esc(p.author)}</a>`
+    : esc(p.author);
+  const statCell = (n, label) => (n > 0 ? `<div class="modal__stat"><strong>${n}</strong><span>${label}</span></div>` : '');
+  const stats = [
+    statCell(c.commands, 'commands'),
+    statCell(c.agents, 'agents'),
+    statCell(c.skills, 'skills'),
+    statCell(c.hooks, 'hooks'),
+    p.mcp ? '<div class="modal__stat"><strong>◆</strong><span>MCP</span></div>' : '',
+  ].join('');
+  const tags = (p.keywords || []).map((k) => `<span class="tag">${esc(k)}</span>`).join('');
+
+  $('#modalContent').innerHTML = `
+    <div class="modal__bar" style="background:${accent}"></div>
+    <span class="modal__cat" style="color:${accent}">${esc(p.category)}</span>
+    <h2 class="modal__title" id="modalTitle">${esc(p.name)}</h2>
+    <div class="modal__meta">
+      <span>v${esc(p.version)}</span><span>by ${author}</span><span>${esc(p.license)} license</span>
+    </div>
+    <p class="modal__desc">${esc(p.description)}</p>
+    ${stats ? `<div class="modal__grid">${stats}</div>` : ''}
+    ${tags ? `<p class="modal__h">Keywords</p><div class="tags">${tags}</div>` : ''}
+    <p class="modal__h">Install</p>
+    <div class="card__install">
+      <code>/plugin install ${esc(p.name)}</code>
+      <button class="card__copy" data-card-copy="/plugin install ${esc(p.name)}" aria-label="Copy install command">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+      </button>
+    </div>
+    <div class="modal__actions">
+      <a class="btn btn--primary" href="${esc(repoUrl)}" target="_blank" rel="noopener">View source on GitHub</a>
+      <button class="btn btn--ghost" data-close>Close</button>
+    </div>`;
+
+  const modal = $('#pluginModal');
+  modal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('.modal__dialog', modal).focus();
+  if (location.hash !== `#plugin/${name}`) history.pushState(null, '', `#plugin/${name}`);
+  $$('[data-card-copy]', modal).forEach((btn) =>
+    btn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(btn.dataset.cardCopy); btn.classList.add('is-copied'); setTimeout(() => btn.classList.remove('is-copied'), 1500); } catch {}
+    }),
+  );
+}
+
+function closeModal(clearHash = true) {
+  const modal = $('#pluginModal');
+  if (modal.hidden) return;
+  modal.hidden = true;
+  document.body.style.overflow = '';
+  if (clearHash && location.hash.startsWith('#plugin/')) history.pushState(null, '', location.pathname + location.search);
+}
+
+function wireModal() {
+  const modal = $('#pluginModal');
+  modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  window.addEventListener('hashchange', syncHash);
+}
+
+function syncHash() {
+  const m = location.hash.match(/^#plugin\/(.+)$/);
+  if (m) openPlugin(decodeURIComponent(m[1]));
+  else closeModal(false);
 }
 
 /* ── curated stacks ────────────────────────────────────────── */
