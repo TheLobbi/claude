@@ -21,6 +21,19 @@ const state = { data: null, query: '', category: 'All', sort: 'name', stack: nul
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+let lastFocused = null;
+const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])';
+function trapTab(container, e) {
+  if (e.key !== 'Tab') return;
+  const f = $$(FOCUSABLE, container).filter((el) => el.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0];
+  const last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+function restoreFocus() { try { lastFocused?.focus(); } catch { /* gone */ } lastFocused = null; }
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 /* ── boot ──────────────────────────────────────────────────── */
@@ -127,6 +140,7 @@ function wirePalette() {
   }
 
   function open() {
+    if (pal.hidden) lastFocused = document.activeElement;
     pal.hidden = false;
     document.body.style.overflow = 'hidden';
     input.value = '';
@@ -134,20 +148,25 @@ function wirePalette() {
     setTimeout(() => input.focus(), 30);
   }
   function close() {
+    if (pal.hidden) return;
     pal.hidden = true;
     document.body.style.overflow = '';
+    restoreFocus();
   }
 
   $('#paletteOpen')?.addEventListener('click', open);
   pal.addEventListener('click', (e) => { if (e.target.closest('[data-palette-close]')) close(); });
+  $('.palette__panel', pal).addEventListener('keydown', (e) => trapTab($('.palette__panel', pal), e));
+  results.addEventListener('mousemove', (e) => { const li = e.target.closest('.palette__item'); if (li) { active = +li.dataset.i; paint(); } });
   results.addEventListener('click', (e) => { const li = e.target.closest('.palette__item'); if (li) choose(items[+li.dataset.i]); });
   input.addEventListener('input', () => build(input.value));
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % items.length; paint(); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); active = (active - 1 + items.length) % items.length; paint(); }
+    if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % items.length; paint(); scrollActive(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); active = (active - 1 + items.length) % items.length; paint(); scrollActive(); }
     else if (e.key === 'Enter') { e.preventDefault(); choose(items[active]); }
     else if (e.key === 'Escape') { close(); }
   });
+  function scrollActive() { results.querySelector('.is-active')?.scrollIntoView({ block: 'nearest' }); }
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); pal.hidden ? open() : close(); }
   });
@@ -418,6 +437,7 @@ function openPlugin(name) {
     </div>`;
 
   const modal = $('#pluginModal');
+  if (modal.hidden && !lastFocused) lastFocused = document.activeElement;
   modal.hidden = false;
   document.body.style.overflow = 'hidden';
   $('.modal__dialog', modal).focus();
@@ -435,11 +455,14 @@ function closeModal(clearHash = true) {
   modal.hidden = true;
   document.body.style.overflow = '';
   if (clearHash && location.hash.startsWith('#plugin/')) history.pushState(null, '', location.pathname + location.search);
+  restoreFocus();
 }
 
 function wireModal() {
   const modal = $('#pluginModal');
+  const dialog = $('.modal__dialog', modal);
   modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
+  dialog.addEventListener('keydown', (e) => trapTab(dialog, e));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
   window.addEventListener('hashchange', syncHash);
 }

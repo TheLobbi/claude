@@ -37,8 +37,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Generate catalog data
-        run: node scripts/build-site.mjs
+      - name: Generate &amp; validate catalog data
+        run: |
+          node scripts/build-site.mjs
+          node scripts/check-site.mjs
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
