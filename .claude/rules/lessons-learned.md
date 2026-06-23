@@ -872,3 +872,11 @@ fatal: option '--stat' must come before non-option arguments
 - **Input:** `/home/user/claude/plugins/jira-orchestrator/workflows`
 - **Error:** EISDIR: illegal operation on a directory, read '/home/user/claude/plugins/jira-orchestrator/workflows'
 - **Status:** NEEDS_FIX - Claude should document the fix here after resolving
+
+### Error: mcp__github__actions_list failure (2026-06-23T16:04:05Z)
+- **Tool:** mcp__github__actions_list
+- **Input:** `N/A`
+- **Error:** missing required parameter: method
+- **Status:** RESOLVED
+- **Fix:** The GitHub MCP `actions_list` tool requires a `method` parameter (e.g. `list_workflow_runs`, `list_workflows`). Re-called with `method: "list_workflow_runs"` plus `owner`/`repo`/`branch`.
+- **Prevention:** GitHub MCP "read" tools are multiplexed behind a `method` discriminator (same as `pull_request_read`, `issue_read`, `actions_get`). Always pass `method`. Note: `list_workflow_runs` can return very large payloads — it may exceed the token limit and get saved to a file; parse that file with `node -e` rather than reading it inline.
