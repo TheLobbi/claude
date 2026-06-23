@@ -880,3 +880,30 @@ fatal: option '--stat' must come before non-option arguments
 - **Status:** RESOLVED
 - **Fix:** The GitHub MCP `actions_list` tool requires a `method` parameter (e.g. `list_workflow_runs`, `list_workflows`). Re-called with `method: "list_workflow_runs"` plus `owner`/`repo`/`branch`.
 - **Prevention:** GitHub MCP "read" tools are multiplexed behind a `method` discriminator (same as `pull_request_read`, `issue_read`, `actions_get`). Always pass `method`. Note: `list_workflow_runs` can return very large payloads — it may exceed the token limit and get saved to a file; parse that file with `node -e` rather than reading it inline.
+
+### Error: Bash failure (2026-06-23T17:29:55Z)
+- **Tool:** Bash
+- **Input:** `cd /home/user/claude/site && node -e '
+const http=require("http"),fs=require("fs"),p=require("path");
+const types={".html":"text/html",".css":"text/css",".js":"text/javascript",".json":"application/json",".svg":"image/svg+xml",".xml":"application/xml",".txt":"text/plain"};
+const s=http.createServer((req,res)=>{let f="."+req.url.split("?")[0];if(f==="./")f="./index.html";try{const b=fs.readFileSync(f);res.writeHead(200,{"Content-Type":types[p.extname(f)]||"text/plain"});res.end(b)}catch(e){res.writeHead(404);res.end("404")}});
+s.listen(8100,async()=>{
+  const get=u=>new Promise(r=>http.get("http://localhost:8100"+u,res=>{let d="";res.on("data",c=>d+=c);res.on("end",()=>r({c:res.statusCode,len:d.length}))}));
+  for(const u of ["/","/assets/styles.css","/assets/app.js","/assets/og.svg","/data/plugins.json","/sitemap.xml","/robots.txt"]){
+    const r=await get(u);console.log(String(r.c).padEnd(4),u,r.len,"bytes");
+  }
+  s.close();
+});'
+echo "=== index references theme/sort/stacks? ==="
+grep -c 'themeToggle\|id="sort"\|id="stackGrid"\|skiplink\|canonical' site/index.html`
+- **Error:** Exit code 2
+200  / 17311 bytes
+200  /assets/styles.css 26013 bytes
+200  /assets/app.js 16914 bytes
+200  /assets/og.svg 3682 bytes
+200  /data/plugins.json 36002 bytes
+200  /sitemap.xml 276 bytes
+200  /robots.txt 79 bytes
+=== index references theme/sort/stacks? ===
+grep: site/index.html: No such file or directory
+- **Status:** NEEDS_FIX - Claude should document the fix here after resolving
