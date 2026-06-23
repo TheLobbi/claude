@@ -1,0 +1,18 @@
+{
+  "name": "Claude Orchestration — Plugin Marketplace",
+  "short_name": "claude·orchestration",
+  "description": "An enterprise marketplace of Claude Code plugins: multi-agent orchestration, infrastructure, design systems, and domain automation.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#0a0a12",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231a1a2e'/%3E%3Cpath d='M30 64 L50 28 L70 64 M38 52 H62' stroke='%23ff6b3d' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

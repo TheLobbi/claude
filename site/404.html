@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirecting — Claude Orchestration</title>
+  <!-- GitHub Pages serves this for unknown paths. Preserve any deep-link
+       (path + query + hash) and bounce to the single-page app at the repo root. -->
+  <script>
+    (function () {
+      var base = '/claude/';
+      var rest = location.pathname.replace(base, '');
+      var target = base + (rest ? '?p=' + encodeURIComponent(rest) : '') + location.search.replace('?', rest ? '&' : '?') + location.hash;
+      location.replace(target);
+    })();
+  </script>
+  <meta http-equiv="refresh" content="0; url=/claude/" />
+</head>
+<body>
+  <p>Redirecting to <a href="/claude/">the marketplace</a>…</p>
+</body>
+</html>

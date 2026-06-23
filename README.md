@@ -2,9 +2,11 @@
 
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Node](https://img.shields.io/badge/Node-20+-339933?logo=node.js)
-![Plugins](https://img.shields.io/badge/Plugins-27-blue)
+![Plugins](https://img.shields.io/badge/Plugins-35-blue)
 
 A curated marketplace of Claude Code plugins covering cloud infrastructure, enterprise SaaS, documentation intelligence, project management, frontend design systems, and more. Each plugin ships its own commands, skills, agents, and (where relevant) MCP servers.
+
+**🌐 Browse the marketplace → [markus41.github.io/claude](https://markus41.github.io/claude/)** — a searchable catalog with live counts, category filters, and per-plugin detail. The site is generated directly from `marketplace.json` and deployed via GitHub Pages.
 
 ## Installation
 
@@ -97,6 +99,23 @@ pnpm profile:plugin-context    # Measure per-plugin context overhead
 ```
 
 See [`plugins/claude-code-expert`](./plugins/claude-code-expert) for in-depth plugin authoring guidance.
+
+## Marketplace Site
+
+The public catalog at [markus41.github.io/claude](https://markus41.github.io/claude/) is a
+self-contained static site under [`site/`](./site). Its plugin data is generated from
+`.claude-plugin/marketplace.json` and the per-plugin manifests — counts never drift from the
+source of truth.
+
+```bash
+pnpm build:site        # regenerate site/data/plugins.json from the manifest
+# preview locally
+npx serve site         # or: python3 -m http.server -d site 8080
+```
+
+The `Deploy GitHub Pages` workflow (`.github/workflows/pages.yml`) rebuilds the data and
+publishes `site/` whenever the manifest, a plugin manifest, or the site changes on `main`.
+To go live the first time, set **Settings → Pages → Source → GitHub Actions** once.
 
 ## Contributing
 

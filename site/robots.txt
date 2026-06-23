@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://markus41.github.io/claude/sitemap.xml

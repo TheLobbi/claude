@@ -6,9 +6,9 @@ on:
       - '.claude-plugin/**'
       - 'plugins/**'
       - '.claude/plugins/**'
-      - 'scripts/validate-marketplace.mjs'
-      - 'scripts/validate-archetype.ts'
+      - 'scripts/**'
       - 'schemas/**'
+      - 'site/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig.json'
@@ -20,9 +20,9 @@ on:
       - '.claude-plugin/**'
       - 'plugins/**'
       - '.claude/plugins/**'
-      - 'scripts/validate-marketplace.mjs'
-      - 'scripts/validate-archetype.ts'
+      - 'scripts/**'
       - 'schemas/**'
+      - 'site/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig.json'
@@ -47,6 +47,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Validate marketplace manifest + every plugin
         run: pnpm check:marketplace
+      - name: Validate Pages site (data + DOM hooks)
+        run: pnpm check:site
       - name: Type-check scripts and types
         run: npx tsc --noEmit
       - name: Validate example archetypes

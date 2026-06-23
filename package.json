@@ -9,6 +9,8 @@
     "check:plugin-context": "node scripts/check-plugin-context.mjs",
     "check:plugin-schema": "node scripts/validate-plugin-schema.mjs",
     "check:hooks": "node scripts/lint-hooks.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "check:site": "node scripts/build-site.mjs && node scripts/check-site.mjs",
     "generate:plugin-indexes": "node scripts/generate-plugin-indexes.mjs",
     "check:plugin-indexes": "node scripts/generate-plugin-indexes.mjs --check",
     "profile:plugin-context": "node scripts/profile-plugin-context.mjs",

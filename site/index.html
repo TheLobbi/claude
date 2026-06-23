@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Claude Orchestration — Plugin Marketplace for Claude Code</title>
+  <meta name="description" content="An enterprise marketplace of 35 Claude Code plugins: multi-agent orchestration, infrastructure, frontend design systems, project management, and domain automation. 294 commands, 261 agents, 250 skills." />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Claude Orchestration — Plugin Marketplace for Claude Code" />
+  <meta property="og:description" content="35 enterprise Claude Code plugins. 294 commands · 261 agents · 250 skills · 8 MCP servers. Multi-agent orchestration, infrastructure, design systems, and domain automation." />
+  <meta property="og:url" content="https://markus41.github.io/claude/" />
+  <meta property="og:image" content="https://markus41.github.io/claude/assets/og.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://markus41.github.io/claude/assets/og.svg" />
+  <meta name="theme-color" content="#0a0a12" />
+  <link rel="canonical" href="https://markus41.github.io/claude/" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231a1a2e'/%3E%3Cpath d='M30 64 L50 28 L70 64 M38 52 H62' stroke='%23ff6b3d' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="./data/plugins.json" as="fetch" crossorigin />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231a1a2e'/%3E%3Cpath d='M30 64 L50 28 L70 64 M38 52 H62' stroke='%23ff6b3d' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <a class="skiplink" href="#catalog">Skip to catalog</a>
+  <!-- ░░ Ambient background ░░ -->
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora__blob aurora__blob--1"></span>
+    <span class="aurora__blob aurora__blob--2"></span>
+    <span class="aurora__blob aurora__blob--3"></span>
+    <div class="aurora__grid"></div>
+  </div>
+
+  <!-- ░░ Navigation ░░ -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top" aria-label="Claude Orchestration home">
+      <span class="nav__logo" aria-hidden="true">⌁</span>
+      <span class="nav__brandtext">claude<span class="nav__brandaccent">·orchestration</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#catalog">Catalog</a>
+      <a href="#stacks">Stacks</a>
+      <a href="#how">How it works</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#install">Install</a>
+      <a href="#quality">Quality</a>
+    </nav>
+    <button class="nav__k" id="paletteOpen" aria-label="Open command palette">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Search</span>
+      <kbd>⌘K</kbd>
+    </button>
+    <button class="nav__icon" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+    <a class="nav__cta" href="https://github.com/markus41/claude" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>
+      <span>GitHub</span>
+    </a>
+    <button class="nav__menu" id="navMenu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <!-- ░░ Hero ░░ -->
+    <section class="hero">
+      <div class="hero__inner">
+        <a class="badge" href="https://github.com/markus41/claude" target="_blank" rel="noopener">
+          <span class="badge__dot"></span> v<span data-bind="meta.version">5.0.0</span> · curated &amp; CI-validated
+        </a>
+        <h1 class="hero__title">
+          The orchestration layer<br />
+          for <span class="grad">Claude Code</span>.
+        </h1>
+        <p class="hero__lede">
+          A curated marketplace of enterprise plugins — multi-agent teams, infrastructure
+          automation, design systems, and domain expertise. Install only what you need,
+          drop it into Claude Code, and ship.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#install">
+            Get started
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#catalog">Browse the catalog</a>
+        </div>
+
+        <!-- animated headline stats -->
+        <dl class="stats" id="heroStats" aria-label="Marketplace at a glance">
+          <div class="stat"><dt>Plugins</dt><dd data-count data-bind="stats.plugins">35</dd></div>
+          <div class="stat"><dt>Agents</dt><dd data-count data-bind="stats.agents">261</dd></div>
+          <div class="stat"><dt>Skills</dt><dd data-count data-bind="stats.skills">250</dd></div>
+          <div class="stat"><dt>Commands</dt><dd data-count data-bind="stats.commands">294</dd></div>
+          <div class="stat"><dt>MCP servers</dt><dd data-count data-bind="stats.mcp">8</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ░░ Why ░░ -->
+    <section class="section section--alt" id="why">
+      <div class="section__head">
+        <p class="eyebrow">Why this marketplace</p>
+        <h2>Built like infrastructure, not a plugin dump</h2>
+      </div>
+      <div class="blocks">
+        <article class="block">
+          <span class="block__icon">🧩</span>
+          <h3>Composable, not monolithic</h3>
+          <p>Install only the plugins you need. Claude Code loads commands, skills, and agents lazily, so context stays lean even with the whole catalog enabled.</p>
+        </article>
+        <article class="block">
+          <span class="block__icon">🛡️</span>
+          <h3>CI-validated, every PR</h3>
+          <p>One workflow validates manifests, frontmatter, MCP entry points, and schemas. If a plugin is listed here, it loaded cleanly — no cache errors.</p>
+        </article>
+        <article class="block">
+          <span class="block__icon">🤖</span>
+          <h3>Multi-agent by design</h3>
+          <p><strong data-bind="stats.agents">261</strong> role-scoped agents and ready-made teams. Orchestration patterns — councils, pipelines, swarms — are first-class, not bolted on.</p>
+        </article>
+        <article class="block">
+          <span class="block__icon">🔌</span>
+          <h3>MCP-native</h3>
+          <p><strong data-bind="stats.mcp">8</strong> plugins ship Model Context Protocol servers, giving Claude live tools for Jira, Microsoft Graph, deployments, diagrams, and more.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ Catalog ░░ -->
+    <section class="section" id="catalog">
+      <div class="section__head">
+        <p class="eyebrow">The catalog</p>
+        <h2>Every plugin, one search away</h2>
+        <p class="section__lede">
+          Filter by category, search by name or capability, then expand any card for the full
+          breakdown. Counts are generated directly from the marketplace manifest — never stale.
+        </p>
+      </div>
+
+      <div class="catalog__controls">
+        <div class="catalog__row">
+          <label class="search" for="search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="search" type="search" placeholder="Search 35 plugins — press / to focus" autocomplete="off" aria-label="Search plugins" />
+            <kbd class="search__kbd">/</kbd>
+          </label>
+          <label class="sort">
+            <span class="sort__label">Sort</span>
+            <select id="sort" aria-label="Sort plugins">
+              <option value="name">A → Z</option>
+              <option value="agents">Most agents</option>
+              <option value="skills">Most skills</option>
+              <option value="commands">Most commands</option>
+              <option value="category">Category</option>
+            </select>
+          </label>
+        </div>
+        <div class="filters" id="filters" role="tablist" aria-label="Filter by category"></div>
+      </div>
+
+      <div class="catalog__count" id="resultCount" aria-live="polite"></div>
+      <div class="grid" id="pluginGrid"></div>
+      <p class="catalog__empty" id="emptyState" hidden>No plugins match that search. <button class="linklike" id="clearSearch">Clear filters</button></p>
+    </section>
+
+    <!-- ░░ Curated stacks ░░ -->
+    <section class="section section--alt" id="stacks">
+      <div class="section__head">
+        <p class="eyebrow">Curated stacks</p>
+        <h2>Opinionated bundles to start fast</h2>
+        <p class="section__lede">
+          Not sure where to begin? Each stack groups plugins that work well together.
+          Click any stack to filter the catalog to its members.
+        </p>
+      </div>
+      <div class="stacks" id="stackGrid"></div>
+    </section>
+
+    <!-- ░░ How it works ░░ -->
+    <section class="section" id="how">
+      <div class="section__head">
+        <p class="eyebrow">How it works</p>
+        <h2>From manifest to multi-agent run in three moves</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">1</span>
+          <h3>Add the marketplace</h3>
+          <p>Point Claude Code at this repository's manifest once. Every plugin becomes discoverable through <code>/plugin</code>.</p>
+          <pre class="code"><code>/plugin marketplace add markus41/claude</code></pre>
+        </li>
+        <li class="step">
+          <span class="step__num">2</span>
+          <h3>Install what you need</h3>
+          <p>Each plugin is self-contained — its own commands, skills, agents, and MCP servers. No monolith, no bloat.</p>
+          <pre class="code"><code>/plugin install jira-orchestrator</code></pre>
+        </li>
+        <li class="step">
+          <span class="step__num">3</span>
+          <h3>Orchestrate</h3>
+          <p>Invoke a command or let an agent team take over. Skills activate on intent; hooks enforce your rules.</p>
+          <pre class="code"><code>/jira-ship  → a council of agents plans, codes &amp; reviews</code></pre>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ░░ Architecture ░░ -->
+    <section class="section" id="architecture">
+      <div class="section__head">
+        <p class="eyebrow">Anatomy of a plugin</p>
+        <h2>Four building blocks, composable by design</h2>
+        <p class="section__lede">
+          Every plugin is a thin manifest over four primitives. Claude Code loads them lazily,
+          so context stays lean even with the full catalog installed.
+        </p>
+      </div>
+      <div class="blocks">
+        <article class="block">
+          <span class="block__icon">⌘</span>
+          <h3>Commands</h3>
+          <p>Single-intent slash commands. Deterministic entry points like <code>/deploy</code> or <code>/jira-work</code>.</p>
+          <span class="block__metric"><strong data-bind="stats.commands">294</strong> across the catalog</span>
+        </article>
+        <article class="block">
+          <span class="block__icon">✦</span>
+          <h3>Skills</h3>
+          <p>Behavior-triggering knowledge that activates on intent — no command needed. Progressive disclosure for the model itself.</p>
+          <span class="block__metric"><strong data-bind="stats.skills">250</strong> skills installed</span>
+        </article>
+        <article class="block">
+          <span class="block__icon">◎</span>
+          <h3>Agents</h3>
+          <p>Specialized sub-agents with scoped tools and models. Compose into teams for parallel, role-based work.</p>
+          <span class="block__metric"><strong data-bind="stats.agents">261</strong> role-scoped agents</span>
+        </article>
+        <article class="block">
+          <span class="block__icon">⚙</span>
+          <h3>MCP &amp; Hooks</h3>
+          <p>Model Context Protocol servers add live tools; lifecycle hooks enforce rules and capture lessons.</p>
+          <span class="block__metric"><strong data-bind="stats.mcp">8</strong> plugins ship MCP servers</span>
+        </article>
+      </div>
+
+      <details class="disclosure">
+        <summary>See the on-disk plugin layout</summary>
+        <pre class="code code--tree"><code>plugins/&lt;plugin-name&gt;/
+├── .claude-plugin/
+│   └── plugin.json        # manifest: name, version, author, keywords
+├── commands/              # *.md  — one slash command per file
+│   └── &lt;command&gt;.md
+├── skills/
+│   └── &lt;skill-name&gt;/
+│       └── SKILL.md        # frontmatter + instructions
+├── agents/                # *.md  — YAML frontmatter (name, model, tools)
+│   └── &lt;agent&gt;.md
+├── hooks/                  # lifecycle scripts (PreToolUse, SessionStart…)
+└── mcp/ or src/mcp/        # optional Model Context Protocol server</code></pre>
+        <p class="disclosure__note">
+          Every command, skill, agent, and hook file <strong>must</strong> carry YAML frontmatter
+          (at minimum <code>description:</code>). Missing frontmatter is the #1 cause of plugin
+          cache errors — and exactly what the CI validator catches on every PR.
+        </p>
+      </details>
+    </section>
+
+    <!-- ░░ Install ░░ -->
+    <section class="section section--alt" id="install">
+      <div class="section__head">
+        <p class="eyebrow">Installation</p>
+        <h2>Up and running in under a minute</h2>
+      </div>
+
+      <div class="install">
+        <div class="install__pane">
+          <h3>Inside Claude Code</h3>
+          <p class="muted">The fastest path — no clone required.</p>
+          <pre class="code"><button class="copy" data-copy>Copy</button><code># 1 · register this marketplace
+/plugin marketplace add markus41/claude
+
+# 2 · browse what's available
+/plugin
+
+# 3 · install a plugin
+/plugin install claude-code-expert</code></pre>
+        </div>
+        <div class="install__pane">
+          <h3>For contributors</h3>
+          <p class="muted">Validate locally with the same check CI runs.</p>
+          <pre class="code"><button class="copy" data-copy>Copy</button><code># clone &amp; install dev tooling
+git clone https://github.com/markus41/claude
+cd claude &amp;&amp; pnpm install
+
+# validate the whole marketplace
+pnpm check:marketplace</code></pre>
+        </div>
+      </div>
+
+      <details class="disclosure">
+        <summary>Sub-marketplace plugins (advanced)</summary>
+        <p>Six additional plugins live under <code>.claude/plugins/</code> — available but not installed by default:</p>
+        <ul class="chips" id="subpluginList"></ul>
+      </details>
+    </section>
+
+    <!-- ░░ Quality / CI ░░ -->
+    <section class="section" id="quality">
+      <div class="section__head">
+        <p class="eyebrow">Quality &amp; trust</p>
+        <h2>Every plugin passes the gate before it ships</h2>
+        <p class="section__lede">
+          A single GitHub Actions workflow — <code>Marketplace CI</code> — validates the entire
+          catalog on every pull request. If it's in the marketplace, it loaded cleanly.
+        </p>
+      </div>
+      <div class="checks">
+        <div class="check"><span class="check__tick">✓</span><div><h3>Manifest integrity</h3><p>Every <code>source</code> resolves to a real plugin manifest with required fields.</p></div></div>
+        <div class="check"><span class="check__tick">✓</span><div><h3>Frontmatter coverage</h3><p>Every command, skill, agent &amp; hook file carries valid YAML frontmatter.</p></div></div>
+        <div class="check"><span class="check__tick">✓</span><div><h3>No phantom MCP entrypoints</h3><p>MCP servers can't reference gitignored build artifacts like <code>dist/</code>.</p></div></div>
+        <div class="check"><span class="check__tick">✓</span><div><h3>TypeScript strict</h3><p><code>tsc --noEmit</code> passes on all dev tooling under <code>scripts/</code> and <code>types/</code>.</p></div></div>
+        <div class="check"><span class="check__tick">✓</span><div><h3>Schema-validated archetypes</h3><p>Every example archetype validates against its JSON Schema (Draft 7).</p></div></div>
+        <div class="check"><span class="check__tick">✓</span><div><h3>No tracked node_modules</h3><p>A dedicated guard keeps dependency trees out of the repository.</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ░░ Footer ░░ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <span class="nav__logo" aria-hidden="true">⌁</span>
+        <div>
+          <strong>claude·orchestration</strong>
+          <p class="muted" data-bind="meta.description">Enterprise multi-agent orchestration plugins for Claude Code</p>
+        </div>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#catalog">Catalog</a>
+        <a href="#how">How it works</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/markus41/claude" target="_blank" rel="noopener">Repository</a>
+        <a href="https://github.com/markus41/claude/blob/main/LICENSE" target="_blank" rel="noopener">License (MIT)</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>Maintained by <a href="https://github.com/markus41" target="_blank" rel="noopener" data-bind="meta.owner.name">Markus Ahling</a>.</span>
+      <span class="muted">Catalog generated <time id="genTime"></time> · MIT Licensed</span>
+    </div>
+  </footer>
+
+  <button class="totop" id="toTop" aria-label="Back to top" hidden>↑</button>
+
+  <!-- ░░ Plugin detail modal ░░ -->
+  <div class="modal" id="pluginModal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button class="modal__close" data-close aria-label="Close">✕</button>
+      <div class="modal__content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ░░ Command palette ░░ -->
+  <div class="palette" id="palette" hidden>
+    <div class="palette__backdrop" data-palette-close></div>
+    <div class="palette__panel" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="palette__inputrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="paletteInput" type="text" placeholder="Jump to a plugin or section…" autocomplete="off" aria-label="Command palette search" />
+        <kbd>ESC</kbd>
+      </div>
+      <ul class="palette__results" id="paletteResults" role="listbox"></ul>
+      <div class="palette__foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span></div>
+    </div>
+  </div>
+
+  <script src="./assets/app.js" defer></script>
+</body>
+</html>
