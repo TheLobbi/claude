@@ -918,3 +918,11 @@ grep: site/assets/styles.css: No such file or directory
 - **Status:** RESOLVED
 - **Fix:** Same persistent-cwd cause as the entry above (shell still in `site/`). Switched to the Grep tool with an absolute path, which is also the preferred tool for content search.
 - **Prevention:** Prefer the Grep/Glob tools over shell `grep`/`find`; when shelling out, use absolute paths because the Bash cwd persists between calls.
+
+### Error: mcp__github__actions_get failure (2026-06-23T17:50:31Z)
+- **Tool:** mcp__github__actions_get
+- **Input:** `N/A`
+- **Error:** missing required parameter: resource_id
+- **Status:** RESOLVED
+- **Fix:** `actions_get` requires both `method` and `resource_id` (not `run_id`). To read failing job logs, the simpler path is `mcp__github__get_job_logs` with `run_id` + `failed_only: true` to find the failed job id, then call it again with that `job_id` and `return_content: true` + `tail_lines`.
+- **Prevention:** For CI log triage use `get_job_logs` (run_id → failed_only, then job_id → return_content), not `actions_get`. Reserve `actions_get` for run/workflow metadata and always pass `method` + `resource_id`.
