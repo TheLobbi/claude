@@ -108,6 +108,7 @@ function wirePalette() {
   const sections = [
     { type: 'section', icon: '◳', name: 'Catalog', sub: 'Browse plugins', href: '#catalog' },
     { type: 'section', icon: '✦', name: 'Curated stacks', sub: 'Bundles', href: '#stacks' },
+    { type: 'section', icon: '◆', name: 'Why this marketplace', sub: 'Value props', href: '#why' },
     { type: 'section', icon: '①', name: 'How it works', sub: 'Get started', href: '#how' },
     { type: 'section', icon: '◎', name: 'Architecture', sub: 'Anatomy', href: '#architecture' },
     { type: 'section', icon: '⬇', name: 'Install', sub: 'Setup', href: '#install' },
