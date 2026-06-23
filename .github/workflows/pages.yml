@@ -3,6 +3,11 @@ name: Deploy GitHub Pages
 # Builds the marketplace catalog data from the manifest and publishes the
 # static site in site/ to GitHub Pages. Runs on pushes to the default branch
 # (so the catalog never drifts from marketplace.json) and on demand.
+#
+# First-time setup: enable Pages at Settings → Pages → Source: GitHub Actions.
+# The Actions GITHUB_TOKEN can deploy to Pages but cannot CREATE the Pages site
+# (that needs repo-admin), so until Pages is enabled this workflow detects the
+# missing site and skips the deploy with a notice instead of failing red.
 
 on:
   push:
@@ -28,6 +33,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pages_enabled: ${{ steps.check.outputs.enabled }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,20 +49,36 @@ jobs:
           node scripts/build-site.mjs
           node scripts/check-site.mjs
 
+      - name: Check whether Pages is enabled
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" || echo "000")
+          if [ "$code" = "200" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "GitHub Pages is enabled — proceeding with deploy."
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=GitHub Pages not enabled::Enable it once at Settings → Pages → Source: GitHub Actions, then re-run this workflow to publish the site. (Pages API returned HTTP $code.)"
+          fi
+
       - name: Configure Pages
-        # enablement: true auto-provisions the Pages site on first run so no
-        # manual Settings → Pages toggle is required (needs pages: write).
+        if: steps.check.outputs.enabled == 'true'
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload site artifact
+        if: steps.check.outputs.enabled == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
   deploy:
     needs: build
+    if: needs.build.outputs.pages_enabled == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
