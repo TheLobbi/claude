@@ -63,6 +63,52 @@ const SUBPLUGINS = [
   'testforge',
 ];
 
+/** Curated multi-plugin stacks — opinionated starting points. */
+const STACKS = [
+  {
+    id: 'creative-frontend',
+    title: 'Creative Frontend Studio',
+    icon: '✦',
+    blurb: 'Design systems, animation, and diagramming for stunning, accessible UIs.',
+    plugins: ['frontend-design-system', 'react-animation-studio', 'mui-expert', 'drawio-diagramming'],
+  },
+  {
+    id: 'cloud-native',
+    title: 'Cloud-Native Delivery',
+    icon: '☁',
+    blurb: 'Ship to Kubernetes with Helm, Keycloak auth, IaC, and quality-gated pipelines.',
+    plugins: ['aws-eks-helm-keycloak', 'fullstack-iac', 'deployment-pipeline'],
+  },
+  {
+    id: 'power-user',
+    title: 'Claude Code Power User',
+    icon: '⌁',
+    blurb: 'A second brain, PM guardrails, doc intelligence, and reusable automation.',
+    plugins: ['claude-code-expert', 'project-management-plugin', 'scrapin-aint-easy', 'work-automation'],
+  },
+  {
+    id: 'enterprise-ops',
+    title: 'Enterprise Project Ops',
+    icon: '◎',
+    blurb: 'Multi-agent Jira & Linear orchestration plus a full team toolkit.',
+    plugins: ['jira-orchestrator', 'linear-orchestrator', 'team-accelerator'],
+  },
+  {
+    id: 'lobbi-finserv',
+    title: 'Insurance & FinServ (Lobbi)',
+    icon: '🏛',
+    blurb: 'Domain automation for insurance, mortgage, compliance, and documents.',
+    plugins: ['lobbi-insurance-domain', 'lobbi-mortgage-domain', 'lobbi-compliance-guard', 'lobbi-document-intelligence'],
+  },
+  {
+    id: 'microsoft-enterprise',
+    title: 'Microsoft Enterprise',
+    icon: '⊞',
+    blurb: 'Fabric, Dataverse, M365 automation, and .NET / Blazor application building.',
+    plugins: ['tvs-microsoft-deploy', 'lobbi-m365-automator', 'dotnet-blazor'],
+  },
+];
+
 /** Count *.md files directly inside a directory (non-recursive). */
 function countMarkdown(dir) {
   if (!existsSync(dir)) return 0;
@@ -146,6 +192,30 @@ function main() {
 
   const categories = [...new Set(plugins.map((p) => p.category))].sort();
 
+  // Validate curated stacks reference real plugins — a typo fails the build.
+  const byName = new Map(plugins.map((p) => [p.name, p]));
+  for (const stack of STACKS) {
+    for (const name of stack.plugins) {
+      if (!byName.has(name)) {
+        throw new Error(`stack "${stack.id}" references unknown plugin "${name}"`);
+      }
+    }
+  }
+  const stacks = STACKS.map((s) => ({
+    ...s,
+    counts: s.plugins.reduce(
+      (acc, name) => {
+        const p = byName.get(name);
+        acc.commands += p.counts.commands;
+        acc.agents += p.counts.agents;
+        acc.skills += p.counts.skills;
+        return acc;
+      },
+      { commands: 0, agents: 0, skills: 0 },
+    ),
+  }));
+
+  const SITE_URL = 'https://markus41.github.io/claude/';
   const data = {
     meta: {
       name: marketplace.name,
@@ -154,6 +224,7 @@ function main() {
       owner: marketplace.owner,
       generatedAt: new Date().toISOString(),
       repo: 'https://github.com/markus41/claude',
+      url: SITE_URL,
     },
     stats: {
       plugins: plugins.length,
@@ -162,15 +233,26 @@ function main() {
       categories: categories.length,
     },
     categories,
+    stacks,
     plugins,
     subplugins: SUBPLUGINS,
   };
 
   mkdirSync(OUT_DIR, { recursive: true });
   writeFileSync(OUT_FILE, JSON.stringify(data, null, 2) + '\n');
+  writeSeo(SITE_URL, data.meta.generatedAt);
 
   console.log(`✓ site data written to ${OUT_FILE}`);
-  console.log(`  ${plugins.length} plugins · ${totals.commands} commands · ${totals.agents} agents · ${totals.skills} skills · ${totals.mcp} with MCP`);
+  console.log(`  ${plugins.length} plugins · ${totals.commands} commands · ${totals.agents} agents · ${totals.skills} skills · ${totals.mcp} with MCP · ${stacks.length} stacks`);
+}
+
+/** Emit robots.txt + sitemap.xml next to index.html. */
+function writeSeo(siteUrl, lastmod) {
+  const siteDir = join(ROOT, 'site');
+  const robots = `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${siteUrl}</loc>\n    <lastmod>${lastmod.slice(0, 10)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n`;
+  writeFileSync(join(siteDir, 'robots.txt'), robots);
+  writeFileSync(join(siteDir, 'sitemap.xml'), sitemap);
 }
 
 main();

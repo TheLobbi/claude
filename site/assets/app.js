@@ -17,7 +17,7 @@ const CATEGORY_ACCENT = {
   Other: 'var(--ember)',
 };
 
-const state = { data: null, query: '', category: 'All' };
+const state = { data: null, query: '', category: 'All', sort: 'name', stack: null };
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -27,10 +27,12 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&
 init();
 
 async function init() {
+  initTheme();
   wireNav();
   wireScrollReveal();
   wireCopyButtons();
   wireBackToTop();
+  wireShortcuts();
 
   try {
     const res = await fetch('./data/plugins.json', { cache: 'no-cache' });
@@ -41,12 +43,47 @@ async function init() {
     return;
   }
 
+  readUrlState();
   bindData(state.data);
   renderSubplugins(state.data.subplugins);
+  renderStacks(state.data.stacks);
   buildFilters(state.data);
+  wireSort();
   renderGrid();
   wireSearch();
   observeStats();
+  injectJsonLd(state.data);
+}
+
+/* ── theme ─────────────────────────────────────────────────── */
+function initTheme() {
+  const stored = localStorage.getItem('co-theme');
+  const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  document.documentElement.dataset.theme = stored || sys;
+  $('#themeToggle')?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('co-theme', next);
+    const tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.content = next === 'light' ? '#f6f7fb' : '#0a0a12';
+  });
+}
+
+/* ── url state (?q=&cat=&sort=) ────────────────────────────── */
+function readUrlState() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('q')) { state.query = p.get('q').toLowerCase(); const i = $('#search'); if (i) i.value = p.get('q'); }
+  if (p.get('cat') && state.data.categories.includes(p.get('cat'))) state.category = p.get('cat');
+  if (['name', 'agents', 'skills', 'commands', 'category'].includes(p.get('sort'))) state.sort = p.get('sort');
+}
+
+function writeUrlState() {
+  const p = new URLSearchParams();
+  if (state.query) p.set('q', state.query);
+  if (state.category !== 'All') p.set('cat', state.category);
+  if (state.sort !== 'name') p.set('sort', state.sort);
+  const qs = p.toString();
+  history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
 }
 
 /* ── data binding ([data-bind="path.to.value"]) ───────────── */
@@ -101,16 +138,35 @@ function buildFilters(data) {
   wrap.innerHTML = cats
     .map((c) => {
       const n = c === 'All' ? data.plugins.length : counts[c] || 0;
-      return `<button class="pill${c === 'All' ? ' is-active' : ''}" role="tab" data-cat="${esc(c)}">${esc(c)}<span class="pill__count">${n}</span></button>`;
+      const active = c === state.category || (state.category === 'All' && c === 'All');
+      return `<button class="pill${active ? ' is-active' : ''}" role="tab" aria-selected="${active}" data-cat="${esc(c)}">${esc(c)}<span class="pill__count">${n}</span></button>`;
     })
     .join('');
   wrap.addEventListener('click', (e) => {
     const btn = e.target.closest('.pill');
     if (!btn) return;
     state.category = btn.dataset.cat;
-    $$('.pill', wrap).forEach((p) => p.classList.toggle('is-active', p === btn));
+    state.stack = null;
+    $$('.pill', wrap).forEach((p) => { const on = p === btn; p.classList.toggle('is-active', on); p.setAttribute('aria-selected', String(on)); });
     renderGrid();
   });
+}
+
+/* ── sort ──────────────────────────────────────────────────── */
+function wireSort() {
+  const sel = $('#sort');
+  if (!sel) return;
+  sel.value = state.sort;
+  sel.addEventListener('change', () => { state.sort = sel.value; renderGrid(); });
+}
+
+function sortPlugins(list) {
+  const by = state.sort;
+  const arr = [...list];
+  if (by === 'name') arr.sort((a, b) => a.name.localeCompare(b.name));
+  else if (by === 'category') arr.sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
+  else arr.sort((a, b) => (b.counts[by] || 0) - (a.counts[by] || 0) || a.name.localeCompare(b.name));
+  return arr;
 }
 
 /* ── search ────────────────────────────────────────────────── */
@@ -124,19 +180,24 @@ function wireSearch() {
       renderGrid();
     }, 110);
   });
-  $('#clearSearch')?.addEventListener('click', () => {
-    input.value = '';
-    state.query = '';
-    state.category = 'All';
-    $$('.pill').forEach((p) => p.classList.toggle('is-active', p.dataset.cat === 'All'));
-    renderGrid();
-  });
+  $('#clearSearch')?.addEventListener('click', clearAll);
+}
+
+function clearAll() {
+  const input = $('#search');
+  if (input) input.value = '';
+  state.query = '';
+  state.category = 'All';
+  state.stack = null;
+  $$('.pill').forEach((p) => { const on = p.dataset.cat === 'All'; p.classList.toggle('is-active', on); p.setAttribute('aria-selected', String(on)); });
+  renderGrid();
 }
 
 /* ── grid render ───────────────────────────────────────────── */
 function filtered() {
   const { plugins } = state.data;
   return plugins.filter((p) => {
+    if (state.stack && !state.stack.set.has(p.name)) return false;
     if (state.category !== 'All' && p.category !== state.category) return false;
     if (!state.query) return true;
     const hay = `${p.name} ${p.description} ${p.category} ${p.author} ${(p.keywords || []).join(' ')}`.toLowerCase();
@@ -146,17 +207,20 @@ function filtered() {
 
 function renderGrid() {
   const grid = $('#pluginGrid');
-  const list = filtered();
+  const list = sortPlugins(filtered());
   const countEl = $('#resultCount');
   const empty = $('#emptyState');
 
   empty.hidden = list.length !== 0;
-  countEl.textContent = list.length
-    ? `Showing ${list.length} of ${state.data.plugins.length} plugins`
-    : '';
+  const banner = state.stack ? `<span class="resultchip">Stack: ${esc(state.stack.title)} <button class="linklike" id="clearStack">clear</button></span> ` : '';
+  countEl.innerHTML = list.length
+    ? `${banner}Showing ${list.length} of ${state.data.plugins.length} plugins`
+    : banner;
+  $('#clearStack')?.addEventListener('click', clearAll);
 
   grid.innerHTML = list.map((p, i) => cardHtml(p, i)).join('');
   wireCards(grid);
+  writeUrlState();
 }
 
 function metric(label, n) {
@@ -198,6 +262,9 @@ function cardHtml(p, i) {
           ${tags ? `<div class="tags">${tags}</div>` : ''}
           <div class="card__install">
             <code>/plugin install ${esc(p.name)}</code>
+            <button class="card__copy" data-card-copy="/plugin install ${esc(p.name)}" aria-label="Copy install command" title="Copy">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            </button>
           </div>
           <a class="card__toggle" href="${esc(repoUrl)}" target="_blank" rel="noopener" style="text-decoration:none">View source on GitHub →</a>
         </div>
@@ -221,12 +288,99 @@ function wireCards(grid) {
       btn.setAttribute('aria-expanded', String(open));
     });
   });
+  $$('[data-card-copy]', grid).forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      try {
+        await navigator.clipboard.writeText(btn.dataset.cardCopy);
+        btn.classList.add('is-copied');
+        setTimeout(() => btn.classList.remove('is-copied'), 1500);
+      } catch { /* clipboard unavailable */ }
+    });
+  });
+}
+
+/* ── curated stacks ────────────────────────────────────────── */
+function renderStacks(stacks) {
+  const wrap = $('#stackGrid');
+  if (!wrap || !stacks) return;
+  wrap.innerHTML = stacks
+    .map((s) => {
+      const members = s.plugins.map((n) => `<span class="stack__member">${esc(n)}</span>`).join('');
+      const c = s.counts;
+      const totals = [c.commands && `${c.commands} cmd`, c.agents && `${c.agents} agents`, c.skills && `${c.skills} skills`].filter(Boolean).join(' · ');
+      return `
+      <button class="stack" data-stack="${esc(s.id)}">
+        <span class="stack__icon">${esc(s.icon)}</span>
+        <h3>${esc(s.title)}</h3>
+        <p class="stack__blurb">${esc(s.blurb)}</p>
+        <div class="stack__members">${members}</div>
+        <span class="stack__foot"><span>${totals}</span><span class="stack__cta">Filter catalog →</span></span>
+      </button>`;
+    })
+    .join('');
+  wrap.addEventListener('click', (e) => {
+    const btn = e.target.closest('.stack');
+    if (!btn) return;
+    const stack = stacks.find((s) => s.id === btn.dataset.stack);
+    if (!stack) return;
+    state.stack = { title: stack.title, set: new Set(stack.plugins) };
+    state.category = 'All';
+    state.query = '';
+    const input = $('#search'); if (input) input.value = '';
+    $$('.pill').forEach((p) => { const on = p.dataset.cat === 'All'; p.classList.toggle('is-active', on); p.setAttribute('aria-selected', String(on)); });
+    renderGrid();
+    $('#catalog')?.scrollIntoView({ behavior: 'smooth' });
+  });
 }
 
 /* ── sub-plugins ───────────────────────────────────────────── */
 function renderSubplugins(list) {
   const el = $('#subpluginList');
   if (el && list) el.innerHTML = list.map((s) => `<li>${esc(s)}</li>`).join('');
+}
+
+/* ── keyboard shortcuts ────────────────────────────────────── */
+function wireShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    const input = $('#search');
+    const typing = /^(input|textarea|select)$/i.test(document.activeElement?.tagName || '');
+    if (e.key === '/' && !typing) { e.preventDefault(); input?.focus(); }
+    else if (e.key === 'Escape' && document.activeElement === input) { input.blur(); }
+  });
+}
+
+/* ── SEO: structured data ──────────────────────────────────── */
+function injectJsonLd(data) {
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Claude Orchestration — Plugin Marketplace',
+    description: data.meta.description,
+    url: data.meta.url,
+    isPartOf: { '@type': 'WebSite', name: data.meta.name, url: data.meta.url },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: data.plugins.length,
+      itemListElement: data.plugins.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: p.name,
+          applicationCategory: 'DeveloperApplication',
+          operatingSystem: 'Claude Code',
+          softwareVersion: p.version,
+          description: p.description,
+          author: { '@type': 'Person', name: p.author },
+        },
+      })),
+    },
+  };
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify(ld);
+  document.head.appendChild(s);
 }
 
 /* ── nav, scroll, copy, top ────────────────────────────────── */

@@ -7,8 +7,9 @@
       "name": "Markus Ahling",
       "email": "markus@thelobbi.io"
     },
-    "generatedAt": "2026-06-23T16:01:40.535Z",
-    "repo": "https://github.com/markus41/claude"
+    "generatedAt": "2026-06-23T17:29:45.277Z",
+    "repo": "https://github.com/markus41/claude",
+    "url": "https://markus41.github.io/claude/"
   },
   "stats": {
     "plugins": 35,
@@ -29,6 +30,107 @@
     "Marketplace & Platform",
     "Microsoft & Enterprise",
     "Project Management"
+  ],
+  "stacks": [
+    {
+      "id": "creative-frontend",
+      "title": "Creative Frontend Studio",
+      "icon": "✦",
+      "blurb": "Design systems, animation, and diagramming for stunning, accessible UIs.",
+      "plugins": [
+        "frontend-design-system",
+        "react-animation-studio",
+        "mui-expert",
+        "drawio-diagramming"
+      ],
+      "counts": {
+        "commands": 48,
+        "agents": 25,
+        "skills": 59
+      }
+    },
+    {
+      "id": "cloud-native",
+      "title": "Cloud-Native Delivery",
+      "icon": "☁",
+      "blurb": "Ship to Kubernetes with Helm, Keycloak auth, IaC, and quality-gated pipelines.",
+      "plugins": [
+        "aws-eks-helm-keycloak",
+        "fullstack-iac",
+        "deployment-pipeline"
+      ],
+      "counts": {
+        "commands": 20,
+        "agents": 9,
+        "skills": 11
+      }
+    },
+    {
+      "id": "power-user",
+      "title": "Claude Code Power User",
+      "icon": "⌁",
+      "blurb": "A second brain, PM guardrails, doc intelligence, and reusable automation.",
+      "plugins": [
+        "claude-code-expert",
+        "project-management-plugin",
+        "scrapin-aint-easy",
+        "work-automation"
+      ],
+      "counts": {
+        "commands": 49,
+        "agents": 48,
+        "skills": 36
+      }
+    },
+    {
+      "id": "enterprise-ops",
+      "title": "Enterprise Project Ops",
+      "icon": "◎",
+      "blurb": "Multi-agent Jira & Linear orchestration plus a full team toolkit.",
+      "plugins": [
+        "jira-orchestrator",
+        "linear-orchestrator",
+        "team-accelerator"
+      ],
+      "counts": {
+        "commands": 80,
+        "agents": 100,
+        "skills": 29
+      }
+    },
+    {
+      "id": "lobbi-finserv",
+      "title": "Insurance & FinServ (Lobbi)",
+      "icon": "🏛",
+      "blurb": "Domain automation for insurance, mortgage, compliance, and documents.",
+      "plugins": [
+        "lobbi-insurance-domain",
+        "lobbi-mortgage-domain",
+        "lobbi-compliance-guard",
+        "lobbi-document-intelligence"
+      ],
+      "counts": {
+        "commands": 0,
+        "agents": 0,
+        "skills": 19
+      }
+    },
+    {
+      "id": "microsoft-enterprise",
+      "title": "Microsoft Enterprise",
+      "icon": "⊞",
+      "blurb": "Fabric, Dataverse, M365 automation, and .NET / Blazor application building.",
+      "plugins": [
+        "tvs-microsoft-deploy",
+        "lobbi-m365-automator",
+        "dotnet-blazor"
+      ],
+      "counts": {
+        "commands": 26,
+        "agents": 25,
+        "skills": 26
+      }
+    }
   ],
   "plugins": [
     {
