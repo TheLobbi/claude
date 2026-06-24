@@ -4,7 +4,7 @@
   "when_to_use": "When the task can be cleanly partitioned into 2+ input classes, each needing different expertise or model.",
   "layers": {
     "CLAUDE.md": "Add routing table: 'Auth tasks → {auth-dir} + security-compliance-advisor. DB tasks → {db-dir} + migration-lead. Frontend → ui-reviewer.'",
-    "skill": "skills/agentic-patterns documents the general shape; actual routing lives in CLAUDE.md.",
+    "skill": "skills/cc-agentic-patterns documents the general shape; actual routing lives in CLAUDE.md.",
     "hook": "No hook required.",
     "agent": "Route may invoke a specialist agent (security-compliance-advisor, migration-lead, etc.)"
   },

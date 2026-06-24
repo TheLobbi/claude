@@ -4,9 +4,9 @@
   "when_to_use": "Multi-day or multi-component work where the breakdown itself is part of the intelligence needed.",
   "layers": {
     "CLAUDE.md": "Add rule: 'For work over 1 hour: write a plan first. Plan includes constraints, phases, exit criteria per phase, rollback.'",
-    "skill": "skills/deep-code-intelligence enforces plan-first for non-trivial work.",
+    "skill": "skills/cc-deep-code-intelligence enforces plan-first for non-trivial work.",
     "hook": "Optional: PreToolUse hook that blocks Write operations until .claude/active-task.md exists (same pattern as autonomy-planner).",
-    "agent": "agents/autonomy-planner writes the plan to .claude/active-task.md. agents/principal-engineer-strategist is the higher-reasoning variant."
+    "agent": "agents/cc-autonomy-planner writes the plan to .claude/active-task.md. agents/cc-principal-engineer-strategist is the higher-reasoning variant."
   },
   "cost": "~1.2× (one extra upfront pass). Usually pays back 5-10× by avoiding wasted work.",
   "anti_patterns": [

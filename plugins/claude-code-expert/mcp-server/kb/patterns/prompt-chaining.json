@@ -4,9 +4,9 @@
   "when_to_use": "Tasks with 3+ discrete phases where each phase's output shapes the next. Medium-size features.",
   "layers": {
     "CLAUDE.md": "Add rule: 'For multi-step tasks, follow the chain: analyze → plan → implement → verify. Do not skip steps. Each step's output feeds the next.'",
-    "skill": "skills/evidence-driven-planning or skills/deep-code-intelligence — defines the chain handoff schema.",
+    "skill": "skills/evidence-driven-planning or skills/cc-deep-code-intelligence — defines the chain handoff schema.",
     "hook": "Stop hook can enforce that planning phase produced a durable artifact before implementation begins.",
-    "agent": "agents/principal-engineer-strategist — executes analyze+plan phases before handing off to implementer."
+    "agent": "agents/cc-principal-engineer-strategist — executes analyze+plan phases before handing off to implementer."
   },
   "cost": "~1.5-2x normal. Each phase is a fresh reasoning pass; consolidate where possible.",
   "anti_patterns": [

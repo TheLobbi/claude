@@ -25,7 +25,7 @@
     },
     {
       "name": "Execute",
-      "steps": ["agents/migration-lead runs plan (Opus, writes plan before code).", "Phase-by-phase: implement, test, deploy, verify, commit, proceed.", "User confirmation at every point of no return."]
+      "steps": ["agents/cc-migration-lead runs plan (Opus, writes plan before code).", "Phase-by-phase: implement, test, deploy, verify, commit, proceed.", "User confirmation at every point of no return."]
     }
   ],
   "exit_criteria": "Plan exists, rollback tested, phases atomic up to point of no return.",

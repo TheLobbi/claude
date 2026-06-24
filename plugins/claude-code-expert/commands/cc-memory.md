@@ -72,5 +72,5 @@ Shows:
 ## See also
 
 - `skills-v8/cc-second-brain` — the skill this command delegates to
-- `agents/memory-consolidator` — the consolidator agent
+- `agents/cc-memory-consolidator` — the consolidator agent
 - `memory/conventions.md` — three-tier write discipline

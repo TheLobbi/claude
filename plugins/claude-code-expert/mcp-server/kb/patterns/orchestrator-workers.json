@@ -4,9 +4,9 @@
   "when_to_use": "Large features where the subtask shape can't be known in advance. E.g. 'migrate every API endpoint to the new schema' — the orchestrator discovers endpoints, then spawns workers.",
   "layers": {
     "CLAUDE.md": "No rule needed.",
-    "skill": "skills/agent-teams (lifecycle and coordination).",
+    "skill": "skills/cc-agent-teams (lifecycle and coordination).",
     "hook": "Optional: idle-enforcement hook to clean up worker processes.",
-    "agent": "agents/team-orchestrator is the lead. Spawns role-based workers (implementer, debugger, etc.) as needed. pattern-router may pre-select this pattern."
+    "agent": "agents/cc-team-orchestrator is the lead. Spawns role-based workers (implementer, debugger, etc.) as needed. pattern-router may pre-select this pattern."
   },
   "cost": "~2–5× normal. Orchestrator overhead + N workers. Budget cap via /cc-orchestrate --budget.",
   "anti_patterns": [

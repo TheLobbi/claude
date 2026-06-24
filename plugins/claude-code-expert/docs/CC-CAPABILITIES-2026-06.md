@@ -65,7 +65,7 @@ knowing when writing skills, agents, and `allowed-tools` lists:
 | `Agent` | Spawns a subagent / teammate (the tool formerly called `Task`). Supports `subagent_type`, `model`, `run_in_background`, `isolation: "worktree"`, `mode` (permission mode), and `team_name`. |
 | `ToolSearch` | Discovers **deferred** MCP tool schemas on demand so sessions can connect to thousands of tools without context bloat. Default-on. |
 | `AskUserQuestion` | Presents the user 1–4 structured multiple-choice questions mid-task. Use for genuine decisions you can't resolve from the code or sensible defaults — not for confirmations. |
-| `Monitor` | Watches a log/file/condition in the background and wakes Claude on change. See `skills/monitor-tool/`. |
+| `Monitor` | Watches a log/file/condition in the background and wakes Claude on change. See `skills/cc-monitor-tool/`. |
 | `SendUserFile` | Surfaces a file to the user as a first-class deliverable (diagram, report, build artifact, screenshot). |
 | `EnterPlanMode` / `ExitPlanMode` | Enter/leave read-only planning (also `Shift+Tab` interactively). In plan mode only Read/Grep/Glob/LSP run — no mutations. |
 | `EnterWorktree` / `ExitWorktree` | Create/enter an isolated git worktree (parallel agents without file contention). |
@@ -85,10 +85,10 @@ prefer `http`.
 - **Background agents**: `run_in_background: true` (tool) / `background: true` (frontmatter) runs an
   agent non-blocking; you're notified on completion.
 - **Worktree isolation**: `isolation: "worktree"` pins an agent to its own git worktree (auto-cleaned
-  if unchanged). See `skills/worktree-management/`.
+  if unchanged). See `skills/cc-worktree-management/`.
 - **Agent teams**: multiple named agents coordinate and message each other via **`SendMessage`**
   (address by name or ID to continue a teammate with its context intact). A new `Agent` call starts
-  fresh. See `skills/agent-teams/`.
+  fresh. See `skills/cc-agent-teams/`.
 - **Plan mode for spawned agents**: pass `mode: "plan"` to require a plan before a teammate acts.
 
 Agent frontmatter fields (filesystem + SDK): `name`, `description`, `model`, `effort`, `tools`,
@@ -98,7 +98,7 @@ Agent frontmatter fields (filesystem + SDK): `name`, `description`, `model`, `ef
 
 ## Hooks (lifecycle)
 
-Practical working set of events (full contract in `skills/hooks/references/hook-event-matrix.md`):
+Practical working set of events (full contract in `skills/cc-hook-authoring/references/hook-event-matrix.md`):
 
 `PreToolUse` · `PostToolUse` · `PostToolUseFailure` · `UserPromptSubmit` · `Notification` · `Stop` ·
 `SessionStart` · `SessionEnd` · `PreCompact` · `SubagentStart` · `SubagentStop` · `TeammateIdle` ·

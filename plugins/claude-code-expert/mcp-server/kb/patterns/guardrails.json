@@ -4,9 +4,9 @@
   "when_to_use": "Always. Even single-agent workflows benefit from PreToolUse security-guard and PostToolUse format hooks.",
   "layers": {
     "CLAUDE.md": "Document which guardrails are active (e.g. 'Hook packs installed: protect-sensitive-files, auto-format-after-edit').",
-    "skill": "skills/hooks is the authoring guide; skills/security-compliance covers compliance-grade guardrails.",
+    "skill": "skills/cc-hook-authoring is the authoring guide; skills/cc-security-compliance covers compliance-grade guardrails.",
     "hook": "All hook events are guardrails. Install via MCP cc_kb_hook_recipe.",
-    "agent": "agents/audit-reviewer and agents/autonomy-reviewer are human-style guardrails."
+    "agent": "agents/cc-audit-reviewer and agents/cc-autonomy-reviewer are human-style guardrails."
   },
   "cost": "Usually <5% overhead per hook — deterministic and fast.",
   "anti_patterns": [

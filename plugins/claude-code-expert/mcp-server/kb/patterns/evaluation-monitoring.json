@@ -4,7 +4,7 @@
   "when_to_use": "Production or semi-production agents where regression is costly. Also for tuning prompts, skills, agents before shipping.",
   "layers": {
     "CLAUDE.md": "No rule needed.",
-    "skill": "skills/context-budgeting covers session analytics. skills/plugin-development has test and eval scaffolding.",
+    "skill": "skills/cc-context-budgeting covers session analytics. skills/cc-plugin-development has test and eval scaffolding.",
     "hook": "PostToolUse / Stop hooks can log metrics to .claude/metrics.jsonl.",
     "agent": "No dedicated agent; part of the dev loop — use plugin-architect during authoring."
   },

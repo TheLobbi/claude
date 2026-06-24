@@ -1,5 +1,27 @@
 # Changelog
 
+## v8.3.0 (2026-06-24) — Namespaced skill & agent names (collision-free)
+
+### Breaking — renames
+
+- **All 21 skills and 18 agents now carry the `cc-` prefix** so they no longer
+  collide with or shadow standard Claude Code surface area (e.g. `mcp`, `hooks`,
+  `ultraplan`, the built-in `debugger` agent, `monitor-tool`, `worktree-management`).
+  Commands (already `cc-*`) and MCP tools (`cc_docs_*` / `cc_kb_*`) were unchanged.
+- Skill renames resolved command-name clashes with descriptive forms: `hooks` →
+  `cc-hook-authoring`, `autonomy` → `cc-autonomy-mode`, `claude-code-setup` →
+  `cc-stack-setup`, `claude-code-sync` → `cc-stack-sync`. The `cc-second-brain`
+  skill was already prefixed and is unchanged. Every other skill/agent took a
+  literal `cc-` prefix (e.g. `mcp` → `cc-mcp`, `ultraplan` → `cc-ultraplan`,
+  `debugger` → `cc-debugger`).
+- The `cc-ultraplan` skill's `/ultraplan` trigger was renamed to `/cc-ultraplan`
+  so it no longer shadows the built-in.
+- Updated all functional references (skill/agent paths, frontmatter `name`/`tags`/
+  `triggers`, `agents/index.json`, MCP KB pattern templates, repo skills registry,
+  `plugin.json` `lazyLoadSections`) and the current routing/catalog tables. Frozen
+  snapshots (`archive/`, `*-old/`) and historical design docs (`ULTRAPLAN.md`,
+  `docs/MIGRATION.md`) retain their original names as records.
+
 ## v8.2.0 (2026-06-10) — Claude 5 Family (Fable 5 / Mythos 5)
 
 ### Models

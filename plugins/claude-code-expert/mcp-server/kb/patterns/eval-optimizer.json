@@ -4,9 +4,9 @@
   "when_to_use": "Quality-critical artifacts where objective evaluation is possible (configs, security code, schema migrations). Not for subjective work (prose style).",
   "layers": {
     "CLAUDE.md": "Add rule: 'Generated code/configs must pass quality evaluation before committing. Use the evaluator-optimizer loop for quality-critical outputs.'",
-    "skill": "skills/agentic-patterns body.",
+    "skill": "skills/cc-agentic-patterns body.",
     "hook": "Stop hook may enforce minimum eval score before allowing turn close.",
-    "agent": "agents/evaluator-optimizer runs the loop: generate → score → refine. Threshold default ≥80; max iterations 5."
+    "agent": "agents/cc-evaluator-optimizer runs the loop: generate → score → refine. Threshold default ≥80; max iterations 5."
   },
   "cost": "~1.5–3× normal. Each refinement cycle is a full pass. Budget explicitly or it overruns.",
   "anti_patterns": [

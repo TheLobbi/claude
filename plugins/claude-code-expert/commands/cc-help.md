@@ -47,40 +47,40 @@ Which `/cc-*` command, skill, or agent to use.
 
 | Concept | Skill |
 |---|---|
-| Claude Code stack deploy | `claude-code-setup` |
-| Idempotent updates | `claude-code-sync` |
+| Claude Code stack deploy | `cc-stack-setup` |
+| Idempotent updates | `cc-stack-sync` |
 | Three-tier memory (engram + Obsidian + plugin rules) | `cc-second-brain` |
-| Evidence-driven deep analysis | `deep-code-intelligence` |
-| Agentic design patterns | `agentic-patterns` |
-| Multi-agent teams | `agent-teams` |
-| Hooks system | `hooks` |
-| MCP servers + channels | `mcp` |
-| Autonomy + gates | `autonomy` |
-| Model + cost | `model-routing` |
-| Context discipline | `context-budgeting` |
-| Permissions + compliance | `security-compliance` |
-| Plugin authoring | `plugin-development` |
-| Prompt/CLAUDE.md/rules | `prompt-engineering` |
+| Evidence-driven deep analysis | `cc-deep-code-intelligence` |
+| Agentic design patterns | `cc-agentic-patterns` |
+| Multi-agent teams | `cc-agent-teams` |
+| Hooks system | `cc-hook-authoring` |
+| MCP servers + channels | `cc-mcp` |
+| Autonomy + gates | `cc-autonomy-mode` |
+| Model + cost | `cc-model-routing` |
+| Context discipline | `cc-context-budgeting` |
+| Permissions + compliance | `cc-security-compliance` |
+| Plugin authoring | `cc-plugin-development` |
+| Prompt/CLAUDE.md/rules | `cc-prompt-engineering` |
 
 ## By role (agents)
 
 | Role | Agent | Model |
 |---|---|---|
-| Deep analysis, architecture | `principal-engineer-strategist` | Opus |
-| Evaluator-optimizer loop | `evaluator-optimizer` | Opus |
-| Pattern selector | `pattern-router` | Sonnet |
-| Council coordinator | `council-coordinator` | Opus |
-| Team orchestrator | `team-orchestrator` | Opus |
-| Memory consolidator | `memory-consolidator` | Opus |
-| Auditor (second-round) | `audit-reviewer` | Opus |
-| Security + compliance | `security-compliance-advisor` | Opus |
-| Debugger | `debugger` | Opus |
-| Implementer | `implementer` | Sonnet |
-| Migration lead | `migration-lead` | Opus |
-| Dependency auditor | `dependency-auditor` | Haiku |
-| Release coordinator | `release-coordinator` | Sonnet |
-| Research orchestrator | `research-orchestrator` | Sonnet |
-| Plugin architect | `plugin-architect` | Sonnet |
+| Deep analysis, architecture | `cc-principal-engineer-strategist` | Opus |
+| Evaluator-optimizer loop | `cc-evaluator-optimizer` | Opus |
+| Pattern selector | `cc-pattern-router` | Sonnet |
+| Council coordinator | `cc-council-coordinator` | Opus |
+| Team orchestrator | `cc-team-orchestrator` | Opus |
+| Memory consolidator | `cc-memory-consolidator` | Opus |
+| Auditor (second-round) | `cc-audit-reviewer` | Opus |
+| Security + compliance | `cc-security-compliance-advisor` | Opus |
+| Debugger | `cc-debugger` | Opus |
+| Implementer | `cc-implementer` | Sonnet |
+| Migration lead | `cc-migration-lead` | Opus |
+| Dependency auditor | `cc-dependency-auditor` | Haiku |
+| Release coordinator | `cc-release-coordinator` | Sonnet |
+| Research orchestrator | `cc-research-orchestrator` | Sonnet |
+| Plugin architect | `cc-plugin-architect` | Sonnet |
 | Autonomy planner/verifier/reviewer | `autonomy-*` | Opus / Sonnet / Opus |
 
 ## Deprecated commands (shims until v8.1)

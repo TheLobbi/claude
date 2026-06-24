@@ -51,24 +51,24 @@ implementation, Haiku for retrieval.
 
 | Agent | Model | Role |
 |-------|-------|------|
-| `team-orchestrator` | Opus | Master orchestrator — delegates, coordinates teams, audits |
-| `principal-engineer-strategist` | Opus | Principal-level analysis, root-cause isolation, tradeoffs |
-| `council-coordinator` | Opus | Fan-out/fan-in council with blackboard pattern |
-| `audit-reviewer` | Opus | Second-round auditor; validates library usage via Context7 |
-| `evaluator-optimizer` | Opus | Evaluator-Optimizer loop — generate, evaluate, refine |
-| `debugger` | Opus | Systematic root-cause tracer for code-level bugs |
-| `migration-lead` | Opus | Schema/API/framework migration planning and execution |
-| `security-compliance-advisor` | Opus | Enterprise security + compliance audit (SOC2/HIPAA/GDPR) |
-| `memory-consolidator` | Opus | Bridges engram → Obsidian vault → plugin rules (read-only on engram) |
-| `autonomy-planner` | Opus | Decomposes tasks into phased, risk-assessed plans |
-| `autonomy-reviewer` | Opus | Final BLOCK/APPROVE review for autonomous work |
-| `autonomy-verifier` | Sonnet | Runs the verification suite after each phase |
-| `implementer` | Sonnet | Focused code-writing agent (restricted to write tools) |
-| `pattern-router` | Sonnet | Selects the optimal agentic design pattern for a task |
-| `plugin-architect` | Sonnet | Designs/scaffolds/validates plugin structures |
-| `release-coordinator` | Sonnet | Changelogs, version tags, release validation |
-| `research-orchestrator` | Sonnet | Routes research to Perplexity / Firecrawl / Context7 |
-| `dependency-auditor` | Haiku | Dependency vulnerabilities, outdated packages, licenses |
+| `cc-team-orchestrator` | Opus | Master orchestrator — delegates, coordinates teams, audits |
+| `cc-principal-engineer-strategist` | Opus | Principal-level analysis, root-cause isolation, tradeoffs |
+| `cc-council-coordinator` | Opus | Fan-out/fan-in council with blackboard pattern |
+| `cc-audit-reviewer` | Opus | Second-round auditor; validates library usage via Context7 |
+| `cc-evaluator-optimizer` | Opus | Evaluator-Optimizer loop — generate, evaluate, refine |
+| `cc-debugger` | Opus | Systematic root-cause tracer for code-level bugs |
+| `cc-migration-lead` | Opus | Schema/API/framework migration planning and execution |
+| `cc-security-compliance-advisor` | Opus | Enterprise security + compliance audit (SOC2/HIPAA/GDPR) |
+| `cc-memory-consolidator` | Opus | Bridges engram → Obsidian vault → plugin rules (read-only on engram) |
+| `cc-autonomy-planner` | Opus | Decomposes tasks into phased, risk-assessed plans |
+| `cc-autonomy-reviewer` | Opus | Final BLOCK/APPROVE review for autonomous work |
+| `cc-autonomy-verifier` | Sonnet | Runs the verification suite after each phase |
+| `cc-implementer` | Sonnet | Focused code-writing agent (restricted to write tools) |
+| `cc-pattern-router` | Sonnet | Selects the optimal agentic design pattern for a task |
+| `cc-plugin-architect` | Sonnet | Designs/scaffolds/validates plugin structures |
+| `cc-release-coordinator` | Sonnet | Changelogs, version tags, release validation |
+| `cc-research-orchestrator` | Sonnet | Routes research to Perplexity / Firecrawl / Context7 |
+| `cc-dependency-auditor` | Haiku | Dependency vulnerabilities, outdated packages, licenses |
 
 ### Skills (21)
 
@@ -76,27 +76,27 @@ Behavior-triggering, ≤500 lines each, heavy reference content in `references/`
 
 | Skill | Coverage |
 |-------|----------|
-| `claude-code-setup` | Deploy/audit the 5-layer stack |
-| `claude-code-sync` | Idempotent setup updates + sub-repo propagation |
+| `cc-stack-setup` | Deploy/audit the 5-layer stack |
+| `cc-stack-sync` | Idempotent setup updates + sub-repo propagation |
 | `cc-second-brain` | Three-tier memory (engram + Obsidian + plugin rules) + topic-key taxonomy |
-| `model-routing` | Pick Opus/Sonnet/Haiku, effort levels, fast mode, cost tables |
-| `context-budgeting` | Token arithmetic, `/compact` strategy, anchor preservation |
-| `hooks` | Full hook lifecycle (14 events), JSON contract, security patterns |
-| `mcp` | MCP config, transports, Tool Search / deferred tools, channels |
-| `agent-teams` | Multi-agent topologies, role squads, lifecycle, worktree coordination |
-| `agentic-patterns` | Reflection, chaining, routing, parallelization, eval-optimizer |
-| `orchestration-blackboard` | Shared filesystem blackboard for parallel agent runs |
-| `prompt-budget-preflight` | Pre-flight before any Agent spawn — avoid prompt-too-long rejects |
-| `verify-between-waves` | tsc/test/commit cadence between refactor waves |
-| `worktree-management` | Git worktree isolation, parallel tasks, `EnterWorktree`/`ExitWorktree` |
-| `monitor-tool` | Stream background process events into the conversation (Monitor tool) |
-| `auto-mode` | Auto-mode permission handling — classifier approvals, defer flow |
-| `autonomy` | Configure autonomous operating profiles |
-| `ultraplan` | Cloud planning — plan in the cloud, review in browser, execute remote or local |
-| `deep-code-intelligence` | Evidence-driven workflow for hard bugs and high-stakes decisions |
-| `security-compliance` | Permissions model, settings allowlists/denylists, hardening |
-| `plugin-development` | Build/validate/publish plugins — manifest schema, authoring |
-| `prompt-engineering` | Effective CLAUDE.md routing, agent prompts, skill descriptions |
+| `cc-model-routing` | Pick Opus/Sonnet/Haiku, effort levels, fast mode, cost tables |
+| `cc-context-budgeting` | Token arithmetic, `/compact` strategy, anchor preservation |
+| `cc-hook-authoring` | Full hook lifecycle (14 events), JSON contract, security patterns |
+| `cc-mcp` | MCP config, transports, Tool Search / deferred tools, channels |
+| `cc-agent-teams` | Multi-agent topologies, role squads, lifecycle, worktree coordination |
+| `cc-agentic-patterns` | Reflection, chaining, routing, parallelization, eval-optimizer |
+| `cc-orchestration-blackboard` | Shared filesystem blackboard for parallel agent runs |
+| `cc-prompt-budget-preflight` | Pre-flight before any Agent spawn — avoid prompt-too-long rejects |
+| `cc-verify-between-waves` | tsc/test/commit cadence between refactor waves |
+| `cc-worktree-management` | Git worktree isolation, parallel tasks, `EnterWorktree`/`ExitWorktree` |
+| `cc-monitor-tool` | Stream background process events into the conversation (Monitor tool) |
+| `cc-auto-mode` | Auto-mode permission handling — classifier approvals, defer flow |
+| `cc-autonomy-mode` | Configure autonomous operating profiles |
+| `cc-ultraplan` | Cloud planning — plan in the cloud, review in browser, execute remote or local |
+| `cc-deep-code-intelligence` | Evidence-driven workflow for hard bugs and high-stakes decisions |
+| `cc-security-compliance` | Permissions model, settings allowlists/denylists, hardening |
+| `cc-plugin-development` | Build/validate/publish plugins — manifest schema, authoring |
+| `cc-prompt-engineering` | Effective CLAUDE.md routing, agent prompts, skill descriptions |
 
 ### MCP reference server (22 tools)
 

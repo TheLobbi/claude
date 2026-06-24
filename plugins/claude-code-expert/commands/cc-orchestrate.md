@@ -28,7 +28,7 @@ Runs an agentic pattern end-to-end with the right agents, tools, and coordinatio
 
 ## Patterns
 
-See [`skills/agentic-patterns`](../skills/agentic-patterns/SKILL.md). Quick reference:
+See [`skills/cc-agentic-patterns`](../skills/cc-agentic-patterns/SKILL.md). Quick reference:
 
 | Pattern | Cost | Shape |
 |---|---|---|
@@ -43,7 +43,7 @@ See [`skills/agentic-patterns`](../skills/agentic-patterns/SKILL.md). Quick refe
 
 ## Pattern selection
 
-If `--pattern` isn't provided, runs `pattern-router` agent first. Router returns:
+If `--pattern` isn't provided, runs `cc-pattern-router` agent first. Router returns:
 - Recommended pattern + rationale
 - 5-layer wiring (CLAUDE.md rules, skill references, hook gates, agent spawns, memory writes)
 - Cost estimate
@@ -53,14 +53,14 @@ If `--pattern` isn't provided, runs `pattern-router` agent first. Router returns
 
 1. Pattern chosen (explicitly or via router).
 2. Topology chosen (from `--topology` or `cc_docs_team_topology_recommend`).
-3. `team-orchestrator` agent (Opus by default) launches specialists with correct tool restrictions and worktree isolation.
-4. **Between waves** (orchestrator-workers / blackboard): `verify-between-waves` skill runs as a gate — typecheck + lint + tests must pass before the next wave starts. See [`skills/verify-between-waves/SKILL.md`](../skills/verify-between-waves/SKILL.md).
+3. `cc-team-orchestrator` agent (Opus by default) launches specialists with correct tool restrictions and worktree isolation.
+4. **Between waves** (orchestrator-workers / blackboard): `cc-verify-between-waves` skill runs as a gate — typecheck + lint + tests must pass before the next wave starts. See [`skills/cc-verify-between-waves/SKILL.md`](../skills/cc-verify-between-waves/SKILL.md).
 5. Coordinator gathers outputs and synthesizes.
 6. Returns: final artifact + decision log + cost actual vs estimate.
 
 ## Model tiers
 
-Default split: Opus orchestrator + Sonnet workers + Haiku researchers (see [`skills/model-routing/SKILL.md`](../skills/model-routing/SKILL.md)).
+Default split: Opus orchestrator + Sonnet workers + Haiku researchers (see [`skills/cc-model-routing/SKILL.md`](../skills/cc-model-routing/SKILL.md)).
 
 **Escalate the orchestrator to Fable 5** (`--model fable` on the lead, or `model: fable` on the spawn) when the run is long-horizon: overnight builds, end-to-end migrations, or 3+ waves where orchestrator drift is the failure mode. Fable sustains multi-hour coordination and long-lived async subagents that stall lesser models — but costs ~2× Opus per token (plus ~30% more tokens from its tokenizer), so workers stay on Sonnet. Don't escalate single-wave or routine runs.
 

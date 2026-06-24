@@ -50,14 +50,14 @@ Map skill name prefixes / keywords to categories. Falls back to "general" for un
 
 | Category | Matches on |
 |---|---|
-| **Orchestration** | `orchestration-*`, `agent-team-topologies`, `agentic-patterns`, `council-*`, `worktree-management`, `channels-bootstrap`, `hook-policy-engine`, `common-workflows` |
-| **Memory & Context** | `context-budgeting`, `checkpointing`, `auto-memory`, `monitor-tool`, `prompt-budget-preflight` |
-| **Orchestration primitives** | `orchestration-blackboard`, `verify-between-waves` |
-| **Code Intelligence** | `deep-code-intelligence`, `self-healing-advanced`, `research-routing`, `computer-use` |
-| **Model & Cost** | `model-routing`, `ultraplan` |
+| **Orchestration** | `orchestration-*`, `agent-team-topologies`, `cc-agentic-patterns`, `council-*`, `cc-worktree-management`, `channels-bootstrap`, `hook-policy-engine`, `common-workflows` |
+| **Memory & Context** | `cc-context-budgeting`, `checkpointing`, `auto-memory`, `cc-monitor-tool`, `cc-prompt-budget-preflight` |
+| **Orchestration primitives** | `cc-orchestration-blackboard`, `cc-verify-between-waves` |
+| **Code Intelligence** | `cc-deep-code-intelligence`, `self-healing-advanced`, `research-routing`, `computer-use` |
+| **Model & Cost** | `cc-model-routing`, `cc-ultraplan` |
 | **CI/CD & Ops** | `cicd-integration`, `scheduled-tasks`, `runtime-selection` |
-| **Security & Enterprise** | `enterprise-security`, `auto-mode`, `permissions-*` |
-| **Plugin Dev** | `plugin-development`, `mcp-servers`, `hook-script-library` |
+| **Security & Enterprise** | `enterprise-security`, `cc-auto-mode`, `permissions-*` |
+| **Plugin Dev** | `cc-plugin-development`, `mcp-servers`, `hook-script-library` |
 | **IDE & SDK** | `ide-integration`, `sdk-*`, `lsp-integration` |
 | **Tutorials / Reference** | `worked-examples`, `mcp-prompts`, anything else with no clear grouping |
 
@@ -102,5 +102,5 @@ requiring keyword guessing.
 - UX council finding C5 — "53 skills invisible" — originated this command.
 - Perf council finding C3 — large skill bodies — `--by-size` is the diagnostic aid for C3's
   body-extraction cleanup.
-- `skills/agentic-patterns/SKILL.md` — the "pattern selection" skill is the second half of
+- `skills/cc-agentic-patterns/SKILL.md` — the "pattern selection" skill is the second half of
   discoverability; this command is the first half.

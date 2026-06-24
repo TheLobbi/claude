@@ -4,9 +4,9 @@
   "when_to_use": "When task benefits from specialists (security + performance + test), independent perspectives (debug council), or parallel execution (review board).",
   "layers": {
     "CLAUDE.md": "Add rule for when to escalate: 'For PR review, architectural decisions, or debugging with multiple candidate causes — use /cc-council.'",
-    "skill": "skills/agent-teams is the central skill. skills/agentic-patterns for pattern selection.",
+    "skill": "skills/cc-agent-teams is the central skill. skills/cc-agentic-patterns for pattern selection.",
     "hook": "teammate-idle-enforcement hook prevents zombie workers.",
-    "agent": "agents/team-orchestrator (supervisor), agents/council-coordinator (blackboard), plus role-based specialists."
+    "agent": "agents/cc-team-orchestrator (supervisor), agents/cc-council-coordinator (blackboard), plus role-based specialists."
   },
   "cost": "1.5–6× solo. Use cost cap via /cc-orchestrate --budget.",
   "anti_patterns": [

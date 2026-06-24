@@ -4,9 +4,9 @@
   "when_to_use": "Multi-agent review where specialists need to see each other's findings (vs pure parallelization where they don't).",
   "layers": {
     "CLAUDE.md": "No rule needed.",
-    "skill": "skills/agent-teams documents blackboard as a coordination protocol option.",
+    "skill": "skills/cc-agent-teams documents blackboard as a coordination protocol option.",
     "hook": "Optional: PostToolUse Write hook that notifies other agents when the blackboard file changes.",
-    "agent": "agents/council-coordinator implements blackboard protocol. Specialists write to .claude/reviews/{specialist}.md; coordinator synthesizes VERDICT.md."
+    "agent": "agents/cc-council-coordinator implements blackboard protocol. Specialists write to .claude/reviews/{specialist}.md; coordinator synthesizes VERDICT.md."
   },
   "cost": "~3–6× normal. Expensive because each agent reads the full blackboard on each pass.",
   "anti_patterns": [
