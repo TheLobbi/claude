@@ -4,9 +4,9 @@
   "when_to_use": "Subtasks are independent (sectioning) or you want multiple perspectives on the same question (voting). Fast; parallelism dominates serial cost.",
   "layers": {
     "CLAUDE.md": "No rule needed.",
-    "skill": "skills/council-review (in agent-teams skill) covers council patterns; skills/agent-teams topology table.",
+    "skill": "skills/council-review (in agent-teams skill) covers council patterns; skills/cc-agent-teams topology table.",
     "hook": "Optional: Stop hook that waits for all parallel agents to complete before closing the turn.",
-    "agent": "agents/council-coordinator orchestrates fan-out/fan-in with structured merge."
+    "agent": "agents/cc-council-coordinator orchestrates fan-out/fan-in with structured merge."
   },
   "cost": "Wall-clock: ~1×. Total tokens: N× where N = parallel count. Compare to serial: same tokens, N× slower.",
   "anti_patterns": [

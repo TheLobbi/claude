@@ -4,7 +4,7 @@
   "when_to_use": "Any task requiring real-world side effects: reading files, running tests, calling APIs, writing code. Claude Code always uses tool-use.",
   "layers": {
     "CLAUDE.md": "Document tool preferences: 'Prefer Read over Bash(cat); Glob over Bash(find); Edit over sed.'",
-    "skill": "skills/hooks for lifecycle gates around tool calls.",
+    "skill": "skills/cc-hook-authoring for lifecycle gates around tool calls.",
     "hook": "PreToolUse / PostToolUse for governance, logging, transformation.",
     "agent": "Agents inherit tool restrictions via allowed-tools frontmatter."
   },

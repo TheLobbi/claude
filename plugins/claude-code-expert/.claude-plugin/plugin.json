@@ -1,7 +1,7 @@
 {
   "$schema": "https://claude.local/schemas/plugin.schema.json",
   "name": "claude-code-expert",
-  "version": "8.2.0",
+  "version": "8.3.0",
   "description": "Modern Claude Code second brain: 5-layer stack deploy + three-tier memory (engram + Obsidian vault + plugin rules) + 22-tool MCP reference server. 21 behavior-triggering skills, 12 single-intent commands, 18 role-scoped agents bridging engram and Obsidian. Tracks current Claude Code capabilities (Fable 5 + Opus 4.8, agent teams, Tool Search, web/remote).",
   "author": {
     "name": "Markus Ahling"
@@ -81,9 +81,9 @@
       "commands/cc-setup.md",
       "commands/cc-memory.md",
       "skills/cc-second-brain/SKILL.md",
-      "skills/claude-code-setup/SKILL.md",
+      "skills/cc-stack-setup/SKILL.md",
       "memory/conventions.md",
-      "agents/memory-consolidator.md"
+      "agents/cc-memory-consolidator.md"
     ],
     "entry": "CONTEXT_SUMMARY.md",
     "bootstrapFiles": [

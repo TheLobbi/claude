@@ -4,9 +4,9 @@
   "when_to_use": "Open-ended debugging, exploration, interactive problem-solving where next step depends on what you just learned. The debugger agent uses this internally.",
   "layers": {
     "CLAUDE.md": "Add rule for debugging: 'State a hypothesis before each action; record what the observation tells you before the next action.'",
-    "skill": "skills/deep-code-intelligence encodes the evidence-driven variant.",
+    "skill": "skills/cc-deep-code-intelligence encodes the evidence-driven variant.",
     "hook": "PostToolUseFailure hook captures failure as an observation for the next thought.",
-    "agent": "agents/debugger uses ReAct explicitly; agents/principal-engineer-strategist uses a more structured variant."
+    "agent": "agents/cc-debugger uses ReAct explicitly; agents/cc-principal-engineer-strategist uses a more structured variant."
   },
   "cost": "~1.2–2× normal. Depends on how many loops needed.",
   "anti_patterns": [

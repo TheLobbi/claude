@@ -30,7 +30,7 @@ Legend: **→ skill:X** = content folded into skills-v8/X/SKILL.md · **→ MCP:
 | context-budgeting | KEEP+shrink | skills-v8/context-budgeting | ≤250 lines; refs → references/compact-strategies.md |
 | context-management | MERGE | skills-v8/context-budgeting | /compact and /clear are the same concern |
 | cost-optimization | MERGE | skills-v8/model-routing | Cost lives with routing |
-| council-review | DELETE | — | Content is in commands/cc-council.md + agents/council-coordinator.md |
+| council-review | DELETE | — | Content is in commands/cc-council.md + agents/cc-council-coordinator.md |
 | deep-code-intelligence | KEEP+shrink | skills-v8/deep-code-intelligence | Evidence format → references/evidence-table-format.md |
 | enterprise-security | MERGE | skills-v8/security-compliance | Combined skill |
 | extended-thinking | DELETE | — | Covered by model-routing + external `extended-thinking` skill |
@@ -47,7 +47,7 @@ Legend: **→ skill:X** = content folded into skills-v8/X/SKILL.md · **→ MCP:
 | plugin-development | KEEP+shrink | skills-v8/plugin-development | Manifest schema → references/manifest-schema.md |
 | project-sync | KEEP+shrink | skills-v8/claude-code-sync | Sync workflow |
 | prompt-engineering | KEEP+shrink | skills-v8/prompt-engineering | CLAUDE.md patterns → references/claude-md-patterns.md |
-| research-routing | DELETE | — | Covered by agents/research-orchestrator.md + external tools |
+| research-routing | DELETE | — | Covered by agents/cc-research-orchestrator.md + external tools |
 | runtime-selection | DELETE | — | Covered by commands/cc-help.md routing table |
 | scheduled-tasks | DELETE | — | Use native `schedule` skill + MCP:cc_docs_schedule_recommend |
 | self-healing-advanced | DELETE | — | Covered by commands/cc-debug.md + hooks |
@@ -57,7 +57,7 @@ Legend: **→ skill:X** = content folded into skills-v8/X/SKILL.md · **→ MCP:
 | teams-collaboration | MERGE | skills-v8/agent-teams | Collaboration = teams topic |
 | testing-workflows | DELETE | — | Native `testing` skill in productivity plugin covers |
 | tools-reference | DELETE (content → MCP) | MCP:cc_docs_full_reference | Already covered |
-| troubleshooting | DELETE | — | Covered by commands/cc-debug.md + agents/debugger.md |
+| troubleshooting | DELETE | — | Covered by commands/cc-debug.md + agents/cc-debugger.md |
 | worked-examples | DELETE | — | Tutorial content moves to docs/ and external `anthropic-skills` |
 | **(new)** | CREATE | skills-v8/cc-second-brain | Engram conventions + consolidator usage |
 | **(new)** | CREATE | skills-v8/claude-code-setup | Was: commands/cc-setup.md workflow body |
@@ -102,33 +102,33 @@ Legend: **→ skill:X** = content folded into skills-v8/X/SKILL.md · **→ MCP:
 
 | v7 agent | Disposition | v8 destination | Notes |
 |---|---|---|---|
-| agent-lifecycle-manager | MERGE | agents/team-orchestrator.md | Lifecycle = orchestrator concern |
-| audit-reviewer | KEEP | agents/audit-reviewer.md | |
-| autonomy-planner | KEEP | agents/autonomy-planner.md | |
-| autonomy-reviewer | KEEP | agents/autonomy-reviewer.md | |
-| autonomy-verifier | KEEP | agents/autonomy-verifier.md | |
-| claude-code-architect | MERGE | agents/principal-engineer-strategist.md + commands/cc-setup.md | CC-setup expertise is in the command |
-| claude-code-debugger | MERGE | agents/debugger.md | Generic debugger absorbs CC playbook |
-| council-coordinator | KEEP | agents/council-coordinator.md | |
-| debugger | KEEP+upgrade | agents/debugger.md | Absorbs claude-code-debugger |
-| dependency-auditor | KEEP | agents/dependency-auditor.md | |
-| evaluator-optimizer | KEEP | agents/evaluator-optimizer.md | |
+| agent-lifecycle-manager | MERGE | agents/cc-team-orchestrator.md | Lifecycle = orchestrator concern |
+| audit-reviewer | KEEP | agents/cc-audit-reviewer.md | |
+| autonomy-planner | KEEP | agents/cc-autonomy-planner.md | |
+| autonomy-reviewer | KEEP | agents/cc-autonomy-reviewer.md | |
+| autonomy-verifier | KEEP | agents/cc-autonomy-verifier.md | |
+| claude-code-architect | MERGE | agents/cc-principal-engineer-strategist.md + commands/cc-setup.md | CC-setup expertise is in the command |
+| claude-code-debugger | MERGE | agents/cc-debugger.md | Generic debugger absorbs CC playbook |
+| council-coordinator | KEEP | agents/cc-council-coordinator.md | |
+| debugger | KEEP+upgrade | agents/cc-debugger.md | Absorbs claude-code-debugger |
+| dependency-auditor | KEEP | agents/cc-dependency-auditor.md | |
+| evaluator-optimizer | KEEP | agents/cc-evaluator-optimizer.md | |
 | hooks-specialist | DELETE | — | skills-v8/hooks + MCP:cc_kb_hook_recipe covers |
 | ide-integration-specialist | DELETE | — | MCP:cc_kb_lsp_config covers |
-| implementer | KEEP | agents/implementer.md | |
+| implementer | KEEP | agents/cc-implementer.md | |
 | mcp-configurator | DELETE | — | skills-v8/mcp + `/cc-setup --mcp-only` covers |
-| migration-lead | KEEP | agents/migration-lead.md | |
-| pattern-router | KEEP | agents/pattern-router.md | |
-| permissions-security-advisor | MERGE | agents/security-compliance-advisor.md | Combined role |
-| plugin-architect | KEEP | agents/plugin-architect.md | |
-| principal-engineer-strategist | KEEP | agents/principal-engineer-strategist.md | |
-| release-coordinator | KEEP | agents/release-coordinator.md | |
-| research-orchestrator | KEEP | agents/research-orchestrator.md | |
+| migration-lead | KEEP | agents/cc-migration-lead.md | |
+| pattern-router | KEEP | agents/cc-pattern-router.md | |
+| permissions-security-advisor | MERGE | agents/cc-security-compliance-advisor.md | Combined role |
+| plugin-architect | KEEP | agents/cc-plugin-architect.md | |
+| principal-engineer-strategist | KEEP | agents/cc-principal-engineer-strategist.md | |
+| release-coordinator | KEEP | agents/cc-release-coordinator.md | |
+| research-orchestrator | KEEP | agents/cc-research-orchestrator.md | |
 | sdk-guide | DELETE | — | External `claude-api` skill covers |
-| security-compliance-advisor | KEEP+upgrade | agents/security-compliance-advisor.md | Absorbs permissions-security-advisor |
-| team-orchestrator | KEEP+upgrade | agents/team-orchestrator.md | Absorbs agent-lifecycle-manager + teams-architect |
-| teams-architect | MERGE | agents/team-orchestrator.md | |
-| **(new)** | CREATE | agents/memory-consolidator.md | Opus, read-only engram, write memory/rules/ |
+| security-compliance-advisor | KEEP+upgrade | agents/cc-security-compliance-advisor.md | Absorbs permissions-security-advisor |
+| team-orchestrator | KEEP+upgrade | agents/cc-team-orchestrator.md | Absorbs agent-lifecycle-manager + teams-architect |
+| teams-architect | MERGE | agents/cc-team-orchestrator.md | |
+| **(new)** | CREATE | agents/cc-memory-consolidator.md | Opus, read-only engram, write memory/rules/ |
 
 **Result**: 26 v7 agents → 18 v8 agents (9 DELETE/MERGE, 17 KEEP, 1 NEW).
 
@@ -164,6 +164,6 @@ Every v7 asset marked DELETE or MERGE must have its content reachable through at
 # Example: verify channels-bootstrap content is reachable
 grep -r "HMAC-SHA256" mcp-server/kb/channels/ || fail "channel server content lost"
 grep -r "topic_key" skills/cc-second-brain/ || fail "engram conventions lost"
-grep -r "5 Whys" agents/debugger.md || fail "debug hypothesis protocol lost"
+grep -r "5 Whys" agents/cc-debugger.md || fail "debug hypothesis protocol lost"
 # ... (one assertion per DELETE/MERGE row above)
 ```

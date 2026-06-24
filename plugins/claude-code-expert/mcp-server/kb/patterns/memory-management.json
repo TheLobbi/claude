@@ -6,7 +6,7 @@
     "CLAUDE.md": "Reference memory/rules/cc-always.md + cc-obsidian-intro.md. Document when Claude should mem_save (decisions, bugs, discoveries).",
     "skill": "skills/cc-second-brain is the routing skill. memory/conventions.md documents write discipline.",
     "hook": "SessionStart hook for session-init; optional Stop hook for memory-session-summary nudge.",
-    "agent": "agents/memory-consolidator bridges tiers (read-only engram, writes Obsidian + cc-patterns.md)."
+    "agent": "agents/cc-memory-consolidator bridges tiers (read-only engram, writes Obsidian + cc-patterns.md)."
   },
   "cost": "~0–5%. Writes are cheap; the value is in having context across sessions.",
   "anti_patterns": [

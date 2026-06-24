@@ -6,7 +6,7 @@
     "CLAUDE.md": "Add rule: 'Review your own output before presenting. Check for off-by-one errors, unhandled edge cases, and inconsistency with existing code patterns.'",
     "skill": "No skill required — behavior driven from CLAUDE.md.",
     "hook": "Optional PostToolUse hook on Write|Edit that prompts Claude to self-verify before the next turn.",
-    "agent": "Consider agents/audit-reviewer.md for explicit second-pass review when risk is high."
+    "agent": "Consider agents/cc-audit-reviewer.md for explicit second-pass review when risk is high."
   },
   "cost": "~1.1x normal (one extra reasoning pass). Cheapest of all multi-shot patterns.",
   "anti_patterns": [
