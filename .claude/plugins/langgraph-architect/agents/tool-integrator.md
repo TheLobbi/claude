@@ -9,9 +9,8 @@ name: tool-integrator
 ---
 name: tool-integrator
 version: 1.0.0
-model: claude-sonnet-4-5-20250929
+model: claude-sonnet-5
 color: teal
-budget_tokens: 50000
 description: Expert in integrating tools with LangGraph agents and workflows
 expertise:
   - Tool decorator usage
@@ -187,7 +186,7 @@ from langchain_anthropic import ChatAnthropic
 
 def agent_node(state: AgentState) -> dict:
     """Agent that decides which tools to call."""
-    llm = ChatAnthropic(model="claude-sonnet-4-5-20250929")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools(tools)
 
     response = llm_with_tools.invoke(state["messages"])
@@ -556,7 +555,7 @@ tools = [
 ]
 
 # Bind tools to LLM
-llm = ChatAnthropic(model="claude-sonnet-4-5-20250929")
+llm = ChatAnthropic(model="claude-sonnet-5")
 llm_with_tools = llm.bind_tools(tools)
 
 # LLM can now call tools
@@ -606,7 +605,7 @@ def composed_search_and_summarize(query: str) -> str:
     search_results = search_tool.invoke({"query": query})
 
     # Summarize with LLM
-    llm = ChatAnthropic(model="claude-sonnet-4-5-20250929")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     summary = llm.invoke([
         HumanMessage(content=f"Summarize these search results:\n{search_results}")
     ])

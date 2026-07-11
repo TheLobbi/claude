@@ -77,7 +77,7 @@ CONFIG = {
     "checkpoint_dir": os.getenv("CHECKPOINT_DIR", "./checkpoints"),
     "pattern_library_path": os.getenv("PATTERN_LIBRARY", "./data/patterns.json"),
     "templates_dir": os.getenv("TEMPLATES_DIR", "./templates"),
-    "default_model": os.getenv("DEFAULT_MODEL", "claude-sonnet-4-5"),
+    "default_model": os.getenv("DEFAULT_MODEL", "claude-sonnet-5"),
     "max_retries": int(os.getenv("MAX_RETRIES", "3")),
     "enable_streaming": os.getenv("ENABLE_STREAMING", "true").lower() == "true",
 }

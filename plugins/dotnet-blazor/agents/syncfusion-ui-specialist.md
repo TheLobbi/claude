@@ -13,7 +13,7 @@ inputs:
 risk: low
 cost: medium
 description: Syncfusion Blazor expert for DataGrid, Charts, Scheduler, RichTextEditor, PDF, and 80+ components with theming
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 tools:
   - Read
   - Write

@@ -44,7 +44,7 @@ Configure AI in draw.io via **Extras > Configuration** (JSON editor):
   "gptApiKey": "sk-...",
   "geminiApiKey": "AIza...",
   "claudeApiKey": "sk-ant-...",
-  "defaultAiModel": "claude-sonnet-4-20250514"
+  "defaultAiModel": "claude-sonnet-5"
 }
 ```
 

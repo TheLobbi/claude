@@ -74,8 +74,7 @@ agent_tools = [research_web, analyze_data]
 async def agent_node(state: AgentState) -> AgentState:
     """Main agent node."""
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0
+        model="claude-sonnet-5"
     ).bind_tools(agent_tools)
 
     response = await model.ainvoke(state["messages"])

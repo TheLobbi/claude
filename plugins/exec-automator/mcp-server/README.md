@@ -68,7 +68,7 @@ export OPENAI_API_KEY="your-key"
 export CHECKPOINT_DIR="./checkpoints"
 export PATTERN_LIBRARY="./data/patterns.json"
 export TEMPLATES_DIR="./templates"
-export DEFAULT_MODEL="claude-sonnet-4-6"
+export DEFAULT_MODEL="claude-sonnet-5"
 ```
 
 ## Usage
@@ -139,7 +139,7 @@ result = await mcp.call_tool("generate_workflow", {
     "responsibility_id": "resp_001",
     "workflow_type": "human_in_loop",  # or "autonomous", "assisted", "advisory"
     "options": {
-        "model": "claude-sonnet-4-6",
+        "model": "claude-sonnet-5",
         "approval_threshold": 0.8
     }
 })
@@ -425,7 +425,7 @@ def create_my_workflow() -> StateGraph:
 DOMAIN_AGENTS["my_domain"] = {
     "name": "My Domain Agent",
     "description": "...",
-    "model": "claude-sonnet-4-6",
+    "model": "claude-sonnet-5",
     "system_prompt": "...",
     "tools": [...],
     "capabilities": [...]

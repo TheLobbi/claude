@@ -237,8 +237,7 @@ Edit the model initialization in `main.py`:
 
 ```python
 model = ChatAnthropic(
-    model="claude-3-opus-20240229",  # Change model
-    temperature=0.7                   # Adjust temperature
+    model="claude-opus-4-8",  # Change model
 )
 ```
 

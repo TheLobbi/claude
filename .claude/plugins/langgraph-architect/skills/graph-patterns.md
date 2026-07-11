@@ -169,7 +169,7 @@ Route tasks to appropriate agents. When done, return FINISH.
 """
 
 supervisor = create_supervisor_node(
-    llm=ChatAnthropic(model="claude-opus-4-5"),
+    llm=ChatAnthropic(model="claude-opus-4-8"),
     prompt=supervisor_prompt,
     agents=members
 )
@@ -271,7 +271,7 @@ class HierarchicalState(TypedDict):
     team_outputs: dict
 
 main_supervisor = create_supervisor_node(
-    llm=ChatAnthropic(model="claude-opus-4-5"),
+    llm=ChatAnthropic(model="claude-opus-4-8"),
     prompt="Coordinate research_team, dev_team, and qa_team...",
     agents=["research_team", "dev_team", "qa_team"]
 )
@@ -315,7 +315,7 @@ def create_team_subgraph(team_name: str, members: list[str], supervisor_prompt: 
 
     # Create team supervisor
     team_supervisor = create_supervisor_node(
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         prompt=supervisor_prompt,
         agents=members
     )
@@ -384,7 +384,7 @@ def create_research_agent():
     return create_swarm_agent(
         name="researcher",
         instructions="Research and gather information. Hand off to fact checker or writer.",
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_writer, handoff_to_fact_checker]
     )
 
@@ -401,7 +401,7 @@ def create_writer_agent():
     return create_swarm_agent(
         name="writer",
         instructions="Create content. Request more research or hand off to reviewer.",
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_reviewer, handoff_to_researcher]
     )
 
@@ -414,7 +414,7 @@ def create_reviewer_agent():
     return create_swarm_agent(
         name="reviewer",
         instructions="Review quality. Request revisions or approve.",
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_writer],
         can_approve=True  # Can end workflow
     )

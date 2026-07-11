@@ -57,7 +57,7 @@ async def create_mcp_agent():
             all_tools = fs_tools + atlassian_tools
 
             # Create agent with all tools
-            model = ChatAnthropic(model="claude-sonnet-4")
+            model = ChatAnthropic(model="claude-sonnet-5")
             agent = create_react_agent(model, all_tools)
 
             # Run agent with MCP tools available
@@ -269,7 +269,7 @@ class OrchestrationAgent:
 
     async def build_graph(self):
         """Build LangGraph with external MCP tools"""
-        model = ChatAnthropic(model="claude-sonnet-4")
+        model = ChatAnthropic(model="claude-sonnet-5")
 
         # Create graph with external tools
         builder = StateGraph(AgentState)

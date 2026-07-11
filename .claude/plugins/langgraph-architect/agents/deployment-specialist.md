@@ -5,7 +5,7 @@ version: 1.0.0
 author: Claude Code
 created: 2026-01-16
 updated: 2026-01-16
-model: claude-sonnet-4-5-20250929
+model: claude-sonnet-5
 color: gray
 status: active
 type: specialist

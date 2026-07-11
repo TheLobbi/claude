@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "plugin": "microsoft-agents-expert",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "msagent-choose",
+      "intent": "Recommend the right Microsoft agent stack for a described use case",
+      "tags": [
+        "microsoft-agents-expert",
+        "stack-selection",
+        "architecture"
+      ],
+      "inputs": [
+        "use case description",
+        "audience (internal|customer-facing|both)",
+        "team profile (pro-code|low-code|mixed)",
+        "constraints (channels, compliance, budget, existing investments)"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/msagent-choose.md"
+    },
+    {
+      "name": "msagent-deploy",
+      "intent": "Deployment and channel publishing guidance for Microsoft agents",
+      "tags": [
+        "microsoft-agents-expert",
+        "deployment",
+        "publishing"
+      ],
+      "inputs": [
+        "stack (agent-framework|m365-sdk|teams|copilot-studio|foundry)",
+        "target channels (m365-copilot|teams|web|api)",
+        "environment (dev|staging|prod)"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/msagent-deploy.md"
+    },
+    {
+      "name": "msagent-migrate",
+      "intent": "Migrate legacy Microsoft bots and agents to the current SDKs",
+      "tags": [
+        "microsoft-agents-expert",
+        "migration",
+        "modernization"
+      ],
+      "inputs": [
+        "source stack (bot-framework|semantic-kernel|autogen|teams-toolkit|power-virtual-agents)",
+        "path to existing code or solution",
+        "target stack (optional — recommended if omitted)"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "commands/msagent-migrate.md"
+    },
+    {
+      "name": "msagent-review",
+      "intent": "Review a Microsoft agent implementation against current best practices",
+      "tags": [
+        "microsoft-agents-expert",
+        "review",
+        "quality"
+      ],
+      "inputs": [
+        "path to agent code or Copilot Studio solution export",
+        "focus (security|reliability|cost|ux|all)"
+      ],
+      "risk": "low",
+      "cost": "high",
+      "path": "commands/msagent-review.md"
+    },
+    {
+      "name": "msagent-scaffold",
+      "intent": "Scaffold a new Microsoft agent project on the chosen stack",
+      "tags": [
+        "microsoft-agents-expert",
+        "scaffold",
+        "project-setup"
+      ],
+      "inputs": [
+        "stack (agent-framework|m365-sdk|teams|copilot-studio|foundry)",
+        "language (csharp|python|typescript)",
+        "agent name and purpose",
+        "target channels"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "commands/msagent-scaffold.md"
+    }
+  ]
+}

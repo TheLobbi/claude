@@ -426,7 +426,7 @@ doc["citations"] = {"enabled": True}
 messages = [{"role": "user", "content": documents}]
 
 # Use supported model
-model="claude-sonnet-4-5"
+model="claude-sonnet-5"
 ```
 
 ### Issue: Wrong or hallucinated citations

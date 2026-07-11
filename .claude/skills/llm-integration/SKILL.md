@@ -37,7 +37,7 @@ client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
 # Basic completion
 message = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Hello, Claude!"}
@@ -47,7 +47,7 @@ print(message.content[0].text)
 
 # With system prompt
 message = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     system="You are a helpful coding assistant.",
     messages=[
@@ -57,7 +57,7 @@ message = client.messages.create(
 
 # Streaming
 with client.messages.stream(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Tell me a story."}]
 ) as stream:
@@ -80,7 +80,7 @@ tools = [
 ]
 
 message = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=tools,
     messages=[{"role": "user", "content": "What's the weather in San Francisco?"}]
@@ -207,7 +207,7 @@ class LLMProvider(ABC):
         pass
 
 class ClaudeProvider(LLMProvider):
-    def __init__(self, api_key: str, model: str = "claude-sonnet-4-20250514"):
+    def __init__(self, api_key: str, model: str = "claude-sonnet-5"):
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model
 
@@ -295,14 +295,14 @@ import anthropic
 
 client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
-# Enable extended thinking (Claude Sonnet 4 and Opus 4)
+# Adaptive thinking (current models: Opus 4.6+, Sonnet 5, Fable 5)
+# Note: budget_tokens is removed on Opus 4.7+/Sonnet 5/Fable 5 (returns 400);
+# use output_config effort levels to control depth
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=16000,
-    thinking={
-        "type": "enabled",
-        "budget_tokens": 10000  # Reserve tokens for thinking
-    },
+    thinking={"type": "adaptive"},
+    output_config={"effort": "high"},
     messages=[
         {
             "role": "user",
@@ -324,12 +324,9 @@ for block in response.content:
 \`\`\`python
 # Stream thinking process in real-time
 with client.messages.stream(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=16000,
-    thinking={
-        "type": "enabled",
-        "budget_tokens": 10000
-    },
+    thinking={"type": "adaptive"},
     messages=[
         {"role": "user", "content": "Analyze the time complexity of this sorting algorithm..."}
     ]
@@ -356,7 +353,7 @@ from dataclasses import dataclass
 @dataclass
 class ThinkingConfig:
     enabled: bool = False
-    budget_tokens: Optional[int] = None
+    effort: str = "high"  # low | medium | high | xhigh | max
     show_thinking: bool = True
 
 class ExtendedThinkingProvider:
@@ -380,13 +377,11 @@ class ExtendedThinkingProvider:
 
         thinking_params = {}
         if self.config.enabled:
-            thinking_params["thinking"] = {
-                "type": "enabled",
-                "budget_tokens": self.config.budget_tokens or 10000
-            }
+            thinking_params["thinking"] = {"type": "adaptive"}
+            thinking_params["output_config"] = {"effort": self.config.effort}
 
         response = client.messages.create(
-            model=kwargs.get("model", "claude-sonnet-4-20250514"),
+            model=kwargs.get("model", "claude-sonnet-5"),
             max_tokens=kwargs.get("max_tokens", 16000),
             messages=[{"role": "user", "content": prompt}],
             **thinking_params
@@ -429,7 +424,7 @@ First, think through the problem systematically, then provide your final answer.
 # Usage
 thinking_provider = ExtendedThinkingProvider(
     provider="claude",
-    config=ThinkingConfig(enabled=True, budget_tokens=8000)
+    config=ThinkingConfig(enabled=True, effort="high")
 )
 
 result = thinking_provider.generate_with_thinking(
@@ -587,7 +582,7 @@ When analyzing security:
 
 # Usage
 message = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=4096,
     system=ROLE_BASED_SYSTEM_PROMPTS["code_reviewer"],
     messages=[
@@ -614,38 +609,49 @@ Show your work for each step."""
 
 # For complex reasoning, combine with extended thinking
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=16000,
-    thinking={"type": "enabled", "budget_tokens": 10000},
+    thinking={"type": "adaptive"},
     messages=[
         {"role": "user", "content": COT_PROMPT.format(problem=complex_problem)}
     ]
 )
 \`\`\`
 
-### 6. Prefill Responses for Format Control
+### 6. Structured Outputs for Format Control
 
 \`\`\`python
-# Force JSON output by prefilling assistant response
-messages = [
-    {"role": "user", "content": "Extract entities from: 'Apple Inc. hired John Smith as CEO in 2023.'"},
-    {"role": "assistant", "content": "{"}  # Prefill to force JSON
-]
-
+# NOTE: assistant-turn prefills return a 400 on current models
+# (Opus 4.6+, Sonnet 5, Fable 5). Use structured outputs instead:
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
-    messages=messages
+    output_config={
+        "format": {
+            "type": "json_schema",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "entities": {"type": "array", "items": {"type": "string"}}
+                },
+                "required": ["entities"],
+                "additionalProperties": False
+            }
+        }
+    },
+    messages=[
+        {"role": "user", "content": "Extract entities from: 'Apple Inc. hired John Smith as CEO in 2023.'"}
+    ]
 )
 
-# Claude will complete the JSON starting with "{"
-json_output = "{" + response.content[0].text
+# Output is guaranteed to match the schema
+json_output = response.content[0].text
 \`\`\`
 
 ### 7. Long Context Best Practices
 
 \`\`\`python
-# For Claude's 200k token context window
+# For Claude's 1M token context window (200k on Haiku 4.5)
 LONG_CONTEXT_TEMPLATE = """I'm providing a large codebase for analysis.
 The most important files for this task are at the END of this message.
 
@@ -671,7 +677,7 @@ Focus primarily on the critical files when answering the task."""
 \`\`\`python
 import anthropic
 
-def count_tokens_anthropic(text: str, model: str = "claude-sonnet-4-20250514") -> int:
+def count_tokens_anthropic(text: str, model: str = "claude-sonnet-5") -> int:
     """Count tokens using Anthropic's API"""
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
@@ -683,7 +689,7 @@ def count_tokens_anthropic(text: str, model: str = "claude-sonnet-4-20250514") -
 
     return result.input_tokens
 
-def count_tokens_with_system(messages: list, system: str = None, model: str = "claude-sonnet-4-20250514") -> dict:
+def count_tokens_with_system(messages: list, system: str = None, model: str = "claude-sonnet-5") -> dict:
     """Count tokens including system prompt and messages"""
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
@@ -711,21 +717,22 @@ import anthropic
 class TokenBudgetManager:
     """Intelligent token budget management for LLM calls"""
 
-    def __init__(self, model: str = "claude-sonnet-4-20250514"):
+    def __init__(self, model: str = "claude-sonnet-5"):
         self.model = model
         self.client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
         # Model-specific limits
         self.limits = {
-            "claude-opus-4-20250514": {"context": 200000, "output": 16384},
-            "claude-sonnet-4-20250514": {"context": 200000, "output": 16384},
-            "claude-haiku-3-5-20250514": {"context": 200000, "output": 8192},
+            "claude-fable-5": {"context": 1000000, "output": 128000},
+            "claude-opus-4-8": {"context": 1000000, "output": 128000},
+            "claude-sonnet-5": {"context": 1000000, "output": 128000},
+            "claude-haiku-4-5": {"context": 200000, "output": 64000},
         }
 
     def get_budget(self, model: str = None) -> Dict[str, int]:
         """Get token limits for model"""
         model = model or self.model
-        return self.limits.get(model, {"context": 200000, "output": 16384})
+        return self.limits.get(model, {"context": 200000, "output": 64000})
 
     def check_budget(
         self,
@@ -836,7 +843,7 @@ class TokenBudgetManager:
         return recommendations
 
 # Usage example
-manager = TokenBudgetManager(model="claude-sonnet-4-20250514")
+manager = TokenBudgetManager(model="claude-sonnet-5")
 
 messages = [
     {"role": "user", "content": "What is Python?"},
@@ -936,7 +943,7 @@ logger.log_activity(
     activity_type="llm_api_call",
     details={
         "provider": "anthropic",
-        "model": "claude-sonnet-4-20250514",
+        "model": "claude-sonnet-5",
         "input_tokens": 1500,
         "output_tokens": 800,
         "thinking_tokens": 3000,
@@ -950,35 +957,36 @@ logger.log_activity(
 
 ### Claude Models
 
-| Model | Best For | Context | Output | Cost |
-|-------|----------|---------|--------|------|
-| **Opus 4** | Complex reasoning, architecture design | 200K | 16K | Highest |
-| **Sonnet 4** | General development, balanced performance | 200K | 16K | Medium |
-| **Haiku 3.5** | Fast tasks, simple queries, high throughput | 200K | 8K | Lowest |
+| Model | Best For | Context | Output | Cost (in/out per MTok) |
+|-------|----------|---------|--------|------------------------|
+| **Fable 5** (`claude-fable-5`) | Hardest long-horizon reasoning and agentic work | 1M | 128K | $10 / $50 |
+| **Opus 4.8** (`claude-opus-4-8`) | Complex reasoning, architecture design | 1M | 128K | $5 / $25 |
+| **Sonnet 5** (`claude-sonnet-5`) | General development, balanced performance | 1M | 128K | $3 / $15 |
+| **Haiku 4.5** (`claude-haiku-4-5`) | Fast tasks, simple queries, high throughput | 200K | 64K | $1 / $5 |
 
-**Extended Thinking:** Only available on Sonnet 4 and Opus 4
+**Thinking:** All current models support adaptive thinking (`{"type": "adaptive"}`); on Fable 5 thinking is always on (omit the `thinking` param). Manual `budget_tokens` applies only to older models.
 
 ### When to Use Each Model
 
 \`\`\`python
 MODEL_SELECTION = {
-    "strategic_planning": "claude-opus-4-20250514",
-    "system_architecture": "claude-opus-4-20250514",
-    "complex_debugging": "claude-sonnet-4-20250514",
-    "code_review": "claude-sonnet-4-20250514",
-    "code_generation": "claude-sonnet-4-20250514",
-    "documentation": "claude-haiku-3-5-20250514",
-    "simple_queries": "claude-haiku-3-5-20250514",
-    "batch_processing": "claude-haiku-3-5-20250514"
+    "strategic_planning": "claude-opus-4-8",
+    "system_architecture": "claude-opus-4-8",
+    "complex_debugging": "claude-sonnet-5",
+    "code_review": "claude-sonnet-5",
+    "code_generation": "claude-sonnet-5",
+    "documentation": "claude-haiku-4-5",
+    "simple_queries": "claude-haiku-4-5",
+    "batch_processing": "claude-haiku-4-5"
 }
 
 def select_model(task_type: str, use_thinking: bool = False) -> str:
     """Select appropriate model based on task"""
-    model = MODEL_SELECTION.get(task_type, "claude-sonnet-4-20250514")
+    model = MODEL_SELECTION.get(task_type, "claude-sonnet-5")
 
-    # Ensure model supports extended thinking if requested
+    # Prefer a stronger model when deep reasoning is requested
     if use_thinking and "haiku" in model:
-        model = "claude-sonnet-4-20250514"
+        model = "claude-sonnet-5"
 
     return model
 \`\`\`
@@ -990,7 +998,7 @@ def select_model(task_type: str, use_thinking: bool = False) -> str:
 \`\`\`python
 # Cache large system prompts or context
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=4096,
     system=[
         {
@@ -1034,7 +1042,7 @@ async def process_batch(items: List[str], batch_size: int = 10):
 \`\`\`python
 # Always use streaming for long-running tasks
 with client.messages.stream(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=8192,
     messages=[{"role": "user", "content": complex_task}]
 ) as stream:

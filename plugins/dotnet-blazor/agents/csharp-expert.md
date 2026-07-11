@@ -13,7 +13,7 @@ inputs:
 risk: low
 cost: low
 description: C# language expert for modern patterns (primary constructors, records, pattern matching), LINQ, async/await, generics, and source generators
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 tools:
   - Read
   - Write

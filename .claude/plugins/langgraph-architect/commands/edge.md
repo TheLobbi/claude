@@ -216,7 +216,7 @@ from langchain_core.messages import SystemMessage
 
 def llm_router(state: State) -> str:
     """Use LLM to decide next step."""
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     routing_prompt = """
     Based on the conversation, decide the next step:
@@ -620,7 +620,7 @@ from typing import Literal
 
 def llm_router(state: State) -> Literal["researcher", "coder", "reviewer", "end"]:
     """Use LLM to route to next agent."""
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     system_prompt = """
     You are a supervisor managing these agents:

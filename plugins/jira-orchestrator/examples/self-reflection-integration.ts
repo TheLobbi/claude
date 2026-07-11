@@ -78,13 +78,14 @@ async function exampleCodeReviewWithReflection(claudeAPI: any) {
     console.log(`\n[Iteration ${task.context?.iterationCount || 1}] Performing code review...`);
     console.log(`Thinking budget: ${thinkingBudget} tokens`);
 
-    // Call Claude API with extended thinking
+    // Call Claude API with adaptive thinking (fixed budget_tokens is removed
+    // on Sonnet 5 — the model decides depth; thinkingBudget remains the
+    // loop's escalation signal for bookkeeping below)
     const response = await claudeAPI.messages.create({
-      model: 'claude-sonnet-4-6',
+      model: 'claude-sonnet-5',
       max_tokens: 4000,
       thinking: {
-        type: 'enabled',
-        budget_tokens: thinkingBudget,
+        type: 'adaptive',
       },
       messages: [
         {

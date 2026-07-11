@@ -206,7 +206,7 @@ async def extract_responsibilities(text: str, document_type: str) -> List[Respon
     """
     logger.info(f"Extracting responsibilities from {document_type}")
 
-    llm = ChatAnthropic(model="claude-sonnet-4-5", temperature=0)
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     prompt = f"""You are an expert in association management and nonprofit governance.
 
@@ -278,7 +278,7 @@ async def categorize_responsibility(responsibility: Responsibility) -> str:
     Returns:
         Category string
     """
-    llm = ChatAnthropic(model="claude-haiku-4", temperature=0)
+    llm = ChatAnthropic(model="claude-haiku-4-5")
 
     prompt = f"""Categorize this executive director responsibility into ONE category.
 
@@ -467,7 +467,7 @@ async def identify_org_type(text: str, responsibilities: List[Responsibility]) -
     """
     logger.info("Identifying organization type")
 
-    llm = ChatAnthropic(model="claude-sonnet-4-5", temperature=0)
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     prompt = f"""Analyze this organizational document and extract:
 
@@ -560,7 +560,7 @@ async def generate_workflow_spec(
     """
     logger.info(f"Generating workflow spec: {workflow_type}")
 
-    llm = ChatAnthropic(model="claude-sonnet-4-5", temperature=0)
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     prompt = f"""Generate a complete LangGraph workflow specification for this responsibility automation.
 
@@ -620,7 +620,7 @@ async def generate_agent_spec(responsibility: Responsibility) -> Dict[str, Any]:
     agent_spec = {
         "name": f"agent_{responsibility['id']}",
         "description": f"Specialized agent for: {responsibility['raw_text']}",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "tools": [],
         "system_prompt": f"You are a specialized AI agent responsible for: {responsibility['raw_text']}",
         "capabilities": [],

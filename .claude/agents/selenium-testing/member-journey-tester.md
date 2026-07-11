@@ -1,7 +1,7 @@
 ---
 name: Member Journey Tester
 type: specialized-agent
-model: claude-sonnet-4-5
+model: claude-sonnet-5
 category: testing
 keywords:
   - member testing

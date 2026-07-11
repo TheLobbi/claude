@@ -357,16 +357,14 @@ Comprehensive analytical templates for thorough investigation, audits, and evalu
 
 ## Integration with Extended Thinking
 
-For deep analysis tasks, use maximum thinking budget:
+For deep analysis tasks, use adaptive thinking at maximum effort:
 
 ```python
 response = client.messages.create(
-    model="claude-opus-4-5-20250514",
+    model="claude-opus-4-8",
     max_tokens=32000,
-    thinking={
-        "type": "enabled",
-        "budget_tokens": 25000  # Maximum budget for deep analysis
-    },
+    thinking={"type": "adaptive"},
+    output_config={"effort": "max"},  # maximum reasoning depth for deep analysis
     system="""You are a senior technical analyst performing a
     comprehensive review. Use structured analysis templates and
     document all findings systematically.""",

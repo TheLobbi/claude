@@ -455,7 +455,7 @@ def agent_node_name(state: WorkflowState) -> WorkflowState:
     Inputs: state["{input_key}"]
     Outputs: state["{output_key}"]
     """
-    llm = ChatAnthropic(model="claude-sonnet-4-6", temperature=0.3)
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", "You are a specialized agent for {task_description}"),

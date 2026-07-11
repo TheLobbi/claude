@@ -835,9 +835,43 @@
   },
   "models": {
     "anthropic": {
+      "fable": {
+        "description": "Claude Fable 5 - Mythos-class tier above Opus for the hardest long-horizon autonomous work",
+        "modelId": "claude-fable-5",
+        "provider": "anthropic",
+        "strengths": [
+          "long-horizon",
+          "autonomous-runs",
+          "hardest-reasoning",
+          "multi-agent-orchestration"
+        ],
+        "pricing": {
+          "inputPer1M": 10,
+          "outputPer1M": 50,
+          "currency": "USD"
+        },
+        "performance": {
+          "latencyMs": 5000,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "qualityScore": 99
+        },
+        "features": {
+          "extendedThinking": true,
+          "vision": true,
+          "toolUse": true,
+          "streaming": true
+        },
+        "useCases": [
+          "overnight builds",
+          "long-horizon agentic runs",
+          "problems above Opus ceiling"
+        ],
+        "priority": "high"
+      },
       "opus": {
-        "description": "Claude Opus 4.5 - Most capable model for complex reasoning and architecture",
-        "modelId": "claude-opus-4-5-20251101",
+        "description": "Claude Opus 4.8 - Most capable Opus-tier model for complex reasoning and architecture",
+        "modelId": "claude-opus-4-8",
         "provider": "anthropic",
         "strengths": [
           "architecture",
@@ -847,15 +881,15 @@
           "creative"
         ],
         "pricing": {
-          "inputPer1M": 15.00,
-          "outputPer1M": 75.00,
+          "inputPer1M": 5,
+          "outputPer1M": 25,
           "currency": "USD"
         },
         "performance": {
           "latencyMs": 3000,
-          "contextWindow": 200000,
-          "maxOutputTokens": 16384,
-          "qualityScore": 95
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "qualityScore": 97
         },
         "features": {
           "extendedThinking": true,
@@ -872,8 +906,8 @@
         "priority": "high"
       },
       "sonnet": {
-        "description": "Claude Sonnet 4.5 - Balanced model for development and analysis",
-        "modelId": "claude-sonnet-4-5-20250929",
+        "description": "Claude Sonnet 5 - Balanced model for development and analysis, near-Opus on coding",
+        "modelId": "claude-sonnet-5",
         "provider": "anthropic",
         "strengths": [
           "code-generation",
@@ -883,15 +917,15 @@
           "refactoring"
         ],
         "pricing": {
-          "inputPer1M": 3.00,
-          "outputPer1M": 15.00,
+          "inputPer1M": 3,
+          "outputPer1M": 15,
           "currency": "USD"
         },
         "performance": {
           "latencyMs": 2000,
-          "contextWindow": 200000,
-          "maxOutputTokens": 16384,
-          "qualityScore": 90
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "qualityScore": 94
         },
         "features": {
           "extendedThinking": true,
@@ -908,8 +942,8 @@
         "priority": "high"
       },
       "haiku": {
-        "description": "Claude Haiku 4 - Fast and cost-effective for simple tasks",
-        "modelId": "claude-haiku-4-20250130",
+        "description": "Claude Haiku 4.5 - Fast and cost-effective for simple tasks",
+        "modelId": "claude-haiku-4-5-20251001",
         "provider": "anthropic",
         "strengths": [
           "simple-task",
@@ -918,15 +952,15 @@
           "testing"
         ],
         "pricing": {
-          "inputPer1M": 0.80,
-          "outputPer1M": 4.00,
+          "inputPer1M": 1,
+          "outputPer1M": 5,
           "currency": "USD"
         },
         "performance": {
           "latencyMs": 800,
           "contextWindow": 200000,
-          "maxOutputTokens": 8192,
-          "qualityScore": 80
+          "maxOutputTokens": 64000,
+          "qualityScore": 85
         },
         "features": {
           "extendedThinking": false,
@@ -955,8 +989,8 @@
           "analysis"
         ],
         "pricing": {
-          "inputPer1M": 10.00,
-          "outputPer1M": 30.00,
+          "inputPer1M": 10,
+          "outputPer1M": 30,
           "currency": "USD"
         },
         "performance": {
@@ -988,8 +1022,8 @@
           "factual"
         ],
         "pricing": {
-          "inputPer1M": 0.50,
-          "outputPer1M": 1.50,
+          "inputPer1M": 0.5,
+          "outputPer1M": 1.5,
           "currency": "USD"
         },
         "performance": {
@@ -1024,7 +1058,7 @@
         ],
         "pricing": {
           "inputPer1M": 1.25,
-          "outputPer1M": 5.00,
+          "outputPer1M": 5,
           "currency": "USD"
         },
         "performance": {
@@ -1057,7 +1091,7 @@
         ],
         "pricing": {
           "inputPer1M": 0.075,
-          "outputPer1M": 0.30,
+          "outputPer1M": 0.3,
           "currency": "USD"
         },
         "performance": {

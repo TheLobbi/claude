@@ -1,7 +1,7 @@
 ---
 name: Selenium Test Architect
 type: specialized-agent
-model: claude-sonnet-4-5
+model: claude-sonnet-5
 category: testing
 keywords:
   - selenium

@@ -21,7 +21,7 @@
     {
       "name": "claude-code-expert",
       "description": "Modern Claude Code second brain: 5-layer stack deploy + three-tier memory (engram + Obsidian vault + plugin rules) + 22-tool MCP reference server. 21 behavior-triggering skills, 12 single-intent commands, 18 role-scoped agents bridging engram and Obsidian. Tracks current Claude Code capabilities (Fable 5 + Opus 4.8, agent teams, Tool Search, web/remote).",
-      "version": "8.2.0",
+      "version": "8.4.0",
       "author": {
         "name": "Markus Ahling"
       },
@@ -59,7 +59,7 @@
     {
       "name": "dotnet-blazor",
       "description": "Comprehensive .NET 10, Blazor, ASP.NET Core, C#, and Syncfusion expert plugin for building modern web apps, microservices, and cloud-native solutions",
-      "version": "2.0.1",
+      "version": "2.1.0",
       "author": {
         "name": "Markus Ahling"
       },
@@ -68,7 +68,7 @@
     {
       "name": "drawio-diagramming",
       "description": "Intelligent draw.io diagramming plugin with AI-powered diagram generation, multi-platform embedding (GitHub, Confluence, Azure DevOps, Notion, Teams, Harness), conditional formatting, live data binding, and MCP server integration for programmatic diagram creation and management.",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "author": {
         "name": "Markus Ahling",
         "url": "https://github.com/markus41"
@@ -78,7 +78,7 @@
     {
       "name": "exec-automator",
       "description": "Genesis (Forerunner) - AI-Powered Executive Director Automation Platform. Analyze organizational responsibilities, score automation potential with 6-factor algorithm, generate LangGraph workflows, and deploy 11 specialized agents for trade associations and nonprofits.",
-      "version": "2.0.1",
+      "version": "2.1.0",
       "author": {
         "name": "Brookside BI",
         "email": "dev@brooksidebi.com"
@@ -126,7 +126,7 @@
     {
       "name": "jira-orchestrator",
       "description": "Enterprise Jira orchestration with 82 agents, 16 teams, 48 commands, 14 skills, 5 schema-validated workflows, and a read-only advisor. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, declarative workflow definitions, lifecycle telemetry hooks, and structured reasoning frameworks.",
-      "version": "8.2.0",
+      "version": "8.3.0",
       "author": {
         "name": "Markus Ahling",
         "email": "markus@lobbi.io"
@@ -263,9 +263,19 @@
       "source": "./plugins/marketplace-pro"
     },
     {
+      "name": "microsoft-agents-expert",
+      "description": "Comprehensive Microsoft agent-stack expert: Microsoft Agent Framework (the Semantic Kernel + AutoGen successor), Microsoft 365 Agents SDK, Teams AI Library, Copilot Studio, and Microsoft Foundry Agent Service. Stack selection, scaffolding, migration, review, and deployment. 6 skills, 5 agents, 5 commands.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "Markus@thelobbi.io"
+      },
+      "source": "./plugins/microsoft-agents-expert"
+    },
+    {
       "name": "mui-expert",
       "description": "Comprehensive Material UI (MUI) expert plugin — 26 skills, 14 commands, 7 agents covering theming, CSS variables, Pigment CSS, components, sx/styled, slots API, MUI X (DataGrid, DatePickers, Charts, TreeView), accessibility, performance, SSR/Next.js, animations, virtualization, forms, white-label/multi-tenant, headless (MUI Base), Joy UI, i18n/RTL, testing, migration, entity-driven CRUD, ecosystem integrations, and 200+ creative widget patterns.",
-      "version": "2.1.1",
+      "version": "2.2.0",
       "author": {
         "name": "Claude Code",
         "url": "https://github.com/markus41/claude"

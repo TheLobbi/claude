@@ -1,5 +1,12 @@
 # Changelog
 
+## v8.3.0 (2026-07-11) — Sonnet 5 routing
+
+### Changed
+
+- `agent-router`: the Sonnet routing tier now targets `claude-sonnet-5` (was `claude-sonnet-4-6`).
+- `examples/self-reflection-integration.ts`: moved the code-review generator to `claude-sonnet-5` with adaptive thinking — the fixed `budget_tokens` extended-thinking config is removed on Sonnet 5 and would return a 400. The escalating `thinkingBudget` remains as the reflection loop's bookkeeping signal.
+
 ## v8.2.0 (2026-06-10) — Atlassian MCP HTTP migration, Fable 5 tier, effort-based reasoning
 
 ### Atlassian MCP: SSE → streamable HTTP (action required before 2026-06-30)

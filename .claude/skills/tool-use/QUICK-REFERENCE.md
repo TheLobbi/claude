@@ -80,7 +80,7 @@ for tool_use in tool_uses:
 
 # CRITICAL: All results in ONE user message
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=tools,
     messages=[
@@ -109,7 +109,7 @@ betas=["structured-outputs-2025-11-13"]
 
 ```python
 # ✅ Works with extended thinking
-thinking={"type": "enabled", "budget_tokens": 2048},
+thinking={"type": "adaptive"},
 tool_choice={"type": "auto"}  # Only auto or none
 
 # ❌ Doesn't work with extended thinking
@@ -220,8 +220,8 @@ if response.stop_reason == "max_tokens":
 
 | Model | Best For | Note |
 |-------|----------|------|
-| Claude Opus 4.5 | Complex tools, ambiguous queries | Best parallel tool use |
-| Claude Sonnet 4.5 | General tool use, balance | Good default choice |
+| Claude Opus 4.8 | Complex tools, ambiguous queries | Best parallel tool use |
+| Claude Sonnet 5 | General tool use, balance | Good default choice |
 | Claude Haiku 4.5 | Straightforward tools | May infer missing params |
 
 ## Stop Reasons
@@ -245,7 +245,7 @@ def my_tool(param: str) -> str:
     return "result"
 
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[my_tool],
     messages=[{"role": "user", "content": "..."}]

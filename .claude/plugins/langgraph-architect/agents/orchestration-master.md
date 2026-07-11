@@ -173,7 +173,7 @@ def create_supervisor_graph():
     from langgraph_supervisor import create_supervisor_node
 
     supervisor_node = create_supervisor_node(
-        llm=ChatAnthropic(model="claude-opus-4-5"),
+        llm=ChatAnthropic(model="claude-opus-4-8"),
         prompt=supervisor_prompt,
         agents=list(agents.keys())
     )
@@ -229,7 +229,7 @@ def create_hierarchical_supervisor():
         team_results: dict
 
     master_supervisor = create_supervisor_node(
-        llm=ChatAnthropic(model="claude-opus-4-5"),
+        llm=ChatAnthropic(model="claude-opus-4-8"),
         prompt="You coordinate research_team and writing_team supervisors...",
         agents=["research_team", "writing_team"]
     )
@@ -301,7 +301,7 @@ def create_research_swarm_agent():
         3. Hand off to fact_checker for verification
         4. Hand off to writer when ready for content creation
         """,
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_writer, handoff_to_fact_checker]
     )
 
@@ -328,7 +328,7 @@ def create_writer_swarm_agent():
         2. Request more research if needed
         3. Hand off to reviewer for quality check
         """,
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_reviewer, handoff_to_research]
     )
 
@@ -350,7 +350,7 @@ def create_reviewer_swarm_agent():
         2. Provide feedback and request revisions
         3. Approve when quality standards met
         """,
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_writer]
     )
 
@@ -408,7 +408,7 @@ def create_adaptive_swarm_agent():
     agent = create_swarm_agent(
         name="adaptive_agent",
         instructions="Adapt behavior and handoffs based on task complexity...",
-        llm=ChatAnthropic(model="claude-opus-4-5"),
+        llm=ChatAnthropic(model="claude-opus-4-8"),
         handoffs=[
             create_contextual_handoff("expert_agent", should_escalate),
             create_contextual_handoff("parallel_coordinator", should_parallelize)
@@ -564,7 +564,7 @@ def create_dynamic_parallel_graph():
         query = state["query"]
 
         # LLM decides how to parallelize
-        llm = ChatAnthropic(model="claude-opus-4-5")
+        llm = ChatAnthropic(model="claude-opus-4-8")
         analysis = llm.invoke(f"""
         Analyze this query and determine optimal parallelization:
         Query: {query}
@@ -656,7 +656,7 @@ def create_handoff_agent(name: str, handoff_targets: list[str]):
         handoff_tools.append(tool)
 
     def agent_node(state: HandoffState):
-        llm = ChatAnthropic(model="claude-sonnet-4-5")
+        llm = ChatAnthropic(model="claude-sonnet-5")
         llm_with_tools = llm.bind_tools(handoff_tools)
 
         # Agent can invoke handoff tools
@@ -1034,7 +1034,7 @@ def create_dynamic_approval():
 
     def determine_approvers(state: HumanLoopState):
         """LLM determines who needs to approve"""
-        llm = ChatAnthropic(model="claude-opus-4-5")
+        llm = ChatAnthropic(model="claude-opus-4-8")
 
         analysis = llm.invoke(f"""
         Analyze this work and determine required approvers:
@@ -1103,7 +1103,7 @@ def create_hybrid_orchestration():
 
     def master_coordinator(state: HybridState):
         """Determine orchestration strategy"""
-        llm = ChatAnthropic(model="claude-opus-4-5")
+        llm = ChatAnthropic(model="claude-opus-4-8")
 
         strategy = llm.invoke("""
         Analyze task and choose orchestration:

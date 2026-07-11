@@ -14,7 +14,7 @@ risk: low
 cost: medium
 description: |
   Reviews React code that uses Material UI and identifies issues related to best practices, accessibility, performance, and correctness. Produces a categorized report with file:line references and actionable fix code covering imports, theming, styling approach, a11y, performance, component usage, TypeScript typing, DataGrid, and DatePicker patterns.
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 tools:
   - Read
   - Glob

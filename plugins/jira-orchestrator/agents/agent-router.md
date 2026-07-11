@@ -367,7 +367,7 @@ execution_order:
 - Multi-domain coordination
 - Rare: Only when complexity demands it
 
-**Sonnet (claude-sonnet-4-6):**
+**Sonnet (claude-sonnet-5):**
 - Code implementation (CODE phase)
 - Testing and validation
 - Code review and analysis

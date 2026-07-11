@@ -1,6 +1,6 @@
 {
   "name": "drawio-diagramming",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Intelligent draw.io diagramming plugin with AI-powered diagram generation, multi-platform embedding (GitHub, Confluence, Azure DevOps, Notion, Teams, Harness), conditional formatting, live data binding, and MCP server integration for programmatic diagram creation and management.",
   "author": {
     "name": "Markus Ahling",

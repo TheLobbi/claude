@@ -9,9 +9,8 @@ name: node-specialist
 ---
 name: node-specialist
 version: 1.0.0
-model: claude-sonnet-4-5-20250929
+model: claude-sonnet-5
 color: orange
-budget_tokens: 50000
 description: Expert in creating and optimizing LangGraph nodes with proper patterns
 expertise:
   - Function node implementation
@@ -106,7 +105,7 @@ def llm_node(state: State) -> State:
     - Invokes LLM with tools
     - Appends response to messages
     """
-    llm = ChatAnthropic(model="claude-sonnet-4-5-20250929")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools(tools)
 
     response = llm_with_tools.invoke(state["messages"])
@@ -116,7 +115,7 @@ def llm_node(state: State) -> State:
 # Streaming variant
 async def streaming_llm_node(state: State) -> State:
     """LLM node with streaming support"""
-    llm = ChatAnthropic(model="claude-sonnet-4-5-20250929", streaming=True)
+    llm = ChatAnthropic(model="claude-sonnet-5", streaming=True)
 
     chunks = []
     async for chunk in llm.astream(state["messages"]):

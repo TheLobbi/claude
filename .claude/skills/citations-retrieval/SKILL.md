@@ -59,7 +59,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     documents=[
         {
@@ -136,7 +136,7 @@ def rag_query(query, chunks, embeddings):
     relevant_chunks = retrieve(query, chunks, embeddings)
 
     response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-5",
         max_tokens=1024,
         documents=[{
             "type": "document",
@@ -169,7 +169,7 @@ Please provide a short, succinct context for this chunk that will help with retr
 Context:"""
 
     response = client.messages.create(
-        model="claude-haiku-4-20250514",  # Fast, cheap
+        model="claude-haiku-4-5",  # Fast, cheap
         max_tokens=100,
         messages=[{"role": "user", "content": context_prompt}]
     )
@@ -252,7 +252,7 @@ def multi_doc_qa(question, documents):
         })
 
     response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-5",
         max_tokens=2048,
         documents=doc_inputs,
         messages=[{
@@ -269,7 +269,7 @@ def multi_doc_qa(question, documents):
 ```python
 # Cache static documents for repeated queries
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     documents=[{
         "type": "document",
@@ -431,7 +431,7 @@ def create_rag_system():
 
         # Get cited answer
         response = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model="claude-sonnet-5",
             max_tokens=1024,
             documents=[{
                 "type": "document",

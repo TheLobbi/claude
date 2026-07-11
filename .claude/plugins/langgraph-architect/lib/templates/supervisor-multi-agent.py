@@ -147,8 +147,7 @@ Available agents: {', '.join(AGENTS)}"""
 
     # Create supervisor chain
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0
+        model="claude-sonnet-5"
     )
 
     supervisor_chain = prompt | model.with_structured_output(RouteResponse)
@@ -208,8 +207,7 @@ async def researcher_node(state: SupervisorState) -> SupervisorState:
 and provide accurate, well-sourced answers. Use the search_web tool to find information."""
 
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0
+        model="claude-sonnet-5"
     ).bind_tools([search_web])
 
     messages = [SystemMessage(content=system_prompt)] + list(state["messages"])
@@ -260,8 +258,7 @@ async def calculator_node(state: SupervisorState) -> SupervisorState:
 calculations and solve mathematical problems. Use the calculate tool for computations."""
 
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0
+        model="claude-sonnet-5"
     ).bind_tools([calculate])
 
     messages = [SystemMessage(content=system_prompt)] + list(state["messages"])
@@ -309,8 +306,7 @@ async def writer_node(state: SupervisorState) -> SupervisorState:
 clear, and engaging content. Use the format_document tool to format your output."""
 
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0.7
+        model="claude-sonnet-5"
     ).bind_tools([format_document])
 
     messages = [SystemMessage(content=system_prompt)] + list(state["messages"])

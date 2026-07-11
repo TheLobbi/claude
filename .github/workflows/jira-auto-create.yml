@@ -28,7 +28,7 @@ jobs:
     steps:
       # Step 1: Checkout repository (for context)
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Step 2: Authenticate with Jira
       - name: Login to Jira

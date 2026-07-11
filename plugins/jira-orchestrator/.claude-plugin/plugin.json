@@ -1,7 +1,7 @@
 {
   "$schema": "https://claude.local/schemas/plugin.schema.json",
   "name": "jira-orchestrator",
-  "version": "8.2.0",
+  "version": "8.3.0",
   "description": "Enterprise Jira orchestration with 82 agents, 16 teams, 48 commands, 14 skills, 5 schema-validated workflows, and a read-only advisor. Features Atlassian MCP OAuth, Harness integration, Neon PostgreSQL, Redis caching, Temporal workflows, declarative workflow definitions, lifecycle telemetry hooks, and structured reasoning frameworks.",
   "author": {
     "name": "Markus Ahling",

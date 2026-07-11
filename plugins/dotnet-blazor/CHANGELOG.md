@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.0] - 2026-07-11
+
+### Changed
+
+- All four pinned agents (`aspnet-api-engineer`, `csharp-expert`, `dotnet-performance-engineer`, `syncfusion-ui-specialist`) upgraded from `claude-sonnet-4-6` to `claude-sonnet-5`.
+
 ## [2.0.1] - 2026-06-04
 
 ### Changed

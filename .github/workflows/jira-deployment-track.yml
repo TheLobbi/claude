@@ -26,7 +26,7 @@ jobs:
     steps:
       # Step 1: Checkout to access deployment metadata
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.deployment.ref }}
           fetch-depth: 50  # Get recent commits for issue extraction

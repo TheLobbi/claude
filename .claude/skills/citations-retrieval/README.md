@@ -294,9 +294,9 @@ The **citations-retrieval** skill provides tools and patterns for:
 ## Models & API Usage
 
 ### Supported Models
-- `claude-sonnet-4-5` - Full support, recommended
-- `claude-3-5-haiku-20241022` - Partial support, fast
-- `claude-3-5-sonnet` - May not cite consistently, not recommended
+- `claude-sonnet-5` - Full support, recommended
+- `claude-haiku-4-5` - Supported, fast and low-cost
+- Legacy `claude-3-5-*` models are retired (requests return 404)
 
 ### API Costs
 

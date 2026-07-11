@@ -27,7 +27,7 @@ flags:
   - name: llm
     description: LLM model to use
     type: string
-    default: "claude-3-5-sonnet-20241022"
+    default: "claude-sonnet-5"
   - name: tools
     description: Comma-separated list of tools
     type: string
@@ -162,7 +162,7 @@ Reasoning and Acting pattern with tool use.
 from langchain_anthropic import ChatAnthropic
 from langgraph.prebuilt import create_react_agent
 
-llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+llm = ChatAnthropic(model="claude-sonnet-5")
 agent = create_react_agent(
     llm,
     tools=tools,
@@ -177,7 +177,7 @@ Optimized for structured tool usage.
 from langchain_core.messages import SystemMessage
 
 def tool_agent(state: State):
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools(tools)
 
     messages = [
@@ -192,7 +192,7 @@ Simple conversation handler.
 
 ```python
 def conversational_agent(state: State):
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     response = llm.invoke(state["messages"])
     return {"messages": [response]}
 ```
@@ -204,7 +204,7 @@ Orchestrates other agents.
 from typing import Literal
 
 def supervisor_agent(state: State) -> Literal["researcher", "coder", "END"]:
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     system_prompt = """
     You are a supervisor managing these agents:
@@ -227,7 +227,7 @@ Specialized task executor in multi-agent system.
 
 ```python
 def worker_agent(state: State):
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools(worker_tools)
 
     system_prompt = f"You are {state['current_agent']}. {state['task']}"
@@ -248,7 +248,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 search = DuckDuckGoSearchRun()
 
 def researcher_agent(state: State):
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools([search, scrape_tool, summarize_tool])
 
     system_prompt = """
@@ -270,7 +270,7 @@ Code generation and modification.
 
 ```python
 def coder_agent(state: State):
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools([
         read_file_tool,
         write_file_tool,
@@ -298,7 +298,7 @@ Quality assurance and feedback.
 
 ```python
 def reviewer_agent(state: State):
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools([
         read_file_tool,
         lint_tool,
@@ -378,7 +378,7 @@ Output:
 ```
 Agent: researcher
 Type: researcher
-LLM: claude-3-5-sonnet-20241022
+LLM: claude-sonnet-5
 Tools: search, scrape, summarize
 Max Iterations: 10
 Streaming: enabled
@@ -431,7 +431,7 @@ def researcher_agent(state: ResearcherState):
     - scrape: Web scraping
     - summarize: Text summarization
     """
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     llm_with_tools = llm.bind_tools([search, scrape, summarize])
 
     system_prompt = """
@@ -508,7 +508,7 @@ for agent in agents:
 AGENTS = {
     "researcher": {
         "type": "researcher",
-        "llm": "claude-3-5-sonnet-20241022",
+        "llm": "claude-sonnet-5",
         "tools": ["search", "scrape", "summarize"],
         "system_prompt": "You are a research assistant...",
         "max_iterations": 10,
