@@ -331,7 +331,7 @@ frontmatter (always loaded) → body (on activation) → reference files (on dem
 ```markdown
 ---
 description: "{stack_name} operations — auto-invoke when working on {file_patterns}"
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 allowed-tools:
   - Bash
   - Read
@@ -650,7 +650,7 @@ Based on project characteristics, generate agents with deliberate model assignme
 ---
 name: {agent-name}
 description: {what it does}
-model: {claude-sonnet-4-6 or claude-opus-4-6}
+model: {claude-sonnet-5 or claude-opus-4-8}
 allowed-tools:
   - Read
   - Grep
@@ -839,7 +839,7 @@ echo '{"decision": "approve"}'
       "Bash(curl * | bash)"
     ]
   },
-  "model": "claude-sonnet-4-6",
+  "model": "claude-sonnet-5",
   "autoMemory": true,
   "autoCompact": true
 }
@@ -852,7 +852,7 @@ echo '{"decision": "approve"}'
   "permissions": {
     "allow": []
   },
-  "model": "claude-sonnet-4-6"
+  "model": "claude-sonnet-5"
 }
 ```
 

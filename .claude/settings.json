@@ -4,7 +4,7 @@
     "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "0",
     "MAX_THINKING_TOKENS": "31999"
   },
-  "model": "claude-sonnet-4-6",
+  "model": "claude-sonnet-5",
   "teammateMode": "auto",
   "enableAllProjectMcpServers": true,
   "respectGitignore": true,

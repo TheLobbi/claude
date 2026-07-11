@@ -20,7 +20,7 @@ EXPLORE → PLAN → CODE → TEST → FIX → DOCUMENT
 | Layer | Technology |
 |-------|-----------|
 | Runtime | Node.js 20+, ES modules |
-| Language | TypeScript 5.3 strict (for scripts only) |
+| Language | TypeScript 7.0 strict (for scripts only) |
 | Validation | Ajv + JSON Schema (Draft 7) |
 | Package Manager | pnpm |
 | CI | GitHub Actions (marketplace-ci runs scripts/validate-marketplace.mjs + tsc + archetype validation) |
