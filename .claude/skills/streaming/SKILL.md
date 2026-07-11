@@ -59,7 +59,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 with client.messages.stream(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Write a short story."}]
 ) as stream:
@@ -71,7 +71,7 @@ with client.messages.stream(
 
 ```python
 with client.messages.stream(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello"}]
 ) as stream:
@@ -96,7 +96,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 
 const stream = client.messages.stream({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-5',
     max_tokens: 1024,
     messages: [{ role: 'user', content: 'Write a story.' }]
 });
@@ -160,7 +160,7 @@ def stream_with_tools(client, messages, tools):
     tool_input_buffer = ""
 
     with client.messages.stream(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-5",
         max_tokens=4096,
         messages=messages,
         tools=tools
@@ -193,9 +193,9 @@ thinking_content = ""
 signature = ""
 
 with client.messages.stream(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=16000,
-    thinking={"type": "enabled", "budget_tokens": 10000},
+    thinking={"type": "adaptive"},
     messages=[{"role": "user", "content": "Solve this complex problem..."}]
 ) as stream:
     for event in stream:
@@ -299,7 +299,7 @@ http_client = httpx.Client(
 async def stream_to_ui(websocket, prompt):
     """Stream Claude response to WebSocket client"""
     async with client.messages.stream(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-5",
         max_tokens=4096,
         messages=[{"role": "user", "content": prompt}]
     ) as stream:

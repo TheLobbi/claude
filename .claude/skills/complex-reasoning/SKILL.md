@@ -260,12 +260,10 @@ When using these frameworks with extended thinking:
 ```python
 # Enable extended thinking for complex reasoning
 response = client.messages.create(
-    model="claude-opus-4-5-20250514",
+    model="claude-opus-4-8",
     max_tokens=16000,
-    thinking={
-        "type": "enabled",
-        "budget_tokens": 15000  # Higher budget for complex reasoning
-    },
+    thinking={"type": "adaptive"},
+    output_config={"effort": "high"},  # deeper reasoning for complex problems
     system="""You are a systematic problem solver. Use structured
     reasoning frameworks like Chain-of-Thought, Tree-of-Thought,
     or MECE analysis as appropriate for the problem.""",

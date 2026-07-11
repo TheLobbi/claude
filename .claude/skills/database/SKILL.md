@@ -90,7 +90,7 @@ WHERE a.deleted_at IS NULL
 GROUP BY a.id;
 
 -- JSON operations
-SELECT * FROM agents WHERE config->>'model' = 'claude-sonnet-4-20250514';
+SELECT * FROM agents WHERE config->>'model' = 'claude-sonnet-5';
 SELECT * FROM agents WHERE config @> '{"enabled": true}';
 UPDATE agents SET config = config || '{"version": "2.0"}' WHERE id = $1;
 

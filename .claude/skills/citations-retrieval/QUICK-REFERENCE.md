@@ -29,7 +29,7 @@ document = {
 
 # 3. Query with citations
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": [document]},
@@ -174,7 +174,7 @@ documents = [
 ]
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": documents},
@@ -186,7 +186,7 @@ response = client.messages.create(
 ### Combined with System Prompt
 ```python
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     system="You are a helpful assistant. Use citations to back up claims.",
     messages=[
@@ -200,7 +200,7 @@ response = client.messages.create(
 ```python
 # Only cite if supported by document
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     system="Only answer if supported by provided documents. Otherwise, say 'Not found in documents.'",
     messages=[
@@ -284,7 +284,7 @@ Use citations to back up your answer.
 
 ### Check Model Support
 ```python
-MODELS_WITH_CITATIONS = ["claude-sonnet-4-5", "claude-3-5-haiku-20241022"]
+MODELS_WITH_CITATIONS = ["claude-fable-5", "claude-opus-4-8", "claude-sonnet-5", "claude-haiku-4-5"]
 
 if model not in MODELS_WITH_CITATIONS:
     print(f"Warning: {model} may not support citations")
@@ -323,7 +323,7 @@ def extract_citations_safe(response):
 ```python
 # Cache the document, reuse for multiple queries
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     messages=[
         {
@@ -350,7 +350,7 @@ queries = ["Question 1?", "Question 2?", "Question 3?"]
 
 for query in queries:
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-5",
         max_tokens=512,
         messages=[
             {"role": "user", "content": [document]},
@@ -397,7 +397,7 @@ def to_ieee(citation, num):
 
 ## Troubleshooting Checklist
 
-- [ ] Using `claude-sonnet-4-5` or supported model?
+- [ ] Using `claude-sonnet-5` or supported model?
 - [ ] Documents have `"citations": {"enabled": True}`?
 - [ ] Document content is actually in the message?
 - [ ] Checking `response.content[].citations`?
@@ -415,7 +415,7 @@ def to_ieee(citation, num):
 | Max document size | 10 MB | Per document |
 | Max documents per message | Unlimited | But affects token count |
 | Citation granularity | Sentence | Minimum unit |
-| Model support | Sonnet 4.5, Haiku 3 | Limited models |
+| Model support | Current models (Sonnet 5, Haiku 4.5, Opus 4.8, Fable 5) | |
 | Compatibility | Not with Structured Outputs | Cannot use both |
 
 ---
@@ -424,13 +424,12 @@ def to_ieee(citation, num):
 
 ```python
 # Best for citations
-model = "claude-sonnet-4-5"  # Full citations support
+model = "claude-sonnet-5"  # Full citations support
 
-# Fast alternative (limited)
-model = "claude-3-5-haiku-20241022"  # Partial support
+# Fast, low-cost alternative
+model = "claude-haiku-4-5"  # Supported, fast
 
-# Not recommended
-model = "claude-3-5-sonnet"  # May not cite consistently
+# Note: legacy claude-3-5-* models are retired and return 404
 ```
 
 ---
@@ -449,7 +448,7 @@ client = anthropic.Anthropic()
 async def ask_document(file_path: str, question: str):
     document = enable_citations_on_document(file_path)
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-5",
         max_tokens=1024,
         messages=[
             {"role": "user", "content": [document]},
@@ -464,7 +463,7 @@ async def ask_document(file_path: str, question: str):
 from langchain.chat_models import ChatAnthropic
 from langchain.schema import HumanMessage
 
-chat = ChatAnthropic(model_name="claude-sonnet-4-5")
+chat = ChatAnthropic(model_name="claude-sonnet-5")
 
 message = HumanMessage(
     content=[

@@ -758,12 +758,10 @@ Provide specific findings with:
 """
 
 response = client.messages.create(
-    model="claude-opus-4-5-20250514",
+    model="claude-opus-4-8",
     max_tokens=32000,
-    thinking={
-        "type": "enabled",
-        "budget_tokens": 20000  # High budget for security analysis
-    },
+    thinking={"type": "adaptive"},
+    output_config={"effort": "high"},  # deep reasoning for security analysis
     messages=[{
         "role": "user",
         "content": security_review_prompt

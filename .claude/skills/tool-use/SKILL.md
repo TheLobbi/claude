@@ -145,7 +145,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[{
         "name": "get_weather",
@@ -175,7 +175,7 @@ if response.stop_reason == "tool_use":
 
     # Return result to Claude
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-5",
         max_tokens=1024,
         tools=[...],  # Same tools
         messages=[
@@ -201,7 +201,7 @@ Tools often require sequential calls where one tool's output feeds into another:
 # Flow: get_location() → get_weather(location)
 
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[
         {
@@ -230,7 +230,7 @@ location_result = "San Francisco, CA"
 
 # Send location result back
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[...],
     messages=[
@@ -250,7 +250,7 @@ weather_result = "68°F, sunny"
 
 # Final result
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[...],
     messages=[
@@ -279,7 +279,7 @@ Claude can call multiple independent tools simultaneously:
 
 ```python
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[...],
     messages=[{
@@ -314,7 +314,7 @@ for tool_use in tool_uses:
 
 # IMPORTANT: Return all results in ONE user message
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[...],
     messages=[
@@ -444,7 +444,7 @@ if response.stop_reason == "max_tokens":
     if last_block.type == "tool_use":
         # Incomplete tool use, retry with more tokens
         response = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-sonnet-5",
             max_tokens=4096,  # Increased
             messages=messages,
             tools=tools
@@ -457,7 +457,7 @@ Use tools to guarantee structured JSON output without tool execution:
 
 ```python
 response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     betas=["structured-outputs-2025-11-13"],
     tools=[{
@@ -547,8 +547,8 @@ def measure_parallel_efficiency(messages):
 ```python
 # ✅ ALLOWED with extended thinking
 response = client.messages.create(
-    model="claude-opus-4-5",
-    thinking={"type": "enabled", "budget_tokens": 2048},
+    model="claude-opus-4-8",
+    thinking={"type": "adaptive"},
     tools=[...],
     tool_choice={"type": "auto"},  # Default
     messages=[...]
@@ -610,7 +610,7 @@ def get_weather(location: str, unit: str = "fahrenheit") -> str:
 
 # Tool runner automatically handles tool execution loop
 runner = client.beta.messages.tool_runner(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[get_weather],
     messages=[{"role": "user", "content": "What's the weather in Paris?"}]
@@ -727,7 +727,7 @@ Use `tool_choice` to force specific behavior:
 ```python
 # Force use of a tool (for JSON output)
 response = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-sonnet-5",
     max_tokens=1024,
     tools=[sentiment_tool],
     tool_choice={"type": "tool", "name": "sentiment_tool"},

@@ -177,7 +177,7 @@ def test_uppercase(input, expected):
     assert uppercase(input) == expected
 
 @pytest.mark.parametrize('agent_type,expected_model', [
-    ('claude', 'claude-sonnet-4-20250514'),
+    ('claude', 'claude-sonnet-5'),
     ('gpt', 'gpt-4'),
     ('gemini', 'gemini-pro'),
 ])

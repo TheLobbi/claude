@@ -47,7 +47,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=1024,
     system=[
         {
@@ -78,7 +78,7 @@ Cache breakpoints are checked in this order:
 
 - **Minimum tokens:** 1024-4096 (varies by model)
 - **Maximum breakpoints:** 4 per request
-- **Supported models:** Claude Opus 4.5, Sonnet 4.5, Haiku 4.5
+- **Supported models:** All current models (Fable 5, Opus 4.8, Sonnet 5, Haiku 4.5)
 
 ## Implementation Patterns
 
@@ -132,7 +132,7 @@ system = [
 ```python
 # Warm the cache before batch
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=100,
     system=[{
         "type": "text",
@@ -145,7 +145,7 @@ response = client.messages.create(
 # Now run batch - all requests hit the cache
 for item in batch_items:
     response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-5",
         max_tokens=1024,
         system=[{
             "type": "text",
@@ -174,7 +174,7 @@ print(f"Cache hit rate: {cache_read / (cache_read + cache_write + uncached) * 10
 ### Cost Calculation
 
 ```python
-def calculate_cost(usage, model="claude-sonnet-4-20250514"):
+def calculate_cost(usage, model="claude-sonnet-5"):
     # Example rates (check current pricing)
     base_input_rate = 0.003  # per 1K tokens
 
@@ -214,9 +214,9 @@ Changes that invalidate cache:
 ```python
 # Cache + Extended Thinking
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-5",
     max_tokens=16000,
-    thinking={"type": "enabled", "budget_tokens": 10000},
+    thinking={"type": "adaptive"},
     system=[{
         "type": "text",
         "text": large_context,

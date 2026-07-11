@@ -69,7 +69,7 @@ requests = [
     {
         "custom_id": "request-1",
         "params": {
-            "model": "claude-sonnet-4-20250514",
+            "model": "claude-sonnet-5",
             "max_tokens": 1024,
             "messages": [{"role": "user", "content": "Summarize: Document 1..."}]
         }
@@ -77,7 +77,7 @@ requests = [
     {
         "custom_id": "request-2",
         "params": {
-            "model": "claude-sonnet-4-20250514",
+            "model": "claude-sonnet-5",
             "max_tokens": 1024,
             "messages": [{"role": "user", "content": "Summarize: Document 2..."}]
         }
@@ -175,7 +175,7 @@ def run_batch_job(documents):
         requests.append({
             "custom_id": f"doc-{i}",
             "params": {
-                "model": "claude-sonnet-4-20250514",
+                "model": "claude-sonnet-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": f"Summarize: {doc}"}]
             }
@@ -264,12 +264,11 @@ def retry_failed(client, original_batch_id):
 {
     "custom_id": "unique-identifier",
     "params": {
-        "model": "claude-sonnet-4-20250514",
+        "model": "claude-sonnet-5",
         "max_tokens": 1024,
         "system": "Optional system prompt",
         "messages": [{"role": "user", "content": "..."}],
-        "tools": [],
-        "temperature": 0.7
+        "tools": []
     }
 }
 ```
@@ -306,7 +305,7 @@ documents = load_documents("data/*.txt")  # 10K files
 requests = [{
     "custom_id": doc.id,
     "params": {
-        "model": "claude-haiku-4-20250514",  # Cheapest for bulk
+        "model": "claude-haiku-4-5",  # Cheapest for bulk
         "max_tokens": 512,
         "system": "Extract key information as JSON.",
         "messages": [{"role": "user", "content": doc.content}]
