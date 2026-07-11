@@ -926,3 +926,11 @@ grep: site/assets/styles.css: No such file or directory
 - **Status:** RESOLVED
 - **Fix:** `actions_get` requires both `method` and `resource_id` (not `run_id`). To read failing job logs, the simpler path is `mcp__github__get_job_logs` with `run_id` + `failed_only: true` to find the failed job id, then call it again with that `job_id` and `return_content: true` + `tail_lines`.
 - **Prevention:** For CI log triage use `get_job_logs` (run_id → failed_only, then job_id → return_content), not `actions_get`. Reserve `actions_get` for run/workflow metadata and always pass `method` + `resource_id`.
+
+### Error: js-yaml v5 upgrade broke ESM import and index check (2026-07-11T20:00:00Z)
+- **Tool:** Bash
+- **Input:** `pnpm add -D js-yaml@^5.2.1 && pnpm check:plugin-indexes`
+- **Error:** `SyntaxError: The requested module 'js-yaml' does not provide an export named 'default'`; after switching to a namespace import, generate-plugin-indexes.mjs --check failed because js-yaml v5's `dump` serializes frontmatter differently than v4, mismatching every generated frontmatter block on disk.
+- **Status:** RESOLVED
+- **Fix:** Reverted to js-yaml@^4.1.1 (default export restored, dump output matches committed frontmatter). Kept the other dep upgrades (typescript 7.0.2, tsx 4.23 → esbuild 0.28.1 clearing all audit vulnerabilities, ajv 8.20).
+- **Prevention:** js-yaml v5 is ESM-only (named exports) and changes dump formatting. Upgrading it requires (a) `import * as yaml` or named imports in scripts/*.mjs AND (b) regenerating frontmatter across all plugin command/agent files in the same commit (`pnpm generate:plugin-indexes`), accepting a ~300-file churn. Don't bump it casually.
