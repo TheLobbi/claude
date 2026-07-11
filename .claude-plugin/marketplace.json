@@ -21,7 +21,7 @@
     {
       "name": "claude-code-expert",
       "description": "Modern Claude Code second brain: 5-layer stack deploy + three-tier memory (engram + Obsidian vault + plugin rules) + 22-tool MCP reference server. 21 behavior-triggering skills, 12 single-intent commands, 18 role-scoped agents bridging engram and Obsidian. Tracks current Claude Code capabilities (Fable 5 + Opus 4.8, agent teams, Tool Search, web/remote).",
-      "version": "8.2.0",
+      "version": "8.3.0",
       "author": {
         "name": "Markus Ahling"
       },
