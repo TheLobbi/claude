@@ -215,8 +215,7 @@ async def research_planner_node(state: ResearchState) -> ResearchState:
 Use the available tools strategically to gather comprehensive information."""
 
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0
+        model="claude-sonnet-5"
     ).bind_tools(research_tools)
 
     messages = [SystemMessage(content=system_prompt)] + list(state["messages"])
@@ -324,8 +323,7 @@ Provide a well-structured summary that:
 Format the summary in markdown with clear sections."""
 
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0.3
+        model="claude-sonnet-5"
     )
 
     response = await model.ainvoke([HumanMessage(content=synthesis_prompt)])
@@ -373,8 +371,7 @@ Provide:
 - Recommendation (approve/revise)"""
 
     model = ChatAnthropic(
-        model="claude-3-5-sonnet-20241022",
-        temperature=0
+        model="claude-sonnet-5"
     )
 
     response = await model.ainvoke([HumanMessage(content=check_prompt)])

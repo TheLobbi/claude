@@ -3,7 +3,6 @@
   "name": "langgraph-agents-mcp-config",
   "version": "1.0.0",
   "description": "Sample MCP configuration for LangGraph agents integration",
-
   "mcpServers": {
     "langgraph-agents": {
       "description": "MCP server exposing LangGraph agents as callable tools",
@@ -25,7 +24,6 @@
       }
     }
   },
-
   "installation": {
     "instructions": [
       "Step 1: Install required Python packages",
@@ -55,7 +53,6 @@
       }
     }
   },
-
   "configuration": {
     "agentRegistryPath": {
       "type": "string",
@@ -66,7 +63,12 @@
     "logLevel": {
       "type": "string",
       "description": "Logging level for the MCP server",
-      "enum": ["DEBUG", "INFO", "WARNING", "ERROR"],
+      "enum": [
+        "DEBUG",
+        "INFO",
+        "WARNING",
+        "ERROR"
+      ],
       "default": "INFO",
       "required": false
     },
@@ -89,7 +91,6 @@
       "required": false
     }
   },
-
   "capabilities": {
     "tools": {
       "enabled": true,
@@ -104,7 +105,6 @@
       "description": "Provides prompt templates for invoking agents"
     }
   },
-
   "examples": {
     "invoke_agent": {
       "description": "Invoke a LangGraph agent by name",
@@ -113,8 +113,7 @@
         "input": "Hello, what can you do?",
         "thread_id": "optional-thread-id",
         "config": {
-          "model": "claude-3-5-sonnet-20241022",
-          "temperature": 0.7
+          "model": "claude-sonnet-5"
         }
       }
     },
@@ -127,7 +126,6 @@
       "resource": "agent://hello_world"
     }
   },
-
   "troubleshooting": {
     "common_issues": [
       {
@@ -159,7 +157,6 @@
       }
     ]
   },
-
   "usage": {
     "claude_code": {
       "description": "Using LangGraph agents from Claude Code",
@@ -218,7 +215,6 @@
       }
     }
   },
-
   "advanced": {
     "custom_registry_path": {
       "description": "Use a custom agent registry location",
@@ -247,7 +243,6 @@
       ]
     }
   },
-
   "metadata": {
     "author": "Brookside BI",
     "license": "MIT",

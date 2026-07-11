@@ -5,7 +5,7 @@ version: 1.0.0
 author: Claude Code
 created: 2026-01-16
 updated: 2026-01-16
-model: claude-sonnet-4-5-20250929
+model: claude-sonnet-5
 color: lime
 status: active
 type: specialist
@@ -158,7 +158,7 @@ class ModelChoice(str, Enum):
     """Available models"""
     GPT4 = "gpt-4o"
     GPT4_MINI = "gpt-4o-mini"
-    CLAUDE = "claude-sonnet-4-5"
+    CLAUDE = "claude-sonnet-5"
 
 @app.command()
 def run(
@@ -979,7 +979,7 @@ Run the LangGraph agent with a query.
 ## Options
 
 - `--stream`: Stream output
-- `--model`: Choose model (gpt-4o, claude-sonnet-4-5)
+- `--model`: Choose model (gpt-4o, claude-sonnet-5)
 - `--save`: Save conversation
 
 ## Implementation

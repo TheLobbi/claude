@@ -166,7 +166,7 @@ from langchain_core.messages import SystemMessage
 
 def llm_node(state: State):
     """LLM processing node."""
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     system_prompt = "You are a helpful assistant."
     messages = [SystemMessage(content=system_prompt)] + state["messages"]
@@ -516,7 +516,7 @@ def summarizer_node(state: SummarizerState):
 
     Processes text and generates concise summary.
     """
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+    llm = ChatAnthropic(model="claude-sonnet-5")
 
     system_prompt = """
     You are a summarization expert.

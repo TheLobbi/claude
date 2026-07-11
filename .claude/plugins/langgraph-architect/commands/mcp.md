@@ -347,7 +347,7 @@ from .tools.mcp_tools import get_mcp_tools
 mcp_tools = get_mcp_tools()
 
 # Create agent with MCP tools
-llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+llm = ChatAnthropic(model="claude-sonnet-5")
 agent = create_react_agent(llm, mcp_tools)
 ```
 

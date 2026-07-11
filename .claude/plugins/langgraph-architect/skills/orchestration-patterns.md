@@ -178,7 +178,7 @@ When all work is complete and synthesis is done, return FINISH.
 """
 
 supervisor = create_supervisor_node(
-    llm=ChatAnthropic(model="claude-opus-4-5"),
+    llm=ChatAnthropic(model="claude-opus-4-8"),
     prompt=supervisor_prompt,
     agents=members
 )
@@ -244,7 +244,7 @@ def create_smart_supervisor(agents: list[str], agent_capabilities: dict):
         current_context = analyze_context(state)
 
         # Get supervisor decision
-        llm = ChatAnthropic(model="claude-opus-4-5")
+        llm = ChatAnthropic(model="claude-opus-4-8")
         decision = llm.invoke([
             SystemMessage(content=supervisor_prompt),
             *state["messages"],
@@ -345,7 +345,7 @@ def create_research_swarm_agent():
 
         Collaborate with peers via handoffs.
         """,
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_analyst, handoff_to_fact_checker, handoff_to_writer]
     )
 
@@ -374,7 +374,7 @@ def create_analyst_swarm_agent():
 
         Collaborate with peers via handoffs.
         """,
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_researcher, handoff_to_writer]
     )
 
@@ -403,7 +403,7 @@ def create_fact_checker_swarm_agent():
 
         Collaborate with peers via handoffs.
         """,
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_researcher, handoff_to_writer]
     )
 
@@ -432,7 +432,7 @@ def create_writer_swarm_agent():
 
         You can complete the workflow or hand back for more work.
         """,
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         handoffs=[handoff_to_researcher, handoff_to_analyst],
         can_complete=True  # Can end the workflow
     )
@@ -492,7 +492,7 @@ def create_adaptive_swarm_agent(
     return create_swarm_agent(
         name=name,
         instructions=base_instructions,
-        llm=ChatAnthropic(model="claude-opus-4-5"),
+        llm=ChatAnthropic(model="claude-opus-4-8"),
         handoffs=adaptive_handoff_logic  # Dynamic handoffs
     )
 ```
@@ -550,7 +550,7 @@ def create_team_subgraph(
 
     # Create team supervisor
     team_supervisor = create_supervisor_node(
-        llm=ChatAnthropic(model="claude-sonnet-4-5"),
+        llm=ChatAnthropic(model="claude-sonnet-5"),
         prompt=supervisor_prompt,
         agents=members
     )
@@ -639,7 +639,7 @@ Return FINISH when project complete.
 """
 
 main_supervisor = create_supervisor_node(
-    llm=ChatAnthropic(model="claude-opus-4-5"),
+    llm=ChatAnthropic(model="claude-opus-4-8"),
     prompt=main_supervisor_prompt,
     agents=["research_team", "dev_team", "qa_team"]
 )

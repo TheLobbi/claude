@@ -420,7 +420,7 @@
     },
     "langgraph-architect": {
       "name": "langgraph-architect",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Expert LangGraph/LangChain agent builder with MCP integration, workflow orchestration, and CLI accessibility. Creates production-ready AI agents that are reachable via command line and Claude Code.",
       "keywords": [
         "langgraph",
@@ -1714,7 +1714,7 @@
     "ai-advanced": {
       "langgraph-architect": {
         "path": "../.claude/plugins/langgraph-architect/.claude-plugin/plugin.json",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "status": "active",
         "tier": "standard"
       },

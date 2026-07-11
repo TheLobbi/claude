@@ -9,9 +9,8 @@ name: state-engineer
 ---
 name: state-engineer
 version: 1.0.0
-model: claude-sonnet-4-5-20250929
+model: claude-sonnet-5
 color: yellow
-budget_tokens: 50000
 description: Expert in designing and managing state schemas for LangGraph applications
 expertise:
   - TypedDict state definitions

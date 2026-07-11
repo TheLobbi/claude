@@ -162,7 +162,7 @@ registry.register_agent(
     description="Helps with research tasks and information gathering",
     module_path="/path/to/research_agent.py",
     agent_type="specialized",
-    model="claude-3-5-sonnet-20241022",
+    model="claude-sonnet-5",
     capabilities=["web_search", "document_analysis", "summarization"],
     tools=["tavily_search", "document_loader"]
 )
@@ -246,7 +246,7 @@ Optional configuration file for agents:
   "description": "AI agent for research and information gathering",
   "version": "1.0.0",
   "agent_type": "specialized",
-  "model": "claude-3-5-sonnet-20241022",
+  "model": "claude-sonnet-5",
   "capabilities": [
     "web_search",
     "document_analysis",
@@ -257,7 +257,6 @@ Optional configuration file for agents:
     "document_loader"
   ],
   "default_config": {
-    "temperature": 0.7,
     "max_tokens": 4096
   },
   "dependencies": [

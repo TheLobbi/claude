@@ -9,9 +9,8 @@ name: edge-designer
 ---
 name: edge-designer
 version: 1.0.0
-model: claude-sonnet-4-5-20250929
+model: claude-sonnet-5
 color: red
-budget_tokens: 50000
 description: Expert in designing edges and routing logic for LangGraph state machines
 expertise:
   - Normal edge configuration

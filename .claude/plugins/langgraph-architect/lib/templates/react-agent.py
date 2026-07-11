@@ -111,8 +111,7 @@ async def agent_node(state: AgentState) -> AgentState:
     try:
         # Initialize the model with tools
         model = ChatAnthropic(
-            model="claude-3-5-sonnet-20241022",
-            temperature=0
+            model="claude-sonnet-5"
         ).bind_tools(tools)
 
         # Get the conversation history
