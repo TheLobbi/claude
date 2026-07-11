@@ -934,3 +934,11 @@ grep: site/assets/styles.css: No such file or directory
 - **Status:** RESOLVED
 - **Fix:** Reverted to js-yaml@^4.1.1 (default export restored, dump output matches committed frontmatter). Kept the other dep upgrades (typescript 7.0.2, tsx 4.23 → esbuild 0.28.1 clearing all audit vulnerabilities, ajv 8.20).
 - **Prevention:** js-yaml v5 is ESM-only (named exports) and changes dump formatting. Upgrading it requires (a) `import * as yaml` or named imports in scripts/*.mjs AND (b) regenerating frontmatter across all plugin command/agent files in the same commit (`pnpm generate:plugin-indexes`), accepting a ~300-file churn. Don't bump it casually.
+
+### Error: mcp__github__get_check_run failure (2026-07-11T20:06:25Z)
+- **Tool:** mcp__github__get_check_run
+- **Input:** `method: list_check_runs, ref: <sha>`
+- **Error:** owner, repo, and checkRunId are required
+- **Status:** RESOLVED
+- **Fix:** `get_check_run` fetches ONE check run by `checkRunId` — it has no list mode. To see CI status for a commit/branch, use `actions_list` with `method: "list_workflow_runs"` + `branch`, then parse the oversized saved payload with `node -e` (filter by `head_sha`, print name/status/conclusion).
+- **Prevention:** For "is CI green on this sha" questions, go straight to `actions_list` → saved-file parse. Reserve `get_check_run` for drilling into a single known check-run ID.
