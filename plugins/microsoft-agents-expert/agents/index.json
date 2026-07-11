@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "plugin": "microsoft-agents-expert",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "agent-framework-engineer",
+      "intent": "Implement agents, tools, and multi-agent workflows with Microsoft Agent Framework in C#, Python, or Go",
+      "tags": [
+        "microsoft-agents-expert",
+        "agent-framework",
+        "implementation",
+        "workflows"
+      ],
+      "inputs": [
+        "agent requirements (behavior, tools, memory)",
+        "language (csharp|python|go)",
+        "orchestration pattern if multi-agent"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "agents/agent-framework-engineer.md"
+    },
+    {
+      "name": "copilot-studio-specialist",
+      "intent": "Design, tune, and govern Copilot Studio agents — topics, generative orchestration, tools, autonomous triggers, ALM, and credit economics",
+      "tags": [
+        "microsoft-agents-expert",
+        "copilot-studio",
+        "low-code",
+        "governance"
+      ],
+      "inputs": [
+        "agent purpose and knowledge sources",
+        "required tools/connectors/MCP servers",
+        "environment strategy and governance constraints"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/copilot-studio-specialist.md"
+    },
+    {
+      "name": "foundry-operations-engineer",
+      "intent": "Provision, deploy, and operate agents on Microsoft Foundry Agent Service — prompt agents, hosted agents, tools, identity, observability, and evaluations",
+      "tags": [
+        "microsoft-agents-expert",
+        "microsoft-foundry",
+        "azure",
+        "operations"
+      ],
+      "inputs": [
+        "agent type (prompt|hosted) and engine if hosted",
+        "required tools (bing, file search, code interpreter, MCP, OpenAPI, A2A)",
+        "environment and compliance requirements"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "agents/foundry-operations-engineer.md"
+    },
+    {
+      "name": "m365-teams-agent-engineer",
+      "intent": "Build and ship custom engine agents on the Microsoft 365 Agents SDK and Teams SDK",
+      "tags": [
+        "microsoft-agents-expert",
+        "m365-agents-sdk",
+        "teams",
+        "channels"
+      ],
+      "inputs": [
+        "agent purpose and hosted engine (agent-framework|semantic-kernel|custom)",
+        "target channels (teams|m365-copilot|web|other)",
+        "language (csharp|typescript|python)"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "agents/m365-teams-agent-engineer.md"
+    },
+    {
+      "name": "msagent-architect",
+      "intent": "Architect end-to-end Microsoft agent solutions across Copilot Studio, Agent Framework, M365 Agents SDK, Teams SDK, and Foundry",
+      "tags": [
+        "microsoft-agents-expert",
+        "architecture",
+        "stack-selection",
+        "multi-agent"
+      ],
+      "inputs": [
+        "business requirements and use case",
+        "existing Microsoft investments (Power Platform, Azure, Bot Framework)",
+        "constraints (governance, channels, team skills, budget)"
+      ],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/msagent-architect.md"
+    }
+  ]
+}

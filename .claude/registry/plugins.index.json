@@ -262,6 +262,13 @@
       "source": "local",
       "installedAt": "2026-07-11T00:00:00.000Z",
       "dependencies": {}
+    },
+    "microsoft-agents-expert": {
+      "version": "1.0.0",
+      "path": "../plugins/microsoft-agents-expert",
+      "source": "local",
+      "installedAt": "2026-07-11T00:00:00.000Z",
+      "dependencies": {}
     }
   },
   "registry": {
@@ -1594,6 +1601,32 @@
       "categories": [
         "developer-tools"
       ]
+    },
+    "microsoft-agents-expert": {
+      "name": "microsoft-agents-expert",
+      "version": "1.0.0",
+      "description": "Comprehensive Microsoft agent-stack expert: Microsoft Agent Framework (the Semantic Kernel + AutoGen successor), Microsoft 365 Agents SDK, Teams AI Library, Copilot Studio, and Microsoft Foundry Agent Service. Stack selection, scaffolding, migration, review, and deployment. 6 skills, 5 agents, 5 commands.",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "Markus@thelobbi.io"
+      },
+      "keywords": [
+        "microsoft",
+        "agents",
+        "agent-framework",
+        "m365-agents-sdk",
+        "teams",
+        "copilot-studio",
+        "microsoft-foundry",
+        "azure-ai-foundry",
+        "semantic-kernel",
+        "autogen",
+        "mcp",
+        "multi-agent"
+      ],
+      "categories": [
+        "ai-advanced"
+      ]
     }
   },
   "plugins": {
@@ -1681,6 +1714,12 @@
     "ai-advanced": {
       "langgraph-architect": {
         "path": "../.claude/plugins/langgraph-architect/.claude-plugin/plugin.json",
+        "version": "1.0.0",
+        "status": "active",
+        "tier": "standard"
+      },
+      "microsoft-agents-expert": {
+        "path": "../plugins/microsoft-agents-expert/.claude-plugin/plugin.json",
         "version": "1.0.0",
         "status": "active",
         "tier": "standard"
@@ -1923,17 +1962,17 @@
     "PM": "project-management-plugin"
   },
   "stats": {
-    "totalInstalled": 35,
-    "totalPlugins": 41,
+    "totalInstalled": 36,
+    "totalPlugins": 42,
     "totalAvailable": 6,
     "lastUpdated": "2026-07-11T00:00:00.000Z",
     "byTier": {
       "enterprise": 1,
-      "standard": 40,
+      "standard": 41,
       "premium": 1
     },
     "byLocation": {
-      "plugins/": 35,
+      "plugins/": 36,
       ".claude/plugins/": 6
     }
   }

@@ -1,0 +1,77 @@
+{
+  "name": "microsoft-agents-expert",
+  "version": "1.0.0",
+  "description": "Comprehensive Microsoft agent-stack expert: Microsoft Agent Framework (the Semantic Kernel + AutoGen successor), Microsoft 365 Agents SDK, Teams AI Library, Copilot Studio, and Microsoft Foundry Agent Service. Stack selection, scaffolding, migration, review, and deployment. 6 skills, 5 agents, 5 commands.",
+  "author": {
+    "name": "Markus Ahling",
+    "email": "Markus@thelobbi.io"
+  },
+  "license": "MIT",
+  "keywords": [
+    "microsoft",
+    "agents",
+    "agent-framework",
+    "m365-agents-sdk",
+    "teams",
+    "copilot-studio",
+    "microsoft-foundry",
+    "azure-ai-foundry",
+    "semantic-kernel",
+    "autogen",
+    "mcp",
+    "multi-agent"
+  ],
+  "permissions": {
+    "requires": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep"
+    ],
+    "optional": [
+      "Bash",
+      "WebFetch"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "agent-framework-development",
+      "m365-agents-sdk-development",
+      "teams-agent-development",
+      "copilot-studio-guidance",
+      "foundry-agent-service-operations",
+      "agent-stack-selection",
+      "agent-migration"
+    ],
+    "requires": []
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md",
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "Microsoft Agents Expert",
+    "summary": "Microsoft agent stack: Agent Framework, M365 Agents SDK, Teams AI Library, Copilot Studio, Foundry Agent Service. 6 skills, 5 agents, 5 commands.",
+    "tags": [
+      "microsoft",
+      "agents",
+      "agent-framework",
+      "copilot-studio",
+      "foundry"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "skills/*/SKILL.md"
+    ]
+  }
+}

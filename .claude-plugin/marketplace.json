@@ -263,6 +263,16 @@
       "source": "./plugins/marketplace-pro"
     },
     {
+      "name": "microsoft-agents-expert",
+      "description": "Comprehensive Microsoft agent-stack expert: Microsoft Agent Framework (the Semantic Kernel + AutoGen successor), Microsoft 365 Agents SDK, Teams AI Library, Copilot Studio, and Microsoft Foundry Agent Service. Stack selection, scaffolding, migration, review, and deployment. 6 skills, 5 agents, 5 commands.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "Markus@thelobbi.io"
+      },
+      "source": "./plugins/microsoft-agents-expert"
+    },
+    {
       "name": "mui-expert",
       "description": "Comprehensive Material UI (MUI) expert plugin — 26 skills, 14 commands, 7 agents covering theming, CSS variables, Pigment CSS, components, sx/styled, slots API, MUI X (DataGrid, DatePickers, Charts, TreeView), accessibility, performance, SSR/Next.js, animations, virtualization, forms, white-label/multi-tenant, headless (MUI Base), Joy UI, i18n/RTL, testing, migration, entity-driven CRUD, ecosystem integrations, and 200+ creative widget patterns.",
       "version": "2.2.0",

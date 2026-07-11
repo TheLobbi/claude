@@ -9,7 +9,7 @@
 
 ## Scale
 
-- 35 domain plugins in `plugins/`
+- 36 domain plugins in `plugins/`
 - 54 platform skills in `.claude/skills/` (plugins ship their own — jira-orchestrator alone adds 14)
 - 9 platform agents in `.claude/agents/` (plugins ship their own — jira-orchestrator alone adds 82)
 - 7 MCP servers (5 custom + 2 external)

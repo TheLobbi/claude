@@ -1,8 +1,8 @@
 # Project Instructions
 
 ## Overview
-Claude Code Plugin Marketplace — curated collection of 41 Claude Code plugins
-(35 in `plugins/`, 6 sub-plugins in `.claude/plugins/`) with marketplace-wide
+Claude Code Plugin Marketplace — curated collection of 42 Claude Code plugins
+(36 in `plugins/`, 6 sub-plugins in `.claude/plugins/`) with marketplace-wide
 validation and developer tooling. Pure marketplace repository; no application
 frontend.
 
@@ -28,7 +28,7 @@ EXPLORE → PLAN → CODE → TEST → FIX → DOCUMENT
 
 ## Key Paths
 - Marketplace manifest: `.claude-plugin/marketplace.json`
-- Installed plugins: `plugins/` (35 plugins)
+- Installed plugins: `plugins/` (36 plugins)
 - Sub-marketplace plugins: `.claude/plugins/` (6 plugins)
 - Rules: `.claude/rules/` (modular, path-scoped instructions)
 - Platform skills: `.claude/skills/`
