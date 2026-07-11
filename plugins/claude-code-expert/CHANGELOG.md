@@ -1,5 +1,17 @@
 # Changelog
 
+## v8.4.0 (2026-07-11) — Sonnet 5 as the current Sonnet tier
+
+### Models
+
+- The `sonnet` alias now documents **Claude Sonnet 5** (`claude-sonnet-5`) everywhere the
+  plugin states the current lineup: `cc-model-routing` skill cost table, MCP `MODEL_DATA`
+  (`cc_docs_model_recommend`), `README.md`, `CLAUDE.md`, and `docs/CC-CAPABILITIES-2026-06.md`.
+- Added Sonnet 5 caveats to `cc-model-routing`: same new tokenizer as Fable 5 (~30% more
+  tokens than Sonnet 4.6 for identical content) and introductory pricing ($2/$10 per MTok
+  through 2026-08-31; the table shows the $3/$15 sticker).
+- Effort guidance updated: `xhigh` is supported on Opus 4.7/4.8, Sonnet 5, and Fable 5.
+
 ## v8.3.0 (2026-06-24) — Namespaced skill & agent names (collision-free)
 
 ### Breaking — renames

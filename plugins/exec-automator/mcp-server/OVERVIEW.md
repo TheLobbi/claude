@@ -375,7 +375,7 @@ OPENAI_API_KEY=sk-...
 CHECKPOINT_DIR=./checkpoints
 PATTERN_LIBRARY=./data/patterns.json
 TEMPLATES_DIR=./templates
-DEFAULT_MODEL=claude-sonnet-4-6
+DEFAULT_MODEL=claude-sonnet-5
 MAX_RETRIES=3
 ENABLE_STREAMING=true
 ```

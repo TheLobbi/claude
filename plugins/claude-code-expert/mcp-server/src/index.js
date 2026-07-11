@@ -302,7 +302,7 @@ function resolveTask(query) {
 const MODEL_DATA = {
   "fable": { id: "claude-fable-5", inputCost: 10.00, outputCost: 50.00, cacheRead: 1.00, best: "long-horizon autonomous runs, hardest reasoning above Opus's ceiling, multi-hour orchestration" },
   "opus": { id: "claude-opus-4-8", inputCost: 5.00, outputCost: 25.00, cacheRead: 0.50, best: "architecture, complex debugging, security review" },
-  "sonnet": { id: "claude-sonnet-4-6", inputCost: 3.00, outputCost: 15.00, cacheRead: 0.30, best: "implementation, code review, refactoring, test writing" },
+  "sonnet": { id: "claude-sonnet-5", inputCost: 3.00, outputCost: 15.00, cacheRead: 0.30, best: "implementation, code review, refactoring, test writing" },
   "haiku": { id: "claude-haiku-4-5-20251001", inputCost: 1.00, outputCost: 5.00, cacheRead: 0.10, best: "lookups, research, docs, simple Q&A, commit messages" },
 };
 

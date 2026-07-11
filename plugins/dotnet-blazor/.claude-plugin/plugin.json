@@ -1,7 +1,7 @@
 {
   "$schema": "https://claude.local/schemas/plugin.schema.json",
   "name": "dotnet-blazor",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Comprehensive .NET 10, Blazor, ASP.NET Core, C#, and Syncfusion expert plugin for building modern web apps, microservices, and cloud-native solutions",
   "author": {
     "name": "Markus Ahling"

@@ -279,7 +279,7 @@ def create_workflow_generation_workflow() -> StateGraph:
         """Analyze responsibility to determine workflow requirements."""
         logger.info(f"Analyzing responsibility: {state['responsibility_id']}")
 
-        llm = ChatAnthropic(model="claude-sonnet-4-5")
+        llm = ChatAnthropic(model="claude-sonnet-5")
 
         # Load responsibility details
         # (In production, this would query from database/checkpoint)

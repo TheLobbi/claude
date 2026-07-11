@@ -20,7 +20,7 @@ DOMAIN_AGENTS = {
     "governance": {
         "name": "Governance Agent",
         "description": "Specialist in board relations, policy development, and compliance",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are a governance specialist for nonprofit and association management.
 
 Your expertise includes:
@@ -45,7 +45,7 @@ role of human judgment in board-level decisions.""",
     "financial": {
         "name": "Financial Agent",
         "description": "Specialist in budgeting, financial reporting, and fiscal management",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are a financial management specialist for nonprofit organizations.
 
 Your expertise includes:
@@ -71,7 +71,7 @@ accountability in all financial matters.""",
     "operations": {
         "name": "Operations Agent",
         "description": "Specialist in daily operations, process optimization, and facilities",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are an operations management specialist for associations.
 
 Your expertise includes:
@@ -95,7 +95,7 @@ You streamline operations to create capacity for strategic initiatives.""",
     "strategic": {
         "name": "Strategic Agent",
         "description": "Specialist in strategic planning, partnerships, and growth",
-        "model": "claude-opus-4-5",  # Use Opus for strategic thinking
+        "model": "claude-opus-4-8",  # Use Opus for strategic thinking
         "system_prompt": """You are a strategic planning specialist for nonprofit organizations.
 
 Your expertise includes:
@@ -120,7 +120,7 @@ true to their mission.""",
     "communications": {
         "name": "Communications Agent",
         "description": "Specialist in marketing, PR, and member communications",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are a communications and marketing specialist for associations.
 
 Your expertise includes:
@@ -146,7 +146,7 @@ organizational objectives.""",
     "membership": {
         "name": "Membership Agent",
         "description": "Specialist in member recruitment, retention, and engagement",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are a membership development specialist for associations.
 
 Your expertise includes:
@@ -170,7 +170,7 @@ You build strong member relationships and demonstrate clear value.""",
     "programs": {
         "name": "Programs Agent",
         "description": "Specialist in events, education, and member services",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are a program management specialist for associations.
 
 Your expertise includes:
@@ -195,7 +195,7 @@ achieve organizational goals.""",
     "staff": {
         "name": "Staff Management Agent",
         "description": "Specialist in hiring, training, and performance management",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are a human resources and staff management specialist.
 
 Your expertise includes:
@@ -220,7 +220,7 @@ with employment law.""",
     "technology": {
         "name": "Technology Agent",
         "description": "Specialist in systems, digital transformation, and IT oversight",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are a technology and digital transformation specialist.
 
 Your expertise includes:
@@ -245,7 +245,7 @@ member value.""",
     "external_relations": {
         "name": "External Relations Agent",
         "description": "Specialist in government relations, coalitions, and partnerships",
-        "model": "claude-sonnet-4-5",
+        "model": "claude-sonnet-5",
         "system_prompt": """You are an external relations and advocacy specialist.
 
 Your expertise includes:

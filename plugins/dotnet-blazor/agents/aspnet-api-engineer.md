@@ -14,7 +14,7 @@ inputs:
 risk: low
 cost: medium
 description: API engineering specialist for ASP.NET Core minimal APIs and controllers with OpenAPI, validation, caching, and rate limiting
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 tools:
   - Read
   - Write

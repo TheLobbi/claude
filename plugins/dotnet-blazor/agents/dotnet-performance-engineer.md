@@ -13,7 +13,7 @@ inputs:
 risk: medium
 cost: medium
 description: Performance specialist for Blazor rendering, EF Core queries, API throughput, memory management, and caching
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 tools:
   - Read
   - Write

@@ -17,7 +17,7 @@ tool surface.
 |---|---|---|
 | `fable` | `claude-fable-5` | Hardest long-horizon agentic runs, overnight builds, deepest reasoning — the Claude 5 / Mythos-class tier above Opus |
 | `opus` | `claude-opus-4-8` | Architecture, hard debugging, security review, planning/review gates |
-| `sonnet` | `claude-sonnet-4-6` | Implementation, code review, refactoring, test writing |
+| `sonnet` | `claude-sonnet-5` | Implementation, code review, refactoring, test writing |
 | `haiku` | `claude-haiku-4-5-20251001` | Retrieval, research, docs, bulk mechanical edits |
 
 Helper aliases: `best` (most capable available), `opusplan` (Opus reasoning → Sonnet execution),

@@ -513,7 +513,7 @@ Spawn 4-6 specialized generation agents in parallel:
        human_feedback: str | None
 
    # Initialize LLM
-   llm = ChatAnthropic(model="claude-sonnet-4-6")
+   llm = ChatAnthropic(model="claude-sonnet-5")
 
    # Define workflow nodes
    def node_1_name(state: WorkflowState) -> WorkflowState:
@@ -545,7 +545,7 @@ Spawn 4-6 specialized generation agents in parallel:
      "agent_id": "agent_{responsibility_id}",
      "agent_name": "{responsibility_title} Assistant",
      "agent_type": "langgraph_workflow",
-     "model": "claude-sonnet-4-6",
+     "model": "claude-sonnet-5",
      "temperature": 0.3,
      "max_tokens": 4000,
      "tools": [

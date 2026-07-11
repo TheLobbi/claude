@@ -268,7 +268,7 @@ class AgentSpec(TypedDict):
     agent_id: str
     agent_name: str
     description: str
-    model: str  # "claude-sonnet-4-5", "claude-opus-4-5", etc.
+    model: str  # "claude-sonnet-5", "claude-opus-4-8", etc.
     tools: List[str]
     system_prompt: str
     capabilities: List[str]

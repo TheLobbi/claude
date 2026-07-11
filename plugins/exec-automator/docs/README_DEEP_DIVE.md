@@ -430,7 +430,7 @@ class MemberCommunicationState(TypedDict):
 
 def categorize_inquiry(state):
     # Use Claude to categorize member inquiry
-    llm = ChatAnthropic(model="claude-sonnet-4-6")
+    llm = ChatAnthropic(model="claude-sonnet-5")
     category = llm.invoke(f"Categorize this inquiry: {state['inquiry_text']}")
     return {"inquiry_category": category}
 
@@ -710,7 +710,7 @@ class BoardMeetingState(TypedDict):
     status: Literal["collecting", "drafting", "review", "scheduled", "completed"]
 
 # Initialize LLM
-llm = ChatAnthropic(model="claude-sonnet-4-6", temperature=0.3)
+llm = ChatAnthropic(model="claude-sonnet-5")
 
 # Node 1: Collect agenda items from committees
 def collect_agenda_items(state: BoardMeetingState) -> BoardMeetingState:
@@ -875,7 +875,7 @@ if __name__ == "__main__":
   "agent_name": "Board Meeting Coordinator",
   "agent_type": "langgraph_workflow",
   "workflow_file": "workflow-resp_001-board-meeting.py",
-  "model": "claude-sonnet-4-6",
+  "model": "claude-sonnet-5",
   "temperature": 0.3,
   "max_tokens": 4000,
   "tools": [
@@ -2363,9 +2363,9 @@ export OBSIDIAN_VAULT_PATH="/path/to/vault"
     "size": "medium"
   },
   "models": {
-    "default": "claude-sonnet-4-6",
+    "default": "claude-sonnet-5",
     "strategic": "claude-opus-4-8-20251101",
-    "cost_effective": "claude-haiku-3-5-20250305"
+    "cost_effective": "claude-haiku-4-5"
   },
   "scoring": {
     "weights_profile": "default",

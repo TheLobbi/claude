@@ -42,7 +42,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
 # Components
-llm = ChatAnthropic(model="claude-sonnet-4-6")
+llm = ChatAnthropic(model="claude-sonnet-5")
 prompt = ChatPromptTemplate.from_template(
     "You are an expert in {domain}. Answer this question: {question}"
 )
@@ -345,7 +345,7 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Create agent
-llm = ChatAnthropic(model="claude-sonnet-4-6")
+llm = ChatAnthropic(model="claude-sonnet-5")
 agent = create_tool_calling_agent(llm, tools, prompt)
 
 # Create executor
@@ -1064,9 +1064,10 @@ result = await chain.ainvoke(
 from langchain_anthropic import ChatAnthropic
 
 # Claude Sonnet
-llm = ChatAnthronic(
-    model="claude-sonnet-4-6",
-    temperature=0.7,
+# Note: Sonnet 5 / Opus 4.7+ reject sampling params (temperature/top_p/top_k)
+# with a 400 — steer style via prompting instead.
+llm = ChatAnthropic(
+    model="claude-sonnet-5",
     max_tokens=4096,
     anthropic_api_key=os.getenv("ANTHROPIC_API_KEY")
 )
@@ -1074,22 +1075,17 @@ llm = ChatAnthronic(
 # Claude Opus (for complex reasoning)
 opus_llm = ChatAnthropic(
     model="claude-opus-4-8",
-    temperature=0.3,
     max_tokens=8192
 )
 
-# With thinking budget (extended thinking)
+# With adaptive thinking (replaces the removed fixed budget_tokens config;
+# no beta header required)
 thinking_llm = ChatAnthropic(
-    model="claude-sonnet-4-6",
-    temperature=0.5,
+    model="claude-sonnet-5",
     max_tokens=16000,
-    extra_headers={
-        "anthropic-beta": "thinking-budget-2024-11-01"
-    },
     model_kwargs={
         "thinking": {
-            "type": "enabled",
-            "budget_tokens": 10000
+            "type": "adaptive"
         }
     }
 )

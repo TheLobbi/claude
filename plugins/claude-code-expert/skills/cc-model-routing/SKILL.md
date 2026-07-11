@@ -30,16 +30,16 @@ Claude model choice is the biggest cost lever in Claude Code. Match the model to
 |---|---|---|---|---|
 | Fable 5 | `fable` / `claude-fable-5` | $10 | $50 | 3.3× |
 | Opus 4.8 | `opus` / `claude-opus-4-8` | $5 | $25 | 1.7× |
-| Sonnet 4.6 | `sonnet` / `claude-sonnet-4-6` | $3 | $15 | 1× |
+| Sonnet 5 | `sonnet` / `claude-sonnet-5` | $3 | $15 | 1× |
 | Haiku 4.5 | `haiku` / `claude-haiku-4-5-20251001` | $1 | $5 | 0.33× |
 
-Output tokens are the dominant cost in most Claude Code sessions. Two caveats on Fable 5: its new tokenizer produces ~30% more tokens for the same content (so the effective gap vs Opus is wider than the per-token price), and turns run longer. Use it where the capability ceiling matters, not as a default.
+Output tokens are the dominant cost in most Claude Code sessions. Two caveats on Fable 5: its new tokenizer produces ~30% more tokens for the same content (so the effective gap vs Opus is wider than the per-token price), and turns run longer. Use it where the capability ceiling matters, not as a default. Sonnet 5 uses the same new tokenizer (~30% more tokens than Sonnet 4.6 for identical content) and launched with introductory pricing ($2/$10 per MTok through 2026-08-31) — the table shows the sticker price.
 
 **Aliases auto-resolve to the latest generation** — prefer `fable`/`opus`/`sonnet`/`haiku` over pinned IDs so a model refresh doesn't strand your config. Use `opusplan` for Opus-reasoning + Sonnet-execution, or `best` for "most capable available". Extended 1M-token context: `opus[1m]` / `sonnet[1m]` (Fable 5 is 1M by default; `claude-fable-5[1m]` is the long-context ID form).
 
 **Fast mode** (`/fast` in-session, `--fast` at launch) keeps you on Opus (4.6/4.7/4.8) but optimizes for faster output — it does **not** downgrade to a smaller model. Toggle it when you want Opus-level reasoning without the usual latency. Not available on Fable 5.
 
-**Effort levels** scale reasoning depth independently of model: `low` · `medium` · `high` · `xhigh` · `max` (Opus 4.7/4.8 and Fable 5 support `xhigh`). Set via `/effort`, `--effort <level>`, or `effort:` in skill/agent frontmatter — cheaper than jumping a model tier when you just need deeper thinking. On Fable 5 thinking is always on and effort is the *only* depth control — and even `low` effort on Fable often matches or beats `max` on prior models, so sweep downward for routine work.
+**Effort levels** scale reasoning depth independently of model: `low` · `medium` · `high` · `xhigh` · `max` (Opus 4.7/4.8, Sonnet 5, and Fable 5 support `xhigh`). Set via `/effort`, `--effort <level>`, or `effort:` in skill/agent frontmatter — cheaper than jumping a model tier when you just need deeper thinking. On Fable 5 thinking is always on and effort is the *only* depth control — and even `low` effort on Fable often matches or beats `max` on prior models, so sweep downward for routine work.
 
 ## Model cascading
 

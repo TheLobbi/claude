@@ -10,7 +10,7 @@ capability snapshot lives in [`docs/CC-CAPABILITIES-2026-06.md`](docs/CC-CAPABIL
 it, the skill gets fixed.
 
 **Current models:** Fable 5 (`claude-fable-5`, Mythos-class tier above Opus) · Opus 4.8
-(`claude-opus-4-8`) · Sonnet 4.6 (`claude-sonnet-4-6`) · Haiku 4.5 (`claude-haiku-4-5-20251001`).
+(`claude-opus-4-8`) · Sonnet 5 (`claude-sonnet-5`) · Haiku 4.5 (`claude-haiku-4-5-20251001`).
 Aliases `fable`/`opus`/`sonnet`/`haiku` auto-resolve to the latest; `/fast` keeps Opus reasoning
 with faster output (not on Fable); `effort` (`low`→`max`, `xhigh` on Opus 4.7/4.8 and Fable 5)
 scales thinking depth without changing model — on Fable 5 it's the only depth control.

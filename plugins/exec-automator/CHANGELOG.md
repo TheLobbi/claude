@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.1.0] - 2026-07-11
+
+### Changed
+
+- Migrated all Claude model references to the current generation: `claude-sonnet-4-5`/`claude-sonnet-4-6` -> `claude-sonnet-5`, `claude-opus-4-5` -> `claude-opus-4-8`, `claude-haiku-4`/`claude-haiku-3-5-20250305` -> `claude-haiku-4-5` across the MCP server (`agents/__init__.py`, `langchain_tools.py`, `langgraph_engine.py`, `server.py`, `state_schemas.py`), commands, docs, and skills.
+
+### Fixed
+
+- Removed `temperature` arguments from `ChatAnthropic` calls targeting Sonnet 5 / Opus 4.8 — non-default sampling parameters return a 400 on these models.
+- `langchain-integrations` skill: fixed `ChatAnthronic` typo, removed the invalid `thinking-budget-2024-11-01` beta header, and replaced the removed `budget_tokens` extended-thinking config with adaptive thinking (`{"type": "adaptive"}`).
+
 ## [2.0.1] - 2026-06-04
 
 ### Changed
