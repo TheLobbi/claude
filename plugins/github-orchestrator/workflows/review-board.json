@@ -1,0 +1,212 @@
+{
+  "name": "review-board",
+  "displayName": "Adversarial Review Board",
+  "description": "Run six independent review lenses in parallel over a pull request diff, hand every finding to skeptics prompted to refute it, and synthesize the survivors into one ranked verdict.",
+  "version": "1.0.0",
+  "type": "parallel",
+  "category": "analysis",
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/gh:workflow run review-board"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "prNumber",
+      "type": "number",
+      "description": "Pull request to review",
+      "required": true
+    },
+    {
+      "name": "quorum",
+      "type": "number",
+      "description": "Verifiers that must fail to refute for a finding to survive",
+      "required": false,
+      "default": 2
+    },
+    {
+      "name": "post",
+      "type": "boolean",
+      "description": "Post surviving findings as a single PR review",
+      "required": false,
+      "default": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "verdict",
+      "type": "object",
+      "description": "Ranked surviving findings and the review action",
+      "source": "synthesize"
+    }
+  ],
+  "coordination": {
+    "pattern": "broadcast",
+    "messageFormat": "json",
+    "contextSharing": false
+  },
+  "steps": [
+    {
+      "id": "lenses",
+      "name": "Six independent review lenses",
+      "description": "Each lens is blind to the others so their findings stay uncorrelated",
+      "type": "parallel",
+      "parallel": [
+        {
+          "id": "correctness",
+          "type": "agent",
+          "agent": "correctness-reviewer",
+          "inputs": {
+            "prNumber": "$.input.prNumber"
+          }
+        },
+        {
+          "id": "security",
+          "type": "agent",
+          "agent": "security-reviewer",
+          "inputs": {
+            "prNumber": "$.input.prNumber"
+          }
+        },
+        {
+          "id": "tests",
+          "type": "agent",
+          "agent": "test-coverage-critic",
+          "inputs": {
+            "prNumber": "$.input.prNumber"
+          }
+        },
+        {
+          "id": "api",
+          "type": "agent",
+          "agent": "api-contract-reviewer",
+          "inputs": {
+            "prNumber": "$.input.prNumber"
+          }
+        },
+        {
+          "id": "performance",
+          "type": "agent",
+          "agent": "performance-reviewer",
+          "inputs": {
+            "prNumber": "$.input.prNumber"
+          }
+        },
+        {
+          "id": "docs",
+          "type": "agent",
+          "agent": "docs-reviewer",
+          "inputs": {
+            "prNumber": "$.input.prNumber"
+          }
+        }
+      ]
+    },
+    {
+      "id": "verify",
+      "name": "Adversarial verification",
+      "description": "Each finding goes to independent verifiers prompted to refute it; uncertainty maps to refuted",
+      "type": "loop",
+      "dependsOn": [
+        "lenses"
+      ],
+      "loop": {
+        "items": "$.steps.lenses.findings",
+        "variable": "finding",
+        "steps": [
+          {
+            "id": "refute",
+            "name": "Attempt refutation",
+            "type": "parallel",
+            "parallel": [
+              {
+                "id": "v1",
+                "type": "agent",
+                "agent": "adversarial-verifier",
+                "inputs": {
+                  "finding": "$.loop.finding"
+                }
+              },
+              {
+                "id": "v2",
+                "type": "agent",
+                "agent": "adversarial-verifier",
+                "inputs": {
+                  "finding": "$.loop.finding"
+                }
+              },
+              {
+                "id": "v3",
+                "type": "agent",
+                "agent": "adversarial-verifier",
+                "inputs": {
+                  "finding": "$.loop.finding"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "outputs": {
+        "verdicts": "$.output"
+      }
+    },
+    {
+      "id": "synthesize",
+      "name": "Synthesize the verdict",
+      "description": "Deduplicate by root cause, rank by severity, report the dropped findings and why",
+      "type": "agent",
+      "agent": "review-synthesizer",
+      "dependsOn": [
+        "verify"
+      ],
+      "inputs": {
+        "prNumber": "$.input.prNumber",
+        "findings": "$.steps.lenses.findings",
+        "verdicts": "$.steps.verify.verdicts",
+        "quorum": "$.input.quorum",
+        "post": "$.input.post"
+      },
+      "outputs": {
+        "verdict": "$.output"
+      }
+    }
+  ],
+  "errorHandling": {
+    "strategy": "continue"
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash"
+    ],
+    "mcpServers": [
+      "github"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": [
+      "lens_duration",
+      "raw_findings",
+      "confirmed_findings",
+      "refuted_findings"
+    ],
+    "checkpoints": true
+  },
+  "timeout": 3600000,
+  "metadata": {
+    "author": "github-orchestrator",
+    "tags": [
+      "github",
+      "review",
+      "adversarial",
+      "quality"
+    ],
+    "status": "stable"
+  }
+}

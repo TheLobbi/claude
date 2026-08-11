@@ -1,0 +1,543 @@
+{
+  "version": 1,
+  "plugin": "github-orchestrator",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "github-orchestrator:actions-optimizer",
+      "intent": "Reduce GitHub Actions wall-clock time and cost through cache, job graph, matrix, concurrency, and path-filter changes",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "ci"
+      ],
+      "inputs": [
+        "workflow"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/actions-optimizer.md"
+    },
+    {
+      "name": "github-orchestrator:adversarial-verifier",
+      "intent": "Attempt to refute a review finding and default to refuted when the evidence is not conclusive",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "finding"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/adversarial-verifier.md"
+    },
+    {
+      "name": "github-orchestrator:agent-delegator",
+      "intent": "Decide what work to hand to in-GitHub agents, prepare the issue as a prompt, and track the resulting pull requests",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "agents"
+      ],
+      "inputs": [
+        "target",
+        "action"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/agent-delegator.md"
+    },
+    {
+      "name": "github-orchestrator:api-contract-reviewer",
+      "intent": "Detect breaking changes to public interfaces, schemas, and wire formats, and require a migration path for each",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "diff",
+        "prNumber"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/api-contract-reviewer.md"
+    },
+    {
+      "name": "github-orchestrator:branch-strategist",
+      "intent": "Choose the correct base branch and name for a change, and keep branches current against a moving base",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "delivery"
+      ],
+      "inputs": [
+        "goal",
+        "baseHint"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "agents/branch-strategist.md"
+    },
+    {
+      "name": "github-orchestrator:build-doctor",
+      "intent": "Diagnose and repair build, compile, lint, and typecheck failures by root cause rather than by silencing the error",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "ci"
+      ],
+      "inputs": [
+        "errorOutput",
+        "job"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/build-doctor.md"
+    },
+    {
+      "name": "github-orchestrator:changelog-scribe",
+      "intent": "Write changelog entries and release notes describing user-visible effects rather than restating commit subjects",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "release"
+      ],
+      "inputs": [
+        "range",
+        "version"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "agents/changelog-scribe.md"
+    },
+    {
+      "name": "github-orchestrator:ci-triage-analyst",
+      "intent": "Classify each failing CI check as real regression, flaky, infrastructure, base-branch breakage, or config drift before anything is changed",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "ci"
+      ],
+      "inputs": [
+        "prNumber",
+        "runId"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/ci-triage-analyst.md"
+    },
+    {
+      "name": "github-orchestrator:conflict-resolver",
+      "intent": "Predict collisions between in-flight pull requests and resolve merge conflicts by reconciling both sides' intent",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "delivery"
+      ],
+      "inputs": [
+        "pr",
+        "branch"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/conflict-resolver.md"
+    },
+    {
+      "name": "github-orchestrator:correctness-reviewer",
+      "intent": "Find logic defects in a diff with a concrete failing input for each finding",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "diff",
+        "prNumber"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/correctness-reviewer.md"
+    },
+    {
+      "name": "github-orchestrator:dedup-detective",
+      "intent": "Find duplicate issues by symptom rather than wording, across both open and closed issues",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "issues"
+      ],
+      "inputs": [
+        "issueNumber"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "agents/dedup-detective.md"
+    },
+    {
+      "name": "github-orchestrator:dependency-steward",
+      "intent": "Assess dependency freshness and maintenance risk and orchestrate upgrades in risk-ordered batches",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "supply-chain"
+      ],
+      "inputs": [
+        "scope",
+        "package"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/dependency-steward.md"
+    },
+    {
+      "name": "github-orchestrator:docs-reviewer",
+      "intent": "Find documentation that this diff made wrong, and undocumented changes users need to know about",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "diff",
+        "prNumber"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "agents/docs-reviewer.md"
+    },
+    {
+      "name": "github-orchestrator:dora-analyst",
+      "intent": "Compute DORA four keys from repository history and attribute every movement to a specific cause",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "intel"
+      ],
+      "inputs": [
+        "window"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/dora-analyst.md"
+    },
+    {
+      "name": "github-orchestrator:epic-decomposer",
+      "intent": "Break an epic into independently shippable sub-issues ordered by dependency with explicit acceptance criteria",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "issues"
+      ],
+      "inputs": [
+        "issueNumber",
+        "goal"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/epic-decomposer.md"
+    },
+    {
+      "name": "github-orchestrator:flake-detective",
+      "intent": "Confirm test flakiness across runs, diagnose the source of nondeterminism, and quarantine with a tracked issue and owner",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "ci"
+      ],
+      "inputs": [
+        "testName",
+        "runId"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/flake-detective.md"
+    },
+    {
+      "name": "github-orchestrator:gh-advisor",
+      "intent": "Analyze all in-flight GitHub state and recommend prioritized next best actions with evidence, without mutating anything",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "intel"
+      ],
+      "inputs": [
+        "scope"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/gh-advisor.md"
+    },
+    {
+      "name": "github-orchestrator:gh-orchestrator",
+      "intent": "Coordinate the GitHub delivery teams, decompose a delivery goal into team assignments, and own the end-to-end outcome",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "delivery"
+      ],
+      "inputs": [
+        "goal",
+        "scope"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "agents/gh-orchestrator.md"
+    },
+    {
+      "name": "github-orchestrator:hotspot-scout",
+      "intent": "Find files where change frequency and defect density combine into elevated risk, and explain why each is fragile",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "intel"
+      ],
+      "inputs": [
+        "window"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/hotspot-scout.md"
+    },
+    {
+      "name": "github-orchestrator:issue-triager",
+      "intent": "Classify issues by type and severity, assess reproducibility, size them, and route them to an owner",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "issues"
+      ],
+      "inputs": [
+        "issueNumber",
+        "scope"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "agents/issue-triager.md"
+    },
+    {
+      "name": "github-orchestrator:merge-marshal",
+      "intent": "Re-verify every merge policy gate against live state immediately before merging, and refuse the merge when any gate fails",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "delivery"
+      ],
+      "inputs": [
+        "pr"
+      ],
+      "risk": "high",
+      "cost": "low",
+      "path": "agents/merge-marshal.md"
+    },
+    {
+      "name": "github-orchestrator:ownership-mapper",
+      "intent": "Reconcile declared CODEOWNERS against real authorship to find drift, gaps, and bus-factor risk, and route reviewers",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "intel"
+      ],
+      "inputs": [
+        "scope",
+        "prNumber"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "agents/ownership-mapper.md"
+    },
+    {
+      "name": "github-orchestrator:performance-reviewer",
+      "intent": "Find performance defects that scale badly with input size, load, or data growth",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "diff",
+        "prNumber"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/performance-reviewer.md"
+    },
+    {
+      "name": "github-orchestrator:pr-author",
+      "intent": "Write pull request titles and bodies from the actual diff, following repository templates and omitting sensitive content",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "delivery"
+      ],
+      "inputs": [
+        "branch",
+        "diff"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "agents/pr-author.md"
+    },
+    {
+      "name": "github-orchestrator:project-steward",
+      "intent": "Read and maintain GitHub Projects boards, resolving field and option IDs and preferring built-in workflows over custom automation",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "projects"
+      ],
+      "inputs": [
+        "projectNumber",
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/project-steward.md"
+    },
+    {
+      "name": "github-orchestrator:release-conductor",
+      "intent": "Compute the semver bump from conventional commits, verify release readiness gates, and tag and publish",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "release"
+      ],
+      "inputs": [
+        "bump",
+        "prerelease"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/release-conductor.md"
+    },
+    {
+      "name": "github-orchestrator:repo-cartographer",
+      "intent": "Map repository structure, module boundaries, entry points, and dependency direction to orient other agents quickly",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "intel"
+      ],
+      "inputs": [
+        "scope"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/repo-cartographer.md"
+    },
+    {
+      "name": "github-orchestrator:review-synthesizer",
+      "intent": "Merge surviving review findings on a blackboard, deduplicate across lenses, rank by severity, and emit one verdict",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "findings",
+        "verdicts"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/review-synthesizer.md"
+    },
+    {
+      "name": "github-orchestrator:rollback-planner",
+      "intent": "Analyze rollback blast radius and recommend rollback, forward-fix, or a feature-flag flip",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "release"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/rollback-planner.md"
+    },
+    {
+      "name": "github-orchestrator:secret-sentinel",
+      "intent": "Detect committed secrets and drive revoke-first remediation without ever exposing the secret value",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "supply-chain"
+      ],
+      "inputs": [
+        "scope",
+        "diff"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/secret-sentinel.md"
+    },
+    {
+      "name": "github-orchestrator:security-reviewer",
+      "intent": "Find exploitable security defects in a diff with a concrete attack path for each finding",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "diff",
+        "prNumber"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/security-reviewer.md"
+    },
+    {
+      "name": "github-orchestrator:stack-manager",
+      "intent": "Build and maintain stacked pull request topologies, splitting oversized branches and rebasing descendants after landings",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "delivery"
+      ],
+      "inputs": [
+        "rootPr",
+        "branch"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "agents/stack-manager.md"
+    },
+    {
+      "name": "github-orchestrator:supply-chain-auditor",
+      "intent": "Rank vulnerability alerts by whether the vulnerable code is reachable from an entry point, and verify code-scanning findings",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "supply-chain"
+      ],
+      "inputs": [
+        "alertId",
+        "scope"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "agents/supply-chain-auditor.md"
+    },
+    {
+      "name": "github-orchestrator:test-coverage-critic",
+      "intent": "Find untested behavior and tests that cannot fail, judging test quality rather than coverage percentage",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "review-board"
+      ],
+      "inputs": [
+        "diff",
+        "prNumber"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/test-coverage-critic.md"
+    }
+  ]
+}

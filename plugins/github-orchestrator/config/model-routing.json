@@ -1,0 +1,135 @@
+{
+  "$comment": "Model and effort policy per agent. Reasoning-heavy roles get opus; mechanical and high-volume roles get sonnet or haiku. Override per team, not per call, and only with a reason you can state.",
+  "defaults": {
+    "model": "sonnet",
+    "effort": "medium"
+  },
+  "teams": {
+    "delivery": {
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "review-board": {
+      "model": "opus",
+      "effort": "high"
+    },
+    "ci": {
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "intel": {
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "supply-chain": {
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "release": {
+      "model": "sonnet",
+      "effort": "medium"
+    },
+    "issues": {
+      "model": "sonnet",
+      "effort": "medium"
+    }
+  },
+  "agents": {
+    "gh-orchestrator": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Coordination and gate decisions across every team"
+    },
+    "gh-advisor": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Ranking by unblocking value requires holding the whole state at once"
+    },
+    "stack-manager": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Stack topology errors are expensive and hard to reverse"
+    },
+    "conflict-resolver": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Reconciling two intents is genuine reasoning, not pattern matching"
+    },
+    "correctness-reviewer": {
+      "model": "opus",
+      "effort": "high"
+    },
+    "security-reviewer": {
+      "model": "opus",
+      "effort": "high"
+    },
+    "api-contract-reviewer": {
+      "model": "opus",
+      "effort": "high"
+    },
+    "adversarial-verifier": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Refutation is harder than detection and carries the board's precision"
+    },
+    "review-synthesizer": {
+      "model": "opus",
+      "effort": "high"
+    },
+    "ci-triage-analyst": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Misclassifying a failure sends the whole loop the wrong way"
+    },
+    "supply-chain-auditor": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Reachability path construction"
+    },
+    "release-conductor": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Version and gate mistakes are unrecoverable once published"
+    },
+    "rollback-planner": {
+      "model": "opus",
+      "effort": "high"
+    },
+    "epic-decomposer": {
+      "model": "opus",
+      "effort": "high"
+    },
+    "docs-reviewer": {
+      "model": "haiku",
+      "effort": "medium",
+      "why": "High volume, mechanical comparison against the diff"
+    },
+    "merge-marshal": {
+      "model": "sonnet",
+      "effort": "medium",
+      "why": "Gate checking is deterministic — a checklist against live state"
+    },
+    "changelog-scribe": {
+      "model": "sonnet",
+      "effort": "medium"
+    },
+    "pr-author": {
+      "model": "sonnet",
+      "effort": "medium"
+    },
+    "agent-delegator": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Judging delegability wrong wastes a whole agent run and returns an unverifiable PR"
+    },
+    "project-steward": {
+      "model": "sonnet",
+      "effort": "high"
+    }
+  },
+  "escalation": {
+    "$comment": "When a role repeatedly fails at its assigned tier, escalate rather than retrying at the same tier.",
+    "sonnet": "opus",
+    "opus": "fable"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "name": "security-sweep",
+  "displayName": "Security Sweep",
+  "description": "Run code scanning, dependency advisory, secret scanning, and workflow posture checks in parallel, then rank every finding by reachability rather than raw severity.",
+  "version": "1.0.0",
+  "type": "parallel",
+  "category": "analysis",
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/gh:workflow run security-sweep"
+    },
+    {
+      "type": "schedule",
+      "schedule": "0 6 * * 1"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "severityFloor",
+      "type": "string",
+      "description": "Lowest severity to report",
+      "required": false,
+      "default": "medium"
+    },
+    {
+      "name": "fileIssues",
+      "type": "boolean",
+      "description": "File tracking issues for reachable findings",
+      "required": false,
+      "default": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "findings",
+      "type": "array",
+      "description": "Findings grouped by reachability tier",
+      "source": "rank"
+    }
+  ],
+  "coordination": {
+    "pattern": "broadcast",
+    "messageFormat": "json",
+    "contextSharing": false
+  },
+  "steps": [
+    {
+      "id": "scan",
+      "name": "Parallel scans",
+      "type": "parallel",
+      "parallel": [
+        {
+          "id": "code-scanning",
+          "name": "Verify code scanning alerts",
+          "type": "agent",
+          "agent": "supply-chain-auditor",
+          "inputs": {
+            "scope": "codeql",
+            "severityFloor": "$.input.severityFloor"
+          }
+        },
+        {
+          "id": "dependencies",
+          "name": "Dependency advisories and maintenance risk",
+          "type": "agent",
+          "agent": "dependency-steward",
+          "inputs": {
+            "scope": "advisories"
+          }
+        },
+        {
+          "id": "secrets",
+          "name": "Secret scanning",
+          "type": "agent",
+          "agent": "secret-sentinel",
+          "inputs": {
+            "scope": "repository"
+          }
+        },
+        {
+          "id": "workflows",
+          "name": "Actions security posture",
+          "type": "agent",
+          "agent": "actions-optimizer",
+          "inputs": {
+            "scope": "security"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rank",
+      "name": "Rank by reachability",
+      "description": "Barrier is intended here — ranking needs the whole finding set to deduplicate and order across scanners",
+      "type": "agent",
+      "agent": "supply-chain-auditor",
+      "dependsOn": [
+        "scan"
+      ],
+      "inputs": {
+        "codeScanning": "$.steps.scan.code-scanning",
+        "dependencies": "$.steps.scan.dependencies",
+        "secrets": "$.steps.scan.secrets",
+        "workflows": "$.steps.scan.workflows"
+      },
+      "outputs": {
+        "findings": "$.output"
+      }
+    },
+    {
+      "id": "file-issues",
+      "name": "File tracking issues for reachable findings",
+      "type": "agent",
+      "agent": "issue-triager",
+      "dependsOn": [
+        "rank"
+      ],
+      "when": "$.input.fileIssues == true",
+      "inputs": {
+        "findings": "$.steps.rank.findings"
+      },
+      "continueOnError": true
+    }
+  ],
+  "errorHandling": {
+    "strategy": "continue"
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash"
+    ],
+    "mcpServers": [
+      "github"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": [
+      "alerts_total",
+      "reachable_exposed",
+      "secrets_found",
+      "false_positives_dismissed"
+    ],
+    "checkpoints": true
+  },
+  "timeout": 5400000,
+  "metadata": {
+    "author": "github-orchestrator",
+    "tags": [
+      "github",
+      "security",
+      "supply-chain",
+      "reachability"
+    ],
+    "status": "stable"
+  }
+}

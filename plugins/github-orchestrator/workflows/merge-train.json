@@ -1,0 +1,187 @@
+{
+  "name": "merge-train",
+  "displayName": "Merge Train",
+  "description": "Resolve a stacked pull request topology, predict collisions before starting, then land each PR in dependency order and retarget and rebase its descendants between landings.",
+  "version": "1.0.0",
+  "type": "hierarchical",
+  "category": "deployment",
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/gh:workflow run merge-train"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "rootPr",
+      "type": "number",
+      "description": "Root pull request of the stack",
+      "required": true
+    },
+    {
+      "name": "pauseOnRed",
+      "type": "boolean",
+      "description": "Require a human resume when a descendant goes red",
+      "required": false,
+      "default": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "landed",
+      "type": "array",
+      "description": "Pull requests merged, in order",
+      "source": "land"
+    },
+    {
+      "name": "blocked",
+      "type": "object",
+      "description": "The PR that halted the train, if any",
+      "source": "land"
+    }
+  ],
+  "coordination": {
+    "pattern": "hierarchical",
+    "coordinator": "stack-manager",
+    "messageFormat": "json",
+    "contextSharing": true
+  },
+  "steps": [
+    {
+      "id": "topology",
+      "name": "Resolve the stack from base branches",
+      "description": "Halt on cycles, orphans, or cross-stack dependencies that base branches cannot express",
+      "type": "agent",
+      "agent": "stack-manager",
+      "inputs": {
+        "rootPr": "$.input.rootPr"
+      },
+      "outputs": {
+        "order": "$.output.order",
+        "hazards": "$.output.hazards"
+      }
+    },
+    {
+      "id": "predict",
+      "name": "Predict collisions before the first merge",
+      "type": "agent",
+      "agent": "conflict-resolver",
+      "dependsOn": [
+        "topology"
+      ],
+      "inputs": {
+        "order": "$.steps.topology.order"
+      },
+      "outputs": {
+        "collisions": "$.output.collisions"
+      },
+      "continueOnError": true
+    },
+    {
+      "id": "land",
+      "name": "Land each PR, rebasing descendants between landings",
+      "type": "loop",
+      "dependsOn": [
+        "predict"
+      ],
+      "loop": {
+        "items": "$.steps.topology.order",
+        "variable": "pr",
+        "steps": [
+          {
+            "id": "gate",
+            "name": "Re-verify every gate against live state",
+            "type": "agent",
+            "agent": "merge-marshal",
+            "inputs": {
+              "prNumber": "$.loop.pr"
+            },
+            "outputs": {
+              "mergeSha": "$.output.mergeSha"
+            }
+          },
+          {
+            "id": "restack",
+            "name": "Retarget then rebase descendants",
+            "description": "Retarget before rebasing — rebasing first targets a branch about to be deleted",
+            "type": "agent",
+            "agent": "stack-manager",
+            "dependsOn": [
+              "gate"
+            ],
+            "inputs": {
+              "merged": "$.loop.pr"
+            }
+          },
+          {
+            "id": "wait-ci",
+            "name": "Wait for descendant CI",
+            "type": "wait",
+            "dependsOn": [
+              "restack"
+            ],
+            "timeout": 2700000
+          },
+          {
+            "id": "recover",
+            "name": "Drive a red descendant back to green",
+            "type": "workflow",
+            "workflow": "ci-drive-to-green",
+            "dependsOn": [
+              "wait-ci"
+            ],
+            "when": "$.steps.wait-ci.red == true && $.input.pauseOnRed == false",
+            "inputs": {
+              "prNumber": "$.loop.pr",
+              "maxRounds": 3
+            },
+            "continueOnError": true
+          }
+        ]
+      },
+      "outputs": {
+        "landed": "$.output.landed",
+        "blocked": "$.output.blocked"
+      }
+    }
+  ],
+  "errorHandling": {
+    "strategy": "abort"
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Grep",
+      "Glob"
+    ],
+    "mcpServers": [
+      "github"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": [
+      "stack_depth",
+      "landed_count",
+      "rebase_count",
+      "collisions_predicted",
+      "pauses"
+    ],
+    "checkpoints": true
+  },
+  "timeout": 21600000,
+  "metadata": {
+    "author": "github-orchestrator",
+    "tags": [
+      "github",
+      "merge",
+      "stacked-prs",
+      "queue"
+    ],
+    "status": "stable"
+  }
+}

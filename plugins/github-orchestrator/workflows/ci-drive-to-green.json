@@ -1,0 +1,208 @@
+{
+  "name": "ci-drive-to-green",
+  "displayName": "CI Drive to Green",
+  "description": "Classify every failing check by cause, fix only what belongs to this diff, quarantine confirmed flakes, re-run infrastructure failures, and loop until required checks are green.",
+  "version": "1.0.0",
+  "type": "adaptive",
+  "category": "ci-cd",
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/gh:workflow run ci-drive-to-green"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "prNumber",
+      "type": "number",
+      "description": "Pull request to drive to green",
+      "required": true
+    },
+    {
+      "name": "maxRounds",
+      "type": "number",
+      "description": "Maximum fix-push-recheck rounds",
+      "required": false,
+      "default": 4
+    }
+  ],
+  "outputs": [
+    {
+      "name": "green",
+      "type": "boolean",
+      "description": "Whether required checks ended green",
+      "source": "recheck"
+    },
+    {
+      "name": "rounds",
+      "type": "number",
+      "description": "Rounds consumed",
+      "source": "recheck"
+    }
+  ],
+  "coordination": {
+    "pattern": "hierarchical",
+    "coordinator": "ci-triage-analyst",
+    "messageFormat": "json",
+    "contextSharing": true
+  },
+  "steps": [
+    {
+      "id": "triage",
+      "name": "Classify every failing check",
+      "description": "Real regression, flaky, infra, base-branch broken, config drift, or dependency — before anything is changed",
+      "type": "agent",
+      "agent": "ci-triage-analyst",
+      "inputs": {
+        "prNumber": "$.input.prNumber"
+      },
+      "outputs": {
+        "failures": "$.output.failures"
+      },
+      "retries": {
+        "max": 2,
+        "backoff": "exponential",
+        "delayMs": 5000
+      }
+    },
+    {
+      "id": "base-broken",
+      "name": "Base branch broken?",
+      "type": "condition",
+      "dependsOn": [
+        "triage"
+      ],
+      "condition": "$.steps.triage.failures[?(@.class=='base-broken')]",
+      "branches": {
+        "if": [
+          {
+            "id": "report-base",
+            "name": "Report once and wait for base recovery",
+            "type": "agent",
+            "agent": "gh-orchestrator",
+            "inputs": {
+              "failures": "$.steps.triage.failures"
+            }
+          }
+        ],
+        "else": [
+          {
+            "id": "remediate",
+            "name": "Remediate by class",
+            "type": "parallel",
+            "parallel": [
+              {
+                "id": "fix-regressions",
+                "name": "Fix real regressions",
+                "type": "agent",
+                "agent": "build-doctor",
+                "when": "$.steps.triage.failures[?(@.class=='real-regression' || @.class=='config-drift')]",
+                "inputs": {
+                  "failures": "$.steps.triage.failures"
+                }
+              },
+              {
+                "id": "quarantine-flakes",
+                "name": "Confirm and quarantine flakes",
+                "type": "agent",
+                "agent": "flake-detective",
+                "when": "$.steps.triage.failures[?(@.class=='flaky')]",
+                "inputs": {
+                  "failures": "$.steps.triage.failures"
+                },
+                "continueOnError": true
+              },
+              {
+                "id": "rerun-infra",
+                "name": "Re-run infrastructure failures",
+                "type": "command",
+                "command": "gh:ci --rerun-infra",
+                "when": "$.steps.triage.failures[?(@.class=='infra')]",
+                "continueOnError": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "push",
+      "name": "Push the fixes",
+      "type": "bash",
+      "command": "git push --force-with-lease",
+      "dependsOn": [
+        "base-broken"
+      ],
+      "when": "$.steps.base-broken.changed == true"
+    },
+    {
+      "id": "wait",
+      "name": "Wait for the new run",
+      "type": "wait",
+      "dependsOn": [
+        "push"
+      ],
+      "timeout": 1800000
+    },
+    {
+      "id": "recheck",
+      "name": "Re-check and loop while red",
+      "description": "Loops back to triage until green, maxRounds is reached, or the same failure survives two consecutive fix attempts",
+      "type": "agent",
+      "agent": "ci-triage-analyst",
+      "dependsOn": [
+        "wait"
+      ],
+      "inputs": {
+        "prNumber": "$.input.prNumber",
+        "maxRounds": "$.input.maxRounds"
+      },
+      "outputs": {
+        "green": "$.output.green",
+        "rounds": "$.output.rounds"
+      }
+    }
+  ],
+  "errorHandling": {
+    "strategy": "continue"
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Grep",
+      "Glob"
+    ],
+    "mcpServers": [
+      "github"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": [
+      "rounds",
+      "failures_by_class",
+      "flakes_quarantined",
+      "time_to_green"
+    ],
+    "checkpoints": true
+  },
+  "timeout": 10800000,
+  "variables": {
+    "stopWhenSameFailureSurvivesRounds": 2
+  },
+  "metadata": {
+    "author": "github-orchestrator",
+    "tags": [
+      "github",
+      "ci",
+      "triage",
+      "flaky",
+      "adaptive"
+    ],
+    "status": "stable"
+  }
+}
