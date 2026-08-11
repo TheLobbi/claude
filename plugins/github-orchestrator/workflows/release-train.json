@@ -1,0 +1,191 @@
+{
+  "name": "release-train",
+  "displayName": "Release Train",
+  "description": "Compute the semver bump from conventional commits, verify every readiness gate against live state, generate the changelog and release notes, then tag and publish.",
+  "version": "1.0.0",
+  "type": "sequential",
+  "category": "deployment",
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/gh:workflow run release-train"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "bump",
+      "type": "string",
+      "description": "Override the computed bump: major, minor, or patch",
+      "required": false
+    },
+    {
+      "name": "prerelease",
+      "type": "string",
+      "description": "Prerelease identifier, for example rc",
+      "required": false
+    },
+    {
+      "name": "publish",
+      "type": "boolean",
+      "description": "Execute the plan rather than printing it",
+      "required": false,
+      "default": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "version",
+      "type": "string",
+      "description": "The computed or overridden version",
+      "source": "compute"
+    },
+    {
+      "name": "releaseUrl",
+      "type": "string",
+      "description": "Published release URL",
+      "source": "publish"
+    }
+  ],
+  "coordination": {
+    "pattern": "hierarchical",
+    "coordinator": "release-conductor",
+    "messageFormat": "json",
+    "contextSharing": true
+  },
+  "steps": [
+    {
+      "id": "compute",
+      "name": "Compute the semver bump",
+      "description": "Under 0.x a breaking change bumps the minor, not the major",
+      "type": "agent",
+      "agent": "release-conductor",
+      "inputs": {
+        "bump": "$.input.bump",
+        "prerelease": "$.input.prerelease"
+      },
+      "outputs": {
+        "version": "$.output.version",
+        "unparsed": "$.output.unparsed"
+      }
+    },
+    {
+      "id": "gates",
+      "name": "Verify readiness gates",
+      "description": "Green CI at the release commit, no release blockers, no reachable critical alerts, manifests and lockfile in sync",
+      "type": "agent",
+      "agent": "release-conductor",
+      "dependsOn": [
+        "compute"
+      ],
+      "inputs": {
+        "version": "$.steps.compute.version",
+        "mode": "gates"
+      },
+      "outputs": {
+        "passed": "$.output.passed",
+        "failures": "$.output.failures"
+      }
+    },
+    {
+      "id": "changelog",
+      "name": "Generate the changelog",
+      "type": "agent",
+      "agent": "changelog-scribe",
+      "dependsOn": [
+        "gates"
+      ],
+      "when": "$.steps.gates.passed == true",
+      "inputs": {
+        "version": "$.steps.compute.version"
+      },
+      "outputs": {
+        "changelog": "$.output.changelog",
+        "breaking": "$.output.breaking"
+      }
+    },
+    {
+      "id": "notes",
+      "name": "Generate release notes",
+      "description": "Highlights, breaking changes with migrations, then fixes and additions",
+      "type": "agent",
+      "agent": "changelog-scribe",
+      "dependsOn": [
+        "changelog"
+      ],
+      "inputs": {
+        "version": "$.steps.compute.version",
+        "mode": "notes"
+      },
+      "outputs": {
+        "notes": "$.output.notes"
+      }
+    },
+    {
+      "id": "publish",
+      "name": "Tag and publish",
+      "type": "agent",
+      "agent": "release-conductor",
+      "dependsOn": [
+        "notes"
+      ],
+      "when": "$.input.publish == true && $.steps.gates.passed == true",
+      "inputs": {
+        "version": "$.steps.compute.version",
+        "notes": "$.steps.notes.notes",
+        "prerelease": "$.input.prerelease"
+      },
+      "outputs": {
+        "releaseUrl": "$.output.releaseUrl"
+      }
+    }
+  ],
+  "errorHandling": {
+    "strategy": "rollback",
+    "rollbackSteps": [
+      {
+        "id": "plan-rollback",
+        "name": "Plan the rollback",
+        "type": "agent",
+        "agent": "rollback-planner",
+        "inputs": {
+          "target": "$.steps.compute.version"
+        }
+      }
+    ]
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Grep",
+      "Glob"
+    ],
+    "mcpServers": [
+      "github"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": [
+      "gate_failures",
+      "breaking_changes",
+      "commits_unparsed",
+      "time_to_publish"
+    ],
+    "checkpoints": true
+  },
+  "timeout": 5400000,
+  "metadata": {
+    "author": "github-orchestrator",
+    "tags": [
+      "github",
+      "release",
+      "semver",
+      "changelog"
+    ],
+    "status": "stable"
+  }
+}

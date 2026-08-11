@@ -1,0 +1,360 @@
+{
+  "version": 1,
+  "plugin": "github-orchestrator",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "gh:actions",
+      "intent": "Author, audit, and cost-optimize GitHub Actions workflows including caching, matrices, permissions, and runtime",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "ci"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/actions.md"
+    },
+    {
+      "name": "gh:advise",
+      "intent": "Get prioritized, evidence-backed recommendations for the next best actions across PRs, CI, issues, alerts, and releases",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "advisor"
+      ],
+      "inputs": [
+        "scope"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/advise.md"
+    },
+    {
+      "name": "gh:audit",
+      "intent": "Audit repository hygiene across branch protection, templates, stale branches, settings, and workflow security",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "intel"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/audit.md"
+    },
+    {
+      "name": "gh:backlog",
+      "intent": "Groom and prioritize the issue backlog by value, risk, staleness, and unblocking potential",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "planning"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/backlog.md"
+    },
+    {
+      "name": "gh:ci",
+      "intent": "Triage CI failures by class and loop fix-push-recheck until required checks are green",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "ci"
+      ],
+      "inputs": [
+        "pr",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "commands/ci.md"
+    },
+    {
+      "name": "gh:conflict",
+      "intent": "Predict which in-flight pull requests will conflict and resolve conflicts with intent-preserving merges",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "delivery"
+      ],
+      "inputs": [
+        "pr",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/conflict.md"
+    },
+    {
+      "name": "gh:deps",
+      "intent": "Assess dependency health and orchestrate upgrades in risk-ordered batches with verification between batches",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "security"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/deps.md"
+    },
+    {
+      "name": "gh:insights",
+      "intent": "Report DORA four keys, change-failure hotspots, review latency, and flake rate with attribution to specific causes",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "intel"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/insights.md"
+    },
+    {
+      "name": "gh:issue",
+      "intent": "Create, update, link, and decompose GitHub issues with well-formed bodies and correct relationships",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "issues"
+      ],
+      "inputs": [
+        "action",
+        "issue",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/issue.md"
+    },
+    {
+      "name": "gh:merge-train",
+      "intent": "Land a stack or merge queue of pull requests in dependency order with automatic rebasing between landings",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "delivery"
+      ],
+      "inputs": [
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "commands/merge-train.md"
+    },
+    {
+      "name": "gh:ownership",
+      "intent": "Synthesize CODEOWNERS from real authorship, find coverage gaps and bus-factor risk, and route reviewers",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "intel"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/ownership.md"
+    },
+    {
+      "name": "gh:plan-prs",
+      "intent": "Decompose a goal into a dependency-ordered stack of independently reviewable and shippable pull requests",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "planning"
+      ],
+      "inputs": [
+        "goal",
+        "flags"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/plan-prs.md"
+    },
+    {
+      "name": "gh:pr",
+      "intent": "Create, update, and iterate on pull requests with template-filled bodies and size discipline",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "delivery"
+      ],
+      "inputs": [
+        "action",
+        "pr",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/pr.md"
+    },
+    {
+      "name": "gh:release",
+      "intent": "Run a release train from semver calculation through changelog, release notes, tagging, and publication",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "release"
+      ],
+      "inputs": [
+        "bump",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "commands/release.md"
+    },
+    {
+      "name": "gh:review",
+      "intent": "Run a parallel multi-lens review board over a pull request and adversarially verify every finding before reporting",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "review"
+      ],
+      "inputs": [
+        "pr",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "commands/review.md"
+    },
+    {
+      "name": "gh:rollback",
+      "intent": "Plan and execute a revert or release rollback with blast-radius analysis and a forward-fix comparison",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "release"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/rollback.md"
+    },
+    {
+      "name": "gh:security",
+      "intent": "Triage CodeQL, Dependabot, and secret-scanning alerts ranked by reachability rather than raw severity",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "security"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "commands/security.md"
+    },
+    {
+      "name": "gh:setup",
+      "intent": "Configure GitHub MCP connectivity, merge policy, size budgets, and team model routing for this repository",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "setup"
+      ],
+      "inputs": [
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/setup.md"
+    },
+    {
+      "name": "gh:ship",
+      "intent": "Drive a change end to end from goal to merged commit through plan, branch, implement, PR, review, green CI, and merge",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "delivery"
+      ],
+      "inputs": [
+        "goal",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "commands/ship.md"
+    },
+    {
+      "name": "gh:triage",
+      "intent": "Triage issues by deduplicating, classifying, labeling, sizing, and routing or decomposing them",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "issues"
+      ],
+      "inputs": [
+        "scope",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/triage.md"
+    },
+    {
+      "name": "gh:watch",
+      "intent": "Subscribe to pull request activity and act autonomously on CI failures, review comments, and merge conflicts until the PR lands",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "delivery"
+      ],
+      "inputs": [
+        "pr",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/watch.md"
+    },
+    {
+      "name": "gh:workflow",
+      "intent": "List, inspect, validate, and run the declarative multi-agent workflow definitions bundled with this plugin",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "workflow"
+      ],
+      "inputs": [
+        "action",
+        "name",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "high",
+      "path": "commands/workflow.md"
+    }
+  ]
+}

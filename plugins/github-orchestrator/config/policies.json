@@ -1,0 +1,84 @@
+{
+  "$comment": "Merge policy and delivery budgets enforced by the orchestrator. Written by /gh:setup from detected repository conventions; these are the packaged defaults.",
+  "defaultBranch": "main",
+  "protectedBranches": [
+    "main",
+    "master",
+    "develop",
+    "release/*"
+  ],
+  "mergeMethod": "squash",
+  "deleteBranchOnMerge": true,
+  "requiredChecks": [
+    "build",
+    "test",
+    "typecheck",
+    "lint"
+  ],
+  "requireStrictStatusChecks": true,
+  "requireConversationResolution": true,
+  "reviewQuorum": 1,
+  "prSizeBudget": 400,
+  "prSizeExcludes": [
+    "**/pnpm-lock.yaml",
+    "**/package-lock.json",
+    "**/yarn.lock",
+    "**/*.generated.*",
+    "**/*.snap",
+    "**/*.pb.go",
+    "**/*.pb.ts",
+    "vendor/**"
+  ],
+  "branchNaming": "<type>/<scope>-<slug>",
+  "branchTypes": [
+    "feat",
+    "fix",
+    "hotfix",
+    "refactor",
+    "docs",
+    "test",
+    "chore",
+    "perf",
+    "ci"
+  ],
+  "commitConvention": "conventional",
+  "humanReviewPaths": [
+    "migrations/**",
+    "src/auth/**",
+    "src/billing/**",
+    ".github/workflows/**",
+    "infra/**",
+    "**/CODEOWNERS"
+  ],
+  "reviewBoard": {
+    "lenses": [
+      "correctness",
+      "security",
+      "tests",
+      "api",
+      "performance",
+      "docs"
+    ],
+    "verifiers": 3,
+    "quorum": 2,
+    "maxSuggestions": 5
+  },
+  "ci": {
+    "maxDriveToGreenRounds": 4,
+    "stopWhenSameFailureSurvivesRounds": 2,
+    "maxInfraRerunsBeforeEscalation": 2,
+    "flakeConfirmationRuns": 3,
+    "quarantineExpiryDays": 30
+  },
+  "staleAfter": "90d",
+  "driftWindow": "180d",
+  "failureWindow": "72h",
+  "deploysFrom": "main",
+  "backlogWeights": {
+    "unblocks": 0.30,
+    "severity": 0.25,
+    "reach": 0.20,
+    "confidence": 0.15,
+    "effort": 0.10
+  }
+}

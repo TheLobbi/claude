@@ -115,6 +115,16 @@
       "source": "./plugins/fullstack-iac"
     },
     {
+      "name": "github-orchestrator",
+      "description": "Autonomous GitHub delivery orchestration: 32 agents in 7 teams, 22 commands, 11 skills, and 7 schema-validated declarative workflows. Drives PRs from branch to merged — adversarial review boards, CI drive-to-green loops, stacked-PR merge trains, conflict prediction, supply-chain triage, release trains, and DORA/hotspot repo intelligence over the GitHub MCP.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "markus@lobbi.io"
+      },
+      "source": "./plugins/github-orchestrator"
+    },
+    {
       "name": "home-assistant-architect",
       "description": "Complete Home Assistant platform with frontend design, energy management, cameras, sensors, local LLM integration, and Ubuntu server deployment",
       "version": "3.0.0",

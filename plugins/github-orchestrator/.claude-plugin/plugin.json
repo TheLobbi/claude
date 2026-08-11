@@ -1,0 +1,106 @@
+{
+  "$schema": "https://claude.local/schemas/plugin.schema.json",
+  "name": "github-orchestrator",
+  "version": "1.0.0",
+  "description": "Autonomous GitHub delivery orchestration: 32 agents in 7 teams, 22 commands, 11 skills, and 7 schema-validated declarative workflows. Drives PRs from branch to merged — adversarial review boards, CI drive-to-green loops, stacked-PR merge trains, conflict prediction, supply-chain triage, release trains, and DORA/hotspot repo intelligence over the GitHub MCP.",
+  "author": {
+    "name": "Markus Ahling",
+    "email": "markus@lobbi.io"
+  },
+  "keywords": [
+    "github",
+    "orchestration",
+    "pull-request",
+    "code-review",
+    "ci-cd",
+    "github-actions",
+    "merge-queue",
+    "stacked-prs",
+    "merge-train",
+    "drive-to-green",
+    "flaky-tests",
+    "dora",
+    "supply-chain",
+    "codeql",
+    "dependabot",
+    "release-engineering",
+    "semver",
+    "changelog",
+    "codeowners",
+    "advisor",
+    "multi-agent",
+    "adversarial-review",
+    "blackboard",
+    "workflow",
+    "telemetry",
+    "mcp",
+    "automation",
+    "agents"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/Lobbi-Docs/claude",
+  "contextEntry": "CONTEXT_SUMMARY.md",
+  "permissions": {
+    "requires": [
+      "read",
+      "write",
+      "bash",
+      "glob",
+      "grep"
+    ],
+    "optional": [
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "github",
+      "orchestration",
+      "pull-request",
+      "code-review",
+      "ci-cd",
+      "github-actions",
+      "release",
+      "supply-chain",
+      "advisor",
+      "automation",
+      "agents"
+    ],
+    "requires": []
+  },
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "GitHub Orchestrator",
+    "summary": "Autonomous GitHub delivery orchestration with 32 agents in 7 teams, 22 commands, 11 skills, and 7 schema-validated workflows. Adversarial review boards, CI drive-to-green, stacked-PR merge trains, supply-chain triage, release trains, and DORA repo intelligence over the GitHub MCP.",
+    "tags": [
+      "github",
+      "orchestration",
+      "pull-request",
+      "code-review",
+      "ci-cd",
+      "release",
+      "supply-chain",
+      "advisor",
+      "mcp"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "skills/*/SKILL.md",
+      "commands/*.md"
+    ]
+  }
+}

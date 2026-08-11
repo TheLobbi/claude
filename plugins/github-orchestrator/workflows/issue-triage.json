@@ -1,0 +1,192 @@
+{
+  "name": "issue-triage",
+  "displayName": "Issue Triage",
+  "description": "Deduplicate an issue against open and closed history, classify type and severity, route security reports out of the public path, then label and assign or decompose.",
+  "version": "1.0.0",
+  "type": "conditional",
+  "category": "analysis",
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/gh:workflow run issue-triage"
+    },
+    {
+      "type": "webhook",
+      "pattern": "issues.opened"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "issueNumber",
+      "type": "number",
+      "description": "Issue to triage",
+      "required": true
+    },
+    {
+      "name": "apply",
+      "type": "boolean",
+      "description": "Apply labels and assignments rather than proposing them",
+      "required": false,
+      "default": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "disposition",
+      "type": "object",
+      "description": "Classification, routing, and any decomposition",
+      "source": "route"
+    }
+  ],
+  "coordination": {
+    "pattern": "request-response",
+    "messageFormat": "json",
+    "contextSharing": true
+  },
+  "steps": [
+    {
+      "id": "dedup",
+      "name": "Search open and closed issues",
+      "description": "Closed duplicates matter — a repeatedly closed report is a signal, not noise",
+      "type": "agent",
+      "agent": "dedup-detective",
+      "inputs": {
+        "issueNumber": "$.input.issueNumber"
+      },
+      "outputs": {
+        "match": "$.output.match",
+        "confidence": "$.output.confidence"
+      }
+    },
+    {
+      "id": "is-duplicate",
+      "name": "High-confidence duplicate?",
+      "type": "condition",
+      "dependsOn": [
+        "dedup"
+      ],
+      "condition": "$.steps.dedup.confidence == 'high'",
+      "branches": {
+        "if": [
+          {
+            "id": "close-duplicate",
+            "name": "Migrate unique detail, then close as duplicate",
+            "type": "agent",
+            "agent": "dedup-detective",
+            "inputs": {
+              "issueNumber": "$.input.issueNumber",
+              "canonical": "$.steps.dedup.match"
+            }
+          }
+        ],
+        "else": [
+          {
+            "id": "classify",
+            "name": "Classify type, severity, and component from evidence",
+            "type": "agent",
+            "agent": "issue-triager",
+            "inputs": {
+              "issueNumber": "$.input.issueNumber"
+            },
+            "outputs": {
+              "type": "$.output.type",
+              "severity": "$.output.severity",
+              "size": "$.output.size"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "security-gate",
+      "name": "Security reports leave the public path",
+      "description": "Not labeled publicly, not commented on with detail, not decomposed",
+      "type": "condition",
+      "dependsOn": [
+        "is-duplicate"
+      ],
+      "condition": "$.steps.is-duplicate.classify.type == 'security'",
+      "branches": {
+        "if": [
+          {
+            "id": "route-security",
+            "type": "agent",
+            "agent": "supply-chain-auditor",
+            "inputs": {
+              "issueNumber": "$.input.issueNumber"
+            }
+          }
+        ],
+        "else": [
+          {
+            "id": "decompose-check",
+            "name": "Decompose when extra large",
+            "type": "condition",
+            "condition": "$.steps.is-duplicate.classify.size == 'xl'",
+            "branches": {
+              "if": [
+                {
+                  "id": "decompose",
+                  "type": "agent",
+                  "agent": "epic-decomposer",
+                  "inputs": {
+                    "issueNumber": "$.input.issueNumber"
+                  }
+                }
+              ],
+              "else": [
+                {
+                  "id": "route",
+                  "name": "Route to an owner",
+                  "type": "agent",
+                  "agent": "ownership-mapper",
+                  "inputs": {
+                    "issueNumber": "$.input.issueNumber"
+                  },
+                  "outputs": {
+                    "disposition": "$.output"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errorHandling": {
+    "strategy": "continue"
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Grep",
+      "Glob"
+    ],
+    "mcpServers": [
+      "github"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": [
+      "duplicates_found",
+      "security_routed",
+      "decomposed",
+      "needs_info"
+    ],
+    "checkpoints": true
+  },
+  "timeout": 1800000,
+  "metadata": {
+    "author": "github-orchestrator",
+    "tags": [
+      "github",
+      "issues",
+      "triage",
+      "dedup"
+    ],
+    "status": "stable"
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "name": "pr-delivery",
+  "displayName": "PR Delivery",
+  "description": "Drive a change from goal to merged commit: plan the slice, branch, implement, open a PR, run the review board, drive CI to green, and merge once every policy gate passes.",
+  "version": "1.0.0",
+  "type": "sequential",
+  "category": "development",
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/gh:workflow run pr-delivery"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "goal",
+      "type": "string",
+      "description": "What the change should accomplish",
+      "required": true
+    },
+    {
+      "name": "baseBranch",
+      "type": "string",
+      "description": "Base branch to cut from",
+      "required": false
+    },
+    {
+      "name": "autoMerge",
+      "type": "boolean",
+      "description": "Merge automatically once all gates pass",
+      "required": false,
+      "default": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "prNumber",
+      "type": "number",
+      "description": "The pull request that was opened",
+      "source": "open-pr"
+    },
+    {
+      "name": "mergeSha",
+      "type": "string",
+      "description": "Merge commit sha, when merged",
+      "source": "merge"
+    }
+  ],
+  "coordination": {
+    "pattern": "hierarchical",
+    "coordinator": "gh-orchestrator",
+    "messageFormat": "json",
+    "contextSharing": true
+  },
+  "steps": [
+    {
+      "id": "plan",
+      "name": "Plan the slice",
+      "description": "Decompose the goal and confirm it fits the PR size budget",
+      "type": "agent",
+      "agent": "epic-decomposer",
+      "inputs": {
+        "goal": "$.input.goal"
+      },
+      "outputs": {
+        "plan": "$.output"
+      }
+    },
+    {
+      "id": "branch",
+      "name": "Cut the branch",
+      "type": "agent",
+      "agent": "branch-strategist",
+      "dependsOn": [
+        "plan"
+      ],
+      "inputs": {
+        "goal": "$.input.goal",
+        "baseHint": "$.input.baseBranch"
+      },
+      "outputs": {
+        "branch": "$.output.branch",
+        "base": "$.output.base"
+      }
+    },
+    {
+      "id": "implement",
+      "name": "Implement the change with tests",
+      "type": "agent",
+      "agent": "gh-orchestrator",
+      "dependsOn": [
+        "branch"
+      ],
+      "inputs": {
+        "plan": "$.steps.plan.plan",
+        "branch": "$.steps.branch.branch"
+      },
+      "timeout": 3600000
+    },
+    {
+      "id": "open-pr",
+      "name": "Open the pull request",
+      "type": "agent",
+      "agent": "pr-author",
+      "dependsOn": [
+        "implement"
+      ],
+      "inputs": {
+        "branch": "$.steps.branch.branch"
+      },
+      "outputs": {
+        "prNumber": "$.output.prNumber"
+      }
+    },
+    {
+      "id": "route-reviewers",
+      "name": "Route reviewers",
+      "type": "agent",
+      "agent": "ownership-mapper",
+      "dependsOn": [
+        "open-pr"
+      ],
+      "inputs": {
+        "prNumber": "$.steps.open-pr.prNumber"
+      },
+      "continueOnError": true
+    },
+    {
+      "id": "review",
+      "name": "Adversarial review board",
+      "type": "workflow",
+      "workflow": "review-board",
+      "dependsOn": [
+        "open-pr"
+      ],
+      "inputs": {
+        "prNumber": "$.steps.open-pr.prNumber"
+      },
+      "outputs": {
+        "verdict": "$.output.verdict"
+      }
+    },
+    {
+      "id": "drive-to-green",
+      "name": "Drive CI to green",
+      "type": "workflow",
+      "workflow": "ci-drive-to-green",
+      "dependsOn": [
+        "review"
+      ],
+      "inputs": {
+        "prNumber": "$.steps.open-pr.prNumber",
+        "maxRounds": 4
+      },
+      "outputs": {
+        "green": "$.output.green"
+      }
+    },
+    {
+      "id": "merge",
+      "name": "Verify every gate and merge",
+      "type": "agent",
+      "agent": "merge-marshal",
+      "dependsOn": [
+        "drive-to-green"
+      ],
+      "when": "$.input.autoMerge == true && $.steps.drive-to-green.green == true",
+      "inputs": {
+        "prNumber": "$.steps.open-pr.prNumber"
+      },
+      "outputs": {
+        "mergeSha": "$.output.mergeSha"
+      }
+    }
+  ],
+  "errorHandling": {
+    "strategy": "abort",
+    "notifications": []
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Grep",
+      "Glob"
+    ],
+    "mcpServers": [
+      "github"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": [
+      "phase_duration",
+      "review_findings",
+      "ci_rounds",
+      "diff_size"
+    ],
+    "checkpoints": true
+  },
+  "timeout": 14400000,
+  "metadata": {
+    "author": "github-orchestrator",
+    "tags": [
+      "github",
+      "delivery",
+      "pr",
+      "end-to-end"
+    ],
+    "status": "stable"
+  }
+}

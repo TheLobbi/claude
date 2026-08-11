@@ -1,0 +1,97 @@
+{
+  "$comment": "Agent team roster and coordination patterns. The orchestrator dispatches by team; agents are referenced by their bare file name in agents/.",
+  "coordinator": "gh-orchestrator",
+  "advisor": "gh-advisor",
+  "teams": {
+    "delivery": {
+      "description": "Takes a change from branch to merged commit",
+      "coordination": "hierarchical",
+      "agents": [
+        "gh-orchestrator",
+        "pr-author",
+        "branch-strategist",
+        "stack-manager",
+        "conflict-resolver",
+        "merge-marshal"
+      ]
+    },
+    "review-board": {
+      "description": "Six independent lenses plus adversarial verification and blackboard synthesis",
+      "coordination": "broadcast",
+      "contextSharing": false,
+      "agents": [
+        "correctness-reviewer",
+        "security-reviewer",
+        "test-coverage-critic",
+        "api-contract-reviewer",
+        "performance-reviewer",
+        "docs-reviewer",
+        "adversarial-verifier",
+        "review-synthesizer"
+      ]
+    },
+    "ci": {
+      "description": "Failure classification, flake forensics, Actions optimization, build repair",
+      "coordination": "hierarchical",
+      "agents": [
+        "ci-triage-analyst",
+        "flake-detective",
+        "actions-optimizer",
+        "build-doctor"
+      ]
+    },
+    "intel": {
+      "description": "Read-heavy analysis: advice, repository maps, DORA metrics, hotspots, ownership",
+      "coordination": "peer-to-peer",
+      "agents": [
+        "gh-advisor",
+        "repo-cartographer",
+        "dora-analyst",
+        "hotspot-scout",
+        "ownership-mapper"
+      ]
+    },
+    "supply-chain": {
+      "description": "Dependency stewardship, reachability-ranked alert triage, secret handling",
+      "coordination": "request-response",
+      "agents": [
+        "dependency-steward",
+        "supply-chain-auditor",
+        "secret-sentinel"
+      ]
+    },
+    "release": {
+      "description": "Version computation, changelogs and notes, rollback planning",
+      "coordination": "hierarchical",
+      "agents": [
+        "release-conductor",
+        "changelog-scribe",
+        "rollback-planner"
+      ]
+    },
+    "issues": {
+      "description": "Triage, duplicate detection, epic decomposition",
+      "coordination": "request-response",
+      "agents": [
+        "issue-triager",
+        "dedup-detective",
+        "epic-decomposer"
+      ]
+    }
+  },
+  "readOnlyAgents": [
+    "gh-advisor",
+    "correctness-reviewer",
+    "security-reviewer",
+    "test-coverage-critic",
+    "api-contract-reviewer",
+    "performance-reviewer",
+    "docs-reviewer",
+    "adversarial-verifier",
+    "repo-cartographer",
+    "dora-analyst",
+    "hotspot-scout",
+    "supply-chain-auditor",
+    "secret-sentinel"
+  ]
+}
