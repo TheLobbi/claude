@@ -4,7 +4,7 @@
   "advisor": "gh-advisor",
   "teams": {
     "delivery": {
-      "description": "Takes a change from branch to merged commit",
+      "description": "Takes a change from branch to merged commit, including work delegated to in-GitHub agents",
       "coordination": "hierarchical",
       "agents": [
         "gh-orchestrator",
@@ -12,7 +12,8 @@
         "branch-strategist",
         "stack-manager",
         "conflict-resolver",
-        "merge-marshal"
+        "merge-marshal",
+        "agent-delegator"
       ]
     },
     "review-board": {
@@ -70,12 +71,13 @@
       ]
     },
     "issues": {
-      "description": "Triage, duplicate detection, epic decomposition",
+      "description": "Triage, duplicate detection, epic decomposition, and Projects board stewardship",
       "coordination": "request-response",
       "agents": [
         "issue-triager",
         "dedup-detective",
-        "epic-decomposer"
+        "epic-decomposer",
+        "project-steward"
       ]
     }
   },

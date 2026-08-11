@@ -5,6 +5,67 @@ All notable changes to the `github-orchestrator` plugin are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-08-11
+
+Connectivity, Projects, the issue model, Actions automation, and delegation to
+agents that run inside GitHub. Researched against current GitHub documentation
+rather than assumed.
+
+### Added
+
+**Connectivity**
+- `github-auth` skill — every credential type (classic and fine-grained PATs,
+  GitHub App installation and user tokens, OAuth, `GITHUB_TOKEN`, OIDC, SSH and
+  deploy keys), what each can reach, and a decoder for the failures each
+  produces.
+- `docs/connectivity.md` — the full connection matrix, the credential capability
+  table, and a symptom-to-cause failure decoder.
+- `gh-mcp` skill gained MCP connection modes: remote hosted vs local, OAuth vs
+  PAT, enterprise data-residency endpoints, toolset narrowing, and `--read-only`
+  as a real capability boundary.
+
+**Projects**
+- `github-projects` skill and `/gh:project` command covering **both** API
+  surfaces — the REST endpoints under `/orgs/{org}/projectsV2/…` (API version
+  `2026-03-10`) as well as GraphQL, with guidance on which to use per operation.
+- `project-steward` agent — resolves field and single-select option IDs, audits
+  board hygiene, and flags hand-written automation that a built-in project
+  workflow already covers.
+
+**Issue model**
+- `github-issue-model` skill — organization-level issue types, sub-issues,
+  issue dependencies, issue forms vs markdown templates, the template chooser,
+  PR templates, and org-level `.github` community health defaults.
+
+**Actions automation**
+- `actions-automation` skill — the full trigger taxonomy, the two-workflow
+  pattern for safely handling fork PRs, reusable workflows vs composite actions,
+  bot workflows, auto-merge, and Dependabot grouping.
+
+**In-GitHub agents**
+- `github-agents` skill, `/gh:delegate` command, and `agent-delegator` agent —
+  delegating to the Copilot cloud agent and custom agents, requesting automated
+  review, and scaffolding GitHub Agentic Workflows (`gh-aw`) with safe outputs
+  and committed lock files.
+
+### Changed
+
+- `/gh:setup` rewritten around connectivity: it now identifies the connection
+  path and credential type, **probes** each capability class rather than
+  assuming it from tool presence, and reports missing capabilities as named
+  degraded modes ("no merge rights, so `/gh:ship` stops at green") instead of
+  failures. It also distinguishes 404-as-unauthorized from genuinely missing,
+  and treats git transport and API access as independent channels.
+- `CLAUDE.md` records the 404/403 rule, the two-channel model, and the Projects
+  credential-type limit.
+
+### Fixed
+
+- Corrected the widely repeated claim that Projects v2 is GraphQL-only. A REST
+  surface exists; the plugin now documents both and notes that user-owned
+  project endpoints reject fine-grained PATs, GitHub App user tokens, and
+  installation tokens outright — so a 403 there cannot be fixed by re-scoping.
+
 ## [1.0.0] - 2026-08-11
 
 ### Added
@@ -15,7 +76,7 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Read-only `gh-advisor` agent — analyzes PRs, CI, issues, alerts, and release
   state and recommends next best actions without mutating anything.
 
-**Commands (22, `/gh:` namespace)**
+**Commands (24, `/gh:` namespace)**
 - Delivery: `ship`, `pr`, `review`, `ci`, `merge-train`, `conflict`, `watch`.
 - Planning: `triage`, `issue`, `plan-prs`, `backlog`.
 - Intelligence: `advise`, `insights`, `ownership`, `audit`.
@@ -23,7 +84,7 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Actions & release: `actions`, `release`, `rollback`.
 - Meta: `workflow`, `setup`.
 
-**Agents (32 across 7 teams)**
+**Agents (34 across 7 teams)**
 - `delivery` — PR authoring, branch strategy, stack management, conflict
   resolution, and merge marshalling.
 - `review-board` — six independent review lenses plus an adversarial verifier
@@ -41,7 +102,7 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   `security-sweep` (parallel), `release-train` (sequential).
 - Bundled `workflows/schema/workflow.schema.json` and `workflows/validate.mjs`.
 
-**Skills (11)**
+**Skills (16)**
 - `github-orchestration`, `pr-craft`, `stacked-prs`, `ci-forensics`,
   `actions-authoring`, `merge-queue`, `repo-intelligence`,
   `supply-chain-security`, `release-engineering`, `review-protocols`, `gh-mcp`.

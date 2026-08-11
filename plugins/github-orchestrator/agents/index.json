@@ -35,6 +35,22 @@
       "path": "agents/adversarial-verifier.md"
     },
     {
+      "name": "github-orchestrator:agent-delegator",
+      "intent": "Decide what work to hand to in-GitHub agents, prepare the issue as a prompt, and track the resulting pull requests",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "agents"
+      ],
+      "inputs": [
+        "target",
+        "action"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/agent-delegator.md"
+    },
+    {
       "name": "github-orchestrator:api-contract-reviewer",
       "intent": "Detect breaking changes to public interfaces, schemas, and wire formats, and require a migration path for each",
       "tags": [
@@ -364,6 +380,22 @@
       "risk": "medium",
       "cost": "low",
       "path": "agents/pr-author.md"
+    },
+    {
+      "name": "github-orchestrator:project-steward",
+      "intent": "Read and maintain GitHub Projects boards, resolving field and option IDs and preferring built-in workflows over custom automation",
+      "tags": [
+        "github-orchestrator",
+        "agent",
+        "projects"
+      ],
+      "inputs": [
+        "projectNumber",
+        "action"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/project-steward.md"
     },
     {
       "name": "github-orchestrator:release-conductor",

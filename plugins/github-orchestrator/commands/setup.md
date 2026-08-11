@@ -1,6 +1,6 @@
 ---
 name: gh:setup
-intent: Configure GitHub MCP connectivity, merge policy, size budgets, and team model routing for this repository
+intent: Detect how this session reaches GitHub, verify capabilities, and write merge policy and routing configuration
 tags:
   - github-orchestrator
   - command
@@ -9,95 +9,176 @@ inputs:
   - flags
 risk: medium
 cost: low
-description: Verify GitHub MCP access, detect repository conventions, and write policy and routing configuration the orchestrator enforces
+description: Identify the connection path and credential type, probe real capabilities rather than assuming them, report degraded modes precisely, and write policy detected from repository conventions
 ---
 
 # /gh:setup
 
-Run once per repository. Detects conventions rather than imposing them.
+Run once per repository. It answers two questions: **how does this session reach
+GitHub, and what can it actually do?** Everything else follows from those.
 
 ## Usage
 
 ```
-/gh:setup                      # interactive: detect, propose, confirm, write
-/gh:setup --detect             # show what was detected, write nothing
-/gh:setup --check              # verify an existing configuration still holds
+/gh:setup                      # detect, propose, confirm, write
+/gh:setup --detect             # show what was found, write nothing
+/gh:setup --connection         # connectivity and capability probe only
+/gh:setup --check              # verify an existing config still matches reality
 /gh:setup --reset              # restore packaged defaults
 ```
 
-## What it detects
+---
+
+## Phase 1 — How is this session connected?
+
+There are several distinct paths to GitHub, and they fail differently. Identify
+which one is in play before diagnosing anything.
+
+| Path | Detect by | Notes |
+| --- | --- | --- |
+| **GitHub MCP — remote** | `mcp__github__*` present; host `api.githubcopilot.com` | OAuth or PAT. The default in Claude Code on the web |
+| **GitHub MCP — remote, enterprise** | Host `copilot-api.<tenant>.ghe.com` | Data-residency tenants use their own endpoint; the public one 404s |
+| **GitHub MCP — local** | Server runs as a local process, PAT in env | Offline-capable; you own updates |
+| **`gh` CLI** | `command -v gh` | **Unavailable** in web and remote execution environments |
+| **Raw git over HTTPS** | `git remote -v` + a credential helper | Transport only — never the API |
+| **SSH / deploy key** | `git@github.com:` remote | Transport only |
+| **Inside Actions** | `$GITHUB_ACTIONS` | Use `GITHUB_TOKEN` with a narrowed `permissions:` block |
+| **Session git proxy** | Remote resolves through the agent proxy | Clone/fetch may work while the API does not |
+
+The last row causes a specific confusion worth naming: **git transport and API
+access are independent**. A session can clone a repository fine and still have
+no API access to it, or vice versa. `/gh:setup` reports them separately rather
+than collapsing them into one "connected" boolean.
+
+### Credential type
+
+Capability follows from credential type, so identify it explicitly:
+
+| Type | Identify by | Consequence |
+| --- | --- | --- |
+| OAuth (MCP) | No token configured; one-click sign-in | Only the scopes approved at sign-in |
+| Fine-grained PAT | `github_pat_…` | Per-repo, per-permission. **Cannot reach user-owned Projects endpoints** |
+| Classic PAT | `ghp_…` | Coarse scopes; reaches the few APIs fine-grained cannot |
+| App installation token | `ghs_…`, ~1h expiry | Per-installation permissions; best for automation |
+| `GITHUB_TOKEN` | Inside Actions | Governed by `permissions:`. **Cannot trigger further workflows** |
+
+---
+
+## Phase 2 — Probe capabilities, do not assume them
+
+Tool presence is not permission. `/gh:setup` **calls** a cheap representative of
+each capability class and records what actually happened.
+
+```
+Connection
+  ✓ path                 GitHub MCP (remote, OAuth)
+  ✓ identity             get_me → octocat
+  ✓ repo in scope        org/repo
+  ✓ git transport        fetch OK via session proxy
+
+Read
+  ✓ pull requests        pull_request_read
+  ✓ issues               issue_read
+  ✓ actions runs         actions_list
+  ✗ actions logs         get_job_logs → 403
+                         → /gh:ci cannot classify failures; it will report raw
+                           check status only
+
+Write
+  ✓ open PRs             create_pull_request
+  ✓ comment              add_issue_comment
+  ⚠ merge                merge_pull_request unavailable
+                         → /gh:ship stops after CI is green and hands off
+
+Org surfaces
+  ✓ issue types          list_issue_types → 3 defined (Bug, Feature, Task)
+  ⚠ projects             org projects readable; user-owned projects unreachable
+                         with this credential type — that is a token-type limit,
+                         not a permission level
+  ✗ security alerts      403 — code scanning unavailable to this token
+                         → /gh:security runs dependency + secret triage only
+```
+
+**Missing capabilities are degraded modes, not failures.** The plugin works
+without merge rights; it stops one step earlier and says so. Reporting that
+precisely is more useful than a red cross.
+
+### Distinguish 404 from 403
+
+GitHub returns **404 for unauthorized private resources** rather than confirming
+they exist. Never conclude a repository is missing from a 404 on an
+under-scoped request. `/gh:setup` re-probes with identity context before
+reporting anything as nonexistent, and if a repository is genuinely out of
+session scope it says *out of scope* — which is fixable by attaching it — not
+*not found*.
+
+---
+
+## Phase 3 — Detect repository conventions
+
+Nothing is invented. Where a convention cannot be detected, `/gh:setup` asks
+rather than guessing — an inferred merge method that is wrong produces a bad
+merge, and a wrong branch prefix produces a confusing one.
 
 | Detected | From |
 | --- | --- |
-| Default branch | `mcp__github__list_branches` and repo metadata |
-| Required checks | Branch protection on the default branch |
-| Merge method | Which methods the repo allows; the one actually used in history |
-| Branch naming convention | The last 100 merged branch names |
-| Commit convention | Whether recent commits parse as conventional commits |
+| Default branch, protection, required checks | Branch protection + repo metadata |
+| Merge method | Which methods are allowed, and which history actually uses |
+| Branch naming | Last 100 merged branch names |
+| Commit convention | Whether recent commits parse as conventional |
 | PR template | `.github/pull_request_template.md` and variants |
-| Review quorum | Branch protection required-approvals |
-| Protected paths | `CODEOWNERS` entries plus migration/auth/infra path heuristics |
-| Package manager | Lockfile present in the repo root |
-| Test command | `package.json` scripts, `Makefile`, or CI workflow steps |
+| Issue templates | `.github/ISSUE_TEMPLATE/` — forms vs markdown, `config.yml` |
+| Issue types | `list_issue_types` — org-level, if defined |
+| Projects | Boards linked to this repository |
+| `AGENTS.md` | Present, and whether it names build and test commands |
+| Review quorum | Required approvals |
+| Protected paths | `CODEOWNERS` plus migration/auth/infra heuristics |
+| Package manager, test command | Lockfile, `package.json` scripts, CI steps |
+| Merge queue | Whether the repo uses one |
 
-Nothing is invented. If a convention cannot be detected, `/gh:setup` asks rather
-than guessing — an inferred merge method that is wrong causes a bad merge, and a
-wrong branch prefix causes a confusing one.
+### Hygiene findings surfaced here
 
-## Connectivity check
+Detection notices things worth fixing immediately:
 
-Verifies the GitHub MCP server is reachable and correctly scoped:
+- `blank_issues_enabled` not set to `false` — templates are optional in practice
+- No security `contact_link` — vulnerability reports will land in public issues
+- Issue **forms** used in a **private** repo — `validations.required` silently
+  does nothing there, so triage cannot trust required fields
+- No `AGENTS.md`, or one without build/test commands — every in-GitHub agent
+  degrades, since it cannot verify its own work
+- Multiple PR templates present but nothing links `?template=`, so none are used
 
-```
-✓ mcp__github__get_me            authenticated
-✓ repository in scope            org/repo
-✓ read access                    pull_request_read, issue_read, actions_list
-✓ write access                   create_pull_request, add_issue_comment
-⚠ merge access                   merge_pull_request unavailable
-                                 → /gh:ship will stop after CI is green
-✗ actions logs                   get_job_logs denied
-                                 → /gh:ci cannot classify failures
-```
+---
 
-Missing capabilities are reported as **degraded modes**, not failures — the
-plugin works without merge rights, it just stops one step earlier and says so.
+## Phase 4 — Write configuration
 
-## What it writes
+`config/policies.json` gets the detected values (see the file for the full
+schema — defaultBranch, protectedBranches, mergeMethod, requiredChecks,
+reviewQuorum, prSizeBudget, humanReviewPaths, backlogWeights, and the review and
+CI blocks).
 
-`config/policies.json`:
+`config/model-routing.json` and `config/teams.json` are written from packaged
+defaults and tuned per team afterwards.
 
-```json
-{
-  "defaultBranch": "main",
-  "protectedBranches": ["main", "release/*"],
-  "mergeMethod": "squash",
-  "deleteBranchOnMerge": true,
-  "requiredChecks": ["build", "test", "typecheck", "lint"],
-  "reviewQuorum": 1,
-  "prSizeBudget": 400,
-  "prSizeExcludes": ["**/pnpm-lock.yaml", "**/*.generated.*", "vendor/**"],
-  "branchNaming": "<type>/<scope>-<slug>",
-  "commitConvention": "conventional",
-  "humanReviewPaths": ["migrations/**", "src/auth/**", "src/billing/**", ".github/workflows/**", "infra/**"],
-  "staleAfter": "90d",
-  "driftWindow": "180d",
-  "failureWindow": "72h",
-  "deploysFrom": "main",
-  "backlogWeights": { "unblocks": 0.30, "severity": 0.25, "reach": 0.20, "confidence": 0.15, "effort": 0.10 }
-}
-```
+A `connection` block records the detected path, credential type, and the
+capability probe results, so agents can reason about degraded modes without
+re-probing every session.
 
-`config/model-routing.json` is written from the packaged defaults and can be
-tuned per team.
+---
 
 ## `--check`
 
-Re-verifies that the written policy still matches reality — required checks
-renamed, protection changed, a new protected path added. Configuration that has
-silently drifted from the repository is worse than none, because the orchestrator
-enforces gates that no longer exist.
+Re-verifies that written policy still matches reality: required checks renamed,
+protection changed, a new protected path added, a token expired, an org enabling
+fine-grained token approval.
+
+Configuration that has silently drifted from the repository is worse than none,
+because the orchestrator then enforces gates that no longer exist — and, worse,
+*stops* enforcing ones that do.
 
 ## Related
 
-- [`/gh:audit`](audit.md) — whether the repository settings themselves are sound
-- `config/policies.json` — the file this writes
+- [`github-auth`](../skills/github-auth/SKILL.md) — credential types and failure modes
+- [`gh-mcp`](../skills/gh-mcp/SKILL.md) — MCP connection modes, toolsets, read-only
+- [`docs/connectivity.md`](../docs/connectivity.md) — the full connection matrix
+- [`/gh:audit`](audit.md) — whether the repository settings are themselves sound

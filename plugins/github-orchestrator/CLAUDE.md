@@ -15,6 +15,7 @@ All commands live under the `/gh:` namespace.
 | `backlog` | `commands/backlog.md` | Backlog grooming and prioritization |
 | `ci` | `commands/ci.md` | CI failure triage and drive-to-green loop |
 | `conflict` | `commands/conflict.md` | Predict and resolve merge conflicts |
+| `delegate` | `commands/delegate.md` | Hand scoped work to in-GitHub agents |
 | `deps` | `commands/deps.md` | Dependency health and upgrade orchestration |
 | `insights` | `commands/insights.md` | DORA metrics, hotspots, review latency |
 | `issue` | `commands/issue.md` | Create, update, and link issues |
@@ -22,6 +23,7 @@ All commands live under the `/gh:` namespace.
 | `ownership` | `commands/ownership.md` | CODEOWNERS synthesis and reviewer routing |
 | `plan-prs` | `commands/plan-prs.md` | Decompose work into a stacked PR delivery plan |
 | `pr` | `commands/pr.md` | Create, update, and iterate on pull requests |
+| `project` | `commands/project.md` | Projects boards, fields, items, hygiene |
 | `release` | `commands/release.md` | Release train: semver, changelog, notes |
 | `review` | `commands/review.md` | Multi-agent adversarial review board |
 | `rollback` | `commands/rollback.md` | Revert and rollback orchestration |
@@ -52,6 +54,15 @@ All commands live under the `/gh:` namespace.
   pass `method`.
 - For CI log triage use `get_job_logs` (run_id + `failed_only`, then job_id +
   `return_content`), not `actions_get`.
+- A `404` on a repository is almost always **unauthorized**, not missing —
+  GitHub 404s private resources rather than confirming they exist. Never report
+  a repository as nonexistent based on an under-scoped request.
+- Git transport and API access are **independent channels**. A session can clone
+  a repo and still have no API access to it. Diagnose them separately.
+- Projects has both a REST surface (`/orgs/{org}/projectsV2/…`, API version
+  `2026-03-10`) and GraphQL. User-owned project endpoints reject fine-grained
+  PATs, App user tokens, and installation tokens — a 403 there is a credential
+  *type* problem, not a permission level. See `docs/connectivity.md`.
 
 ## Prohibited Actions
 - Do not delete or rename `.claude-plugin/plugin.json`.

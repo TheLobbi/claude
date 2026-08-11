@@ -100,6 +100,22 @@
       "path": "commands/conflict.md"
     },
     {
+      "name": "gh:delegate",
+      "intent": "Hand well-scoped work to agents that run inside GitHub and track the pull requests they produce",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "agents"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/delegate.md"
+    },
+    {
       "name": "gh:deps",
       "intent": "Assess dependency health and orchestrate upgrades in risk-ordered batches with verification between batches",
       "tags": [
@@ -213,6 +229,23 @@
       "path": "commands/pr.md"
     },
     {
+      "name": "gh:project",
+      "intent": "Read and update GitHub Projects boards, fields, and items across the REST and GraphQL surfaces",
+      "tags": [
+        "github-orchestrator",
+        "command",
+        "projects"
+      ],
+      "inputs": [
+        "action",
+        "project",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/project.md"
+    },
+    {
       "name": "gh:release",
       "intent": "Run a release train from semver calculation through changelog, release notes, tagging, and publication",
       "tags": [
@@ -278,7 +311,7 @@
     },
     {
       "name": "gh:setup",
-      "intent": "Configure GitHub MCP connectivity, merge policy, size budgets, and team model routing for this repository",
+      "intent": "Detect how this session reaches GitHub, verify capabilities, and write merge policy and routing configuration",
       "tags": [
         "github-orchestrator",
         "command",

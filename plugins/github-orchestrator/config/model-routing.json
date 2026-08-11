@@ -116,6 +116,15 @@
     "pr-author": {
       "model": "sonnet",
       "effort": "medium"
+    },
+    "agent-delegator": {
+      "model": "opus",
+      "effort": "high",
+      "why": "Judging delegability wrong wastes a whole agent run and returns an unverifiable PR"
+    },
+    "project-steward": {
+      "model": "sonnet",
+      "effort": "high"
     }
   },
   "escalation": {

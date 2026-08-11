@@ -7,14 +7,14 @@ trains, conflict prediction, supply-chain triage, release trains, and
 DORA/hotspot repo intelligence — all over the GitHub MCP (`mcp__github__*`).
 
 ## At a glance
-- 32 agents · 7 teams · 22 commands · 11 skills · 7 declarative workflows · read-only `gh-advisor`
+- 34 agents · 7 teams · 24 commands · 16 skills · 7 declarative workflows · read-only `gh-advisor`
 
 ## Command namespace (`/gh:…`)
 `advise` `ship` `pr` `review` `ci` `merge-train` `conflict` `watch` ·
-`triage` `issue` `plan-prs` `backlog` ·
+`triage` `issue` `plan-prs` `backlog` `project` ·
 `insights` `ownership` `audit` ·
 `security` `deps` ·
-`actions` `release` `rollback` ·
+`actions` `release` `rollback` `delegate` ·
 `workflow` `setup`
 
 ## Agent teams
@@ -37,6 +37,7 @@ Coordinator: `gh-orchestrator`. Read-only advisor: `gh-advisor`.
 | --- | --- | --- |
 | Install, auth, or usage details | `README.md` | Setup steps and full command reference. |
 | Changing plugin behavior | the relevant `commands/`, `agents/`, or `skills/` file | Source of truth for behavior. |
+| Auth, tokens, 403/404, MCP modes | `docs/connectivity.md` | Every connection path and how each fails. |
 | Merge/branch-protection policy | `config/policies.json` | Gates the orchestrator enforces before merging. |
 | Which model an agent uses | `config/model-routing.json` | Model/effort policy per team. |
 | Full inventory | `commands/` `agents/` `skills/` `workflows/` | Complete list beyond this summary. |
