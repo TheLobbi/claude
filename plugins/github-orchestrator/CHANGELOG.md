@@ -76,7 +76,7 @@ rather than assumed.
 - Read-only `gh-advisor` agent — analyzes PRs, CI, issues, alerts, and release
   state and recommends next best actions without mutating anything.
 
-**Commands (24, `/gh:` namespace)**
+**Commands (22, `/gh:` namespace)**
 - Delivery: `ship`, `pr`, `review`, `ci`, `merge-train`, `conflict`, `watch`.
 - Planning: `triage`, `issue`, `plan-prs`, `backlog`.
 - Intelligence: `advise`, `insights`, `ownership`, `audit`.
@@ -84,7 +84,7 @@ rather than assumed.
 - Actions & release: `actions`, `release`, `rollback`.
 - Meta: `workflow`, `setup`.
 
-**Agents (34 across 7 teams)**
+**Agents (32 across 7 teams)**
 - `delivery` — PR authoring, branch strategy, stack management, conflict
   resolution, and merge marshalling.
 - `review-board` — six independent review lenses plus an adversarial verifier
@@ -102,7 +102,7 @@ rather than assumed.
   `security-sweep` (parallel), `release-train` (sequential).
 - Bundled `workflows/schema/workflow.schema.json` and `workflows/validate.mjs`.
 
-**Skills (16)**
+**Skills (11)**
 - `github-orchestration`, `pr-craft`, `stacked-prs`, `ci-forensics`,
   `actions-authoring`, `merge-queue`, `repo-intelligence`,
   `supply-chain-security`, `release-engineering`, `review-protocols`, `gh-mcp`.
@@ -125,4 +125,5 @@ rather than assumed.
 - Templates for PR descriptions, release notes, triage comments, incident
   reports, and CODEOWNERS.
 
-[1.0.0]: https://github.com/Lobbi-Docs/claude/releases/tag/github-orchestrator-v1.0.0
+[1.1.0]: https://github.com/TheLobbi/claude/releases/tag/github-orchestrator-v1.1.0
+[1.0.0]: https://github.com/TheLobbi/claude/releases/tag/github-orchestrator-v1.0.0

@@ -33,7 +33,7 @@ actually cost engineering time:
 ## Install
 
 ```bash
-/plugin marketplace add markus41/claude
+/plugin marketplace add TheLobbi/claude
 /plugin install github-orchestrator
 /gh:setup
 ```

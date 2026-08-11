@@ -47,7 +47,7 @@
     "authentication"
   ],
   "license": "MIT",
-  "repository": "https://github.com/Lobbi-Docs/claude",
+  "repository": "https://github.com/TheLobbi/claude",
   "contextEntry": "CONTEXT_SUMMARY.md",
   "permissions": {
     "requires": [
