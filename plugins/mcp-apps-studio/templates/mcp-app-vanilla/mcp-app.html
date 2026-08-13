@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>__APP_TITLE__</title>
+    <style>
+      :root { --fg: #1a1a1a; --fg-muted: #565656; --bg: #fff; --border: #d4d4d8; --accent: #2563eb; }
+      @media (prefers-color-scheme: dark) {
+        :root { --fg: #f4f4f5; --fg-muted: #a8a8ad; --bg: #1a1a1c; --border: #3f3f46; --accent: #60a5fa; }
+      }
+      [data-theme='dark'] {
+        --fg: #f4f4f5; --fg-muted: #a8a8ad; --bg: #1a1a1c; --border: #3f3f46; --accent: #60a5fa;
+      }
+      body {
+        margin: 0; padding: 16px;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        font-size: 14px; color: var(--fg); background: transparent;
+      }
+      .card {
+        background: var(--bg); border: 1px solid var(--border);
+        border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px;
+      }
+      h1 { margin: 0; font-size: 16px; font-weight: 600; }
+      code { font-size: 15px; }
+      .muted { color: var(--fg-muted); margin: 0; }
+      .actions { display: flex; gap: 8px; }
+      button {
+        min-height: 36px; padding: 0 14px; font: inherit; font-weight: 500;
+        border-radius: 8px; border: 1px solid transparent; cursor: pointer;
+        color: #fff; background: var(--accent);
+      }
+      button.ghost { color: var(--fg); background: transparent; border-color: var(--border); }
+      button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      button[disabled] { opacity: 0.6; cursor: default; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>__APP_TITLE__</h1>
+      <p><code id="value" aria-live="polite">—</code></p>
+      <p class="muted" id="status" hidden></p>
+      <div class="actions">
+        <button type="button" id="refresh">Refresh</button>
+        <button type="button" id="expand" class="ghost">Expand</button>
+      </div>
+    </div>
+    <script type="module" src="/src/mcp-app.ts"></script>
+  </body>
+</html>

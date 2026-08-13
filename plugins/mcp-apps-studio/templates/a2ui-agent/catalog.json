@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/catalogs/__APP_SLUG__/catalog.json",
+  "catalogId": "https://example.com/catalogs/__APP_SLUG__/catalog.json",
+  "instructions": "Extension catalog for __APP_TITLE__. Use Badge for status only, never for a primary action. Use StatTile for a single headline number with a label; do not stack more than four in a Row. Visual styling is the renderer's responsibility — never send colors.",
+  "components": {
+    "Badge": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "const": "Badge"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "tone": {
+          "enum": [
+            "neutral",
+            "positive",
+            "caution",
+            "critical"
+          ]
+        }
+      },
+      "required": [
+        "component",
+        "label"
+      ],
+      "allowedParents": [
+        "Row",
+        "Column",
+        "Card"
+      ],
+      "allowedChildren": []
+    },
+    "StatTile": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "const": "StatTile"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "caption": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        }
+      },
+      "required": [
+        "component",
+        "label",
+        "value"
+      ],
+      "allowedParents": [
+        "Row",
+        "Column",
+        "Card"
+      ],
+      "allowedChildren": []
+    }
+  },
+  "functions": {
+    "formatCurrency": {
+      "returnType": "string",
+      "callableFrom": [
+        "renderer"
+      ],
+      "description": "Format a number as currency using the renderer's locale."
+    },
+    "copyToClipboard": {
+      "returnType": "void",
+      "callableFrom": [
+        "renderer"
+      ],
+      "description": "Copy a string locally. Use as a functionCall action — no agent round trip."
+    }
+  }
+}

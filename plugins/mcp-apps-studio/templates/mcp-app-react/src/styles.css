@@ -1,0 +1,156 @@
+/*
+ * The widget is a guest in the host's interface. Inherit the host font stack,
+ * use system colors, and keep brand color to accents. `prefers-color-scheme` is
+ * the backstop for hosts that never send onhostcontextchanged.
+ */
+
+:root {
+  --fg: #1a1a1a;
+  --fg-muted: #565656;      /* 7.0:1 on white — AA for body text */
+  --bg: #ffffff;
+  --bg-subtle: #f4f4f5;
+  --border: #d4d4d8;
+  --accent: #2563eb;
+  --accent-fg: #ffffff;
+  --radius: 10px;
+  --gap: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #f4f4f5;
+    --fg-muted: #a8a8ad;    /* 7.4:1 on #1a1a1c */
+    --bg: #1a1a1c;
+    --bg-subtle: #26262a;
+    --border: #3f3f46;
+    --accent: #60a5fa;
+    --accent-fg: #10131a;
+  }
+}
+
+[data-theme='dark'] {
+  --fg: #f4f4f5;
+  --fg-muted: #a8a8ad;
+  --bg: #1a1a1c;
+  --bg-subtle: #26262a;
+  --border: #3f3f46;
+  --accent: #60a5fa;
+  --accent-fg: #10131a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  /* Host font stack. No custom fonts — not even in fullscreen. */
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--fg);
+  background: transparent;
+}
+
+.app { color: var(--fg); }
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--gap); }
+
+.title { margin: 0; font-size: 16px; font-weight: 600; }
+.muted { color: var(--fg-muted); font-size: 13px; margin: 0; }
+
+.list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+
+.row { display: flex; align-items: stretch; gap: 8px; }
+
+.row-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* min-height, not height — text must be able to grow at 200% scaling. */
+  min-height: 44px;
+  padding: 8px 10px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: var(--bg-subtle);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.row-main.is-selected { border-color: var(--accent); }
+
+.row-main:focus-visible,
+.btn:focus-visible {
+  /* Never `outline: none` with nothing replacing it. */
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.row-title { font-weight: 500; }
+.row-subtitle { color: var(--fg-muted); font-size: 13px; flex: 1; }
+
+.badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+}
+.badge--ready { border-color: var(--accent); color: var(--accent); }
+
+.skeleton {
+  min-height: 44px;
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  * { transition: none !important; }
+}
+
+.actions { display: flex; gap: 8px; }
+
+.btn {
+  min-height: 36px;
+  padding: 0 14px;
+  font: inherit;
+  font-weight: 500;
+  color: var(--accent-fg);
+  background: var(--accent);   /* brand color on the primary button only */
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn--ghost {
+  color: var(--fg);
+  background: transparent;
+  border-color: var(--border);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

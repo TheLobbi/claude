@@ -1,0 +1,121 @@
+{
+  "$schema": "https://claude.local/schemas/plugin.schema.json",
+  "name": "mcp-apps-studio",
+  "version": "1.0.0",
+  "description": "Expert system for building agent-rendered interactive UI: MCP Apps (ui:// resources, the ui/* postMessage bridge), mcp-ui, the OpenAI Apps SDK (window.openai), Google A2UI, and AG-UI. 14 commands, 16 skills, 13 agents, 7 runnable project templates, and 4 scripts — scaffolder, spec validator, host-portability checker, and a local host harness — that turn any product requirement into a spec-correct, CSP-hardened, host-portable agent UI.",
+  "author": {
+    "name": "Markus Ahling",
+    "email": "markus@lobbi.io"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-apps",
+    "mcp-ui",
+    "ext-apps",
+    "openai-apps-sdk",
+    "apps-sdk",
+    "window-openai",
+    "a2ui",
+    "ag-ui",
+    "agui",
+    "agentic-ui",
+    "generative-ui",
+    "interactive-ui",
+    "widget",
+    "iframe",
+    "postmessage",
+    "json-rpc",
+    "sandbox",
+    "csp",
+    "content-security-policy",
+    "ui-resource",
+    "resource-uri",
+    "structured-content",
+    "tool-metadata",
+    "display-mode",
+    "fullscreen",
+    "picture-in-picture",
+    "chatgpt-apps",
+    "claude-apps",
+    "m365-copilot",
+    "declarative-agent",
+    "copilot-extensibility",
+    "copilotkit",
+    "streaming",
+    "sse",
+    "state-management",
+    "accessibility",
+    "react",
+    "vite",
+    "fastmcp",
+    "typescript",
+    "python"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/TheLobbi/claude",
+  "contextEntry": "CONTEXT_SUMMARY.md",
+  "permissions": {
+    "requires": [
+      "read",
+      "write",
+      "bash",
+      "glob",
+      "grep"
+    ],
+    "optional": [
+      "agent",
+      "mcp",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "mcp-apps",
+      "mcp-ui",
+      "openai-apps-sdk",
+      "a2ui",
+      "ag-ui",
+      "agentic-ui",
+      "generative-ui",
+      "widget-authoring",
+      "protocol-selection",
+      "security-review",
+      "scaffolding"
+    ],
+    "requires": []
+  },
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "MCP Apps Studio",
+    "summary": "Builds agent-rendered interactive UI across five protocols — MCP Apps (ui:// + ui/* bridge), mcp-ui, OpenAI Apps SDK (window.openai), A2UI, and AG-UI. Ships 14 commands, 16 skills, 13 agents, 7 runnable templates, and validators for spec conformance, CSP hardening, and host capability portability.",
+    "tags": [
+      "mcp-apps",
+      "mcp-ui",
+      "openai-apps-sdk",
+      "a2ui",
+      "ag-ui",
+      "agentic-ui",
+      "widget",
+      "csp",
+      "scaffolding"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/*.zip",
+      "**/coverage/**",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "skills/*/SKILL.md",
+      "commands/*.md",
+      "docs/*.md"
+    ]
+  }
+}

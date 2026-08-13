@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "plugin": "mcp-apps-studio",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "mcp-apps-studio:a2ui-catalog-designer",
+      "intent": "Design A2UI component catalogs and surface message streams, and validate them against the v1.0 schemas",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "a2ui"
+      ],
+      "inputs": [
+        "description"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/a2ui-catalog-designer.md"
+    },
+    {
+      "name": "mcp-apps-studio:agui-stream-engineer",
+      "intent": "Implement and audit AG-UI event streams — ordering, SSE encoding, state snapshots and deltas, reasoning and activity events, and human-in-the-loop interrupts",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "ag-ui"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/agui-stream-engineer.md"
+    },
+    {
+      "name": "mcp-apps-studio:bridge-engineer",
+      "intent": "Implement and repair the host communication layer — lifecycle ordering, message hygiene, capability guards, and the protocol-agnostic adapter",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "bridge"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/bridge-engineer.md"
+    },
+    {
+      "name": "mcp-apps-studio:csp-security-auditor",
+      "intent": "Derive the minimal CSP for an agent UI and audit it for untrusted-payload rendering, unsafe URLs, model-context injection, and leaked secrets",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "security"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/csp-security-auditor.md"
+    },
+    {
+      "name": "mcp-apps-studio:host-compat-auditor",
+      "intent": "Check every host API an agent UI depends on against each target host's support matrix and report the design consequence of each gap",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "compatibility"
+      ],
+      "inputs": [
+        "hosts"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "agents/host-compat-auditor.md"
+    },
+    {
+      "name": "mcp-apps-studio:mcp-app-builder",
+      "intent": "Implement a complete MCP App end to end — server registration, View, build config, and the local test loop",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "implementation"
+      ],
+      "inputs": [
+        "spec"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "agents/mcp-app-builder.md"
+    },
+    {
+      "name": "mcp-apps-studio:tool-schema-architect",
+      "intent": "Design the tool surface behind an agent UI so the model reliably invokes it — naming, descriptions, schemas, decoupling, visibility, and result channels",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "tools"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/tool-schema-architect.md"
+    },
+    {
+      "name": "mcp-apps-studio:ui-accessibility-reviewer",
+      "intent": "Review an agent widget for WCAG AA conformance, keyboard operability, screen-reader semantics, and motion and text-scaling resilience",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "accessibility"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "agents/ui-accessibility-reviewer.md"
+    },
+    {
+      "name": "mcp-apps-studio:ui-perf-optimizer",
+      "intent": "Reduce bundle size, perceived latency, remounts, and render churn in an agent UI",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "performance"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/ui-perf-optimizer.md"
+    },
+    {
+      "name": "mcp-apps-studio:ui-port-migrator",
+      "intent": "Migrate an agent UI between protocols by introducing the adapter layer, applying the field and API mappings, and surfacing every capability with no equivalent",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "migration"
+      ],
+      "inputs": [
+        "from",
+        "to"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "agents/ui-port-migrator.md"
+    },
+    {
+      "name": "mcp-apps-studio:ui-protocol-strategist",
+      "intent": "Choose the right agent-UI protocol stack for a requirement and defend the choice with rejected alternatives and the constraints that would change it",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "architecture"
+      ],
+      "inputs": [
+        "requirement"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/ui-protocol-strategist.md"
+    },
+    {
+      "name": "mcp-apps-studio:ui-state-architect",
+      "intent": "Place every value in an agent UI in the right ownership tier and make state survive remount without lying to the model",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "state"
+      ],
+      "inputs": [
+        "target"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/ui-state-architect.md"
+    },
+    {
+      "name": "mcp-apps-studio:widget-designer",
+      "intent": "Design the visual and interaction layer of an agent widget — display mode, layout, states, theming, and the host design rules",
+      "tags": [
+        "mcp-apps-studio",
+        "agent",
+        "design"
+      ],
+      "inputs": [
+        "description"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/widget-designer.md"
+    }
+  ]
+}

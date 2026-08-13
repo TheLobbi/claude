@@ -1,0 +1,33 @@
+{
+  "name": "__APP_SLUG__",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "__APP_DESCRIPTION__",
+  "scripts": {
+    "build": "INPUT=mcp-app.html vite build",
+    "serve": "npx tsx server.ts",
+    "dev": "npm run build && npm run serve",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.1.2",
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tsx": "^4.23.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0",
+    "vite-plugin-singlefile": "^2.1.0"
+  }
+}

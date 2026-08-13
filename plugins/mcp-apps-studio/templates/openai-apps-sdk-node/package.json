@@ -1,0 +1,25 @@
+{
+  "name": "__APP_SLUG__",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "__APP_DESCRIPTION__",
+  "scripts": {
+    "build": "npm --prefix web install && npm --prefix web run build",
+    "serve": "npx tsx server.ts",
+    "dev": "npm run build && npm run serve"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.1.2",
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "tsx": "^4.23.0",
+    "typescript": "^5.7.0"
+  }
+}
