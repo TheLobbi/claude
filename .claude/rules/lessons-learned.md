@@ -942,3 +942,19 @@ grep: site/assets/styles.css: No such file or directory
 - **Status:** RESOLVED
 - **Fix:** `get_check_run` fetches ONE check run by `checkRunId` — it has no list mode. To see CI status for a commit/branch, use `actions_list` with `method: "list_workflow_runs"` + `branch`, then parse the oversized saved payload with `node -e` (filter by `head_sha`, print name/status/conclusion).
 - **Prevention:** For "is CI green on this sha" questions, go straight to `actions_list` → saved-file parse. Reserve `get_check_run` for drilling into a single known check-run ID.
+
+### Error: bash-safety-validator blocks recursive-force delete even on scratchpad paths (2026-08-13T05:05:00Z)
+- **Tool:** Bash
+- **Input:** `<recursive force delete> /tmp/claude-0/.../scratchpad/expenses && node scripts/scaffold-app.mjs ...`
+- **Error:** `PreToolUse:Bash hook error: BLOCKED: Destructive system command detected`
+- **Status:** RESOLVED
+- **Fix:** `.claude/hooks/bash-safety-validator.sh` pattern-matches the recursive-force delete flags regardless of target path, so it fires even on session scratchpad directories. Scaffolded into a fresh sibling directory (`expenses2`, `v2-<template>`) instead of deleting and recreating.
+- **Prevention:** When iterating on a generator/scaffolder that refuses to write into a non-empty directory, never reach for a recursive delete. Write to a new uniquely-named directory each run, or give the tool a `--force` flag that overwrites in place. Note the hook also inspects heredoc *content* — a command whose body merely mentions those flags (e.g. appending this very lesson) is blocked too; use the Write/Edit tools for that text instead of `cat <<EOF`.
+
+### Error: pnpm run script failed with node_modules missing on a fresh remote clone (2026-08-13T05:12:00Z)
+- **Tool:** Bash
+- **Input:** `pnpm generate:plugin-indexes`
+- **Error:** `Cannot find package 'js-yaml'` → exit 1, with `WARN Local package.json exists, but node_modules missing, did you mean to install?`
+- **Status:** RESOLVED
+- **Fix:** Ran `pnpm install --frozen-lockfile` first (~2s given the committed lockfile), then the script succeeded.
+- **Prevention:** Claude Code on the web clones the repo fresh with no `node_modules`. In a remote session, run `pnpm install --frozen-lockfile` before the first `pnpm check:*` / `generate:*` command. Scripts with zero runtime dependencies (plain `node scripts/foo.mjs`) work without it — only the ones importing `js-yaml`/`ajv`/`tsx` need the install.
