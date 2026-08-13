@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "plugin": "mcp-apps-studio",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "ui:a2ui",
+      "intent": "Author A2UI surfaces, component catalogs, data models, and streaming message sequences, and validate them against the v1.0 schemas",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "a2ui"
+      ],
+      "inputs": [
+        "description",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/a2ui.md"
+    },
+    {
+      "name": "ui:agui",
+      "intent": "Implement or audit an AG-UI event stream — emitting the correct event sequence, SSE encoding, shared state snapshots and deltas, human-in-the-loop interrupts, and the frontend subscriber",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "ag-ui"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/agui.md"
+    },
+    {
+      "name": "ui:audit",
+      "intent": "Run the complete agent-UI review across protocol conformance, tool surface, bridge, state, security, UX, performance, and host portability",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "review"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/audit.md"
+    },
+    {
+      "name": "ui:bridge",
+      "intent": "Implement, repair, or harden the host communication layer — the ui/* JSON-RPC bridge, window.openai extensions, mcp-ui actions, and the adapter that keeps components protocol-agnostic",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "bridge"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/bridge.md"
+    },
+    {
+      "name": "ui:component",
+      "intent": "Author or improve the View itself — the widget markup, states, theming, accessibility, and display-mode behavior for a chosen protocol",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "ui"
+      ],
+      "inputs": [
+        "description",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/component.md"
+    },
+    {
+      "name": "ui:copilot",
+      "intent": "Package and ship an MCP app into Microsoft 365 Copilot as a declarative agent, covering CORS, redirect URIs, auth, sideloading, and the Copilot capability gaps",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "microsoft"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/copilot.md"
+    },
+    {
+      "name": "ui:csp",
+      "intent": "Derive and harden the Content Security Policy for an agent UI and run the full widget security review",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "security"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/csp.md"
+    },
+    {
+      "name": "ui:new",
+      "intent": "Scaffold a complete runnable agent-UI project for any supported protocol from a plain-language description of what the UI should do",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "scaffold"
+      ],
+      "inputs": [
+        "description",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/new.md"
+    },
+    {
+      "name": "ui:port",
+      "intent": "Migrate an agent UI between protocols or SDKs, applying the mechanical field and API mappings and reporting what needs human judgment",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "migration"
+      ],
+      "inputs": [
+        "from",
+        "to"
+      ],
+      "risk": "high",
+      "cost": "medium",
+      "path": "commands/port.md"
+    },
+    {
+      "name": "ui:preview",
+      "intent": "Run the local test loop for an agent UI — build, serve, mount in a host harness, and triage whatever fails to render",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "testing"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/preview.md"
+    },
+    {
+      "name": "ui:protocol",
+      "intent": "Choose between MCP Apps, mcp-ui, OpenAI Apps SDK, A2UI, and AG-UI for a stated requirement and produce a justified recommendation with a migration path",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "architecture"
+      ],
+      "inputs": [
+        "requirement",
+        "flags"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/protocol.md"
+    },
+    {
+      "name": "ui:ship",
+      "intent": "Take an agent UI from requirement to deployed and verified — protocol choice, scaffold, tools, component, hardening, audit, and host registration in one loop",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "delivery"
+      ],
+      "inputs": [
+        "requirement",
+        "flags"
+      ],
+      "risk": "high",
+      "cost": "high",
+      "path": "commands/ship.md"
+    },
+    {
+      "name": "ui:state",
+      "intent": "Design or repair where state lives in an agent UI across the three ownership tiers and make it survive remount",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "state"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "low",
+      "path": "commands/state.md"
+    },
+    {
+      "name": "ui:tool",
+      "intent": "Design or repair the tool surface behind an agent UI — naming, descriptions, schemas, the decoupled data/render split, visibility, and result channels",
+      "tags": [
+        "mcp-apps-studio",
+        "command",
+        "tools"
+      ],
+      "inputs": [
+        "target",
+        "flags"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "commands/tool.md"
+    }
+  ]
+}

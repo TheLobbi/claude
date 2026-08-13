@@ -273,6 +273,16 @@
       "source": "./plugins/marketplace-pro"
     },
     {
+      "name": "mcp-apps-studio",
+      "description": "Expert system for building agent-rendered interactive UI: MCP Apps (ui:// resources, the ui/* postMessage bridge), mcp-ui, the OpenAI Apps SDK (window.openai), Google A2UI, and AG-UI. 14 commands, 16 skills, 13 agents, 7 runnable project templates, and 4 scripts — scaffolder, spec validator, host-portability checker, and a local host harness — that turn any product requirement into a spec-correct, CSP-hardened, host-portable agent UI.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "markus@lobbi.io"
+      },
+      "source": "./plugins/mcp-apps-studio"
+    },
+    {
       "name": "microsoft-agents-expert",
       "description": "Comprehensive Microsoft agent-stack expert: Microsoft Agent Framework (the Semantic Kernel + AutoGen successor), Microsoft 365 Agents SDK, Teams AI Library, Copilot Studio, and Microsoft Foundry Agent Service. Stack selection, scaffolding, migration, review, and deployment. 6 skills, 5 agents, 5 commands.",
       "version": "1.0.0",
