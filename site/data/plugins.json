@@ -7,19 +7,19 @@
       "name": "Markus Ahling",
       "email": "markus@thelobbi.io"
     },
-    "generatedAt": "2026-07-11T19:45:17.435Z",
+    "generatedAt": "2026-08-17T16:26:25.273Z",
     "repo": "https://github.com/markus41/claude",
     "url": "https://markus41.github.io/claude/"
   },
   "stats": {
-    "plugins": 36,
+    "plugins": 38,
     "subplugins": 6,
-    "commands": 299,
-    "agents": 266,
-    "skills": 256,
+    "commands": 337,
+    "agents": 313,
+    "skills": 288,
     "hooks": 17,
     "mcp": 8,
-    "categories": 9
+    "categories": 8
   },
   "categories": [
     "AI & Claude Code",
@@ -29,7 +29,6 @@
     "Lobbi Domain",
     "Marketplace & Platform",
     "Microsoft & Enterprise",
-    "Other",
     "Project Management"
   ],
   "stacks": [
@@ -498,6 +497,39 @@
       "hasReadme": true
     },
     {
+      "name": "github-orchestrator",
+      "version": "1.1.0",
+      "description": "Autonomous GitHub delivery orchestration: 34 agents in 7 teams, 24 commands, 16 skills, and 7 schema-validated declarative workflows. Drives PRs from branch to merged — adversarial review boards, CI drive-to-green loops, stacked-PR merge trains, conflict prediction, supply-chain triage, release trains, and DORA/hotspot repo intelligence over the GitHub MCP.",
+      "author": "Markus Ahling",
+      "authorUrl": "",
+      "source": "./plugins/github-orchestrator",
+      "category": "Project Management",
+      "keywords": [
+        "github",
+        "orchestration",
+        "pull-request",
+        "code-review",
+        "ci-cd",
+        "github-actions",
+        "merge-queue",
+        "stacked-prs",
+        "merge-train",
+        "drive-to-green",
+        "flaky-tests",
+        "dora"
+      ],
+      "license": "MIT",
+      "homepage": "",
+      "counts": {
+        "commands": 24,
+        "agents": 34,
+        "skills": 16,
+        "hooks": 0
+      },
+      "mcp": false,
+      "hasReadme": true
+    },
+    {
       "name": "home-assistant-architect",
       "version": "3.0.0",
       "description": "Complete Home Assistant platform with frontend design, energy management, cameras, sensors, local LLM integration, and Ubuntu server deployment",
@@ -954,13 +986,46 @@
       "hasReadme": true
     },
     {
+      "name": "mcp-apps-studio",
+      "version": "1.0.0",
+      "description": "Expert system for building agent-rendered interactive UI: MCP Apps (ui:// resources, the ui/* postMessage bridge), mcp-ui, the OpenAI Apps SDK (window.openai), Google A2UI, and AG-UI. 14 commands, 16 skills, 13 agents, 7 runnable project templates, and 4 scripts — scaffolder, spec validator, host-portability checker, and a local host harness — that turn any product requirement into a spec-correct, CSP-hardened, host-portable agent UI.",
+      "author": "Markus Ahling",
+      "authorUrl": "",
+      "source": "./plugins/mcp-apps-studio",
+      "category": "Frontend & Design",
+      "keywords": [
+        "mcp",
+        "mcp-apps",
+        "mcp-ui",
+        "ext-apps",
+        "openai-apps-sdk",
+        "apps-sdk",
+        "window-openai",
+        "a2ui",
+        "ag-ui",
+        "agui",
+        "agentic-ui",
+        "generative-ui"
+      ],
+      "license": "MIT",
+      "homepage": "",
+      "counts": {
+        "commands": 14,
+        "agents": 13,
+        "skills": 16,
+        "hooks": 0
+      },
+      "mcp": false,
+      "hasReadme": true
+    },
+    {
       "name": "microsoft-agents-expert",
       "version": "1.0.0",
       "description": "Comprehensive Microsoft agent-stack expert: Microsoft Agent Framework (the Semantic Kernel + AutoGen successor), Microsoft 365 Agents SDK, Teams AI Library, Copilot Studio, and Microsoft Foundry Agent Service. Stack selection, scaffolding, migration, review, and deployment. 6 skills, 5 agents, 5 commands.",
       "author": "Markus Ahling",
       "authorUrl": "",
       "source": "./plugins/microsoft-agents-expert",
-      "category": "Other",
+      "category": "Microsoft & Enterprise",
       "keywords": [
         "microsoft",
         "agents",

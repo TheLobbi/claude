@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/plugins.schema.json",
   "version": "3.0.0",
-  "lastUpdated": "2026-07-11T00:00:00Z",
+  "lastUpdated": "2026-08-17T00:00:00Z",
   "description": "Plugin registry for Claude Code orchestration plugins - upgraded with Agentic Design Patterns (Gulli & Sauco, 2025)",
   "installed": {
     "aws-eks-helm-keycloak": {
@@ -268,6 +268,20 @@
       "path": "../plugins/microsoft-agents-expert",
       "source": "local",
       "installedAt": "2026-07-11T00:00:00.000Z",
+      "dependencies": {}
+    },
+    "mcp-apps-studio": {
+      "version": "1.0.0",
+      "path": "../plugins/mcp-apps-studio",
+      "source": "local",
+      "installedAt": "2026-08-17T00:00:00.000Z",
+      "dependencies": {}
+    },
+    "github-orchestrator": {
+      "version": "1.1.0",
+      "path": "../plugins/github-orchestrator",
+      "source": "local",
+      "installedAt": "2026-08-17T00:00:00.000Z",
       "dependencies": {}
     }
   },
@@ -1627,6 +1641,107 @@
       "categories": [
         "ai-advanced"
       ]
+    },
+    "mcp-apps-studio": {
+      "name": "mcp-apps-studio",
+      "version": "1.0.0",
+      "description": "Expert system for building agent-rendered interactive UI: MCP Apps (ui:// resources, the ui/* postMessage bridge), mcp-ui, the OpenAI Apps SDK (window.openai), Google A2UI, and AG-UI. 14 commands, 16 skills, 13 agents, 7 runnable project templates, and 4 scripts — scaffolder, spec validator, host-portability checker, and a local host harness — that turn any product requirement into a spec-correct, CSP-hardened, host-portable agent UI.",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "markus@lobbi.io"
+      },
+      "keywords": [
+        "mcp",
+        "mcp-apps",
+        "mcp-ui",
+        "ext-apps",
+        "openai-apps-sdk",
+        "apps-sdk",
+        "window-openai",
+        "a2ui",
+        "ag-ui",
+        "agui",
+        "agentic-ui",
+        "generative-ui",
+        "interactive-ui",
+        "widget",
+        "iframe",
+        "postmessage",
+        "json-rpc",
+        "sandbox",
+        "csp",
+        "content-security-policy",
+        "ui-resource",
+        "resource-uri",
+        "structured-content",
+        "tool-metadata",
+        "display-mode",
+        "fullscreen",
+        "picture-in-picture",
+        "chatgpt-apps",
+        "claude-apps",
+        "m365-copilot",
+        "declarative-agent",
+        "copilot-extensibility",
+        "copilotkit",
+        "streaming",
+        "sse",
+        "state-management",
+        "accessibility",
+        "react",
+        "vite",
+        "fastmcp",
+        "typescript",
+        "python"
+      ]
+    },
+    "github-orchestrator": {
+      "name": "github-orchestrator",
+      "version": "1.1.0",
+      "description": "Autonomous GitHub delivery orchestration: 34 agents in 7 teams, 24 commands, 16 skills, and 7 schema-validated declarative workflows. Drives PRs from branch to merged — adversarial review boards, CI drive-to-green loops, stacked-PR merge trains, conflict prediction, supply-chain triage, release trains, and DORA/hotspot repo intelligence over the GitHub MCP.",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "markus@lobbi.io"
+      },
+      "keywords": [
+        "github",
+        "orchestration",
+        "pull-request",
+        "code-review",
+        "ci-cd",
+        "github-actions",
+        "merge-queue",
+        "stacked-prs",
+        "merge-train",
+        "drive-to-green",
+        "flaky-tests",
+        "dora",
+        "supply-chain",
+        "codeql",
+        "dependabot",
+        "release-engineering",
+        "semver",
+        "changelog",
+        "codeowners",
+        "advisor",
+        "multi-agent",
+        "adversarial-review",
+        "blackboard",
+        "workflow",
+        "telemetry",
+        "mcp",
+        "automation",
+        "agents",
+        "projects",
+        "issue-types",
+        "sub-issues",
+        "issue-forms",
+        "copilot",
+        "agentic-workflows",
+        "github-app",
+        "oidc",
+        "authentication"
+      ]
     }
   },
   "plugins": {
@@ -1641,6 +1756,12 @@
       "linear-orchestrator": {
         "path": "../plugins/linear-orchestrator/.claude-plugin/plugin.json",
         "version": "1.0.0",
+        "status": "active",
+        "tier": "standard"
+      },
+      "github-orchestrator": {
+        "path": "../plugins/github-orchestrator/.claude-plugin/plugin.json",
+        "version": "1.1.0",
         "status": "active",
         "tier": "standard"
       }
@@ -1670,6 +1791,12 @@
       "react-animation-studio": {
         "path": "../plugins/react-animation-studio/.claude-plugin/plugin.json",
         "version": "2.0.1",
+        "status": "active",
+        "tier": "standard"
+      },
+      "mcp-apps-studio": {
+        "path": "../plugins/mcp-apps-studio/.claude-plugin/plugin.json",
+        "version": "1.0.0",
         "status": "active",
         "tier": "standard"
       }
@@ -1962,17 +2089,17 @@
     "PM": "project-management-plugin"
   },
   "stats": {
-    "totalInstalled": 36,
-    "totalPlugins": 42,
+    "totalInstalled": 38,
+    "totalPlugins": 44,
     "totalAvailable": 6,
-    "lastUpdated": "2026-07-11T00:00:00.000Z",
+    "lastUpdated": "2026-08-17T00:00:00.000Z",
     "byTier": {
       "enterprise": 1,
-      "standard": 41,
+      "standard": 43,
       "premium": 1
     },
     "byLocation": {
-      "plugins/": 36,
+      "plugins/": 38,
       ".claude/plugins/": 6
     }
   }

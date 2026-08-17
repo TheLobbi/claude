@@ -958,3 +958,11 @@ grep: site/assets/styles.css: No such file or directory
 - **Status:** RESOLVED
 - **Fix:** Ran `pnpm install --frozen-lockfile` first (~2s given the committed lockfile), then the script succeeded.
 - **Prevention:** Claude Code on the web clones the repo fresh with no `node_modules`. In a remote session, run `pnpm install --frozen-lockfile` before the first `pnpm check:*` / `generate:*` command. Scripts with zero runtime dependencies (plain `node scripts/foo.mjs`) work without it — only the ones importing `js-yaml`/`ajv`/`tsx` need the install.
+
+### Error: new plugins invisible despite passing every validator (2026-08-17T00:00:00Z)
+- **Tool:** N/A (diagnostic)
+- **Input:** `pnpm check:marketplace` → 38/38 valid, yet `mcp-apps-studio` and `github-orchestrator` appeared nowhere in the registry or the site.
+- **Error:** Adding a plugin to `plugins/` + `.claude-plugin/marketplace.json` passes all four validators while leaving two downstream surfaces stale: `.claude/registry/plugins.index.json` (36 of 38) and `site/data/plugins.json` (36 of 38).
+- **Status:** RESOLVED
+- **Fix:** Added CATEGORY entries in `scripts/build-site.mjs`, re-ran `pnpm build:site`, and appended `installed` / `registry` / `plugins.<bucket>` entries plus recomputed `stats` in `plugins.index.json`.
+- **Prevention:** `.claude/registry/plugins.index.json` has **no generator** — `generate-plugin-indexes.mjs` only writes per-plugin `commands/index.json` and `agents/index.json`. It is hand-maintained and drifts silently; no `check:*` script verifies it against `plugins/`. When adding a plugin, update four places: (1) the plugin dir, (2) `marketplace.json`, (3) the `CATEGORY` map in `scripts/build-site.mjs` then re-run `pnpm build:site`, (4) `plugins.index.json` (`installed`, `registry`, a `plugins.<bucket>` entry, and `stats`). Note `site/data/plugins.json` is a **committed build artifact** — stale until `build:site` runs. Also: the site keys off the *manifest* `name`, not the directory name (`claude-code-templating-plugin` ships `"name": "claude-code-templating"`), so compare manifest names when auditing coverage or you will chase false positives. A plugin missing from `CATEGORY` still builds but silently lands in an "Other" bucket.
