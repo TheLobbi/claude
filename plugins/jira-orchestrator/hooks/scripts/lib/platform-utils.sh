@@ -169,7 +169,7 @@ hook_trace_start() {
 
     # Generate trace ID using timestamp + random (cross-platform)
     local seconds=$(date +%s)
-    local nanoseconds=$(date +%N 2>/dev/null || echo "${RANDOM}${RANDOM}")
+    local nanoseconds=$(date +%N 2>/dev/null || echo "000000000")
     local trace_id="trace_${seconds}_${nanoseconds}_${RANDOM}"
     local start_time=$(get_timestamp_ms)  # milliseconds
 

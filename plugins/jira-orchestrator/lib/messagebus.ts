@@ -354,14 +354,19 @@ export class MessageBus {
       const regex = new RegExp(
         '^' +
           pattern
-            .replace(/\*/g, '[^/]+')
-            .replace(/\*\*/g, '.*') +
+            .replace(/\*\*/g, '.*')
+            .replace(/\*/g, '[^/]+') +
           '$'
       );
 
-      // Topic strings should be reasonable length
-      const safeTopic = topic.length > 1000 ? topic.slice(0, 1000) : topic;
-      return regex.test(safeTopic);
+      // Topic strings should be reasonable length; reject overly long topics to avoid
+      // incorrect matching due to truncation.
+      if (topic.length > 1000) {
+        console.warn(`Topic too long (${topic.length} chars), rejecting: ${topic}`);
+        return false;
+      }
+
+      return regex.test(topic);
     } catch (error) {
       console.error(`Invalid pattern: ${pattern}`, error);
       return false;
