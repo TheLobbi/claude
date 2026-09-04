@@ -24,6 +24,15 @@ steps exist because each was skipped once.
    base-tip absorption, and local worktree cleanliness — run it, capture the
    **exit code from the shell**, never through a pipe.
 
+   **A forge's `mergeable` field is a textual-conflict answer, never
+   readiness.** Two sessions independently misread it in one hour. The trap
+   is that it starts `UNKNOWN` and then resolves — **a field resolving looks
+   like state changing**, so watching `UNKNOWN → MERGEABLE` feels like
+   confirmation of something. It confirms only that the merge would not
+   conflict textually. The readiness question is **base-tip absorption**,
+   which is about **invalidation, not distance**: has anything landed in the
+   base that invalidates the evidence this PR carries?
+
    *Trap:* a pipe to `tail`, `head` or `Select-Object -First` replaces the
    command's exit code with the filter's. The gate reports 0 while having
    failed.

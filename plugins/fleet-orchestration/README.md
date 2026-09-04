@@ -105,8 +105,17 @@ minutes**. **None was detected by any monitor. Every one was found by someone
 measuring their own blocker.** Nothing was stale and nothing was malformed in
 any of the three: the merges were correct, the heartbeats were correct and
 current, and the schema validator this plugin ships would have passed every
-one of those files. The waiter's check is not merely the auditable half — it
-is the only half with a hit rate.
+one of those files.
+
+**But the halves cover different sets, so neither is optional.** The waiter's
+half catches what you *know* you await — and a lane cannot measure a blocker
+it does not know it has. One merge produced two victims that look like
+unrelated problems: 68 minutes of waiting on an already-merged PR, **and** a
+second, unrelated PR's green silently invalidated by five files landing in
+its build-and-test closure. Its owner had no reason to check anything;
+nothing it was waiting on had moved. **Only the merger could have reached
+it.** Notify-on-merge is not a courtesy — it is what protects the other PR's
+evidence.
 
 ## The four ideas
 

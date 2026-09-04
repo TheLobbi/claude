@@ -48,11 +48,27 @@ three cases nothing was stale, nothing was malformed, and no instrument had
 anything to report — the merges were correct, the heartbeats were correct and
 current, and a schema validator would have passed every one of those files.
 
-So state it plainly: **the waiter's check is not merely the auditable half,
-it is the only half with a hit rate.** Keep the notify-on-merge requirement,
-but do not let it read as the primary mechanism — the notifier's half leaves
-no trace when it is skipped, which is exactly why it cannot be the one you
-rely on.
+**But the two halves cover different sets, and that is why neither is
+optional.** The waiter's half catches what you **know** you await. **A lane
+cannot measure a blocker it does not know it has.**
+
+The demonstration is one merge with two victims that look like unrelated
+problems. A PR merged, and it (a) left one lane waiting **68 minutes** on an
+already-merged PR, and (b) **silently invalidated a second, unrelated PR's
+green** by landing five files inside that PR's build-and-test closure — two
+of them the merged PR's own new guard files. Catalogued separately those are
+a notification gap and a staleness gap. **They are one event.**
+
+The second lane's owner had no reason to check anything: nothing it was
+waiting on had moved. Only the merger could have reached it.
+
+| Half | Covers | Property |
+|---|---|---|
+| **Waiter measures its own blocker** | blockers you **know** about | auditable; 3 of 3 no-trace instances caught, 0 by any monitor |
+| **Merger tells everyone the merge affects** | the case the waiter **structurally cannot see** — evidence invalidated by a merge it was never part of | leaves no trace when skipped, so it can never be verified after the fact |
+
+So **notify-on-merge is not a courtesy — it is the thing that protects the
+other PR's evidence.** Unauditable, and demonstrably not optional.
 
 The demonstration is two audits that looked identical and were not. One
 session enumerated **its own handoffs** — a set it owns completely — and

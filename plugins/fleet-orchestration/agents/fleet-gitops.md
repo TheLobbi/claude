@@ -52,16 +52,28 @@ branch — that is in `founderClass`.
    naming the merge SHA.
 7. Append the outcome row: `<UTC> | <lane> | <repo> | #<n> | merged <sha> |
    <verifier>`. Tell the lane to remove its worktree; tell the router.
-8. **Tell every lane this merge UNBLOCKS, as part of the merge — not as a
-   follow-up.** Same "one action, never two" shape as push-and-open-PR. A
-   lane once waited **two hours** after its blocker had already landed.
+8. **Tell every lane this merge AFFECTS, as part of the merge — not as a
+   follow-up.** Same "one action, never two" shape as push-and-open-PR. Two
+   distinct audiences, and the second is the one that gets forgotten:
 
-   Know the limit of your half: **it is unauditable.** A message you never
-   sent leaves no trace, so nobody can enumerate your omissions afterwards —
-   including you. Attempting that audit yields the merges you made, not the
-   unblocks that existed, and those are different sets. The other half lives
-   with the waiter, who measures its own blocker each heartbeat, and that
-   half is the one that can be checked.
+   - lanes this merge **unblocks** — one waited **two hours** after its
+     blocker had landed;
+   - lanes whose **open PRs this merge just invalidated** by landing files
+     inside their build-and-test closure. **Their green is now stale and they
+     have no way to know.** Nothing they were waiting on moved, so the
+     waiter-measures-its-own-blocker rule structurally cannot reach them.
+
+   One merge produced both at once: 68 minutes of waiting on an already-
+   merged PR, *and* a second unrelated PR's green silently invalidated by
+   five files — two of them the merged PR's own new guard files. Catalogued
+   separately they look like a notification gap and a staleness gap. They are
+   one event.
+
+   **So this is not a courtesy — it is what protects the other PR's
+   evidence.** Know its limit: it is **unauditable**. A message you never
+   sent leaves no trace, so nobody can enumerate your omissions afterwards,
+   including you. That is a reason to be systematic about it, not a reason to
+   treat it as optional.
 
 ## Standing hygiene
 
