@@ -77,6 +77,28 @@ one brief per role, and prints the exact text to paste into each session. It
 does **not** open sessions — a human does that, because every lane is its own
 session.
 
+## The one claim, and its two media
+
+Everything in `evidence-rules` is one idea seen in ten places:
+
+> **A wrong predicate and a missing notification both produce a plausible,
+> quiet, checkable-looking state. Neither raises an error. In both cases the
+> only defence is a second reading through a different mechanism.**
+
+**In tooling**, the second reading is the raw print through a *different
+field*. **In coordination**, it is *measuring the thing you wait on* rather
+than waiting for news of it. That collapses two things most fleets treat as
+separate problems: coordination failures are not a second category beside
+evidence failures, they are the same failure where the missing artifact is a
+message rather than a field.
+
+And one asymmetry decides where to spend if you can only afford one defence:
+**you cannot enumerate the absences of messages you never wrote.** "The
+merger tells the unblocked lane" is unauditable — nobody can verify it
+afterwards, including the merger. "Every waiting lane measures its own
+blocker" is self-verifying by construction. Ship both. If only one survives,
+it is the waiter's.
+
 ## The four ideas
 
 **1. Heartbeat or be replaced — but read the artifact first.**

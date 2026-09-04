@@ -1,16 +1,63 @@
 ---
 name: evidence-rules
-description: Ten rules for making claims that survive being checked - ask what an artifact SITS ON and whether that moved, print the RAW STATE beside any predicate that decides whether to stop, a gate must name an input that turns it red, a destructive predicate needs its spare case proven by mutation, an absence needs the size of the space searched, a search-space cap manufactures false negatives while a result-set cap does not, check the exit code before reading the output, a true measurement stated as a durable property never expires and never stops being wrong, a count is only evidence when the thing counted is named, and a correction is itself a claim that names the set it ranges over. Use when writing a gate, guard, scanner, retention or delete rule; when reporting that something was not found, does not exist, or is not used; when writing a PR body, review verdict, status report or handover; when quoting a number to someone else; when relaying someone else's finding; and when correcting anything you or anyone else said earlier.
+description: One claim with ten sightings - a wrong predicate and a missing notification both produce a plausible, quiet, checkable-looking state, neither raises an error, and the only defence in both is a second reading through a different mechanism. In tooling that is the raw print through a different field; in coordination it is measuring the thing you wait on rather than waiting for news of it. Covers - ask what an artifact SITS ON and whether that moved, print the RAW STATE beside any predicate that decides whether to stop, a gate must name an input that turns it red, a destructive predicate needs its spare case proven by mutation, an absence needs the size of the space searched, a search-space cap manufactures false negatives while a result-set cap does not, check the exit code before reading the output, a true measurement stated as a durable property never expires and never stops being wrong, a count is only evidence when the thing counted is named, and a correction is itself a claim that names the set it ranges over. Use when writing a gate, guard, scanner, retention or delete rule; when reporting that something was not found, does not exist, or is not used; when writing a PR body, review verdict, status report or handover; when quoting a number to someone else; when relaying someone else's finding; and when correcting anything you or anyone else said earlier.
 ---
 
 # Evidence rules
 
-Ten rules. Each one cost a real investigation, a near-miss on a merge, or a
-claim that had to be walked back after it had been repeated. They generalise
-past any one codebase: they are about the **shape of a claim**, not the
-subject of it.
+## One claim
 
-**Every rule carries a "does not bite" clause**, and that is deliberate:
+> **A wrong predicate and a missing notification both produce a plausible,
+> quiet, checkable-looking state. Neither raises an error. In both cases the
+> only defence is a second reading through a different mechanism.**
+
+Everything below is that claim in a different place. The rules are not ten
+lessons; they are ten sightings of one failure, which is why they carry to a
+codebase and a fleet that have nothing else in common with the one that found
+them.
+
+### Two media
+
+| | The second reading is |
+|---|---|
+| **In tooling** | the raw print, read through a **different field** — a status against a conclusion, a file listing against an inventory count |
+| **In coordination** | **measuring the thing you wait on**, rather than waiting for news of it — query the blocker yourself instead of filtering for a message about it |
+
+That collapses two things most fleets treat as separate problems.
+Coordination failures are not a second category beside evidence failures.
+They are the same failure in a medium where the missing artifact is a message
+rather than a field.
+
+### One asymmetry, which decides where to spend if you can only afford one
+
+**You cannot enumerate the absences of messages you never wrote.**
+
+- *"The merger tells the unblocked lane"* is **unauditable**. It leaves no
+  trace, so nobody can verify it afterwards — **including the merger.**
+- *"Every waiting lane measures its own blocker"* is **self-verifying by
+  construction**: the check either ran or it did not, and the next heartbeat
+  says which.
+
+Teach the pair. **If only one survives, it is the waiter's.**
+
+The demonstration is two audits that looked identical and were not. One
+session enumerated **its own handoffs** — a set it owns completely — and
+returned a sound negative naming seven items. Another enumerated **its own
+reported merges** and could not make the same claim, because merges and
+unblocks are different sets, and **the set of waiters is precisely what no
+artifact records**. "One omission found, and I cannot bound the rest" is a
+different claim from a clean negative.
+
+That is rule 7 arriving at an **audit** instead of a count: the noun was
+right and the set was not the set the question was about. And the easy move
+was available and obvious — enumerate the merges, report all told, close the
+item — and **a clean result would have been unfalsifiable.**
+
+> A practice is only worth teaching where the confident version could never
+> have been checked.
+
+**Every rule below carries a "does not bite" clause**, and that is
+deliberate:
 
 > A rule applied everywhere is a rule nobody keeps. Knowing where it does not
 > bite is what makes it survivable.
@@ -406,6 +453,36 @@ opposite blast radius:
 Writing a one-observation finding as an instruction makes thin signal safe to
 circulate rather than forbidden.
 
+## The coordination medium, concretely
+
+The same claim, where the missing artifact is a message rather than a field.
+A lane blocked on another lane's merge waited **two hours** after the merge
+landed, because the unblocking was a notification that nobody sent and
+nobody could later prove was missing.
+
+**The rule ships as a pair, and shipping half of it is what cost those two
+hours:**
+
+1. **The merger tells the unblocked lane, as part of the merge** — not as a
+   follow-up, the same "one action, never two" shape as push-and-open-PR.
+2. **Every waiting lane measures its own blocker, each heartbeat** — queries
+   the PR, the branch, the check, itself.
+
+Both are cheap. **Neither is sufficient.** And per the asymmetry above, the
+second is the one that survives: it leaves a trace, so it can be audited.
+
+**`waiting` and `standby` are different states, and only one has a
+counterparty.**
+
+- `waiting | <specific next action> | <why>` — reserved for something
+  genuinely pending on someone else. It names who or what is being waited on,
+  so a monitor can check whether that thing is still pending.
+- `standby | <next action when work arrives> |` — genuinely idle.
+
+Collapsing them hides every instance of this class, because a lane that is
+blocked and a lane that is idle look identical in a census. That is what
+happened, and it is why the heartbeat format has six states rather than five.
+
 ## The checklist
 
 Before you send a PR body, verdict, status line, or any negative claim:
@@ -421,3 +498,6 @@ Before you send a PR body, verdict, status line, or any negative claim:
 - [ ] Every measurement carries its moment and its scope, in the sentence.
 - [ ] Every number carries its noun, its set, and measured-or-received.
 - [ ] Every correction names the whole set it ranges over.
+- [ ] An audit's set is the set the question was about — not the adjacent one
+      you happen to own.
+- [ ] Anything you are waiting on, you measured yourself this cycle.

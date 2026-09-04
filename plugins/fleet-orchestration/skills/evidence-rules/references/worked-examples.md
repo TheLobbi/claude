@@ -281,6 +281,44 @@ old.
 
 ---
 
+## The asymmetry — two audits that looked identical and were not
+
+Both sessions were asked the same question after a coordination failure:
+*did you fail to notify anyone else?*
+
+**Session A enumerated its own handoffs.** That is a set it owns completely —
+every handoff it made is an artifact it wrote. It returned a **sound
+negative**, naming seven items.
+
+**Session B enumerated its own reported merges.** Superficially the same
+move, and it is not: merges and unblocks are **different sets**, and the set
+of waiters is precisely what no artifact records. It found one omission and
+could say only *"one omission found, and I cannot bound the rest"* — a
+different claim from a clean negative, and the honest one.
+
+**The general form:** this is the noun-and-scope rule arriving at an **audit**
+instead of a count. The noun was right; the set was not the set the question
+was about.
+
+**Why it matters more than either audit alone:** the easy move was available
+and obvious — enumerate the merges, report all told, close the item — and a
+clean result would have been **unfalsifiable**. Nobody could have checked it,
+including its author.
+
+> A practice is only worth teaching where the confident version could never
+> have been checked.
+
+**And that is what decides where to spend.** "The merger tells the unblocked
+lane" leaves no trace and cannot be audited afterwards, including by the
+merger. "Every waiting lane measures its own blocker" is self-verifying by
+construction: the check either ran or it did not, and the next heartbeat says
+which. Ship both; if only one survives, it is the waiter's.
+
+The cost of shipping only the unauditable half, measured: a lane sat blocked
+for **two hours** after its blocker had landed.
+
+---
+
 ## The handover case
 
 A handover report is the one artifact with **no reader who can re-check it

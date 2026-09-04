@@ -73,6 +73,17 @@ expected to run long, and at least every `heartbeat.intervalMinutes`
 - About to block on a foreground call? Heartbeat **first**:
   `waiting | <task> | foreground worker, expect silence`. The monitor reads
   it as intended rather than as a hang.
+- **`waiting` and `standby` are different states, and only one has a
+  counterparty.** `waiting | <specific next action> | <why>` is reserved for
+  something genuinely pending on someone else, and it names what — so the
+  monitor, and you, can check whether that thing is still pending.
+  `standby | <next action when work arrives> |` is genuinely idle. Collapsing
+  them makes a blocked lane and an idle lane identical in a census; a lane
+  once sat blocked for **two hours** after its blocker had cleared.
+- **Whatever you are waiting on, measure it yourself each heartbeat.** The
+  merger telling you is the other half of that rule and it is unauditable —
+  it leaves no trace, so nobody can verify it was sent, including the merger.
+  Your own measurement leaves one.
 - Idle with nothing queued: write `standby` and **end your turn**. A message
   wakes you. Standby is not death.
 - Your predecessor (a replaced session of the same lane name) left its last

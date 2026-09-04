@@ -15,11 +15,14 @@ no repository, lane, path, organisation or person.
   DELIVERED, git discipline, review routing, the four-part PR body, merge
   readiness, escalation. Four references: configuration, git discipline
   (each rule with the incident behind it), merge discipline, run directory.
-- **`evidence-rules`** — ten rules for claims that survive being checked,
-  each carrying the incident that produced it **and its "does not bite"
-  clause. Includes the two shapes that catch what the other eight miss:
-  *what does this artifact sit on, and did that move* and *where a predicate
-  decides whether to stop, print the raw state beside the decision*.
+- **`evidence-rules`** — one central claim with ten sightings, not a list:
+  *a wrong predicate and a missing notification both produce a plausible,
+  quiet, checkable-looking state; neither raises an error; and the only
+  defence in both is a second reading through a different mechanism.* Two
+  media (tooling: the raw print through a different field; coordination:
+  measuring the thing you wait on), the auditable/unauditable asymmetry that
+  says which half of a paired rule to invest in, and every rule carrying the
+  incident that produced it **and its "does not bite" clause**.
 - **`heartbeat-monitor`** — staleness thresholds, the three silence classes,
   the artifact-before-silence rule, and the replacement handover.
 - **`fleet-roles`** — role catalogue, RACI, and the descending-model rule.

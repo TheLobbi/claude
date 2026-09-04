@@ -67,6 +67,11 @@ first edit** — they outrank this brief inside it.
 - No machine-absolute paths, no time estimates in committed files.
 - Escalate `founderClass` decisions in one line and **continue with the next
   task**. An escalation parks a decision, never a lane.
+- **Measure your own blocker every heartbeat.** If you are waiting on a
+  merge, a review or a grant, query it yourself — do not wait for news of it.
+  The merger telling you is the other half of that rule and it is
+  unauditable; your own check leaves a trace. Use `waiting | <next action> |
+  <why>`, never `standby`, whenever something is pending on someone else.
 
 Loop until the planner says `queue empty`; then write `reports/<lane>.md` —
 PRs opened and merged, issues closed, blocked items, exact proofs — and

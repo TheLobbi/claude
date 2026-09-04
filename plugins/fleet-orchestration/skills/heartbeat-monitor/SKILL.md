@@ -96,6 +96,15 @@ indistinguishable from the prose these files legitimately contain, and no
 line-level rule catches it without rejecting every handover note. It is
 caught one level up: no valid heartbeat for that cycle is a stale heartbeat.
 
+**Parseability is not validity, and that is the argument for this gate.**
+The monitor's own parser asks one thing — does field 2 exist and is it
+non-empty. By that test all 22 files parsed cleanly. This gate asks a
+different question: timestamp format, state vocabulary, escapes, leading
+pipes. It found **46 malformations that all parse**. Both answers are true
+and they answer different questions, and the gap between them is exactly what
+a validator exists to close: a line that parses into a *plausible* state is
+the failure mode, not a line that fails to parse.
+
 **And a note on this gate's own history**, because it is the plugin's rules
 applied to the plugin: its first spare set was entirely synthetic. It passed
 its own self-test and then, on first contact with 22 live files, rejected 79
@@ -104,6 +113,10 @@ prose. Its second version still demanded four fields, when 327 of 328
 three-field lines were correct heartbeats with the note omitted. **A spare
 set that has never met production data is the vacuous-spare failure** — and
 it took real data, not review, to find it both times.
+
+The 500-versus-46 disagreement between the two instruments was resolved by
+**stopping and investigating** rather than by publishing the alarming number,
+which was the one that would have made a finding.
 
 ## Thresholds
 

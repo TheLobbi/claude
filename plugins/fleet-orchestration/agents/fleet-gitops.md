@@ -52,6 +52,16 @@ branch — that is in `founderClass`.
    naming the merge SHA.
 7. Append the outcome row: `<UTC> | <lane> | <repo> | #<n> | merged <sha> |
    <verifier>`. Tell the lane to remove its worktree; tell the router.
+8. **Tell every lane this merge UNBLOCKS, as part of the merge — not as a
+   follow-up.** Same "one action, never two" shape as push-and-open-PR. A
+   lane once waited **two hours** after its blocker had already landed.
+
+   Know the limit of your half: **it is unauditable.** A message you never
+   sent leaves no trace, so nobody can enumerate your omissions afterwards —
+   including you. Attempting that audit yields the merges you made, not the
+   unblocks that existed, and those are different sets. The other half lives
+   with the waiter, who measures its own blocker each heartbeat, and that
+   half is the one that can be checked.
 
 ## Standing hygiene
 
