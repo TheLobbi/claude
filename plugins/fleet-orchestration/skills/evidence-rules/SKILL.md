@@ -40,6 +40,20 @@ rather than a field.
 
 Teach the pair. **If only one survives, it is the waiter's.**
 
+**And that is no longer a design argument — it is settled, three to zero.**
+In one evening, three lanes sat waiting on work that was already done:
+~2 hours, 68 minutes, and **566 minutes**. **None was detected by any
+monitor. Every one was found by someone measuring their own blocker.** In all
+three cases nothing was stale, nothing was malformed, and no instrument had
+anything to report — the merges were correct, the heartbeats were correct and
+current, and a schema validator would have passed every one of those files.
+
+So state it plainly: **the waiter's check is not merely the auditable half,
+it is the only half with a hit rate.** Keep the notify-on-merge requirement,
+but do not let it read as the primary mechanism — the notifier's half leaves
+no trace when it is skipped, which is exactly why it cannot be the one you
+rely on.
+
 The demonstration is two audits that looked identical and were not. One
 session enumerated **its own handoffs** — a set it owns completely — and
 returned a sound negative naming seven items. Another enumerated **its own
@@ -321,6 +335,28 @@ Related traps in the same family:
   permission error and a genuine empty look identical.
 - **A dead instrument is UNKNOWN — neither a red nor a green.** A tool that
   fails to start has not measured anything. Revive it, then measure.
+
+### Three ways an instrument fails you, in ascending order of difficulty
+
+| Class | What it does | The fix |
+|---|---|---|
+| **DEAD** | runs, and lies about what it measured — it never started, or its input was empty | replace or revive it, then measure |
+| **UNINSPECTABLE** | cannot be asked what it does — logic held only in a running process, with no artifact to read | write its state to a file |
+| **UNCONSULTED** | **exists, is correct, is authoritative — and nobody reads it** | *nothing to fix. You simply have to read it.* |
+
+**UNCONSULTED is the worst**, precisely because there is no defect to
+repair. The dead one you replace; the uninspectable one you make readable;
+the correct one has already done its job and is sitting there.
+
+Worked case: two sessions independently addressed a session that had been
+ruled hung hours earlier, in the same hour, **from memory**, while the
+registry file was correct the entire time. One was caught by accident — the
+file was opened for an unrelated question — and the other by the first
+session's confession. **No process caught either.**
+
+Two sessions independently is not carelessness; it is a missing step. The fix
+is a rule about the reader, not the file: **resolve every address from the
+file at send time, never from memory.**
 
 **Does not bite:** an interactive read you are about to act on anyway and
 will notice failing. The discipline is for results that get *quoted*, and for

@@ -37,6 +37,21 @@ and quote what it showed. "Lane X is silent" is not a finding.
 "`heartbeats/lane-x.md` last line at 11:16Z, state `working`, task #123; PR
 #456 head moved at 11:41Z" is.
 
+## The failure this monitor cannot see
+
+Be honest about the boundary. In one evening three lanes sat waiting on work
+that was **already done** — roughly 2 hours, 68 minutes, and **566 minutes**.
+**Not one was detected by any monitor**, including this one. Nothing was
+stale; the heartbeats were correct and current the whole time. One lane spent
+nine and a half hours on the words "a message resumes me."
+
+A monitor watches for **silence**. It cannot see a lane that is talking
+normally about a thing that stopped being true. The only mechanism that
+caught all three was the lane **measuring its own blocker** — see the
+`evidence-rules` skill's coordination medium. So the monitor's job ends
+sooner than it looks, and a fleet that leans on it alone will lose hours it
+never sees.
+
 ## The census, in order
 
 Run this before every replacement decision, and on demand for a status

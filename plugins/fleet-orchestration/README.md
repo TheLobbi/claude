@@ -99,6 +99,15 @@ afterwards, including the merger. "Every waiting lane measures its own
 blocker" is self-verifying by construction. Ship both. If only one survives,
 it is the waiter's.
 
+**That is settled, three to zero.** In one evening three lanes sat waiting on
+work that was already done — roughly 2 hours, 68 minutes, and **566
+minutes**. **None was detected by any monitor. Every one was found by someone
+measuring their own blocker.** Nothing was stale and nothing was malformed in
+any of the three: the merges were correct, the heartbeats were correct and
+current, and the schema validator this plugin ships would have passed every
+one of those files. The waiter's check is not merely the auditable half — it
+is the only half with a hit rate.
+
 ## The four ideas
 
 **1. Heartbeat or be replaced — but read the artifact first.**

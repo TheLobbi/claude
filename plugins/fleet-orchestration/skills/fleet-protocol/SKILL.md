@@ -22,11 +22,19 @@ cannot read messages until the call returns. Subagents are for bounded work
    `| <UTC> | <lane-name> | <session-name> |`. The session name is the
    sidebar title and changes when a human renames it; the registry is
    append-only, and the **last** row for a lane is its current address.
-2. To message a role, read the last registry row for that lane and send to
-   that name. If a send fails to resolve, run `ListAgents` **once**, match
-   the row whose title fits the role, append a fresh registry row, retry
-   once. A role with no registry row is not online — send to the dispatch
-   router instead.
+2. **Resolve every address from the file at send time, never from memory.**
+   Read the last registry row for that lane, then send. If a send fails to
+   resolve, run `ListAgents` **once**, match the row whose title fits the
+   role, append a fresh registry row, retry once. A role with no registry row
+   is not online — send to the dispatch router instead.
+
+   This is a rule about the reader, not the file. Two sessions independently
+   addressed a session that had been ruled hung hours earlier, in the same
+   hour, from memory — while the registry was **correct the entire time**.
+   One was caught by accident, the other by the first's confession, and no
+   process caught either. A correct, authoritative artifact that nobody
+   consults is the hardest instrument failure to fix, because there is
+   nothing to repair.
 3. **Never poll.** Messages enqueue at the receiver and are processed on its
    next turn, so a message *wakes* an idle session. A polling loop over
    `ListAgents` burns turns and proves nothing.
