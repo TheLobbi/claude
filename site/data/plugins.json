@@ -7,16 +7,16 @@
       "name": "Markus Ahling",
       "email": "markus@thelobbi.io"
     },
-    "generatedAt": "2026-08-17T16:26:25.273Z",
+    "generatedAt": "2026-09-04T20:44:07.843Z",
     "repo": "https://github.com/markus41/claude",
     "url": "https://markus41.github.io/claude/"
   },
   "stats": {
-    "plugins": 38,
+    "plugins": 39,
     "subplugins": 6,
-    "commands": 337,
-    "agents": 313,
-    "skills": 288,
+    "commands": 340,
+    "agents": 323,
+    "skills": 292,
     "hooks": 17,
     "mcp": 8,
     "categories": 8
@@ -425,6 +425,39 @@
         "commands": 10,
         "agents": 4,
         "skills": 9,
+        "hooks": 0
+      },
+      "mcp": false,
+      "hasReadme": true
+    },
+    {
+      "name": "fleet-orchestration",
+      "version": "1.0.0",
+      "description": "Run many Claude Code sessions on one codebase without them lying to each other. The session protocol (heartbeats, dispatch-routed addressing, ASSERTED vs DELIVERED, git and merge discipline), ten evidence rules each carrying the incident that produced it and the case where it does not apply, a staleness monitor that reads a lane's artifact before calling it silent, ten descending-model role definitions, and commands to start a fleet, take a census, and produce the founder decision sheet. Repo list, lane names and paths are configuration.",
+      "author": "Markus Ahling",
+      "authorUrl": "",
+      "source": "./plugins/fleet-orchestration",
+      "category": "AI & Claude Code",
+      "keywords": [
+        "orchestration",
+        "multi-agent",
+        "fleet",
+        "protocol",
+        "heartbeat",
+        "evidence",
+        "verification",
+        "falsifier",
+        "code-review",
+        "merge-safety",
+        "git-discipline",
+        "model-routing"
+      ],
+      "license": "MIT",
+      "homepage": "",
+      "counts": {
+        "commands": 3,
+        "agents": 10,
+        "skills": 4,
         "hooks": 0
       },
       "mcp": false,

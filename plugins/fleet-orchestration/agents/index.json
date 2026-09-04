@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "plugin": "fleet-orchestration",
+  "type": "agents",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "fleet-brainstorm",
+      "intent": "Produces evidence-backed improvement proposals across a fleet's repositories and hands them to the planner, who accepts or rejects each one. Use when there is slack in the queue, when looking for what nobody has written down yet, or when converting a review-learnings document into concrete ranked work. Changes no code and files an issue only for accepted proposals. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "management"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/fleet-brainstorm.md"
+    },
+    {
+      "name": "fleet-conflicts",
+      "intent": "Resolves merge conflicts and re-absorbs the base branch on fleet-authored pull requests, and forecasts conflicts across open lane PRs before they reach the merge gate. Use when a merge gate reports a stale base, when a PR conflicts, or when a generated artifact must be regenerated on a combined tree rather than resolved by keeping a side. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "management"
+      ],
+      "inputs": [],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/fleet-conflicts.md"
+    },
+    {
+      "name": "fleet-dispatch",
+      "intent": "The single communications hub between the orchestrator and every other session in a fleet - fan-out, acknowledgement collection, registry upkeep, and digests upward. Use when broadcasting to all lanes, reconciling session names against the registry, taking a status roll-call, pinging a quiet lane, or routing an escalation. Relays verbatim and carries provenance across every hop. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "management"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "medium",
+      "path": "agents/fleet-dispatch.md"
+    },
+    {
+      "name": "fleet-gitops",
+      "intent": "The merge gate for fleet-authored pull requests, plus branch-to-PR coverage and worktree hygiene. Use when an approval arrives and a PR must be merged, when checking that every pushed branch has an open PR, or when runner load needs throttling. Re-reads the checks unfiltered as the literal last action before merging. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "management"
+      ],
+      "inputs": [],
+      "risk": "high",
+      "cost": "medium",
+      "path": "agents/fleet-gitops.md"
+    },
+    {
+      "name": "fleet-lane",
+      "intent": "A repository lane - implements assigned work in exactly one repository, in its own worktree, and ships it as a pull request opened in the same action as the push. Use as the template for every repo lane in a fleet; fill in the repository, base branch and queue from the run's configuration. Delegates bounded edits to workers and verification to verifiers, and never edits a repository it does not own. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "lane"
+      ],
+      "inputs": [],
+      "risk": "medium",
+      "cost": "high",
+      "path": "agents/fleet-lane.md"
+    },
+    {
+      "name": "fleet-planner",
+      "intent": "Owns the ranked backlog and the next-task assignment for every repository in a fleet, and the numbered amendment log that makes the run reconstructable. Use when ranking work across repositories, answering a lane's request for its next item, ruling on a proposal, confirming a second lane's file split, or deciding whether an item is admissible at all. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "management"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/fleet-planner.md"
+    },
+    {
+      "name": "fleet-release",
+      "intent": "Owns the release-readiness board - for each product, what blocks its next release and the exact next action, with every claim proven. Use when asking what is shippable, what a promotion actually contains, what a human still has to decide, or when a blocker clears or appears. Turns a founder decision into one line with the proofs attached. Never merges, releases or deploys. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "management"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/fleet-release.md"
+    },
+    {
+      "name": "fleet-reviewer",
+      "intent": "Adversarial reviewer for pull requests opened by fleet lanes. Use when a lane announces a PR is ready, when a verdict must be issued or re-issued, or when deciding whether a change is a root-cause fix or a workaround. Issues APPROVE or BLOCK scoped to a head SHA, posted as a PR comment, naming the falsifier and the set. Normally runs as its own session; this file doubles as its brief.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "management"
+      ],
+      "inputs": [],
+      "risk": "low",
+      "cost": "high",
+      "path": "agents/fleet-reviewer.md"
+    },
+    {
+      "name": "fleet-verifier",
+      "intent": "Re-runs one stated command, or checks one stated fact, and reports the literal result with its exit code and the size of the set it looked at. Use to promote a claim from ASSERTED to DELIVERED - after a worker reports done, before a verdict is issued, before a number is quoted to anyone. Cheap and mechanical by design; it judges nothing and fixes nothing.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "verifier"
+      ],
+      "inputs": [
+        "command"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "agents/fleet-verifier.md"
+    },
+    {
+      "name": "fleet-worker",
+      "intent": "Executes one bounded implementation task inside a lane's worktree and reports exactly what it did, with commands and results. Use when a lane needs a scoped edit done without spending its own turn on it - dispatch in the background so the lane can keep heartbeating. Makes no scope decisions, opens no pull requests, and never claims success it did not verify.",
+      "tags": [
+        "fleet-orchestration",
+        "agent",
+        "worker"
+      ],
+      "inputs": [
+        "task",
+        "worktree",
+        "acceptance-test"
+      ],
+      "risk": "medium",
+      "cost": "medium",
+      "path": "agents/fleet-worker.md"
+    }
+  ]
+}

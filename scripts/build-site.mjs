@@ -25,6 +25,7 @@ const CATEGORY = {
   'dotnet-blazor': 'Backend & APIs',
   'fastapi-backend': 'Backend & APIs',
   'claude-code-expert': 'AI & Claude Code',
+  'fleet-orchestration': 'AI & Claude Code',
   'claude-code-templating': 'AI & Claude Code',
   'scrapin-aint-easy': 'AI & Claude Code',
   'upgrade-suggestion': 'AI & Claude Code',

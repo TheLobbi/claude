@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "plugin": "fleet-orchestration",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "fleet-orchestration:fleet-census",
+      "intent": "Take a fleet census - every lane's heartbeat age and state, cross-checked against its actual artifacts, classified as standby, blocked-by-design or hung, with the evidence for each verdict",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "monitoring"
+      ],
+      "inputs": [
+        "lane-name"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/fleet-census.md"
+    },
+    {
+      "name": "fleet-orchestration:fleet-decisions",
+      "intent": "Produce the founder decision sheet - every item only the human can decide, each with what it unblocks, what it costs, the exact action, and every state claim stamped with the moment it was measured",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "reporting"
+      ],
+      "inputs": [
+        "output-path"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/fleet-decisions.md"
+    },
+    {
+      "name": "fleet-orchestration:fleet-start",
+      "intent": "Stand up a fleet run - write or read the config, create the run directory, generate the protocol, RACI, briefs and empty logs, and print the exact text to paste into each session",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "bootstrap"
+      ],
+      "inputs": [
+        "run-id"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/fleet-start.md"
+    }
+  ]
+}

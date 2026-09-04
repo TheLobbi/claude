@@ -96,6 +96,16 @@
       "source": "./plugins/fastapi-backend"
     },
     {
+      "name": "fleet-orchestration",
+      "description": "Run many Claude Code sessions on one codebase without them lying to each other. The session protocol (heartbeats, dispatch-routed addressing, ASSERTED vs DELIVERED, git and merge discipline), ten evidence rules each carrying the incident that produced it and the case where it does not apply, a staleness monitor that reads a lane's artifact before calling it silent, ten descending-model role definitions, and commands to start a fleet, take a census, and produce the founder decision sheet. Repo list, lane names and paths are configuration.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "markus@thelobbi.io"
+      },
+      "source": "./plugins/fleet-orchestration"
+    },
+    {
       "name": "frontend-design-system",
       "description": "263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development",
       "version": "2.0.0",
