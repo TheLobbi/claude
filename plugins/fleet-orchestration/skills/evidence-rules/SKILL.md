@@ -413,6 +413,26 @@ arrives wearing the authority of the check that produced it.
   claim preserves its uncertainty; adding a location, number or name the
   source never supplied destroys that uncertainty while looking like
   comprehension. Carry provenance across every hop.
+
+  > **A sharpening never drifts randomly. It drifts toward the more
+  > impressive claim.** So a relayed detail that *flatters the work* is the
+  > first place to check, not the last.
+
+  This is a cheap, mechanical filter, and it beats general scepticism because
+  it tells you where to look. Worked example, from this plugin's own founding
+  anecdote: "applied a rule it had read" was relayed as "applied a rule
+  **unprompted**" — one word, three repetitions, and it inverted the
+  argument. *Unprompted* implies the rule is obvious, which implies writing
+  it down is unnecessary. *Had read it* implies the rule transfers through
+  writing, which is the claim the document exists to make. **The flattering
+  version quietly argued against the work it was decorating.**
+
+- **A plausible explanation is worse than an open question**, because the
+  question stays open until someone measures, and the explanation closes it
+  wrongly. When two numbers disagree and you have a story that reconciles
+  them, the story is a third claim — test it, or say the discrepancy is
+  unexplained. Declining to guess is the correct behaviour, and it will feel
+  unhelpful.
 - **Apply the standard in both directions.** A reviewer who only ever
   corrects downward on other people's claims is doing something else. The
   same falsifier discipline binds your own output.

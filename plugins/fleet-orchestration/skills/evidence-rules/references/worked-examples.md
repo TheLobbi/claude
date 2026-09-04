@@ -274,6 +274,31 @@ apparent independent corroboration it never had.
 concurrency cap in your own workflows" after a grep found no such block — a
 hold count dropped from three to two on an inference the source never made.
 
+**The sharpening that argued against its own document.** This plugin's
+founding anecdote — a fresh session recognising two dead validators as
+UNKNOWN rather than as reds — was relayed three times, including into a
+permanent log, as a session that had *"applied the rule **unprompted**"*. It
+had read the written rules first. One word, and it inverts the argument:
+*unprompted* implies the rule is obvious, which implies writing it down is
+unnecessary; *had read it* implies the rule transfers through writing, which
+is the claim the document exists to make.
+
+The generalisation, worth more than the instance: **a sharpening never drifts
+randomly, it drifts toward the more impressive claim.** So a relayed detail
+that flatters the work is the first place to check, not the last — a cheap
+mechanical filter that beats general scepticism because it says where to
+look.
+
+**The plausible explanation that closed a question wrongly.** Two file counts
+disagreed — 39 and 41 — and a reconciliation was offered: "39 was commit one,
+41 is both commits." It was false; commit one alone was 41. A third party had
+seen the same gap and said *"I am not going to guess which"* — and that
+refusal was the correct behaviour, while the helpfulness was the defect. The
+true accounting, once measured, was 37 plugin files plus 4 wiring files, and
+`39` matched neither: it was the number of **plugins in the marketplace**,
+lifted from a different tool's output line. A count with the wrong noun,
+inside a document about counts needing their nouns.
+
 **The stale verdicts.** An audit of **15** posted approvals found **5**
 invalidated by a moved head with no re-issue. All five were caught by the
 reviewer re-running its own falsifier, not by anyone noticing the comment was

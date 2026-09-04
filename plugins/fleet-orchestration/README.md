@@ -48,7 +48,7 @@ figured it out from nothing".
 | Component | What it does |
 |---|---|
 | `fleet-protocol` skill | The contract: heartbeats, addressing through a dispatch router, ASSERTED vs DELIVERED, git discipline, merge-readiness discipline |
-| `evidence-rules` skill | Nine rules for claims that survive being checked, each with the incident that produced it **and the case where it does not apply** |
+| `evidence-rules` skill | **One claim, ten sightings** — each with the incident that produced it **and the case where it does not apply** |
 | `heartbeat-monitor` skill | Staleness detection, the three silence classes, and the replacement policy |
 | `fleet-roles` skill | The role catalogue, the RACI, and the descending-model rule |
 | 10 agents | Seven management roles, a lane template, a worker, a verifier — each naming its model |
@@ -259,6 +259,15 @@ with the note omitted. Both times the failure was the one this plugin names:
 a spare set that has never met production reads as coverage. The shipped
 version's spare cases are shapes taken from real files, and it now finds
 **46 genuine malformations across those 22 files**.
+
+**The founding anecdote was sharpened three times, in the direction that
+argued against the plugin.** "Applied a rule it had read" was relayed as
+"applied a rule **unprompted**" — one word, and it inverts the case:
+*unprompted* implies the rule is obvious, which implies writing it down is
+unnecessary. The generalisation is now in the skill, and it is cheap enough
+to actually use: **a sharpening never drifts randomly, it drifts toward the
+more impressive claim** — so a relayed detail that flatters the work is the
+first place to check, not the last.
 
 **The predicted failure did not happen.** The one most expected after the
 four-variant episode was that someone would take the corrected predicate and
