@@ -66,6 +66,21 @@
       },
       "additionalProperties": false
     },
+    "review": {
+      "type": "object",
+      "description": "Reviewer parallelism and peer-review routing. Reviewer attention is the scarce resource.",
+      "properties": {
+        "parallelReviewers": { "type": "integer", "minimum": 1, "default": 2 },
+        "parallelReviewersAboveLanes": { "type": "integer", "minimum": 0, "default": 4 },
+        "peerRoutableGlobs": {
+          "type": "array",
+          "description": "A PR whose changed files ALL match goes to a peer lane, never to the lane that wrote it.",
+          "items": { "type": "string" }
+        },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
     "management": {
       "type": "array",
       "items": {

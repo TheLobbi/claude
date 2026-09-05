@@ -15,8 +15,10 @@ Many sessions append to the same run directory.
   hung session, which is the exact failure the heartbeat monitor exists to
   detect, from a cause that has nothing to do with the session.
 - **POSIX:** `>>` on a local filesystem is fine for a single short line.
-- Either way, `${CLAUDE_PLUGIN_ROOT}/scripts/heartbeat.ps1` and
-  `heartbeat.sh` do the right thing for their host.
+- `fleet hb` (in `scripts/fleet.mjs`) uses Node's append flag, which opens
+  with shared read/write on Windows — the same property — and validates the
+  line before writing it. Prefer it; the shell scripts remain for hosts
+  without Node.
 
 ## Exit codes through pipes
 

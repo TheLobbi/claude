@@ -29,11 +29,20 @@ has nothing but its own text.
 
 ## 1. Gather
 
-From `escalations.md`, every open row — each already carries its MEANWHILE.
-Then, from the forge, anything that is founder-class by the config's
-`founderClass` list, whether or not someone escalated it: promotions,
-releases, production changes, tenants, spend, trust chain, organisation
-settings.
+```
+node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs" digest --dry-run
+```
+
+That lists every escalation row since the last digest — each already carries
+its MEANWHILE — plus merges and lanes currently `blocked`. `--dry-run` leaves
+the watermark alone so the router's next real digest is unaffected.
+
+Then, from the forge, anything founder-class by the config's `founderClass`
+list whether or not someone escalated it: promotions, releases, production
+changes, tenants, spend, trust chain, organisation settings. For each
+candidate PR run `fleet checks <repo> <pr>` and paste its verdict line — the
+head, the two readings, the skipped lanes — rather than describing the state
+in prose.
 
 Enumerate **uncapped**. A missed item on this sheet is the failure mode.
 

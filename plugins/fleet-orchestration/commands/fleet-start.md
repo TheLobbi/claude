@@ -1,6 +1,6 @@
 ---
 name: fleet-orchestration:fleet-start
-intent: Stand up a fleet run - write or read the config, create the run directory, generate the protocol, RACI, briefs and empty logs, and print the exact text to paste into each session
+intent: Stand up a fleet run in one pass - doctor, config, run directory, briefs, and the exact text to paste into each session
 tags:
   - fleet-orchestration
   - command
@@ -9,87 +9,86 @@ inputs:
   - run-id
 risk: low
 cost: medium
-description: Stand up a fleet run - write or read the config, create the run directory, generate the protocol, RACI, briefs and empty logs, and print the exact text to paste into each session
+description: Stand up a fleet run in one pass - doctor, config, run directory, briefs, and the exact text to paste into each session
 model: opus
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
 # Start a fleet run
 
-Run id: `$ARGUMENTS` (if empty, use today's date plus a short slug).
+Run id: `$ARGUMENTS` (if empty, today's date plus a short slug).
 
-Load the `fleet-protocol` and `fleet-roles` skills before doing anything
-here. This command **writes files and prints briefs**; it does not open
-sessions — a human does that, because each lane is its own session.
+Load the `fleet-protocol` and `fleet-roles` skills. This command **writes
+files and prints briefs**; it does not open sessions — a human does that,
+because each lane is its own session.
 
-## 1. Resolve the configuration
+## 1. Doctor first
 
-Look for `$FLEET_CONFIG`, then `./fleet.config.json`, then
-`./.fleet/fleet.config.json`.
+```
+node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs" doctor
+```
 
-**If none exists**, copy `${CLAUDE_PLUGIN_ROOT}/config/fleet.config.example.json`
-and fill it in from the repositories actually present. Ask for exactly what
-you cannot determine by looking:
+Fix anything it flags before continuing. A fleet started on an
+unauthenticated `gh` or a missing repo directory fails in twenty places at
+once, each looking like a different problem.
+
+## 2. Config
+
+If `doctor` found no `fleet.config.json`, `init` writes one from
+`config/fleet.config.example.json`. **Edit it before step 3.** Ask for exactly
+what you cannot determine by looking at the repositories present:
 
 - which repositories are in scope, and which are **hands-off**;
-- the base branch per repository (they are not always the same);
-- whether every session authenticates as **one identity** (`sharedIdentity`)
-  — this changes attribution, approval and census mechanics;
-- which decisions are **founder-class** and must escalate rather than
-  proceed.
+- base branch per repository (they differ);
+- whether every session authenticates as **one identity** (`sharedIdentity`);
+- which decisions are **founder-class**.
 
-Never guess a repository name. A lane pointed at the wrong repository is the
-most expensive misconfiguration in this system and it is silent: the lane
-will find something to do.
+Never guess a repository name. A lane pointed at the wrong repository is
+silent: it will find something to do.
 
-## 2. Create the run directory
-
-At `logRoot`. It is **machine-local and never committed** — add it to the
-appropriate ignore file if it sits inside a repository.
+## 3. Create the run directory
 
 ```
-PROTOCOL.md  RACI.md  registry.md  queue.md  acks.md
-escalations.md  reviews.md  outcomes.md
-heartbeats/  briefs/  reports/
+node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs" init $ARGUMENTS
 ```
 
-Seed each log with its header row. `PROTOCOL.md` is the `fleet-protocol`
-skill rendered with this run's config substituted, so a session can read the
-contract without the plugin installed. `RACI.md` comes from the `fleet-roles`
-skill's table, trimmed to the roles actually enabled.
+Creates `<logRoot>/` with seeded `registry.md`, `queue.md`, `acks.md`,
+`escalations.md`, `reviews.md`, `outcomes.md`, and `heartbeats/`, `briefs/`,
+`reports/`; adds the run directory to `.gitignore`. Machine-local, never
+committed.
 
-## 3. Write one brief per role
+Then write `<logRoot>/PROTOCOL.md`: the `fleet-protocol` skill with this
+run's config substituted, so a session can read the contract without the
+plugin installed. And `RACI.md` from the `fleet-roles` table, trimmed to the
+roles enabled.
 
-`briefs/<lane>.md`, from the matching `${CLAUDE_PLUGIN_ROOT}/agents/*.md`
-file, with the run-specific lines filled in: repository, base, worktree root,
-model tier, the initial queue, and the inherited state (empty on a fresh
-run).
+## 4. Briefs
 
-Enable only the roles the fleet's size justifies — a three-lane fleet needs a
-planner and a merge gate, and the rest is overhead. Add **dispatch** and
-**release** early rather than when it hurts: without dispatch, every session
-messages tier 0 and tier 0 becomes the bottleneck it exists to prevent;
-without release, "what blocks the next release and the exact next action" is
-nobody's job and the human ends up doing it.
+One `briefs/<lane>.md` per enabled role, from the matching
+`${CLAUDE_PLUGIN_ROOT}/agents/*.md`, with the run-specific lines filled in:
+repository, base, worktree root, model tier, initial queue, inherited state
+(empty on a fresh run).
 
-## 4. Print the start text
+Enable only what the fleet's size justifies. Add **dispatch** and **release**
+early rather than when it hurts. **Enable two reviewers from the start when
+there are more than four lanes** — reviewer attention was the bottleneck in
+the source run, and the second reviewer was added at hour fifteen.
 
-For each role, print the exact text a human pastes into a new session:
+## 5. Print the start text
+
+`init` prints one line per lane. Each pastes into a new session and ends with
+the one-action registration:
 
 ```
-You are <lane>. Read <logRoot>/PROTOCOL.md first, then
-<logRoot>/briefs/<lane>.md. Register in registry.md and write a `start`
-heartbeat before your first action. Model: <tier>.
+node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs" register <lane> <session-name>
 ```
 
-## 5. Report
+Every session heartbeats with `fleet hb`, never by hand — the line is
+validated on write, so the malformations that cost the source run a false
+"alive" cannot be written.
 
-One block, no prose:
+## 6. Report
 
-- run directory path
-- roles enabled, each with its model tier
-- lanes, each with its repository and base
-- hands-off set, quoted from the config
-- what you asked about and what you assumed
-
-Then stop. Sessions are opened by a human; briefs are read by the sessions.
+One block: run directory, roles enabled with model tiers, lanes with
+repository and base, hands-off set quoted from the config, what you asked
+and what you assumed. Then stop.

@@ -121,6 +121,45 @@ Unnamed subagents, spawned in the background, discarded after one task.
 A worker's "done" is **ASSERTED**. It becomes DELIVERED when a verifier
 re-runs the stated command, or a link (PR, SHA, check state) confirms it.
 
+## Where the velocity comes from
+
+Discipline that costs turns slows a fleet down. The source run spent a real
+fraction of its day on bookkeeping and on waiting for work that was already
+finished. Each item below removes a measured loss, and each is a default in
+`fleet.config.json` or a command in `scripts/fleet.mjs` — not a rule to
+remember.
+
+| Loss in the source run | Mechanism that removes it |
+|---|---|
+| 566 + 68 + ~120 minutes of lanes idle on work that was already done | `fleet blockers <lane>` every heartbeat while `waiting`; exit 1 = move |
+| one reviewer, eight PRs queued, hung at hour 12; second reviewer added at hour 15 | `review.parallelReviewers` — **two from the start** above four lanes, splitting the repo set |
+| management reviewers spent on docs, templates and link fixes | `review.peerRoutableGlobs` — a PR whose files all match goes to a **peer lane** that has run the same gate |
+| 5 of 15 approvals stale against a moved head, none flagged | `fleet verdicts <repo>` at the start of every reviewer cycle |
+| merge gate: 5–6 hand commands per merge, one of them skipped once | `fleet checks` in the same message as the merge; exit 0 is the only state you merge from |
+| a merge invalidated an unrelated PR's green and nobody could know | `fleet unblocks` as part of the merge — both audiences |
+| every session hand-writing registry rows, heartbeats, digests | `fleet register`, `fleet hb`, `fleet digest` |
+| an evening on a CI cap counting runs | `fleet queue-depth` counts **jobs** |
+| 4 of ~40 assigned items already fixed before a worktree was cut | verify the symptom before the worktree — rule 9, unchanged; it is a judgement, not a command |
+| many PRs to the same base merged one at a time, each re-absorbing | **batch-integration drain**: one integration branch absorbs the queue, re-absorbs the base once, merges once with a merge commit — squash orphans the heads |
+
+Two of these deserve a sentence more than the table gives them.
+
+**Two reviewers from the start.** Reviewer *attention* is the fleet's scarce
+resource, not reviewer assignment. Split the repository set between two
+concurrent reviewers, with in-flight items staying with whoever already holds
+them. Adding the second reviewer late, under a queue, is how the source run
+did it; adding it first costs one session and removes the bottleneck the
+whole management tier existed to avoid.
+
+**Peer review for mechanical changes.** Docs, templates, issue forms, link
+fixes — anything whose correctness a gate already decided — goes to a lane
+that has run that gate, not to a management reviewer. The peer is bound by
+every rule the reviewer is bound by: verdict as a PR comment, scoped to the
+head SHA, naming the falsifier and the set. Never route a lane to its own
+branch. This distributes the scarce resource without lowering the bar, and
+`review.peerRoutableGlobs` is what makes it a routing rule rather than a
+judgement call each time.
+
 ## The RACI
 
 Write one per run. The activities that need an explicit owner, because they

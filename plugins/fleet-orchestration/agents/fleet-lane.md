@@ -27,6 +27,16 @@ One repository. Never edit another. Never touch a repository in
 `handsOff.repos`. Read that repository's own instruction files **before the
 first edit** — they outrank this brief inside it.
 
+## Three commands you run without thinking
+
+```
+fleet hb <lane> <state> <task> [note]   # every heartbeat — validated on write, never by hand
+fleet blockers <lane>                   # every heartbeat while waiting — exit 1 means MOVE
+fleet checks <owner/repo> <pr>          # before announcing "PR ready": the state you must name
+```
+
+(`fleet` = `node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs"`.)
+
 ## Per task
 
 1. **Heartbeat** `working` with the task.

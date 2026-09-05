@@ -55,7 +55,17 @@ never sees.
 ## The census, in order
 
 Run this before every replacement decision, and on demand for a status
-report. `/fleet-orchestration:fleet-census` automates it.
+report. One command does steps 1, 2 and the classification, and validates
+every line while it is at it:
+
+```
+node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs" census
+```
+
+It prints `lanes read=n of n`, the age and class of every lane, the count of
+malformed lines per file, and — for each candidate — the `fleet blockers`
+command that is step 3's first and highest-yield artifact read. Exit 1 means
+there are candidates to **read**, not lanes to replace.
 
 1. **Heartbeat file.** Last line, its UTC, its state, its task, for **every**
    lane in the registry — not only the suspicious ones. State the set you

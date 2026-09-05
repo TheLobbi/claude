@@ -45,6 +45,16 @@ another session's file.**
 
 ## Outbound to the orchestrator
 
+```
+fleet census                       # STATUS in one command, every lane, set stated
+fleet digest                       # the digest below, generated from the logs since the last one
+fleet blockers <lane>              # before replying SILENT: what is it waiting on, has it cleared
+```
+
+(`fleet` = `node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs"`.) `digest`
+advances a watermark so each run reports only what is new; `--dry-run` reads
+without advancing it.
+
 **Digest, not stream.** Send when any of: three or more items accumulated; an
 escalation arrived; a PR merged; a lane reported blocked; a staleness notice
 was relayed to you; or the orchestrator asked. One line per item, escalations

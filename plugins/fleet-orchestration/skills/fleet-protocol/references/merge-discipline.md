@@ -3,6 +3,21 @@
 The merge gate is the one place where a wrong claim reaches customers. These
 steps exist because each was skipped once.
 
+**Three of them are one command each**, and the command cannot skip the
+sub-steps a person does:
+
+```
+fleet verdicts <owner/repo>          # before: which posted verdicts have a moved head
+fleet checks   <owner/repo> <pr>     # last action before the merge command, same message
+fleet unblocks <owner/repo> <pr>     # as part of the merge: both audiences
+```
+
+(`fleet` = `node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs"`.) `checks` reads
+the head fresh, groups the rollup by run id, reads each entry by its type,
+prints the raw list beside a second reading through a different mechanism,
+names the skipped lanes, and exits 0 only when the verdict is GREEN **and**
+the two readings agree. Steps 2, 4, 5 and 6 below are what it does.
+
 ## The gate, in order
 
 1. **Receive an approval scoped to a SHA.** `APPROVE <repo> #<n> head <sha>`.

@@ -22,6 +22,17 @@
     "intervalMinutes": 15,
     "staleMinutes": 25
   },
+  "review": {
+    "parallelReviewers": 2,
+    "parallelReviewersAboveLanes": 4,
+    "peerRoutableGlobs": [
+      "**/*.md",
+      "**/.github/ISSUE_TEMPLATE/**",
+      "**/templates/**",
+      "**/docs/**"
+    ],
+    "note": "A PR whose changed files ALL match peerRoutableGlobs goes to a peer lane that has run the same gate, not to a management reviewer. Never the lane that wrote the branch."
+  },
   "management": [
     { "role": "planner", "model": "judgement", "enabled": true },
     { "role": "reviewer", "model": "judgement", "enabled": true },

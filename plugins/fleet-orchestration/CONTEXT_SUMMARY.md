@@ -6,7 +6,10 @@ other. Ships a session protocol, the evidence rules that keep claims honest,
 a staleness monitor, descending-model role definitions, and three commands.
 
 ## At a glance
-- Commands: 3 · Agents: 10 · Skills: 4
+- Commands: 6 · Agents: 10 · Skills: 4 · CLI: `scripts/fleet.mjs` (11 subcommands)
+- The protocol is a **tool**: `fleet hb|register|census|blockers|checks|
+  verdicts|unblocks|queue-depth|digest|init|doctor`, each with its evidence
+  rule built in. Prefer the command to the hand-written ritual.
 - Repo list, lane names, paths and hands-off sets are **configuration**
   (`config/fleet.config.example.json`), never hardcoded.
 - Keywords: orchestration, multi-agent, protocol, heartbeat, evidence,
@@ -31,6 +34,7 @@ a staleness monitor, descending-model role definitions, and three commands.
 ## When to open deeper docs
 | Signal | Open docs | Why |
 | --- | --- | --- |
+| Any protocol ritual — heartbeat, census, checks, blockers | `node scripts/fleet.mjs --help` | One command each; the rule is inside it. |
 | Starting or joining a fleet run | `skills/fleet-protocol/SKILL.md` | The contract every session reads first. |
 | Writing a PR body, verdict, or any negative claim | `skills/evidence-rules/SKILL.md` | Falsifier, set size, exit-code-before-output. |
 | A session looks silent or hung | `skills/heartbeat-monitor/SKILL.md` | Staleness thresholds and the replacement policy. |

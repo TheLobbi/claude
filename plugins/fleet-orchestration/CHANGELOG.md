@@ -2,6 +2,56 @@
 
 All notable changes to the `fleet-orchestration` plugin.
 
+## 1.1.0
+
+The protocol as a tool. Discipline that costs turns slows a fleet down; this
+release removes the turns.
+
+### `scripts/fleet.mjs`
+
+A zero-dependency CLI, eleven subcommands, each replacing a ritual a session
+used to spend several turns on by hand, with the governing evidence rule
+built in so it cannot be skipped:
+
+- `hb` — heartbeat validated on write; refuses the three malformations that
+  produced a false "alive".
+- `register` — registry row and first heartbeat in one action.
+- `census` — every lane's age, state and class; malformed lines counted;
+  candidates get the artifact-read command printed beside them.
+- `blockers` — **the waiter's check**: reads a lane's `waiting` heartbeats,
+  asks the forge whether each named PR/issue has cleared, exits 1 when the
+  lane can move. Against the source run's live data it found 8 of 11 refs
+  already cleared for the lane that idled 68 minutes on a merged PR.
+- `checks` — head read fresh; rollup grouped by run id, newest wins; entries
+  read by `__typename` (`CheckRun.conclusion` vs `StatusContext.state`); a
+  second reading via `gh pr checks`; skipped lanes named; `mergeStateStatus`
+  printed and labelled never-readiness. Exit 0 only on GREEN with both
+  readings agreeing.
+- `verdicts` — posted APPROVE/BLOCK comments whose head has moved.
+- `unblocks` — after a merge, both audiences: lanes waiting on it, and open
+  PRs whose files it touched.
+- `queue-depth` — CI load in **jobs**, not runs.
+- `digest` — the router's digest from the logs, watermark-based.
+- `init`, `doctor`.
+
+`--self-test` proves the pure logic on fixtures — the double-run rollup, the
+mixed-type rollup, the empty-string conclusion — with two mutations showing
+grouping and the type switch are each load-bearing.
+
+### Commands
+
+Three added, all thin wrappers: `fleet-blockers`, `fleet-checks`,
+`fleet-unblocks`. `fleet-start` now runs `doctor` and `init`; `fleet-census`
+runs `census` then `blockers`; `fleet-decisions` gathers via `digest`.
+
+### Roles and config
+
+`fleet-roles` gains *Where the velocity comes from*: a table of measured
+losses in the source run and the mechanism that removes each. Config gains a
+`review` block — `parallelReviewers` (two from the start above four lanes)
+and `peerRoutableGlobs` (mechanical PRs to a peer lane that has run the same
+gate). Every agent file names the commands it runs.
+
 ## 1.0.0
 
 First release. Packages the multi-session orchestration system from a

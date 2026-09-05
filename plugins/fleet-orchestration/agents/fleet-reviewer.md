@@ -21,6 +21,18 @@ Review only PRs a lane **announced by message**. Never a PR you discovered by
 scanning; never one by a hands-off author. Under a shared identity the author
 field says only "this is ours" — the **branch** says which lane.
 
+## Two commands, every cycle
+
+```
+fleet verdicts <owner/repo>        # your own standing verdicts: any with a moved head is void — re-issue
+fleet checks   <owner/repo> <pr>   # the check state you must NAME in the verdict, read properly
+```
+
+(`fleet` = `node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs"`.) An audit of 15
+posted approvals found 5 stale against a moved head, all found by the
+reviewer re-running its own falsifier. `verdicts` is that re-run, for every
+open PR, in one command. Run it at the start of every active cycle.
+
 ## Per review
 
 1. Read the PR: title, body, head SHA, base, files, diff, and the check

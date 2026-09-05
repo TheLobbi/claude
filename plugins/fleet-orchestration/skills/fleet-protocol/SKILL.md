@@ -10,6 +10,29 @@ Everything fleet-specific — repo names, lane names, paths, bases, hands-off
 sets — lives in `fleet.config.json` (see `references/configuration.md`). This
 file names no repository.
 
+**The protocol is a tool, not a reading assignment.** Every ritual below has a
+one-command form in `${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs`, and the
+evidence rule that governs it is built into the command so it cannot be
+skipped. Prefer the command to the hand-written version every time — the
+hand-written versions are what cost the source run hours.
+
+| Ritual | Command |
+|---|---|
+| register + first heartbeat, one action | `fleet register <lane> <session>` |
+| heartbeat, validated on write | `fleet hb <lane> <state> <task> [note]` |
+| what am I waiting on, has it cleared | `fleet blockers <lane>` |
+| every lane's state and age | `fleet census` |
+| a PR's check state, read properly | `fleet checks <owner/repo> <pr>` |
+| which posted verdicts have gone stale | `fleet verdicts <owner/repo>` |
+| who a merge unblocks and whose green it broke | `fleet unblocks <owner/repo> <pr>` |
+| CI load in jobs, not runs | `fleet queue-depth <owner/repo>` |
+| the router's digest | `fleet digest` |
+| a run directory from a config | `fleet init <run-id>` · `fleet doctor` |
+
+(`fleet` = `node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs"`; `--self-test`
+proves the pure logic on fixtures, including the double-run and mixed-type
+check cases.)
+
 **Session mode.** Each lane is its **own session**, not a subagent. A
 foreground `Agent` call blocks the caller's turn: it cannot heartbeat and
 cannot read messages until the call returns. Subagents are for bounded work
@@ -88,10 +111,13 @@ expected to run long, and at least every `heartbeat.intervalMinutes`
   `standby | <next action when work arrives> |` is genuinely idle. Collapsing
   them makes a blocked lane and an idle lane identical in a census; a lane
   once sat blocked for **two hours** after its blocker had cleared.
-- **Whatever you are waiting on, measure it yourself each heartbeat.** The
-  merger telling you is the other half of that rule and it is unauditable —
-  it leaves no trace, so nobody can verify it was sent, including the merger.
-  Your own measurement leaves one.
+- **Whatever you are waiting on, measure it yourself each heartbeat:**
+  `fleet blockers <your-lane>`. It reads the refs in your own `waiting`
+  heartbeats and asks the forge whether each has cleared — exit 1 means
+  move. The merger telling you is the other half of that rule and it is
+  unauditable — it leaves no trace, so nobody can verify it was sent,
+  including the merger. Your own measurement leaves one, and it caught 3 of 3
+  idle-on-done-work cases that no monitor saw.
 - Idle with nothing queued: write `standby` and **end your turn**. A message
   wakes you. Standby is not death.
 - Your predecessor (a replaced session of the same lane name) left its last

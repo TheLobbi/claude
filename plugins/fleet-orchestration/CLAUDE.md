@@ -7,12 +7,14 @@ monitor and replacement policy, descending-model role definitions, and three
 commands (start a fleet, take a census, produce the founder decision sheet).
 
 ## What's inside
-- Commands: 3 (see `commands/`)
+- Commands: 6 (see `commands/`)
 - Agents: 10 (see `agents/`)
 - Skills: 4 (see `skills/`)
 - Config: `config/fleet.config.example.json`, `config/fleet.schema.json`
-- Scripts: `scripts/heartbeat.ps1`, `scripts/heartbeat.sh`,
-  `scripts/validate-heartbeat.mjs` (gate for the heartbeat line format)
+- CLI: `scripts/fleet.mjs` — the protocol as a tool, 11 subcommands, zero
+  dependencies, `--self-test` on fixtures. Commands and agents call it.
+- Scripts: `scripts/validate-heartbeat.mjs` (gate for the heartbeat line
+  format), `scripts/heartbeat.ps1`, `scripts/heartbeat.sh`
 - Docs: `docs/platform-notes.md`, `docs/optional-hooks.md`
 
 ## The invariant that makes this plugin reusable
@@ -24,7 +26,11 @@ it names something specific to one fleet; if it does, it belongs in
 Machine-absolute paths are never committed here — not in a doc, not in an
 example, not in a script default.
 
-## Two design decisions, so they are not undone by accident
+## Three design decisions, so they are not undone by accident
+- **`fleet.mjs` has zero dependencies and shells out only to `gh`.** Every
+  forge call checks the exit code before reading stdout and never parses an
+  error body as data. Keep it that way; a dependency here is a dependency
+  for every fleet that installs the plugin.
 - **No `hooks/hooks.json`.** A plugin hook is active the moment the plugin is
   enabled, and these rules are too opinionated to impose on every repository
   a user has. The hooks live in `docs/optional-hooks.md` as opt-in.
@@ -54,6 +60,7 @@ pnpm check:plugin-context
 pnpm build:site && pnpm check:site
 claude plugin validate ./plugins/fleet-orchestration --strict
 node plugins/fleet-orchestration/scripts/validate-heartbeat.mjs --self-test
+node plugins/fleet-orchestration/scripts/fleet.mjs --self-test
 ```
 
 The site data file is generated and tracked: adding a plugin without

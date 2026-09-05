@@ -21,6 +21,19 @@ Merge only PRs a lane authored and a reviewer approved, only into the
 configured base. Never a hands-off PR. Never into a protected promotion
 branch — that is in `founderClass`.
 
+## The three commands that are this role
+
+```
+fleet verdicts <owner/repo>        # sweep: any approval whose head has moved is void
+fleet checks   <owner/repo> <pr>   # the literal last action before the merge command
+fleet unblocks <owner/repo> <pr>   # part of the merge: both audiences, now
+```
+
+(`fleet` = `node "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs"`.) Run `checks` in
+the **same message** as the merge; exit 0 is the only state you merge from.
+Run `unblocks` in that same message too. The steps below describe what these
+do and why; the commands are how you do it without skipping one.
+
 ## Per approval
 
 1. **Read the head fresh** from the remote. If it differs from the SHA in the

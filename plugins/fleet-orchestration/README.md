@@ -47,13 +47,39 @@ figured it out from nothing".
 
 | Component | What it does |
 |---|---|
+| **`scripts/fleet.mjs`** | **The protocol as a tool.** Eleven subcommands, zero dependencies; every evidence rule that governs a ritual is built into the command for it, so it costs no turns and cannot be skipped |
 | `fleet-protocol` skill | The contract: heartbeats, addressing through a dispatch router, ASSERTED vs DELIVERED, git discipline, merge-readiness discipline |
 | `evidence-rules` skill | **One claim, ten sightings** — each with the incident that produced it **and the case where it does not apply** |
 | `heartbeat-monitor` skill | Staleness detection, the three silence classes, and the replacement policy |
-| `fleet-roles` skill | The role catalogue, the RACI, and the descending-model rule |
+| `fleet-roles` skill | The role catalogue, the RACI, the descending-model rule, and where the velocity comes from |
 | 10 agents | Seven management roles, a lane template, a worker, a verifier — each naming its model |
-| 3 commands | `/fleet-start`, `/fleet-census`, `/fleet-decisions` |
+| 6 commands | `/fleet-start`, `/fleet-census`, `/fleet-blockers`, `/fleet-checks`, `/fleet-unblocks`, `/fleet-decisions` |
 | `config/` | Every fleet-specific name, in one file, with a JSON Schema |
+
+## Velocity — what the tooling buys, measured
+
+Rules that cost turns slow a fleet down. The source run lost hours to
+bookkeeping and to lanes waiting on work that was already finished. Each row
+is a loss that was measured there, and the one-command form that removes it.
+**Every command below was run against that run's live data before this
+shipped**, and each reproduced the incident that motivated it.
+
+| Ritual, by hand | Turns | One command | Proved on live data |
+|---|---|---|---|
+| "what am I waiting on, has it cleared?" — usually never asked | ∞ (566 min, 68 min, ~2 h idle) | `fleet blockers <lane>` | found **8 of 11** refs already cleared for the lane that idled 68 min on a merged PR; **10 of 16** for another |
+| census: read 22 files, age each, classify, validate | 6–10 | `fleet census` | 22 of 22 lanes, classes, 63 malformed lines flagged, one command |
+| merge-gate check read: fresh head, rollup by type, group by run, second reading | 5–6, one skipped once | `fleet checks <repo> <pr>` | 15 entries / 1 run / 5 skipped named; two readings agree; the double-run and mixed-type cases are in its self-test |
+| stale-verdict sweep across open PRs | never done until it hurt | `fleet verdicts <repo>` | caught an APPROVE at `d126173c` stale against head `8f52ad96` |
+| after a merge: who is unblocked, whose green just broke | never done — unauditable | `fleet unblocks <repo> <pr>` | found the lane whose heartbeat waited on the merged PR |
+| CI load | counted runs, built a wrong cap | `fleet queue-depth <repo>` | 1 run, **14 jobs** |
+| registry row + first heartbeat | 2, sometimes 1 | `fleet register <lane> <session>` | one action |
+| heartbeat, format by memory | 1, malformed 3 ways in one evening | `fleet hb …` | refuses a malformed line |
+| the router's digest | read 4 files, dedupe by hand | `fleet digest` | watermark-based |
+
+Plus two defaults in the config that the source run learned at hour fifteen:
+**two reviewers from the start** above four lanes, and **peer review for
+mechanical changes** by file glob. Both are in `fleet-roles` → *Where the
+velocity comes from*.
 
 **Nothing in this plugin names a repository, a lane, a path, an organisation
 or a person.** That is a maintained invariant, not an aspiration — see
@@ -332,14 +358,14 @@ fleet-orchestration/
 ├── CONTEXT_SUMMARY.md          bootstrap summary (budget-capped)
 ├── CLAUDE.md                   how to work on this plugin
 ├── agents/                     10 role definitions, each naming its model
-├── commands/                   fleet-start · fleet-census · fleet-decisions
+├── commands/                   fleet-start · fleet-census · fleet-blockers · fleet-checks · fleet-unblocks · fleet-decisions
 ├── skills/
 │   ├── fleet-protocol/         + 4 references
 │   ├── evidence-rules/         + worked examples
 │   ├── heartbeat-monitor/      + replacement policy
 │   └── fleet-roles/
 ├── config/                     example config + JSON Schema
-├── scripts/                    heartbeat.ps1 · heartbeat.sh · validate-heartbeat.mjs
+├── scripts/                    fleet.mjs (the CLI) · validate-heartbeat.mjs · heartbeat.ps1 · heartbeat.sh
 └── docs/                       platform-notes · optional-hooks
 ```
 
