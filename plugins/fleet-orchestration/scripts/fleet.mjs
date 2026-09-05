@@ -240,6 +240,32 @@ export function extractRefs(text) {
   return [...refs];
 }
 
+// ----------------------------------------------------------------- verdicts
+
+/**
+ * Classify one verdict-bearing item. Three objects share the word "state"
+ * and only one of them means what it says:
+ *   - a formal review: state APPROVED / CHANGES_REQUESTED is the verdict —
+ *     but state COMMENTED for an approve delivered as a comment, so the body
+ *     must be read;
+ *   - an issue comment: no state at all; the body is the verdict.
+ * Returns { kind, shas } or null when the item carries no verdict.
+ */
+export function verdictOf({ body = '', reviewState = null, commitId = null }) {
+  const shas = new Set();
+  if (commitId) shas.add(commitId);
+  for (const m of body.matchAll(/\b([0-9a-f]{7,40})\b/g)) shas.add(m[1]);
+  let kind = null;
+  if (reviewState === 'APPROVED') kind = 'APPROVE';
+  else if (reviewState === 'CHANGES_REQUESTED') kind = 'BLOCK';
+  else {
+    const explicit = body.match(/verdict\W{0,6}(APPROVE|BLOCK)\b/i)?.[1];
+    const first = body.match(/\b(APPROVE|BLOCK)\b/)?.[1];
+    kind = (explicit || first || null)?.toUpperCase() ?? null;
+  }
+  return kind ? { kind, shas: [...shas] } : null;
+}
+
 // ------------------------------------------------------------------- checks
 
 const runIdOf = (e) => (e.detailsUrl || e.targetUrl || '').match(/\/runs\/(\d+)/)?.[1] || (e.__typename === 'StatusContext' ? 'status-context' : 'unknown');
@@ -483,30 +509,30 @@ function cmdVerdicts({ flags, positional }) {
   let stale = 0;
   let current = 0;
   let none = 0;
-  const shaRe = /\b([0-9a-f]{7,40})\b/g;
   for (const n of prs) {
     const pr = ghJson(['pr', 'view', String(n), '-R', repo, '--json', 'headRefOid,title']);
-    const comments = ghPaginate(`repos/${repo}/issues/${n}/comments?per_page=100`);
-    const verdicts = comments.filter((c) => /\b(APPROVE|BLOCK)\b/.test(c.body || ''));
+    // Both sources: issue comments (the only channel under a shared identity)
+    // and formal reviews (which carry commit_id natively — better than a
+    // regexed sha — but whose .state reads COMMENTED for an approve-as-comment).
+    const comments = ghPaginate(`repos/${repo}/issues/${n}/comments?per_page=100`)
+      .map((c) => ({ at: c.created_at, src: 'comment', v: verdictOf({ body: c.body }) }));
+    const reviews = ghPaginate(`repos/${repo}/pulls/${n}/reviews?per_page=100`)
+      .map((r) => ({ at: r.submitted_at, src: `review:${r.state}`, v: verdictOf({ body: r.body, reviewState: r.state, commitId: r.commit_id }) }));
+    const verdicts = [...comments, ...reviews].filter((x) => x.v).sort((a, b) => (a.at < b.at ? -1 : 1));
     if (!verdicts.length) {
       none++;
       out(`  #${n}  ${'no verdict'.padEnd(18)} head ${pr.headRefOid.slice(0, 8)}  ${pr.title.slice(0, 60)}`);
       continue;
     }
     const last = verdicts.at(-1);
-    // Prefer an explicit "verdict: X" phrase; otherwise the first of the two words to appear.
-    const explicit = last.body.match(/verdict\W{0,6}(APPROVE|BLOCK)\b/i)?.[1];
-    const first = last.body.match(/\b(APPROVE|BLOCK)\b/)?.[1];
-    const kind = (explicit || first || 'VERDICT').toUpperCase();
-    const shas = [...(last.body.matchAll(shaRe))].map((m) => m[1]);
     const names = pr.headRefOid;
-    const bound = shas.find((s) => names.startsWith(s));
+    const bound = last.v.shas.find((s) => names.startsWith(s) || s.startsWith(names.slice(0, 7)));
     if (bound) {
       current++;
-      out(`  #${n}  ${(kind + ' current').padEnd(18)} head ${names.slice(0, 8)}  verdict ${last.created_at}`);
+      out(`  #${n}  ${(last.v.kind + ' current').padEnd(18)} head ${names.slice(0, 8)}  ${last.src} ${last.at}`);
     } else {
       stale++;
-      out(`  #${n}  ${(kind + ' STALE').padEnd(18)} head ${names.slice(0, 8)}  verdict ${last.created_at} names ${shas.length ? shas.map((s) => s.slice(0, 8)).join(',') : 'NO SHA'} — re-issue required`);
+      out(`  #${n}  ${(last.v.kind + ' STALE').padEnd(18)} head ${names.slice(0, 8)}  ${last.src} ${last.at} names ${last.v.shas.length ? last.v.shas.map((s) => s.slice(0, 8)).join(',') : 'NO SHA'} — re-issue required`);
     }
   }
   out('');
@@ -742,6 +768,15 @@ function selfTest() {
   ok(!running.settled && /PENDING/.test(running.result), 'empty-string conclusion while running is PENDING, not settled');
   const pendingV = verdictFor(groupRuns([{ __typename: 'StatusContext', context: 'v', state: 'PENDING' }]));
   ok(pendingV.verdict === 'PENDING', 'a pending StatusContext is not settled');
+
+  out('verdicts: three objects, one field name');
+  ok(verdictOf({ body: 'Verdict: APPROVE at abc1234def', reviewState: null })?.kind === 'APPROVE', 'issue comment: body is the verdict');
+  ok(verdictOf({ body: 'lgtm', reviewState: 'APPROVED', commitId: 'deadbeef' })?.kind === 'APPROVE', 'formal review APPROVED: state is the verdict');
+  ok(verdictOf({ body: '', reviewState: 'CHANGES_REQUESTED', commitId: 'deadbeef' })?.kind === 'BLOCK', 'formal review CHANGES_REQUESTED: BLOCK');
+  const asComment = verdictOf({ body: '## Peer verdict: APPROVE — head `0123456789abcdef`', reviewState: 'COMMENTED', commitId: 'cafebabe' });
+  ok(asComment?.kind === 'APPROVE', 'review state COMMENTED with APPROVE in the body: the STATE LIES, the body is the verdict');
+  ok(asComment?.shas.includes('cafebabe') && asComment?.shas.includes('0123456789abcdef'), 'commit_id and body shas both bind the verdict');
+  ok(verdictOf({ body: 'just a question', reviewState: 'COMMENTED' }) === null, 'a COMMENTED review with no verdict word is not a verdict');
 
   out('mutations — each must break exactly its own case');
   // Mutation 1: ungrouped tally (what a naive reader does) must FAIL the double-run case.
