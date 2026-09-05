@@ -174,6 +174,9 @@ function selfTest() {
     ['unknown-state', '2026-01-15T09:04:11Z | thinking | task | note'],
     ['empty-task', '2026-01-15T09:04:11Z | working |  | note'],
     ['too-few-fields', '2026-01-15T09:04:11Z | working'],
+    // Two more shapes observed in live files the same night, hand-typed:
+    ['placeholder-timestamp', '<UTC> | working | forgot to fill the template |'],
+    ['hand-typed-timestamp', '2026-09-04 21:30 | working | typed the clock by hand |'],
   ];
 
   // WHERE THIS GATE DOES NOT BITE, stated rather than papered over:

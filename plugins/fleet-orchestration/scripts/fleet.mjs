@@ -34,15 +34,17 @@
  */
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+// ONE copy of the heartbeat schema. The gate and the writer must agree, so
+// the writer imports the gate rather than carrying its own.
+import { STATES, isHeartbeatAttempt, validateLine } from './validate-heartbeat.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const STATES = ['start', 'working', 'waiting', 'blocked', 'delivered', 'standby'];
 const UTC_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
-const STARTS_WITH_UTC = /^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/;
 
 // ---------------------------------------------------------------- utilities
 
@@ -70,12 +72,59 @@ function parseArgs(argv) {
   return { flags, positional };
 }
 
-/** Append with FileShare-tolerant semantics on every platform we can. */
-function appendLine(file, line) {
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  // Node's 'a' flag is O_APPEND; on Windows it opens with share-read/write,
-  // which is the property the protocol needs (see docs/platform-notes.md).
-  fs.appendFileSync(file, line.endsWith('\n') ? line : `${line}\n`, 'utf8');
+/**
+ * Append ONE line and READ IT BACK before reporting success.
+ *
+ * A shared helper that no-ops quietly is worse than twenty lanes appending by
+ * hand: hand-rolled appends fail independently and idiosyncratically; one
+ * helper fails them all uniformly, and a monitor reading those files cannot
+ * tell the difference. For a heartbeat that is the direction that costs a
+ * lane — silent skip, stale file, HUNG, replaced. "Not written", "denied" and
+ * "skipped" leave identical bytes, so the file cannot say otherwise; only a
+ * read-back can. A control that happens to be loud is not a control.
+ *
+ * Returns { ok: true } or { ok: false, stage, reason } with stage one of
+ * compose | append | readback. Never throws. Callers MUST print on both
+ * branches.
+ */
+export function writeVerified(file, line) {
+  // Compose-time defects observed in the wild: an interpolated newline that
+  // split one entry across two lines, and a CRLF tail that corrupted the
+  // last field. A line is one line.
+  if (/[\r\n]/.test(line)) {
+    return { ok: false, stage: 'compose', reason: 'line contains a CR or LF — an interpolated newline splits the entry across two lines; a CRLF tail corrupts the last field' };
+  }
+  try {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    // Node's 'a' flag is O_APPEND; on Windows it opens with share-read/write,
+    // which is the property the protocol needs (see docs/platform-notes.md).
+    fs.appendFileSync(file, `${line}\n`, 'utf8');
+  } catch (e) {
+    return { ok: false, stage: 'append', reason: e.message };
+  }
+  return readBack(file, line);
+}
+
+/** The positive control: is this exact line in the file now? */
+export function readBack(file, line) {
+  let text;
+  try {
+    text = fs.readFileSync(file, 'utf8');
+  } catch (e) {
+    return { ok: false, stage: 'readback', reason: `could not read the file back: ${e.message}` };
+  }
+  if (!text.split(/\r?\n/).some((l) => l === line)) {
+    return { ok: false, stage: 'readback', reason: 'the exact line is not in the file after the append — not written, denied, or corrupted; the bytes cannot say which' };
+  }
+  return { ok: true };
+}
+
+/** Print the failure branch. Every write path calls this or prints success. */
+function reportWriteFailure(what, file, line, r, code = 2) {
+  err(`${what} FAILED [${r.stage}] ${r.reason}`);
+  err(`  file: ${file}`);
+  err(`  line: ${line}`);
+  process.exit(code);
 }
 
 // ------------------------------------------------------------------- config
@@ -147,30 +196,7 @@ function ghPaginate(endpoint) {
 }
 
 // ---------------------------------------------------------------- heartbeat
-
-export function isHeartbeatAttempt(line) {
-  if (STARTS_WITH_UTC.test(line)) return true;
-  if (line.trimStart().startsWith('|')) return true;
-  const f = line.split('|').map((x) => x.trim());
-  return f.length >= 4 && STATES.includes(f[1]);
-}
-
-export function validateLine(line) {
-  const reasons = [];
-  if (!isHeartbeatAttempt(line)) return reasons;
-  if (/\\[rn]/.test(line)) reasons.push('literal \\n or \\r escape');
-  if (line.trimStart().startsWith('|')) reasons.push('leading "|" shifts every field — the timestamp parses as the state');
-  const parts = line.split('|');
-  if (parts.length < 3) {
-    reasons.push(`${parts.length} field(s), expected at least 3`);
-    return reasons;
-  }
-  const [utc, state, task] = [parts[0], parts[1], parts[2]].map((f) => f.trim());
-  if (!UTC_RE.test(utc)) reasons.push(`field 1 "${utc}" is not YYYY-MM-DDTHH:MM:SSZ`);
-  if (!STATES.includes(state)) reasons.push(`field 2 "${state}" not in ${STATES.join('|')}`);
-  if (!task) reasons.push('field 3 (task) empty');
-  return reasons;
-}
+// isHeartbeatAttempt / validateLine / STATES come from validate-heartbeat.mjs.
 
 export function parseHeartbeat(line) {
   const parts = line.split('|');
@@ -338,10 +364,12 @@ function cmdHb({ flags, positional }) {
   const cfg = loadConfig(flags);
   const root = logRootFrom(flags, cfg) || die('no run directory: pass --log-root or a fleet.config.json');
   const line = `${nowUtc()} | ${state} | ${task} | ${noteParts.join(' ')}`;
+  const file = path.join(root, 'heartbeats', `${lane}.md`);
   const reasons = validateLine(line);
-  if (reasons.length) die(`refusing to write a malformed heartbeat: ${reasons.join('; ')}`, 1);
-  appendLine(path.join(root, 'heartbeats', `${lane}.md`), line);
-  out(line);
+  if (reasons.length) reportWriteFailure('HB', file, line, { stage: 'validate', reason: reasons.join('; ') }, 1);
+  const r = writeVerified(file, line);
+  if (!r.ok) reportWriteFailure('HB', file, line, r);
+  out(`HB OK (read back) ${line}`);
 }
 
 function cmdRegister({ flags, positional }) {
@@ -350,10 +378,21 @@ function cmdRegister({ flags, positional }) {
   const cfg = loadConfig(flags);
   const root = logRootFrom(flags, cfg) || die('no run directory: pass --log-root or a fleet.config.json');
   const utc = nowUtc();
-  // ONE action: the registry row and the start heartbeat, or neither.
-  appendLine(path.join(root, 'registry.md'), `| ${utc} | ${lane} | ${session} | ${noteParts.join(' ')} |`);
-  appendLine(path.join(root, 'heartbeats', `${lane}.md`), `${utc} | start | registered | session=${session}`);
-  out(`registered ${lane} -> ${session} at ${utc}; start heartbeat written`);
+  // ONE action: the registry row and the start heartbeat. If the second half
+  // fails after the first landed, say exactly that — a half-registered lane
+  // is a lane the registry knows and the monitor does not.
+  const regFile = path.join(root, 'registry.md');
+  const regLine = `| ${utc} | ${lane} | ${session} | ${noteParts.join(' ')} |`;
+  const r1 = writeVerified(regFile, regLine);
+  if (!r1.ok) reportWriteFailure('REGISTER (registry row)', regFile, regLine, r1);
+  const hbFile = path.join(root, 'heartbeats', `${lane}.md`);
+  const hbLine = `${utc} | start | registered | session=${session}`;
+  const r2 = writeVerified(hbFile, hbLine);
+  if (!r2.ok) {
+    err(`REGISTER PARTIAL: registry row WRITTEN and read back, start heartbeat NOT written.`);
+    reportWriteFailure('REGISTER (start heartbeat)', hbFile, hbLine, r2);
+  }
+  out(`REGISTER OK (both read back) ${lane} -> ${session} at ${utc}`);
 }
 
 function cmdCensus({ flags }) {
@@ -741,6 +780,33 @@ function selfTest() {
   ok(hb.malformed.length === 1 && /leading/.test(hb.malformed[0].reasons[0]), 'exactly the leading-pipe line is malformed');
   ok(hb.last.state === 'standby' && hb.last.task === 'queue empty', 'last valid heartbeat is the standby line (3 fields, no note)');
   ok(parseHeartbeat('2026-01-01T00:00:00Z | working | t | a | b').note === 'a | b', 'note keeps its pipes');
+
+  out('write path: prints on both branches, reads back before success');
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'fleet-selftest-'));
+  try {
+    const good = `${nowUtc()} | working | selftest | read-back`;
+    const f1 = path.join(tmp, 'heartbeats', 'lane-x.md');
+    const w1 = writeVerified(f1, good);
+    ok(w1.ok === true, 'happy path: appended and read back');
+    ok(fs.readFileSync(f1, 'utf8').split(/\r?\n/).includes(good), 'the exact line is in the file');
+    const w2 = writeVerified(f1, `${good}\nSPLIT`);
+    ok(!w2.ok && w2.stage === 'compose', 'an interpolated newline is refused at compose (would split the entry)');
+    const w3 = writeVerified(f1, `${good}\r`);
+    ok(!w3.ok && w3.stage === 'compose', 'a CRLF tail is refused at compose (would corrupt the last field)');
+    const dir = path.join(tmp, 'heartbeats', 'is-a-dir.md');
+    fs.mkdirSync(dir, { recursive: true });
+    const w4 = writeVerified(dir, good);
+    ok(!w4.ok && w4.stage === 'append' && w4.reason.length > 0, `append failure is REPORTED, not thrown and not silent (${w4.reason.slice(0, 40)}…)`);
+    const rb = readBack(f1, 'a line that was never written');
+    ok(!rb.ok && rb.stage === 'readback', 'read-back of an absent line fails — "not written", "denied" and "skipped" are the same bytes');
+    // Mutation: a writer without read-back would have reported w4 as success
+    // only if append had not thrown — here it did throw, so the load-bearing
+    // half is the read-back on a write that "succeeds" but lands nothing.
+    fs.writeFileSync(f1, ''); // simulate a write that left nothing behind
+    ok(!readBack(f1, good).ok, 'mutation: a write that leaves the file empty is caught ONLY by the read-back');
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
 
   out('classification');
   ok(classify({ state: 'standby' }, 999, 25) === 'STANDBY', 'standby never hung');

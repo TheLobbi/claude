@@ -13,9 +13,18 @@ A zero-dependency CLI, eleven subcommands, each replacing a ritual a session
 used to spend several turns on by hand, with the governing evidence rule
 built in so it cannot be skipped:
 
-- `hb` — heartbeat validated on write; refuses the three malformations that
-  produced a false "alive".
-- `register` — registry row and first heartbeat in one action.
+- `hb` — heartbeat validated on write; refuses the malformations that
+  produced a false "alive", including the two observed only at compose time
+  (an interpolated newline splitting an entry; a CRLF tail). **Prints on every
+  branch and reads the line back before reporting success.** A shared helper
+  that no-ops quietly is worse than twenty lanes appending by hand, because
+  it fails them all in the same silent way — and a heartbeat fails in the
+  direction that gets a producing lane replaced. "Not written", "denied" and
+  "skipped" leave identical bytes; only the read-back distinguishes them.
+  Self-test includes a mutation showing an append that leaves nothing behind
+  is caught only by the read-back.
+- `register` — registry row and first heartbeat in one action, each read
+  back; a half-landed registration is reported as PARTIAL, naming which half.
 - `census` — every lane's age, state and class; malformed lines counted;
   candidates get the artifact-read command printed beside them.
 - `blockers` — **the waiter's check**: reads a lane's `waiting` heartbeats,

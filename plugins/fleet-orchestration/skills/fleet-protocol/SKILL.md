@@ -19,7 +19,7 @@ hand-written versions are what cost the source run hours.
 | Ritual | Command |
 |---|---|
 | register + first heartbeat, one action | `fleet register <lane> <session>` |
-| heartbeat, validated on write | `fleet hb <lane> <state> <task> [note]` |
+| heartbeat, validated on write, **read back before success** | `fleet hb <lane> <state> <task> [note]` |
 | what am I waiting on, has it cleared | `fleet blockers <lane>` |
 | every lane's state and age | `fleet census` |
 | a PR's check state, read properly | `fleet checks <owner/repo> <pr>` |
@@ -123,10 +123,17 @@ expected to run long, and at least every `heartbeat.intervalMinutes`
 - Your predecessor (a replaced session of the same lane name) left its last
   state in that file. Resume from it; do not restart its work.
 
-Appending: these files are written by many sessions at once. On Windows,
+Appending: these files are written by many sessions at once. Use `fleet hb`.
+It prints on **every** branch and **reads the line back** before reporting
+success, because a shared helper that no-ops quietly is worse than twenty
+lanes appending by hand — it fails them all in the same silent way, and a
+silent heartbeat skip reads as HUNG and gets a producing lane replaced.
+"Not written", "denied" and "skipped" leave identical bytes; only the
+read-back tells them apart. If you must append by hand: on Windows,
 `[IO.File]::Open($p,'Append','Write','ReadWrite')` or `Add-Content`; POSIX
 `>>` and `tail` against a file another session holds open can block until the
-tool timeout. See `docs/platform-notes.md`.
+tool timeout — and read your own line back afterwards. See
+`docs/platform-notes.md`.
 
 ## 3. ASSERTED vs DELIVERED
 
