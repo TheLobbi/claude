@@ -365,7 +365,7 @@ fleet-orchestration/
 │   ├── heartbeat-monitor/      + replacement policy
 │   └── fleet-roles/
 ├── config/                     example config + JSON Schema
-├── scripts/                    fleet.mjs (the CLI) · validate-heartbeat.mjs · heartbeat.ps1 · heartbeat.sh
+├── scripts/                    fleet.mjs (the CLI) · validate-heartbeat.mjs
 └── docs/                       platform-notes · optional-hooks
 ```
 

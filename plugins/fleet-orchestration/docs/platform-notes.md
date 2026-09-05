@@ -15,10 +15,15 @@ Many sessions append to the same run directory.
   hung session, which is the exact failure the heartbeat monitor exists to
   detect, from a cause that has nothing to do with the session.
 - **POSIX:** `>>` on a local filesystem is fine for a single short line.
-- `fleet hb` (in `scripts/fleet.mjs`) uses Node's append flag, which opens
-  with shared read/write on Windows — the same property — and validates the
-  line before writing it. Prefer it; the shell scripts remain for hosts
-  without Node.
+- **Use `fleet hb` and nothing else.** It opens with shared read/write on
+  Windows (Node's append flag), validates the line, writes LF, prints on every
+  branch and **reads the line back** before reporting success. Two shell shims
+  used to ship beside it; they were removed because neither read back, the
+  PowerShell one wrote CRLF by construction — the very tail defect in the
+  fixture set — and only one shim ever runs per machine, so the divergence
+  was invisible from any single host. Claude Code is a Node application:
+  every host running a lane has Node, so a dependency-free path solved a
+  problem that does not exist here.
 
 ## Exit codes through pipes
 

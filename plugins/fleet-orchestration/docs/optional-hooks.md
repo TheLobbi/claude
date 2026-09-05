@@ -67,14 +67,11 @@ no PR. A hook with no red is decoration.
         "hooks": [
           {
             "type": "command",
-            "command": "pwsh",
+            "command": "node",
             "args": [
-              "-NoProfile", "-File",
-              "${CLAUDE_PLUGIN_ROOT}/scripts/heartbeat.ps1",
-              "-LogRoot", "${CLAUDE_PROJECT_DIR}/.fleet/runs/current",
-              "-Lane", "REPLACE-ME",
-              "-State", "start",
-              "-Task", "session start"
+              "${CLAUDE_PLUGIN_ROOT}/scripts/fleet.mjs",
+              "hb", "REPLACE-ME", "start", "session start",
+              "--log-root", "${CLAUDE_PROJECT_DIR}/.fleet/runs/current"
             ]
           }
         ]
@@ -84,9 +81,11 @@ no PR. A hook with no red is decoration.
 }
 ```
 
-`-Lane` is per-session, which is exactly why this cannot ship enabled: one
-plugin-level hook would write every session's state into one lane's file, and
-the monitor would read a fleet of one.
+The lane name is per-session, which is exactly why this cannot ship enabled:
+one plugin-level hook would write every session's state into one lane's file,
+and the monitor would read a fleet of one. Use `fleet hb` and nothing else
+for the write: it prints on every branch and reads the line back, and a hook
+that appends silently is the worst place for a write to no-op.
 
 ## 3. What not to hook
 

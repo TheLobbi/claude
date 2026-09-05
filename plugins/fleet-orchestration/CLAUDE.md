@@ -14,7 +14,11 @@ commands (start a fleet, take a census, produce the founder decision sheet).
 - CLI: `scripts/fleet.mjs` — the protocol as a tool, 11 subcommands, zero
   dependencies, `--self-test` on fixtures. Commands and agents call it.
 - Scripts: `scripts/validate-heartbeat.mjs` (gate for the heartbeat line
-  format), `scripts/heartbeat.ps1`, `scripts/heartbeat.sh`
+  format; `fleet.mjs` imports it, so there is one copy of the schema)
+- **There is exactly one heartbeat writer, `fleet hb`.** Do not add a shell
+  shim beside it: two writers diverge invisibly because only one runs per
+  machine, and a writer without read-back fails every lane the same silent
+  way.
 - Docs: `docs/platform-notes.md`, `docs/optional-hooks.md`
 
 ## The invariant that makes this plugin reusable

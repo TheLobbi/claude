@@ -46,8 +46,10 @@ tolerates another process holding the file open:
   `Add-Content`.
 - POSIX `>>` and `tail` **can block until the tool timeout** against a file
   another session has open on Windows shares. See `docs/platform-notes.md`.
-- The plugin ships `scripts/heartbeat.ps1` and `scripts/heartbeat.sh`, which
-  do this correctly on each platform.
+- `fleet hb` is the one writer: shared-read/write open, LF terminator,
+  validated on write, printed on every branch, **read back before success**.
+  Use it rather than a hand append whenever Node is present — and Node is
+  present wherever Claude Code runs.
 
 ## What each log is for
 

@@ -109,8 +109,12 @@ list, heartbeat thresholds.
 
 ### Scripts and docs
 
-`scripts/heartbeat.ps1` and `scripts/heartbeat.sh` — concurrent-safe append
-per host. `scripts/validate-heartbeat.mjs` — a gate for the heartbeat line
+`scripts/heartbeat.ps1` and `scripts/heartbeat.sh` **removed in 1.1.0**.
+Neither read its line back, the PowerShell one wrote CRLF by construction —
+the tail defect in `hb`'s own fixture set — and since only one shim runs per
+machine the divergence was invisible from any single host. Claude Code is a
+Node application, so every host running a lane has Node; `fleet hb` is the
+one writer. (1.0.0 shipped them as concurrent-safe appends per host.) `scripts/validate-heartbeat.mjs` — a gate for the heartbeat line
 format, with `--self-test` proving six red inputs, six spare inputs and two
 mutations each breaking exactly its own case. It exists because three
 sessions produced three different malformations of that one format in one
