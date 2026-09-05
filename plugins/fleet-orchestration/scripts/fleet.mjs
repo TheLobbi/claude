@@ -259,8 +259,16 @@ export function verdictOf({ body = '', reviewState = null, commitId = null }) {
   if (reviewState === 'APPROVED') kind = 'APPROVE';
   else if (reviewState === 'CHANGES_REQUESTED') kind = 'BLOCK';
   else {
-    const explicit = body.match(/verdict\W{0,6}(APPROVE|BLOCK)\b/i)?.[1];
-    const first = body.match(/\b(APPROVE|BLOCK)\b/)?.[1];
+    // A verdict body routinely contains BOTH words — "BLOCK LIFTED. APPROVE at
+    // <sha>, superseding my BLOCK at <sha> and my earlier APPROVE at <sha>".
+    // A substring match cannot classify that. The discriminating token is the
+    // LEADING verdict phrase, and "BLOCK LIFTED" is a lift, not a block: it is
+    // rewritten to LIFTED before any token is read, so it can never be the
+    // first BLOCK. Three of the four real bodies this was tested on contain
+    // both words; first-occurrence inverted one of them.
+    const lifted = body.replace(/\bBLOCK\s+LIFTED\b/gi, 'LIFTED');
+    const explicit = lifted.match(/verdict\W{0,6}(APPROVE|BLOCK)\b/i)?.[1];
+    const first = lifted.match(/\b(APPROVE|BLOCK)\b/)?.[1];
     kind = (explicit || first || null)?.toUpperCase() ?? null;
   }
   return kind ? { kind, shas: [...shas] } : null;
@@ -404,23 +412,27 @@ function cmdCensus({ flags }) {
 
 function cmdBlockers({ flags, positional }) {
   const [lane] = positional;
-  if (!lane) die('usage: fleet blockers <lane> [--repo owner/name] [--all]');
+  if (!lane) die('usage: fleet blockers <lane> [--repo owner/name] [--recent N]');
   const cfg = loadConfig(flags);
   const root = logRootFrom(flags, cfg) || die('no run directory');
   const file = path.join(root, 'heartbeats', `${lane}.md`);
   if (!fs.existsSync(file)) die(`no heartbeat file for ${lane}`);
   const defaultRepo = repoFrom(flags, cfg, lane);
 
-  // Collect refs from waiting/blocked heartbeats — the most recent ones first.
+  // Collect refs from EVERY waiting/blocked heartbeat. The default is the
+  // whole set: a cap here sits BEFORE the thing that decides the answer, which
+  // is the search-space cap this plugin's own rule 4 forbids. --recent N opts
+  // into a cap explicitly, and the output names it.
   const text = fs.readFileSync(file, 'utf8');
   const hbs = text.split(/\r?\n/).filter((l) => isHeartbeatAttempt(l) && !validateLine(l).length).map(parseHeartbeat);
   const waiting = hbs.filter((h) => h.state === 'waiting' || h.state === 'blocked');
-  const scope = flags.all ? waiting : waiting.slice(-5);
+  const recent = flags.recent ? Number(flags.recent) : 0;
+  const scope = recent > 0 ? waiting.slice(-recent) : waiting;
   const refs = new Map(); // ref -> first heartbeat mentioning it
   for (const h of scope) for (const r of extractRefs(`${h.task} ${h.note}`)) if (!refs.has(r)) refs.set(r, h);
 
   out(`POINT-IN-TIME ${nowUtc()}  lane=${lane}  last state=${hbs.at(-1)?.state || '—'} at ${hbs.at(-1)?.utc || '—'}`);
-  out(`waiting/blocked heartbeats: ${waiting.length} total, reading ${scope.length}; refs found: ${refs.size}`);
+  out(`waiting/blocked heartbeats: ${waiting.length} total, reading ${scope.length}${recent > 0 ? ` (CAPPED by --recent ${recent}: a negative here is a claim about ${scope.length} heartbeats, not the lane)` : ' (uncapped)'}; refs found: ${refs.size}`);
   if (!refs.size) {
     out('no #refs in those heartbeats — the lane is waiting on something it did not name. That is the finding.');
     process.exit(1);
@@ -510,7 +522,10 @@ function cmdVerdicts({ flags, positional }) {
   let current = 0;
   let none = 0;
   for (const n of prs) {
-    const pr = ghJson(['pr', 'view', String(n), '-R', repo, '--json', 'headRefOid,title']);
+    // mergeStateStatus is printed as a SEPARATE column so a verdict at a head
+    // that was never mergeable is distinguishable from a verdict at a head
+    // that moved. It is textual/structural, never readiness.
+    const pr = ghJson(['pr', 'view', String(n), '-R', repo, '--json', 'headRefOid,title,mergeStateStatus']);
     // Both sources: issue comments (the only channel under a shared identity)
     // and formal reviews (which carry commit_id natively — better than a
     // regexed sha — but whose .state reads COMMENTED for an approve-as-comment).
@@ -527,12 +542,13 @@ function cmdVerdicts({ flags, positional }) {
     const last = verdicts.at(-1);
     const names = pr.headRefOid;
     const bound = last.v.shas.find((s) => names.startsWith(s) || s.startsWith(names.slice(0, 7)));
+    const ms = `mergeState=${pr.mergeStateStatus || 'UNKNOWN'}`;
     if (bound) {
       current++;
-      out(`  #${n}  ${(last.v.kind + ' current').padEnd(18)} head ${names.slice(0, 8)}  ${last.src} ${last.at}`);
+      out(`  #${n}  ${(last.v.kind + ' current').padEnd(18)} head ${names.slice(0, 8)}  ${ms.padEnd(22)} ${last.src} ${last.at}`);
     } else {
       stale++;
-      out(`  #${n}  ${(last.v.kind + ' STALE').padEnd(18)} head ${names.slice(0, 8)}  ${last.src} ${last.at} names ${last.v.shas.length ? last.v.shas.map((s) => s.slice(0, 8)).join(',') : 'NO SHA'} — re-issue required`);
+      out(`  #${n}  ${(last.v.kind + ' STALE').padEnd(18)} head ${names.slice(0, 8)}  ${ms.padEnd(22)} ${last.src} ${last.at} names ${last.v.shas.length ? last.v.shas.map((s) => s.slice(0, 8)).join(',') : 'NO SHA'} — re-issue required`);
     }
   }
   out('');
@@ -777,6 +793,24 @@ function selfTest() {
   ok(asComment?.kind === 'APPROVE', 'review state COMMENTED with APPROVE in the body: the STATE LIES, the body is the verdict');
   ok(asComment?.shas.includes('cafebabe') && asComment?.shas.includes('0123456789abcdef'), 'commit_id and body shas both bind the verdict');
   ok(verdictOf({ body: 'just a question', reviewState: 'COMMENTED' }) === null, 'a COMMENTED review with no verdict word is not a verdict');
+
+  // Four REAL verdict bodies from one PR (identities removed, structure kept).
+  // Three of the four contain BOTH words. A first-occurrence classifier
+  // inverted the fourth, and that inversion was published before it was
+  // caught by the reviewer who wrote the body.
+  const real = [
+    ['REVIEW VERDICT — reviewer-b, day 2. Cross-half review by tier-0 reassignment. **APPROVE at head `55906f23e5e39be11e6467e`** — no findings.', 'APPROVE'],
+    ['REVIEW VERDICT — reviewer-a, day 2. APPROVE at head 4897107a3d48366d1b4c18ec300eec1eb1931a38, one non-blocking observation.', 'APPROVE'],
+    ['REVIEW VERDICT — reviewer-a, day 2. BLOCK at head b132a703379a7c4b7fc85a7e89124d81eedaa9cc. This supersedes my APPROVE at 4897107a3.', 'BLOCK'],
+    ['REVIEW VERDICT — reviewer-a, day 2. BLOCK LIFTED. APPROVE at head 8f52ad967072e106d473a56e4421c7c7acfb02cd, superseding my BLOCK at `b132a7033` and my earlier APPROVE at `4897107a3`.', 'APPROVE'],
+  ];
+  real.forEach(([body, want], i) => {
+    const got = verdictOf({ body, reviewState: 'COMMENTED' })?.kind;
+    ok(got === want, `real body ${i + 1}: ${want} (got ${got}) — tokens in order: ${[...body.matchAll(/\b(APPROVE|BLOCK)\b/g)].map((m) => m[1]).join(',')}`);
+  });
+  // Mutation: remove the BLOCK-LIFTED rewrite and body 4 must invert.
+  const naiveKind = (b) => (b.match(/verdict\W{0,6}(APPROVE|BLOCK)\b/i)?.[1] || b.match(/\b(APPROVE|BLOCK)\b/)?.[1] || '').toUpperCase();
+  ok(naiveKind(real[3][0]) === 'BLOCK', 'mutation: without the LIFTED rewrite, body 4 reads BLOCK — proving the rewrite is load-bearing');
 
   out('mutations — each must break exactly its own case');
   // Mutation 1: ungrouped tally (what a naive reader does) must FAIL the double-run case.
