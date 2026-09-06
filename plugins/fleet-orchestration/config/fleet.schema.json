@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://thelobbi.github.io/claude/schemas/fleet.schema.json",
+  "title": "Fleet orchestration configuration",
+  "description": "Everything fleet-specific in one file. The plugin names no repository, lane, path or person; this does.",
+  "type": "object",
+  "required": ["runId", "logRoot", "repoRoot", "forge", "defaultBase", "lanes"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Names this run. Used for the run directory name."
+    },
+    "logRoot": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Run directory, relative to this file. Machine-local, never committed."
+    },
+    "repoRoot": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Directory holding the sibling repositories, relative to this file."
+    },
+    "worktreeRoot": {
+      "type": "string",
+      "description": "Where lanes create per-task worktrees, relative to repoRoot."
+    },
+    "forge": {
+      "type": "object",
+      "required": ["kind", "owner"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["github"] },
+        "owner": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "defaultBase": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Branch lanes branch from and target unless a lane overrides it."
+    },
+    "sharedIdentity": {
+      "type": "boolean",
+      "description": "True when every session authenticates as one account. Changes attribution, approval and census mechanics.",
+      "default": false
+    },
+    "models": {
+      "type": "object",
+      "description": "Model per tier. Accepts a tier alias, a full model id, or inherit.",
+      "properties": {
+        "orchestrator": { "type": "string" },
+        "judgement": { "type": "string" },
+        "mechanical": { "type": "string" },
+        "lane": { "type": "string" },
+        "worker": { "type": "string" },
+        "verifier": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "heartbeat": {
+      "type": "object",
+      "properties": {
+        "intervalMinutes": { "type": "integer", "minimum": 1, "default": 15 },
+        "staleMinutes": { "type": "integer", "minimum": 2, "default": 25 }
+      },
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "description": "Reviewer parallelism and peer-review routing. Reviewer attention is the scarce resource.",
+      "properties": {
+        "parallelReviewers": { "type": "integer", "minimum": 1, "default": 2 },
+        "parallelReviewersAboveLanes": { "type": "integer", "minimum": 0, "default": 4 },
+        "peerRoutableGlobs": {
+          "type": "array",
+          "description": "A PR whose changed files ALL match goes to a peer lane, never to the lane that wrote it.",
+          "items": { "type": "string" }
+        },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "management": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "model", "enabled"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["planner", "reviewer", "gitops", "conflicts", "dispatch", "release", "brainstorm"]
+          },
+          "model": { "type": "string" },
+          "enabled": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "repo", "model"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "repo": { "type": "string", "minLength": 1 },
+          "base": { "type": "string" },
+          "model": { "type": "string" },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "handsOff": {
+      "type": "object",
+      "description": "Never touched, for any reason, by any session.",
+      "properties": {
+        "repos": { "type": "array", "items": { "type": "string" } },
+        "authors": { "type": "array", "items": { "type": "string" } },
+        "pullRequests": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[^#]+#[0-9]+$" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "founderClass": {
+      "type": "array",
+      "description": "Decision classes that escalate rather than proceed. An escalation parks a decision, never a lane.",
+      "items": { "type": "string" }
+    },
+    "ci": {
+      "type": "object",
+      "properties": {
+        "maxQueuedRunsPerRepo": { "type": "integer", "minimum": 1 },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

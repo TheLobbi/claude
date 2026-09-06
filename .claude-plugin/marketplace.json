@@ -96,6 +96,16 @@
       "source": "./plugins/fastapi-backend"
     },
     {
+      "name": "fleet-orchestration",
+      "description": "Run many Claude Code sessions on one codebase without them lying to each other — and faster. A zero-dependency CLI turns the protocol into eleven one-command rituals (validated heartbeats, census, the waiter's blocker check, typename-aware run-grouped PR checks, stale-verdict sweep, post-merge unblocks, jobs-not-runs CI load, digests), each with its evidence rule built in and each proved on a live run. Plus the session protocol, ten evidence rules each carrying its incident and its non-application case, a staleness monitor that reads a lane's artifact before calling it silent, and ten descending-model role definitions. Repo list, lane names and paths are configuration.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Markus Ahling",
+        "email": "markus@thelobbi.io"
+      },
+      "source": "./plugins/fleet-orchestration"
+    },
+    {
       "name": "frontend-design-system",
       "description": "263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development",
       "version": "2.0.0",

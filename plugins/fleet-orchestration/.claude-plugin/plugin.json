@@ -1,0 +1,88 @@
+{
+  "$schema": "https://claude.local/schemas/plugin.schema.json",
+  "name": "fleet-orchestration",
+  "version": "1.1.0",
+  "description": "Run many Claude Code sessions on one codebase without them lying to each other — and faster. A zero-dependency CLI turns the protocol into eleven one-command rituals (validated heartbeats, census, the waiter's blocker check, typename-aware run-grouped PR checks, stale-verdict sweep, post-merge unblocks, jobs-not-runs CI load, digests), each with its evidence rule built in. Plus the protocol skill, the evidence rules that survived a 38-merge multi-repo run, a staleness monitor that reads a lane's artifact before calling it silent, and descending-model role definitions.",
+  "author": {
+    "name": "Markus Ahling",
+    "email": "markus@thelobbi.io"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/TheLobbi/claude",
+  "keywords": [
+    "orchestration",
+    "multi-agent",
+    "fleet",
+    "protocol",
+    "heartbeat",
+    "evidence",
+    "verification",
+    "falsifier",
+    "code-review",
+    "merge-safety",
+    "git-discipline",
+    "model-routing",
+    "descending-models",
+    "census",
+    "escalation"
+  ],
+  "permissions": {
+    "requires": [
+      "read"
+    ],
+    "optional": [
+      "write",
+      "bash",
+      "glob",
+      "grep",
+      "agent",
+      "network"
+    ]
+  },
+  "capabilities": {
+    "provides": [
+      "fleet-protocol",
+      "evidence-rules",
+      "heartbeat-monitoring",
+      "lane-replacement-policy",
+      "role-definitions",
+      "descending-model-routing",
+      "founder-decision-sheet"
+    ],
+    "requires": []
+  },
+  "context": {
+    "entry": "CONTEXT_SUMMARY.md",
+    "title": "Fleet Orchestration",
+    "summary": "Protocol, evidence rules, heartbeat monitor and descending-model role definitions for running many Claude Code sessions on one codebase. Repo list, lane names and paths are configuration, not hardcoded.",
+    "tags": [
+      "orchestration",
+      "multi-agent",
+      "protocol",
+      "evidence",
+      "heartbeat",
+      "merge-safety"
+    ],
+    "bootstrapFiles": [
+      "CONTEXT_SUMMARY.md"
+    ],
+    "maxTokens": 700,
+    "excludeGlobs": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/*.zip",
+      "**/*.tar*"
+    ],
+    "lazyLoadSections": [
+      "CLAUDE.md",
+      "skills/*/SKILL.md",
+      "skills/*/references/*.md",
+      "agents/*.md",
+      "commands/*.md",
+      "docs/*.md"
+    ]
+  },
+  "contextEntry": "CONTEXT_SUMMARY.md"
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "./fleet.schema.json",
+  "runId": "2026-01-15-example",
+  "logRoot": "./.fleet/runs/2026-01-15-example",
+  "repoRoot": "..",
+  "worktreeRoot": "./.lanes",
+  "forge": {
+    "kind": "github",
+    "owner": "your-org"
+  },
+  "defaultBase": "main",
+  "sharedIdentity": true,
+  "models": {
+    "orchestrator": "opus",
+    "judgement": "opus",
+    "mechanical": "sonnet",
+    "lane": "sonnet",
+    "worker": "sonnet",
+    "verifier": "haiku"
+  },
+  "heartbeat": {
+    "intervalMinutes": 15,
+    "staleMinutes": 25
+  },
+  "review": {
+    "parallelReviewers": 2,
+    "parallelReviewersAboveLanes": 4,
+    "peerRoutableGlobs": [
+      "**/*.md",
+      "**/.github/ISSUE_TEMPLATE/**",
+      "**/templates/**",
+      "**/docs/**"
+    ],
+    "note": "A PR whose changed files ALL match peerRoutableGlobs goes to a peer lane that has run the same gate, not to a management reviewer. Never the lane that wrote the branch."
+  },
+  "management": [
+    { "role": "planner", "model": "judgement", "enabled": true },
+    { "role": "reviewer", "model": "judgement", "enabled": true },
+    { "role": "gitops", "model": "mechanical", "enabled": true },
+    { "role": "conflicts", "model": "mechanical", "enabled": false },
+    { "role": "dispatch", "model": "mechanical", "enabled": false },
+    { "role": "release", "model": "judgement", "enabled": false },
+    { "role": "brainstorm", "model": "judgement", "enabled": false }
+  ],
+  "lanes": [
+    {
+      "name": "lane-api",
+      "repo": "example-api",
+      "base": "main",
+      "model": "lane",
+      "notes": "Read this repo's own instruction files before the first edit."
+    },
+    {
+      "name": "lane-web",
+      "repo": "example-web",
+      "base": "develop",
+      "model": "lane",
+      "notes": "Base differs from defaultBase on purpose."
+    },
+    {
+      "name": "lane-infra",
+      "repo": "example-infra",
+      "model": "judgement",
+      "notes": "Raised a tier: this repo's changes are hard to reverse."
+    }
+  ],
+  "handsOff": {
+    "repos": [
+      "example-vendored-fork"
+    ],
+    "authors": [
+      "dependabot[bot]"
+    ],
+    "pullRequests": [
+      "example-web#412"
+    ]
+  },
+  "founderClass": [
+    "promotion to a production branch",
+    "any deploy to production",
+    "tenant or customer data changes",
+    "spend, billing, or paid plan changes",
+    "signing keys, certificates, or the trust chain",
+    "repository, organisation, or package settings",
+    "repository or organisation renames",
+    "abandoning work that has no other record"
+  ],
+  "ci": {
+    "maxQueuedRunsPerRepo": 2,
+    "note": "Count the right noun. A cap on runs is blind to jobs; prefer a per-job resource gate if one already exists."
+  }
+}

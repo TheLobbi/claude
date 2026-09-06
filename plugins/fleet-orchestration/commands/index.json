@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "plugin": "fleet-orchestration",
+  "type": "commands",
+  "generatedBy": "scripts/generate-plugin-indexes.mjs",
+  "entries": [
+    {
+      "name": "fleet-orchestration:fleet-blockers",
+      "intent": "Measure what a lane is waiting on and whether it has already cleared - the waiter's check that caught every idle-on-done-work case",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "coordination"
+      ],
+      "inputs": [
+        "lane-name",
+        "repo"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/fleet-blockers.md"
+    },
+    {
+      "name": "fleet-orchestration:fleet-census",
+      "intent": "Take a fleet census in one command - every lane's heartbeat age, state and class, malformed lines flagged, and the artifact reads for anything past the staleness threshold",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "monitoring"
+      ],
+      "inputs": [
+        "lane-name"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/fleet-census.md"
+    },
+    {
+      "name": "fleet-orchestration:fleet-checks",
+      "intent": "Read a pull request's check state the way the merge gate must - typename-aware, grouped by run, two independent readings printed raw beside the verdict",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "merge-gate"
+      ],
+      "inputs": [
+        "repo",
+        "pr"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/fleet-checks.md"
+    },
+    {
+      "name": "fleet-orchestration:fleet-decisions",
+      "intent": "Produce the founder decision sheet - every item only the human can decide, each with what it unblocks, what it costs, the exact action, and every state claim stamped with the moment it was measured",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "reporting"
+      ],
+      "inputs": [
+        "output-path"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/fleet-decisions.md"
+    },
+    {
+      "name": "fleet-orchestration:fleet-start",
+      "intent": "Stand up a fleet run in one pass - doctor, config, run directory, briefs, and the exact text to paste into each session",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "bootstrap"
+      ],
+      "inputs": [
+        "run-id"
+      ],
+      "risk": "low",
+      "cost": "medium",
+      "path": "commands/fleet-start.md"
+    },
+    {
+      "name": "fleet-orchestration:fleet-unblocks",
+      "intent": "After a merge, name both audiences it affects - lanes it unblocks and open PRs whose green it just invalidated - so the notification happens as part of the merge",
+      "tags": [
+        "fleet-orchestration",
+        "command",
+        "merge-gate"
+      ],
+      "inputs": [
+        "repo",
+        "pr"
+      ],
+      "risk": "low",
+      "cost": "low",
+      "path": "commands/fleet-unblocks.md"
+    }
+  ]
+}
