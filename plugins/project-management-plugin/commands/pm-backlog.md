@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Provides tools for maintaining the health and quality of the task backlog. Use these operations periodically — especially when the project has evolved, many new tasks have been added manually, or estimates are drifting from actuals. These are all read-analyze-write operations that invoke agents to reason about the backlog and then update tasks.json.
 ---
 
 # /pm:backlog — Backlog Management

@@ -12,8 +12,7 @@ inputs:
   - WCAG conformance level (A, AA, AAA)
 risk: low
 cost: high
-description: |
-  Comprehensive accessibility auditor for MUI applications. Checks WCAG 2.1 compliance across all MUI component usage — ARIA attributes, keyboard navigation, color contrast, focus management, screen reader compatibility, and semantic HTML. Produces actionable report with auto-fix support.
+description: Comprehensive accessibility auditor for MUI applications. Checks WCAG 2.1 compliance across all MUI component usage — ARIA attributes, keyboard navigation, color contrast, focus management, screen reader compatibility, and semantic HTML. Produces actionable report with auto-fix support.
 model: claude-sonnet-5
 tools:
   - Read

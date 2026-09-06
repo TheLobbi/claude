@@ -13,8 +13,7 @@ inputs:
   - '--source'
 risk: low
 cost: high
-description: |
-  Generate a complete multi-tenant white-label theming architecture with tenant-specific branding, component variant overrides, dynamic theme loading, and CSS variables support.
+description: Generate a complete multi-tenant white-label theming architecture with tenant-specific branding, component variant overrides, dynamic theme loading, and CSS variables support.
 allowed-tools:
   - Read
   - Write

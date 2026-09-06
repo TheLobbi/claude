@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create choreographed animation sequences with precise timing and orchestration.
 ---
 
 # /animate-sequence

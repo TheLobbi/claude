@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Setup and configure Ollama for local LLM integration with Home Assistant.
 ---
 
 # Ollama Setup Command

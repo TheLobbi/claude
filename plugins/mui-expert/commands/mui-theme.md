@@ -13,8 +13,7 @@ inputs:
   - '--audit-file'
 risk: low
 cost: medium
-description: |
-  Generate a complete MUI createTheme() configuration with palette, typography, spacing, shape, breakpoints, and component overrides — or audit an existing theme file for missing best practices, accessibility issues, and TypeScript gaps.
+description: Generate a complete MUI createTheme() configuration with palette, typography, spacing, shape, breakpoints, and component overrides — or audit an existing theme file for missing best practices, accessibility issues, and TypeScript gaps.
 allowed-tools:
   - Read
   - Write

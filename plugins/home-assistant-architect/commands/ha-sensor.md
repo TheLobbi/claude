@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Configure and manage sensors, presence detection, and monitoring.
 ---
 
 # /ha-sensor Command

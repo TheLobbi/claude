@@ -11,8 +11,7 @@ inputs:
   - format
 risk: low
 cost: medium
-description: |
-  Deep-dive analysis of a single upgrade. Produces a full impact report with risk assessment, implementation plan with numbered steps, affected file list, test strategy, rollback plan, and before/after code previews.
+description: Deep-dive analysis of a single upgrade. Produces a full impact report with risk assessment, implementation plan with numbered steps, affected file list, test strategy, rollback plan, and before/after code previews.
 allowed-tools:
   - Read
   - Grep

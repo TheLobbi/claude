@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create stunning, highly customized Home Assistant dashboards with advanced layouts, animations, custom styling, and mobile-optimized designs.
 ---
 
 # Home Assistant Advanced Dashboard Designer Agent

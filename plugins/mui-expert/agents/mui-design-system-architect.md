@@ -13,8 +13,7 @@ inputs:
   - multi-tenant requirements (if applicable)
 risk: low
 cost: high
-description: |
-  Designs enterprise-grade design systems built on MUI. Covers design token hierarchies, theme architecture, component library structure, CSS variables strategy, white-label/multi-tenant theming, Pigment CSS migration, and TypeScript augmentation. Produces architecture decisions with implementation blueprints.
+description: Designs enterprise-grade design systems built on MUI. Covers design token hierarchies, theme architecture, component library structure, CSS variables strategy, white-label/multi-tenant theming, Pigment CSS migration, and TypeScript augmentation. Produces architecture decisions with implementation blueprints.
 model: opus
 tools:
   - Read

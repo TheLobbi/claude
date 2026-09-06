@@ -8,8 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: |
-  Keycloak administration agent for the-lobbi/keycloak-alpha repository. Handles realm provisioning, user management, client configuration, theme deployment, and multi-tenant authentication workflows. Expert in Keycloak Admin API and OIDC protocols.
+description: Keycloak administration agent for the-lobbi/keycloak-alpha repository. Handles realm provisioning, user management, client configuration, theme deployment, and multi-tenant authentication workflows. Expert in Keycloak Admin API and OIDC protocols.
 model: sonnet
 tools:
   - Bash

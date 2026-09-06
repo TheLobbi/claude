@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Export animations as reusable components, hooks, or design tokens.
 ---
 
 # /animate-export

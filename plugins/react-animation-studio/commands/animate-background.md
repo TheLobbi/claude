@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Generate stunning animated backgrounds for React applications using CSS gradients, particles, aurora effects, and more.
 ---
 
 # /animate-background Command

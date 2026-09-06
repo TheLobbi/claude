@@ -12,8 +12,7 @@ inputs:
   - team-size
 risk: low
 cost: medium
-description: |
-  Generates a prioritized, sequenced upgrade roadmap showing what to implement first, dependency chains between upgrades, estimated effort, and cumulative impact curves. Visualizes the optimal implementation path as a directed graph.
+description: Generates a prioritized, sequenced upgrade roadmap showing what to implement first, dependency chains between upgrades, estimated effort, and cumulative impact curves. Visualizes the optimal implementation path as a directed graph.
 allowed-tools:
   - Read
   - Grep

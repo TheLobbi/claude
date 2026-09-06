@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Configure and manage Home Assistant energy monitoring system.
 ---
 
 # /ha-energy Command

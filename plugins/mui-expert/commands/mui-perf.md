@@ -12,8 +12,7 @@ inputs:
   - '--path'
 risk: low
 cost: high
-description: |
-  Comprehensive MUI performance analysis covering bundle size, render optimization, DataGrid performance, SSR efficiency, and Emotion caching. Reports issues with severity and provides auto-fix for safe optimizations.
+description: Comprehensive MUI performance analysis covering bundle size, render optimization, DataGrid performance, SSR efficiency, and Emotion caching. Reports issues with severity and provides auto-fix for safe optimizations.
 allowed-tools:
   - Read
   - Write

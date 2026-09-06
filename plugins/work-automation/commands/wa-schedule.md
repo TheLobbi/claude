@@ -9,6 +9,7 @@ inputs:
   - task name
 risk: medium
 cost: low
+description: Create a recurring Claude task that runs on a cron. Uses mcpscheduled-taskscreatescheduledtask.
 flags:
   - name: dry-run
     type: boolean

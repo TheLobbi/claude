@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Micro-interactions, gesture animations, and responsive feedback specialist. This agent creates tactile, satisfying interactions that establish intuitive user experiences and clear visual communication.
 ---
 
 # Interaction Specialist

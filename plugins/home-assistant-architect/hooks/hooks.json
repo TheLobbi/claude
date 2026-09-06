@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'HA prompt context: only handle HA-specific commands, config files, domains/entities, or MCP tools'",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/ha-context-guard.sh prompt",
             "timeout": 10
           }
         ]
@@ -83,7 +83,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Reminder: backup HA configuration.yaml, automations, and secrets if significant changes were made'",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/ha-context-guard.sh stop",
             "timeout": 10
           }
         ]

@@ -12,8 +12,7 @@ inputs:
   - '--mode'
 risk: low
 cost: medium
-description: |
-  List available slots for a component, generate custom slot implementations, or migrate from deprecated components/componentsProps to the slots API.
+description: List available slots for a component, generate custom slot implementations, or migrate from deprecated components/componentsProps to the slots API.
 allowed-tools:
   - Read
   - Write

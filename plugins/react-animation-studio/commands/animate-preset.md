@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Apply pre-built animation presets from a curated library of beautiful, tested animations.
 ---
 
 # /animate-preset

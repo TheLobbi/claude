@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: low
 cost: low
+description: 'Start a new ULTRA-governed work unit: capture a measurable one-sentence scope, an explicit completion criterion, a survey of reusable plugins/skills/commands/MCPs, blocking dependencies, and the planned file artifacts. Use when beginning a discrete piece of work, when asked to "open a work unit" or "scope this properly before we start", or to pin down done-criteria up front.'
 flags:
   - name: skip-survey
     type: boolean

@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Configure and manage MCP server integration for Claude with Home Assistant.
 ---
 
 # Home Assistant MCP Command

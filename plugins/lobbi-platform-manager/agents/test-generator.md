@@ -8,8 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: |
-  Automated test generation agent for the-lobbi/keycloak-alpha repository. Generates Jest test suites from Express routes with Keycloak auth mocking, MongoDB/PostgreSQL fixtures, and integration test patterns for microservices.
+description: Automated test generation agent for the-lobbi/keycloak-alpha repository. Generates Jest test suites from Express routes with Keycloak auth mocking, MongoDB/PostgreSQL fixtures, and integration test patterns for microservices.
 model: haiku
 tools:
   - Read

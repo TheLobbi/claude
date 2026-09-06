@@ -14,8 +14,7 @@ inputs:
   - '--style'
 risk: medium
 cost: high
-description: |
-  Interactive app fingerprinting command. Scans the project to detect existing MUI components, pages, routing, data models, and API endpoints. Asks targeted questions about missing functionality. Then systematically builds every MUI component the app needs — layouts, forms, data tables, navigation, feedback, and custom widgets.
+description: Interactive app fingerprinting command. Scans the project to detect existing MUI components, pages, routing, data models, and API endpoints. Asks targeted questions about missing functionality. Then systematically builds every MUI component the app needs — layouts, forms, data tables, navigation, feedback, and custom widgets.
 allowed-tools:
   - Read
   - Write

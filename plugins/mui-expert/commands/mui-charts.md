@@ -14,8 +14,7 @@ inputs:
   - '--theme-aware'
 risk: low
 cost: medium
-description: |
-  Scaffold MUI X Charts with typed data, responsive layout, custom tooltips, click handlers, theme integration, and composition API patterns.
+description: Scaffold MUI X Charts with typed data, responsive layout, custom tooltips, click handlers, theme integration, and composition API patterns.
 allowed-tools:
   - Read
   - Write

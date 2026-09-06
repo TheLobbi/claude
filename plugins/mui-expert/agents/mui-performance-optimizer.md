@@ -12,8 +12,7 @@ inputs:
   - webpack/vite/next config for bundler context
 risk: low
 cost: high
-description: |
-  Analyzes MUI applications for performance issues including bundle size, render optimization, Emotion overhead, DataGrid performance, and SSR efficiency. Produces prioritized recommendations with estimated impact and auto-applies safe fixes.
+description: Analyzes MUI applications for performance issues including bundle size, render optimization, Emotion overhead, DataGrid performance, and SSR efficiency. Produces prioritized recommendations with estimated impact and auto-applies safe fixes.
 model: claude-sonnet-5
 tools:
   - Read

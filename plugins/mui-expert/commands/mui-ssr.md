@@ -14,8 +14,7 @@ inputs:
   - '--dark-mode'
 risk: low
 cost: medium
-description: |
-  Configure MUI for Next.js SSR with correct Emotion cache setup, CSS variables, flash prevention, and React Server Components compatibility.
+description: Configure MUI for Next.js SSR with correct Emotion cache setup, CSS variables, flash prevention, and React Server Components compatibility.
 allowed-tools:
   - Read
   - Write

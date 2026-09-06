@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Audit and enhance Home Assistant security including access controls, network exposure, encryption, and compliance with security best practices.
 ---
 
 # Home Assistant Security Auditor Agent

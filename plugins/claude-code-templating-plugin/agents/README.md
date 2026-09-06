@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Expert system for Harness CI/CD pipeline generation, template management, and intelligent pipeline suggestions.
 ---
 
 # Harness Expert Agent

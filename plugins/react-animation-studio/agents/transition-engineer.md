@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Page transitions, route animations, and layout morphing specialist. This agent creates seamless navigation experiences that establish spatial relationships and maintain context during state changes.
 ---
 
 # Transition Engineer

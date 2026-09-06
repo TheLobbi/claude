@@ -14,8 +14,7 @@ inputs:
   - '--with-motion'
 risk: low
 cost: high
-description: |
-  Build highly creative, fluid MUI widgets that go far beyond standard Material Design. Sparkline-in-grid cells, heatmap DataGrids, real-time WebSocket grids, AI assistant panels, animated wizards, hardware-style switches, interactive tree browsers, bi-directional chart+grid sync, and more.
+description: Build highly creative, fluid MUI widgets that go far beyond standard Material Design. Sparkline-in-grid cells, heatmap DataGrids, real-time WebSocket grids, AI assistant panels, animated wizards, hardware-style switches, interactive tree browsers, bi-directional chart+grid sync, and more.
 allowed-tools:
   - Read
   - Write

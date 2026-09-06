@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Complete camera and NVR (Network Video Recorder) integration with motion detection, object recognition, recording management, and multi-camera dashboards.
 ---
 
 # Home Assistant Camera and NVR Integration Agent

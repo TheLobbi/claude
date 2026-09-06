@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Comprehensive energy management with solar integration, battery storage, grid monitoring, EV charging, and cost optimization.
 ---
 
 # Home Assistant Energy Management System Agent

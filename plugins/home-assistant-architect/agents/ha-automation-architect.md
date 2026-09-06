@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Design, create, optimize, and troubleshoot Home Assistant automations, scripts, and scenes with advanced pattern recognition and best practices.
 ---
 
 # Home Assistant Automation Architect Agent

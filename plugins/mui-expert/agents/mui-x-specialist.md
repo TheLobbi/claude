@@ -14,8 +14,7 @@ inputs:
   - data source description
 risk: low
 cost: high
-description: |
-  Specialist in MUI X premium components. Handles advanced DataGrid patterns (server-side data source, row grouping, aggregation, master-detail, Excel export, cell selection, clipboard), Date/Time Pickers (timezone, custom fields, validation, shortcuts), Charts (composition API, custom renderers, dual axes), and Tree View (lazy loading, drag-drop, virtualization).
+description: Specialist in MUI X premium components. Handles advanced DataGrid patterns (server-side data source, row grouping, aggregation, master-detail, Excel export, cell selection, clipboard), Date/Time Pickers (timezone, custom fields, validation, shortcuts), Charts (composition API, custom renderers, dual axes), and Tree View (lazy loading, drag-drop, virtualization).
 model: claude-sonnet-5
 tools:
   - Read

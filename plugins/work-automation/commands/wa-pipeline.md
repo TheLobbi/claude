@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: low
+description: Universal Harness pipeline ops. Uses mcpharness tools.
 flags:
   - name: follow
     type: boolean

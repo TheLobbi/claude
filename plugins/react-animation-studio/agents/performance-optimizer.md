@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Animation performance optimization specialist ensuring 60fps smooth animations across devices while maintaining accessibility compliance. This agent establishes performance-first animation patterns that deliver measurable improvements to user experience.
 ---
 
 # Performance Optimizer

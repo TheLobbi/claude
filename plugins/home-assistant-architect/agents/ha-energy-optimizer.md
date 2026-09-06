@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Analyze energy consumption patterns, optimize automations for efficiency, and provide recommendations for reducing energy costs while maintaining comfort.
 ---
 
 # Home Assistant Energy Optimizer Agent

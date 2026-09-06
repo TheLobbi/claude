@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Configure and optimize voice assistant pipelines with local speech processing (Whisper, Piper) and local LLM integration for privacy-focused voice control.
 ---
 
 # Home Assistant Voice Assistant Agent

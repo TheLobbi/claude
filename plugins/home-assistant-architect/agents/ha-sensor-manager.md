@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Comprehensive sensor management with environmental monitoring, presence detection, smart sensor deployment, and data analysis.
 ---
 
 # Home Assistant Sensor Manager Agent

@@ -17,8 +17,7 @@ inputs:
   - '--with-tailwind'
 risk: low
 cost: medium
-description: |
-  Complete MUI project setup — installs packages, configures the MUI MCP server for Claude Code, sets up LSP/editor tooling, generates starter theme, and configures SSR/bundler integration. One command to go from zero to production-ready MUI.
+description: Complete MUI project setup — installs packages, configures the MUI MCP server for Claude Code, sets up LSP/editor tooling, generates starter theme, and configures SSR/bundler integration. One command to go from zero to production-ready MUI.
 allowed-tools:
   - Read
   - Write

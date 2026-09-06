@@ -8,8 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: |
-  Service orchestration agent for the-lobbi/keycloak-alpha repository. Monitors health, validates dependencies, manages service lifecycle across 8 microservices. Expert in Docker Compose, service mesh patterns, and failure recovery.
+description: Service orchestration agent for the-lobbi/keycloak-alpha repository. Monitors health, validates dependencies, manages service lifecycle across 8 microservices. Expert in Docker Compose, service mesh patterns, and failure recovery.
 model: sonnet
 tools:
   - Bash
