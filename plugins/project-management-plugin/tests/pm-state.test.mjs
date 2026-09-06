@@ -49,8 +49,12 @@ function teardown(tmp) {
 await loadValidators();
 
 test('projectsRoot() honors CLAUDE_PROJECT_DIR', () => {
-  process.env.CLAUDE_PROJECT_DIR = '/tmp/custom';
-  assert.equal(projectsRoot(), '/tmp/custom/.claude/projects');
+  const base = join(tmpdir(), 'pm-projects-root-fixture');
+  process.env.CLAUDE_PROJECT_DIR = base;
+  // Build the expectation with join() too: projectsRoot() uses path.join, which
+  // emits "\" on Windows, so a hardcoded POSIX string fails there even though
+  // the implementation is correct.
+  assert.equal(projectsRoot(), join(base, '.claude', 'projects'));
 });
 
 test('listProjects + readProject + readTasks find the fixture', () => {
