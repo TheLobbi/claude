@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create artistic and experimental visual effects including morphing shapes, glitch effects, liquid animations, magnetic interactions, and creative loaders.
 ---
 
 # /animate-effects Command

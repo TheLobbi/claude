@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Configure cameras, NVR systems, and video analytics.
 ---
 
 # /ha-camera Command

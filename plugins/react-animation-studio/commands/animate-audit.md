@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Audit animations for performance, accessibility, and best practices compliance.
 ---
 
 # /animate-audit

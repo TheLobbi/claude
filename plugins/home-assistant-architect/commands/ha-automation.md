@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create, manage, and debug Home Assistant automations.
 ---
 
 # Home Assistant Automation Command

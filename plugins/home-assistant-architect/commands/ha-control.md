@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Control Home Assistant entities and services with natural language.
 ---
 
 # Home Assistant Control Command

@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: 'The main execution engine. Runs one full cycle of the 8-phase work loop: prioritize → select batch → research → decompose check → execute → validate → checkpoint → loop decision. Each invocation processes a batch of tasks and either recurses automatically or surfaces a decision point.'
 ---
 
 # /pm:work — Research-First Task Execution

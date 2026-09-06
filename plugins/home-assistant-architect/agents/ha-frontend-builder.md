@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Build and design Home Assistant Lovelace dashboards with production-ready cards, layouts, and responsive designs.
 ---
 
 # Home Assistant Frontend Builder Agent

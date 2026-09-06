@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Control and manage Home Assistant devices, entities, and services with intelligent state management and natural language understanding.
 ---
 
 # Home Assistant Device Controller Agent

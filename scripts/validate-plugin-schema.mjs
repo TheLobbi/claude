@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import Ajv from 'ajv';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+// `new URL(import.meta.url).pathname` yields a leading-slash path on Windows
+// ("/C:/repo/scripts"), which path.resolve turns into "C:\C:\repo" and every
+// schema read then fails with ENOENT. fileURLToPath decodes correctly on all
+// platforms, so this check can actually run on Windows.
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PLUGINS_DIR = path.join(ROOT, 'plugins');
 const pluginSchemaPath = path.join(ROOT, 'schemas', 'plugin.schema.json');
 const hooksSchemaPath = path.join(ROOT, 'schemas', 'hooks.schema.json');

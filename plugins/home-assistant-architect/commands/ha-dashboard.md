@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create, customize, and manage Home Assistant Lovelace dashboards.
 ---
 
 # /ha-dashboard Command

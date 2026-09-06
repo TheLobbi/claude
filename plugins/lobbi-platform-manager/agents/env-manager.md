@@ -8,8 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: |
-  Environment configuration manager for the-lobbi/keycloak-alpha repository. Validates environment variables, generates configuration files, checks for missing variables, and ensures proper environment-specific defaults across 8 microservices.
+description: Environment configuration manager for the-lobbi/keycloak-alpha repository. Validates environment variables, generates configuration files, checks for missing variables, and ensures proper environment-specific defaults across 8 microservices.
 model: haiku
 tools:
   - Read

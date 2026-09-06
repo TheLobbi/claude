@@ -12,8 +12,7 @@ inputs:
   - '--data-source'
 risk: low
 cost: medium
-description: |
-  Scaffold a new MUI X DataGrid component, add features to an existing one, or optimize an existing DataGrid for performance. Includes TypeScript types, server-side integration patterns, and React Query/SWR data fetching.
+description: Scaffold a new MUI X DataGrid component, add features to an existing one, or optimize an existing DataGrid for performance. Includes TypeScript types, server-side integration patterns, and React Query/SWR data fetching.
 allowed-tools:
   - Read
   - Write

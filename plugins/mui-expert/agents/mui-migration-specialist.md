@@ -12,8 +12,7 @@ inputs:
   - optional dry-run flag
 risk: medium
 cost: high
-description: |
-  Analyzes codebases for MUI version compatibility and executes migrations between MUI v4→v5 or v5→v6. Detects breaking changes, generates a file-by-file migration plan with effort estimates, applies codemods and manual transforms, and verifies results with TypeScript compilation.
+description: Analyzes codebases for MUI version compatibility and executes migrations between MUI v4→v5 or v5→v6. Detects breaking changes, generates a file-by-file migration plan with effort estimates, applies codemods and manual transforms, and verifies results with TypeScript compilation.
 model: claude-sonnet-5
 tools:
   - Read

@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create expressive text animations including typewriter effects, character reveals, kinetic typography, and gradient text animations.
 ---
 
 # /animate-text Command

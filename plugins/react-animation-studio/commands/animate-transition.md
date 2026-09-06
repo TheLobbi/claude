@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create page transitions and route animations for seamless navigation experiences.
 ---
 
 # /animate-transition

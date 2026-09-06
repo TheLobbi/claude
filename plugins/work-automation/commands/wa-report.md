@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: low
 cost: low
+description: Produce the Work Unit Report per ULTRA §13. Reads session artifacts (files written, test outputs, git status) and fills in all seven sections.
 flags:
   - name: save
     type: boolean

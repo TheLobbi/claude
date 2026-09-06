@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Customize and extend Home Assistant with themes, custom components, entity configurations, blueprints, and HACS integrations.
 ---
 
 # Home Assistant Customization Expert Agent

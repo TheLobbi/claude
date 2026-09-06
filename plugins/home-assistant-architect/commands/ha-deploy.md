@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Deploy Home Assistant on Ubuntu server with Docker and complementary services.
 ---
 
 # Home Assistant Deploy Command

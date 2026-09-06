@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Add animations to existing React components with intelligent analysis and seamless integration.
 ---
 
 # /animate-component

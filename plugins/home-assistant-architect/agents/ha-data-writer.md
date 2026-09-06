@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Write, update, and manage data in Home Assistant including entity states, input helpers, databases, and configuration files.
 ---
 
 # Home Assistant Data Writer Agent

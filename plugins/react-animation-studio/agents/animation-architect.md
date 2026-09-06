@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Master architect for complex animation systems and choreography in React/TypeScript applications. This agent establishes scalable animation architectures that drive engaging user experiences across your application.
 ---
 
 # Animation Architect

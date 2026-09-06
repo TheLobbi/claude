@@ -5,7 +5,7 @@ import yaml from 'js-yaml';
 
 const ROOT = process.cwd();
 const PLUGINS_DIR = path.join(ROOT, 'plugins');
-const REQUIRED_FIELDS = ['name', 'intent', 'tags', 'inputs', 'risk', 'cost'];
+const REQUIRED_FIELDS = ['name', 'intent', 'tags', 'inputs', 'risk', 'cost', 'description'];
 const ALLOWED_RISK = new Set(['low', 'medium', 'high']);
 const ALLOWED_COST = new Set(['low', 'medium', 'high']);
 
@@ -13,7 +13,7 @@ const args = new Set(process.argv.slice(2));
 const checkOnly = args.has('--check');
 const writeFrontmatter = !args.has('--no-write-frontmatter');
 
-function parseFrontmatter(content) {
+function parseFrontmatter(content, relativePath = '<unknown>') {
   if (!content.startsWith('---\n')) return { data: {}, body: content, hasFrontmatter: false };
   const end = content.indexOf('\n---', 4);
   if (end === -1) return { data: {}, body: content, hasFrontmatter: false };
@@ -22,8 +22,11 @@ function parseFrontmatter(content) {
   let data = {};
   try {
     data = yaml.load(raw) || {};
-  } catch {
-    data = {};
+  } catch (err) {
+    // Never swallow this. Falling back to {} makes the generator rewrite the
+    // file from defaults, silently destroying every field it could not parse
+    // (flags, tools, model, hand-written descriptions). Fail loudly instead.
+    throw new Error(`${relativePath}: invalid YAML frontmatter - ${err.message}`);
   }
   return { data, body, hasFrontmatter: true };
 }
@@ -33,6 +36,27 @@ function inferIntent(data, body, baseName, type) {
   if (typeof data.description === 'string' && data.description.trim()) return data.description.trim();
   const firstLine = body.split('\n').find((line) => line.trim().length > 0) || '';
   return firstLine.replace(/^#\s+/, '').trim() || `${type} action for ${baseName}`;
+}
+
+// Claude Code requires `description` on every agent and command: it is the
+// trigger text the model matches against, and a command with no description is
+// not registered at all. `intent` is a repo-local registry field and is NOT a
+// substitute, so derive a real description whenever one is missing.
+function deriveDescription(data, body, baseName, type, intent) {
+  if (typeof data.description === 'string' && data.description.trim()) {
+    return data.description.trim();
+  }
+  // Prefer the first prose sentence of the body - skip headings, blank lines,
+  // and markdown furniture (tables, lists, code fences, blockquotes, html).
+  for (const rawLine of body.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line) continue;
+    if (/^(#|\||`{3}|>|<|-{3,}|\*|-\s|\d+\.\s)/.test(line)) continue;
+    const cleaned = line.replace(/[*_`]/g, '').trim();
+    if (cleaned.length >= 20) return cleaned;
+  }
+  if (typeof intent === 'string' && intent.trim()) return intent.trim();
+  return `${type} action for ${baseName}`;
 }
 
 function normalizeArray(value, fallback = []) {
@@ -66,14 +90,15 @@ function normalizeCost(value) {
 function buildNormalizedFrontmatter({ data, body, pluginName, type, fileName }) {
   const baseName = fileName.replace(/\.md$/, '');
   const fallbackName = data.name || `${pluginName}:${baseName}`;
+  const intentValue = inferIntent(data, body, baseName, type);
   return {
     name: String(fallbackName),
-    intent: inferIntent(data, body, baseName, type),
+    intent: intentValue,
     tags: normalizeArray(data.tags, [pluginName, type, baseName]),
     inputs: normalizeArray(data.inputs, normalizeArray(data.arguments, [])),
     risk: normalizeRisk(data.risk),
     cost: normalizeCost(data.cost),
-    ...(data.description ? { description: String(data.description) } : {}),
+    description: deriveDescription(data, body, baseName, type, intentValue),
     ...(data.model ? { model: String(data.model) } : {}),
     ...(data.tools ? { tools: data.tools } : {}),
     ...(data.allowedTools ? { allowedTools: data.allowedTools } : {}),
@@ -116,7 +141,7 @@ function ensureIndexesForPlugin(pluginDirName) {
       const filePath = path.join(dir, fileName);
       const relativePath = path.relative(pluginRoot, filePath).replaceAll('\\\\', '/');
       const original = fs.readFileSync(filePath, 'utf8');
-      const { data, body } = parseFrontmatter(original);
+      const { data, body } = parseFrontmatter(original, relativePath);
       const normalized = buildNormalizedFrontmatter({ data, body, pluginName: pluginDirName, type: type.slice(0, -1), fileName });
 
       const missing = REQUIRED_FIELDS.filter((field) => normalized[field] === undefined || normalized[field] === null || normalized[field] === '');

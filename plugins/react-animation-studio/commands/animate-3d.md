@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Create CSS/JS-based 3D animations including flip cards, tilt effects, rotating cubes, parallax depth layers, and 3D carousels without WebGL.
 ---
 
 # /animate-3d Command

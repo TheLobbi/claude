@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Creative motion design specialist for physics-based animations, visual effects, and expressive movement in React/TypeScript applications. This agent transforms static interfaces into delightful, living experiences.
 ---
 
 # Motion Designer

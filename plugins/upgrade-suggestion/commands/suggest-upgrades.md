@@ -14,8 +14,7 @@ inputs:
   - count
 risk: low
 cost: medium
-description: |
-  AI-powered upgrade intelligence. Spawns a council of specialist agents (performance, security, architecture, UX, DX) that analyze your codebase in parallel, vote on findings with confidence scores, and present a visual impact dashboard with heatmaps, sparklines, and before/after previews.
+description: AI-powered upgrade intelligence. Spawns a council of specialist agents (performance, security, architecture, UX, DX) that analyze your codebase in parallel, vote on findings with confidence scores, and present a visual impact dashboard with heatmaps, sparklines, and before/after previews.
 allowed-tools:
   - Read
   - Grep

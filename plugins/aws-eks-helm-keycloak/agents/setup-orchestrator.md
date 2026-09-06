@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Interactive agent that guides users through the comprehensive setup of the AWS EKS + Helm + Keycloak + Harness ecosystem.
 ---
 
 # Setup Orchestrator Agent

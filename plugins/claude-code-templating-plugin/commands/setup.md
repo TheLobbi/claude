@@ -10,6 +10,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: The /setup command manages the Claude Code baseline for an installed project.
 category: project-operations
 ---
 

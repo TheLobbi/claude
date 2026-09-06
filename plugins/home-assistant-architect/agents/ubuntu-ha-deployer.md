@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Deploy, configure, and manage Home Assistant on Ubuntu servers with Docker, including complementary services like MQTT, Zigbee2MQTT, and monitoring.
 ---
 
 # Ubuntu Home Assistant Deployer Agent

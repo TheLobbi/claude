@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: 'Full create, read, update, and delete interface for individual tasks. Use this when you need to manually intervene in the task backlog: adding tasks that were missed during decomposition, editing fields that need correction, marking tasks complete or blocked by hand, or inspecting a specific task''s full record.'
 ---
 
 # /pm:task — Task Management CRUD

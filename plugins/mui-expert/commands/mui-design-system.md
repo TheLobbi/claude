@@ -16,8 +16,7 @@ inputs:
   - '--white-label'
 risk: low
 cost: high
-description: |
-  Scaffold a production-ready design system on MUI with design tokens, theme configuration, TypeScript augmentation, component overrides, CSS variables, dark mode, and optional multi-tenant white-label support.
+description: Scaffold a production-ready design system on MUI with design tokens, theme configuration, TypeScript augmentation, component overrides, CSS variables, dark mode, and optional multi-tenant white-label support.
 allowed-tools:
   - Read
   - Write

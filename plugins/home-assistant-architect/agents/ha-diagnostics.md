@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Troubleshoot, diagnose, and resolve Home Assistant issues including entity problems, automation failures, integration errors, and performance issues.
 ---
 
 # Home Assistant Diagnostics Agent

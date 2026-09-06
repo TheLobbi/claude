@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Deploy, configure, and optimize local Large Language Models using Ollama, LocalAI, and other backends for Home Assistant voice assistants and intelligent automation.
 ---
 
 # Local LLM Manager Agent

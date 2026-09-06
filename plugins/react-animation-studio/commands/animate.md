@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Generate beautiful, production-ready animation code from natural language descriptions. This command transforms creative descriptions into optimized TypeScript/React animations.
 ---
 
 # /animate

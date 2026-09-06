@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: 'Use for decorative and artistic visual effects in React: animated backgrounds (gradients, particles, aurora, mesh, waves, morphing blobs), accent flourishes (floating shapes, glowing orbs, sparkles, shimmer borders), kinetic typography and text reveals, glitch/liquid/morph effects, and 3D transforms such as tilt, flip cards and parallax depth. Trigger phrases: "make this section more visually interesting", "add a particle or aurora background", "animate this headline", "add a shimmer or glow effect".'
 ---
 
 # Creative Effects Artist Agent

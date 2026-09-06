@@ -8,6 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
+description: Add scroll-triggered animations to elements and sections with intelligent viewport detection.
 ---
 
 # /animate-scroll
