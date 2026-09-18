@@ -1,3 +1,5 @@
+> Historical integration examples, retired from this repository’s CI on 2026-09-17. No Jira repository secrets are configured. These files are reference material; adopting them requires an owning project, credential configuration, and script/security review. They are not installed or exercised by this repository.
+
 # Jira GitHub Actions Integration Setup Guide
 
 This guide covers setup and configuration for automated Jira integration using GitHub Actions and the Gajira action suite.
