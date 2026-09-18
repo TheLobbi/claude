@@ -270,7 +270,7 @@ Once basic integration works:
 
 4. **Read full documentation:**
    - See `README-JIRA-INTEGRATION.md` for complete guide
-   - See `jira-config-example.yml` for all configuration options
+   - See [`../examples/jira-config-example.yml`](../examples/jira-config-example.yml) for configuration examples (not an executable workflow)
 
 ---
 
@@ -433,7 +433,7 @@ gh workflow run jira-pr-sync.yml
 
 3. **Review full documentation:**
    - `README-JIRA-INTEGRATION.md`
-   - `jira-config-example.yml`
+   - `../examples/jira-config-example.yml` (reference configuration; keep outside `workflows/`)
 
 4. **Common issues:**
    - Secrets not set or incorrect
