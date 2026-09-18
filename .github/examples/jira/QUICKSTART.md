@@ -1,3 +1,5 @@
+> Historical integration examples, retired from this repository’s CI on 2026-09-17. No Jira repository secrets are configured. These files are reference material; adopting them requires an owning project, credential configuration, and script/security review. They are not installed or exercised by this repository.
+
 # Jira GitHub Actions - Quick Start Guide
 
 Get Jira integration running in 10 minutes.
@@ -270,7 +272,7 @@ Once basic integration works:
 
 4. **Read full documentation:**
    - See `README-JIRA-INTEGRATION.md` for complete guide
-   - See `jira-config-example.yml` for all configuration options
+   - See [`jira-config-example.yml`](jira-config-example.yml) for configuration examples (not an executable workflow)
 
 ---
 
@@ -433,7 +435,7 @@ gh workflow run jira-pr-sync.yml
 
 3. **Review full documentation:**
    - `README-JIRA-INTEGRATION.md`
-   - `jira-config-example.yml`
+   - `jira-config-example.yml` (reference configuration; keep outside `workflows/`)
 
 4. **Common issues:**
    - Secrets not set or incorrect

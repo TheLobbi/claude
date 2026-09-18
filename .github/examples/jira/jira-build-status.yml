@@ -7,7 +7,7 @@ name: Jira Build Status
 
 on:
   workflow_run:
-    workflows: ["*"]  # Monitor all workflows, or specify: ["CI", "Tests", "Build"]
+    workflows: ["Marketplace CI", "Prevent tracked dependencies and build artifacts"]
     types:
       - completed
 
