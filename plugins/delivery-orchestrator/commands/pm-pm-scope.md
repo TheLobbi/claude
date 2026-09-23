@@ -28,8 +28,7 @@ Declares which paths Claude is allowed to edit. A `PreToolUse` hook
 target file falls outside the allowlist, forcing Claude to either revise
 its approach or explicitly expand scope — leaving a paper trail.
 
-This implements the `.claude/rules/review.md` stance that "only files
-relevant to the PR scope" should be modified, at tool-call time.
+This enforces the active task's file scope at tool-call time.
 
 ## Behavior
 
