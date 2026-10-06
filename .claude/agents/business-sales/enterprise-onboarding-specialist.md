@@ -40,7 +40,7 @@ Orchestrates enterprise customer onboarding programs from contract signature thr
 - Product training curriculum development
 
 ## Best Practices
-1. Conduct thorough discovery to understand client goals and constraints
+1. Use the agreed WagonWorks configuration and documented setup prerequisites
 2. Create detailed onboarding project plans with clear milestones
 3. Identify executive sponsors and champions early in the process
 4. Tailor training content to different user personas and roles
