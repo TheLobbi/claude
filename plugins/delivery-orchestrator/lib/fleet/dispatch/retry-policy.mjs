@@ -120,7 +120,7 @@ export function providerOf(model) {
 
 /** Why the next model cannot run now, or null. */
 function blockedReason(nextModel, routerVerdict, capacity) {
-  if (nextModel === PRIMARY_MODEL && routerVerdict === 'REFUSE') return 'the Codex router gate is REFUSE';
+  if (nextModel === PRIMARY_MODEL && !['OPEN', 'FLAG'].includes(routerVerdict)) return `the Codex router gate is ${routerVerdict || 'UNKNOWN'}`;
   const p = capacity?.providers?.[providerOf(nextModel)];
   return p?.limited ? `${providerOf(nextModel)} is limited until ${p.until}` : null;
 }

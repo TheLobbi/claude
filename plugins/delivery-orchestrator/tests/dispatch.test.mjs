@@ -296,3 +296,18 @@ test('cli: retry passes T3 capacity into the decision (r4217989470)', async (t) 
     quiet.mock.restore();
   }
 });
+
+test('cli: retry refuses a Codex alternate when the router verdict is unread (r4218206501)', async (t) => {
+  const tmp = mkdtempSync(join(tmpdir(), 'dispatch-cli-router-'));
+  t.after(() => rmSync(tmp, { recursive: true, force: true }));
+  const receipts = join(tmp, 'r.json');
+  writeFileSync(receipts, JSON.stringify(['command:mcp:s:thread-send:k-r1']));
+  const quiet = t.mock.method(process.stdout, 'write', () => true);
+  try {
+    const args = ['retry', '--key', 'k-r1', '--receipts-json', receipts, '--run-status', 'failed', '--failure-class', 'usage_limit', '--model', 'claude-opus-5-5', '--now', '2026-10-08T04:30:00Z'];
+    assert.equal(await main(args), 1, 'missing router read -> hold before switching to Codex');
+    assert.equal(await main([...args, '--router-verdict', 'OPEN']), 0, 'explicit OPEN -> Codex alternate is allowed');
+  } finally {
+    quiet.mock.restore();
+  }
+});

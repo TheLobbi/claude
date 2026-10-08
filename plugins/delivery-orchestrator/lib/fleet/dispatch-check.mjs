@@ -134,23 +134,24 @@ async function retryReceipts(flags) {
 }
 
 /** Capacity for the retry: --events-json, else T3 limit events (last 12 h); none in receipts-json fixture mode. */
-async function retryCapacity(flags) {
+async function retryCapacity(flags, gate) {
   const now = flags.now || new Date().toISOString();
   const since = new Date(Date.parse(now) - 12 * 3600_000).toISOString();
   let events = [];
   if (flags['events-json']) events = readJson(flags['events-json']);
   else if (!flags['receipts-json']) events = await withDb(flags, (db) => t3.readLimitEvents(db, since));
-  return capacitySnapshot({ events, gate: { verdict: flags['router-verdict'] || 'OPEN', reasons: [] }, now, cooldownMin: Number(flags.cooldown || 60) });
+  return capacitySnapshot({ events, gate, now, cooldownMin: Number(flags.cooldown || 60) });
 }
 
-async function cmdRetry(flags) {
+async function cmdRetry(flags, env) {
   if (!flags.key) throw new UsageError('retry needs --key <clientRequestId>');
+  const gate = flags['router-verdict'] ? { verdict: flags['router-verdict'], reasons: [] } : await optionalGate(flags, env);
   const { receipts, runStatus } = await retryReceipts(flags);
-  const capacity = await retryCapacity(flags);
+  const capacity = await retryCapacity(flags, gate);
   const failure = flags['failure-class'] ? { class: flags['failure-class'], message: flags['failure-message'] || '' } : null;
   const decision = decideRetry({
     key: flags.key, attempt: Number(flags.attempt || 1), receipts, runStatus, failure,
-    model: flags.model, routerVerdict: flags['router-verdict'] || 'OPEN', capacity,
+    model: flags.model, routerVerdict: gate?.verdict ?? 'UNKNOWN', capacity,
   });
   emit(flags, { receipts, runStatus, decision }, [
     `retry decision: ${decision.action}${decision.clientRequestId ? `  key=${decision.clientRequestId}` : ''}${decision.model ? `  model=${decision.model}` : ''}${decision.delayMs ? `  after ${decision.delayMs} ms` : ''}`,
