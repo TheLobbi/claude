@@ -104,13 +104,11 @@ annotated with that run id.
 These come from the 2026-10-08 router evidence. They need the router owner;
 no lane applies them.
 
-- Re-login `development+codex-3` (its OAuth was invalidated and the refresh
-  returned 401).
 - Shorten the 24 h session affinity, which pins a thread to an overloaded
   account.
 - Make the router's own `health.ps1` count rate-limited and overloaded
   accounts as transient rather than invalid.
-- Give T3's `usageLimitSources` a real management key; today it holds a
-  masked placeholder, so T3 cannot see router quota.
 - Evaluate the router upgrade (7.3.7 → 8.0.17) for retrying `response.failed`
   overloads that arrive before any output.
+- Check whether unprefixed model names (`gpt-4.1-mini`, `claude-*`) can
+  spill onto the paid API keys.
