@@ -1,5 +1,20 @@
 # Agent System
 
+## Current WagonWorks business scope
+
+Owner correction, 2026-10-05: business agents support developing, explaining,
+demonstrating, and selling WagonWorks. Discovery services and discovery-led
+sales workflows are retired; do not propose or initiate them from older
+profiles or selling playbooks. General work-automation recommendations are
+not the current marketing or sales direction. Release-to-campaign and
+campaign-experiment agents are parked pending a new owner instruction.
+
+Assess Power BI analysis, plain-language product explanations, self-service
+demo configuration, website monitoring, contact/company enrichment, company
+research, competitive and market intelligence, paperwork, and meeting
+assistance including scheduling. These directions do not imply implemented
+tools or authorization to contact people.
+
 The agent system provides 137 specialized subagents that Claude invokes using the
 `Task` tool. Each agent is a markdown file with a YAML frontmatter block (or embedded
 YAML section) that declares its name, model, tools, and purpose. Agents are organized
