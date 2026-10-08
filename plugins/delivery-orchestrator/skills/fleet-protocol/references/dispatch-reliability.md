@@ -43,7 +43,9 @@ Run `dispatch-check capacity` before a batch of dispatches.
   - **Claude**: a session-limit banner ("You've hit your session limit ·
     resets 9:10pm (America/Los_Angeles)") counts until the next occurrence of
     that wall-clock time in that zone. A `usage_limit` error item without a
-    reset time counts for 60 minutes after the last occurrence.
+    reset time counts for 60 minutes after the last occurrence. The latest
+    end wins, so a cooldown-only event can extend past a stated reset. The
+    bias is deliberately toward LIMITED.
   - **Codex**: the router gate says `REFUSE`. A `FLAG` makes Codex the second
     choice.
 - **Fable and Hestra are reserved for coordinators.** A lane brief that names
@@ -53,7 +55,8 @@ Run `dispatch-check capacity` before a batch of dispatches.
 ## D3. Retry only what T3 never accepted
 
 Every dispatch carries a stable `clientRequestId`. T3 records every MCP
-command it accepts as a receipt whose id ends with that key:
+command it accepts as a command receipt (in its own state DB; these are not
+the lane completion receipts of §6b) whose id ends with that key:
 `command:mcp:<session>:thread-send:<key>`. Before any retry, run
 `dispatch-check retry --key <key>`, which decides from those receipts.
 

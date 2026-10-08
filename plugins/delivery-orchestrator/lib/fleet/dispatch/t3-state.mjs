@@ -48,9 +48,9 @@ function runs(db, statuses) {
 }
 
 /**
- * Queued runs. queuedRunId is T3's run_id: the DB has no separate queue id,
- * and t3_queue_list returned no items to compare against when this was
- * written — confirm against t3_queue_list before acting on an id.
+ * Queued runs. queuedRunId is T3's run_id — confirmed 2026-10-08 against
+ * t3_queue_list, which returned queuedRunId
+ * "run:thread:<threadId>:ordinal:<n>" for the same row.
  */
 export function readQueued(db) {
   return runs(db, ['queued', 'waiting']).map((r) => ({
