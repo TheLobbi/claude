@@ -1407,3 +1407,10 @@ Node.js v22.22.2
 - **Status:** RESOLVED
 - **Fix:** A transient T3 MCP socket reset; the identical read succeeded on the first retry.
 - **Prevention:** Retry a read-only T3 call once before treating it as a failure. Don't retry `t3_thread_send` without a stable `clientRequestId`.
+
+### Error: Stop hook re-enters while the remaining gate belongs to another party (2026-10-08)
+- **Tool:** Stop hook (re-entrant, `stop_hook_active=true`)
+- **Error:** The hook kept rejecting completion. First it demanded "independent" verification, then that an external CodeRabbit re-review resolve. Any check this lane ran itself counted as self-assessment.
+- **Status:** RESOLVED
+- **Fix:** Independent evidence came from outside the lane: GitHub CI runs pinned to the head SHA, and the coordinator's own re-run, which it marked DELIVERED. An external review gate was handed off by receipt to the coordinator, which owns the merge.
+- **Prevention:** In the final receipt, name every gate the lane does not control, and name its owner. Cite CI run URLs pinned to the head SHA as the independent evidence. Do not add commits to a PR under review just to satisfy the hook; that moves the head and restarts the review.
