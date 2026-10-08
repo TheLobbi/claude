@@ -42,8 +42,10 @@
       "status": "running"
     }
   ],
+  "_receiptsNote": "SYNTHETIC: every entry in `receipts` below is a fabricated test input, not a receipt any lane posted (none did). They exist only to exercise the clean, missing-receipt and claim-mismatch paths of reconcileReceipts.",
   "receipts": [
     {
+      "_synthetic": "SYNTHETIC test input - not a real lane receipt",
       "threadId": "mcp:6e390e8a-3031-4fa9-9f0c-8ebf76d2c2ac",
       "runId": "ordinal:1",
       "kind": "completion",
@@ -54,6 +56,7 @@
       ]
     },
     {
+      "_synthetic": "SYNTHETIC test input - not a real lane receipt; a deliberately false completion claim for a cancelled run",
       "threadId": "mcp:cb273f19-18be-41cb-9a31-763899be4e65",
       "runId": "ordinal:2",
       "kind": "completion",

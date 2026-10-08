@@ -34,6 +34,11 @@ Evaluate the rows top to bottom. The first row that matches wins.
 | 3 | Reversible, and covered by an existing grant (a permission the identity already holds and the rules allow it to use) or delegated by the brief | **AGENT-AUTHORIZED** | proceed, then post a completion receipt | No |
 | 4 | Reversible and capable, but neither the brief nor a grant covers it | **COORDINATOR-DECISION** | coordinator, who extends the brief or denies it | No |
 
+**Missing facts fail closed.** Row 3 needs `reversible: true` stated
+explicitly, `capability.available: true` stated explicitly, and a covering
+grant. If reversibility is not stated, the blocker is row 4. If the capability
+is not stated, it is row 2, and the lane must name the capability.
+
 Rules that follow from the table:
 
 - **Agent-initiated reversible actions inside a delegated brief proceed
@@ -66,7 +71,7 @@ message sent to a session the coordinator does not read is not a receipt.
 | `kind` | always | `completion` · `failure` · `escalation` |
 | `postedAt` | always | UTC, `YYYY-MM-DDTHH:MM:SSZ` |
 | `exactText` | always | The blocker or outcome, quoted exactly as it appears in the PR body or report |
-| `evidence` | always, ≥1 | PR URL + head SHA, file path, command + exit code, Graph read result |
+| `evidence` | always, ≥1 | PR URL + head SHA, file path, command + exit code, Graph read result. Every entry must be non-empty text |
 | `blockerClass` | escalation | One of the four classes. AGENT-AUTHORIZED is rejected because it is not a blocker |
 | `requestedDecision` | escalation | One decision, answerable yes/no or by choosing one option |
 | `defaultIfNoAnswer` | escalation | What happens if nobody answers. Row 1: "do not perform; keep the PR open". Rows 2–4: the reversible default the lane will take |
@@ -85,7 +90,9 @@ message sent to a session the coordinator does not read is not a receipt.
  "escalateTo":"coordinator"}
 ```
 
-Validate: `node lib/fleet/classify-authority.mjs --receipts receipts.json`.
+Validate: `node lib/fleet/classify-authority.mjs --receipts receipts.jsonl`. The
+reader accepts JSON Lines (one object per line; blank lines are ignored) or a
+JSON array.
 
 ## The done rule
 
@@ -99,11 +106,13 @@ finding. It does not infer success.
 
 1. **Surface missing receipts.** At every census, list the runs that reached
    a terminal T3 state (`completed`, `failed`, `cancelled`, `interrupted`) and
-   have no completion or failure receipt. The set size is part of the result:
-   "0 missing of N terminal runs".
-2. **Reconcile claims against T3 state.** A completion receipt for a run whose
-   T3 status is not `completed` is a claim mismatch. Read the thread and do not
-   trust the receipt.
+   have no **schema-valid** completion or failure receipt. An invalid receipt
+   or an unknown `kind` does not close a run. The set size is part of the
+   result: "0 missing of N terminal runs".
+2. **Reconcile claims against T3 state.** Every completion claim for a run is
+   kept; a later write does not replace an earlier one. Any completion receipt
+   for a run whose T3 status is not `completed` is a claim mismatch, even if a
+   failure receipt follows it. Read the thread and do not trust the receipt.
 3. **Re-route misfiled blockers.** If a lane files a row 3 action as founder
    work, send it back as AGENT-AUTHORIZED. Answer a row 4 blocker yourself.
    Resolve a row 2 blocker by naming who obtains the capability. Forward only
@@ -113,5 +122,5 @@ finding. It does not infer success.
    the table above.
 
 Check the run state against the receipts: `node lib/fleet/classify-authority.mjs
---reconcile runs.json receipts.json`. Here `runs.json` is `[{threadId, runId,
+--reconcile runs.json receipts.jsonl`. Here `runs.json` is `[{threadId, runId,
 status}]` from `t3_thread_list` / `t3_thread_read`.

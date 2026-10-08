@@ -77,14 +77,18 @@ function result(cls, extra = {}) {
  */
 export function classifyBlocker(blocker) {
   if (isIrreversible(blocker)) return result(CLASSES.IRREVERSIBLE_FOUNDER);
-  if (blocker.capability?.available === false) {
-    const missing = (blocker.capability.missing ?? '').trim();
+  // Fail closed: only an explicitly AVAILABLE capability counts. An absent or
+  // unstated capability is a missing one, and must be named.
+  if (blocker.capability?.available !== true) {
+    const missing = (blocker.capability?.missing ?? '').trim();
     if (missing === '') {
       return result(CLASSES.MISSING_CAPABILITY, { error: 'MISSING-CAPABILITY must name the exact permission or capability' });
     }
     return result(CLASSES.MISSING_CAPABILITY, { missing });
   }
-  if (GRANTS.includes(blocker.grant)) return result(CLASSES.AGENT_AUTHORIZED);
+  // Proceeding without sign-off needs BOTH an explicit reversible=true and a
+  // covering grant. Unknown reversibility is the coordinator's call.
+  if (blocker.reversible === true && GRANTS.includes(blocker.grant)) return result(CLASSES.AGENT_AUTHORIZED);
   return result(CLASSES.COORDINATOR_DECISION);
 }
 
@@ -97,7 +101,10 @@ function checkEvidence(receipt, reasons) {
   const ev = receipt.evidence;
   if (!Array.isArray(ev) || ev.length === 0) {
     reasons.push('evidence must list at least one link (PR URL, thread id, run id, file path, command + exit code)');
+    return;
   }
+  const blank = ev.filter((e) => typeof e !== 'string' || e.trim() === '').length;
+  if (blank > 0) reasons.push(`evidence has ${blank} empty or non-text entr${blank === 1 ? 'y' : 'ies'}; every entry must be a non-empty link`);
 }
 
 function checkRoute(receipt, reasons) {
@@ -143,19 +150,30 @@ export function validateReceipt(receipt) {
 
 const runKey = (threadId, runId) => `${threadId}\u0000${runId}`;
 
+const CLOSING_KINDS = ['completion', 'failure'];
+
+/** A receipt closes a run only if it is a completion/failure AND schema-valid. */
+function isClosingReceipt(r) {
+  return CLOSING_KINDS.includes(r?.kind) && validateReceipt(r).length === 0;
+}
+
+/** Every valid closing receipt per run, in order — never last-write-wins. */
 function closingReceipts(receipts) {
   const byRun = new Map();
-  for (const r of receipts) {
-    if (r.kind === 'escalation') continue;
-    byRun.set(runKey(r.threadId, r.runId), r);
+  for (const r of receipts.filter(isClosingReceipt)) {
+    const key = runKey(r.threadId, r.runId);
+    if (!byRun.has(key)) byRun.set(key, []);
+    byRun.get(key).push(r);
   }
   return byRun;
 }
 
-function reconcileRun(run, receipt) {
-  if (!receipt) return { threadId: run.threadId, runId: run.runId, finding: `missing receipt: run is ${run.status} and posted no completion or failure receipt` };
-  if (receipt.kind === 'completion' && run.status !== 'completed') {
-    return { threadId: run.threadId, runId: run.runId, finding: `claim mismatch: receipt says completion but T3 run status is ${run.status}` };
+function reconcileRun(run, closing = []) {
+  const at = { threadId: run.threadId, runId: run.runId };
+  if (closing.length === 0) return { ...at, finding: `missing receipt: run is ${run.status} and posted no valid completion or failure receipt` };
+  const claimsCompletion = closing.some((r) => r.kind === 'completion');
+  if (claimsCompletion && run.status !== 'completed') {
+    return { ...at, finding: `claim mismatch: a receipt says completion but T3 run status is ${run.status}` };
   }
   return null;
 }
@@ -176,14 +194,35 @@ export function reconcileReceipts(runs, receipts) {
   return { checked: terminal.length, findings };
 }
 
-function readJsonArray(file) {
-  const parsed = JSON.parse(fs.readFileSync(file, 'utf8'));
-  if (!Array.isArray(parsed)) throw new Error(`${file}: expected a JSON array`);
-  return parsed;
+function parseLine(line, i, label) {
+  try {
+    return JSON.parse(line);
+  } catch (err) {
+    throw new Error(`${label}:${i + 1}: not a JSON object (${err.message})`);
+  }
+}
+
+/**
+ * Parse receipts or runs from either a JSON array or JSON Lines (the
+ * protocol's `receipts.jsonl`: one object per line, blank lines ignored).
+ */
+export function parseRecords(text, label = 'input') {
+  const trimmed = text.trim();
+  if (trimmed === '') return [];
+  if (trimmed.startsWith('[')) return JSON.parse(trimmed);
+  return text
+    .split(/\r?\n/)
+    .map((line, i) => [line.trim(), i])
+    .filter(([line]) => line !== '')
+    .map(([line, i]) => parseLine(line, i, label));
+}
+
+function readRecords(file) {
+  return parseRecords(fs.readFileSync(file, 'utf8'), file);
 }
 
 function runReceipts(file) {
-  const receipts = readJsonArray(file);
+  const receipts = readRecords(file);
   let bad = 0;
   receipts.forEach((r, i) => {
     for (const reason of validateReceipt(r)) {
@@ -196,7 +235,7 @@ function runReceipts(file) {
 }
 
 function runReconcile(runsFile, receiptsFile) {
-  const { checked, findings } = reconcileReceipts(readJsonArray(runsFile), readJsonArray(receiptsFile));
+  const { checked, findings } = reconcileReceipts(readRecords(runsFile), readRecords(receiptsFile));
   for (const f of findings) console.error(`${f.threadId} ${f.runId}: ${f.finding}`);
   console.log(`checked ${checked} terminal run(s); ${findings.length} finding(s)`);
   return findings.length === 0 ? 0 : 1;
@@ -205,7 +244,7 @@ function runReconcile(runsFile, receiptsFile) {
 function main(args) {
   if (args[0] === '--receipts' && args.length === 2) return runReceipts(args[1]);
   if (args[0] === '--reconcile' && args.length === 3) return runReconcile(args[1], args[2]);
-  console.error('usage: classify-authority.mjs --receipts <file> | --reconcile <runs.json> <receipts.json>');
+  console.error('usage: classify-authority.mjs --receipts <receipts.jsonl|.json> | --reconcile <runs.json> <receipts.jsonl|.json>');
   return 2;
 }
 
