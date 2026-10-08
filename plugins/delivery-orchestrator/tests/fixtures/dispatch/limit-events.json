@@ -1,0 +1,20 @@
+[
+  {
+    "provider": "claudeAgent",
+    "model": "claude-opus-5-5",
+    "threadId": "thread-coord",
+    "runId": "run:thread:thread-coord:ordinal:50",
+    "at": "2026-10-08T04:09:26.409Z",
+    "kind": "session_limit",
+    "text": "You've hit your session limit · resets 9:10pm (America/Los_Angeles)"
+  },
+  {
+    "provider": "claudeAgent",
+    "model": "claude-opus-5-5",
+    "threadId": "thread-lane",
+    "runId": "run:thread:thread-lane:ordinal:29",
+    "at": "2026-10-08T04:00:09.818Z",
+    "kind": "usage_limit",
+    "text": "Claude API rate limit reached. Try again later."
+  }
+]

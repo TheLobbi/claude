@@ -57,7 +57,7 @@ function die(msg, code = 2) {
   process.exit(code);
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const flags = {};
   const positional = [];
   for (let i = 0; i < argv.length; i++) {

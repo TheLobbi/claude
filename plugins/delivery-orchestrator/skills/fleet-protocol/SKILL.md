@@ -281,6 +281,21 @@ and reconciles every completion claim against T3 run state.
   `reports/<lane>.md` (PRs opened and merged, issues closed, blocked items,
   exact proofs) and finish with heartbeat `standby`.
 
+## 8. Dispatch reliability
+
+Before every dispatch, run the read-only gate in `lib/fleet/dispatch-check.mjs`
+and follow rules D1–D4:
+
+- **D1 router gate:** `REFUSE` means no Codex dispatch.
+- **D2 capacity routing:** never dispatch to a limited provider; Fable and
+  Hestra are for coordinators only.
+- **D3 retries:** retry only when T3 holds no accepted receipt for the
+  `clientRequestId`.
+- **D4 coalescing:** run `t3_queue_list` and merge into one message before
+  queuing a follow-up.
+
+The full rules are in `references/dispatch-reliability.md`.
+
 ## Run directory
 
 One directory per run, machine-local, never committed. Layout, ownership and
@@ -295,3 +310,4 @@ the append rule: `references/run-directory.md`.
 | `references/merge-discipline.md` | The merge gate, step by step |
 | `references/run-directory.md` | Log files, who owns which, the append rule |
 | `references/authority-and-receipts.md` | Blocker decision table, escalation receipt schema, done rule, coordinator reconciliation |
+| `references/dispatch-reliability.md` | Router gate, capacity routing, keyed retries, queue coalescing (D1–D4) |

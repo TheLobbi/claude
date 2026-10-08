@@ -50,7 +50,7 @@
     {
       "name": "delivery-orchestrator",
       "description": "Unified delivery orchestration: one plugin replacing six. A tested, dependency-free kernel (swarm conductor with leased claims and worktree isolation, guardrails, transactional state MCP, fleet protocol) behind platform adapters for Linear, Jira, GitHub and Harness. 133 commands, 156 agents, 52 skills, 12 schema-validated workflows, 155 tests.",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "author": {
         "name": "Markus Ahling",
         "email": "markus@lobbi.io"

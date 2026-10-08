@@ -15,7 +15,7 @@
     "check:plugin-indexes": "node scripts/generate-plugin-indexes.mjs --check",
     "profile:plugin-context": "node scripts/profile-plugin-context.mjs",
     "validate-archetype": "tsx scripts/validate-archetype.ts",
-    "test:delivery-plugin": "node --test plugins/delivery-orchestrator/tests/agent-session.test.mjs plugins/delivery-orchestrator/tests/authority-classifier.test.mjs plugins/delivery-orchestrator/tests/linear-client.test.mjs plugins/delivery-orchestrator/tests/pm-guardrails-mcp.test.mjs plugins/delivery-orchestrator/tests/pm-guardrails.test.mjs plugins/delivery-orchestrator/tests/pm-mcp.test.mjs plugins/delivery-orchestrator/tests/pm-round3.test.mjs plugins/delivery-orchestrator/tests/pm-state.test.mjs plugins/delivery-orchestrator/tests/swarm.test.mjs plugins/delivery-orchestrator/tests/vcs.test.mjs plugins/delivery-orchestrator/tests/webhooks.test.mjs"
+    "test:delivery-plugin": "node --test plugins/delivery-orchestrator/tests/agent-session.test.mjs plugins/delivery-orchestrator/tests/authority-classifier.test.mjs plugins/delivery-orchestrator/tests/dispatch.test.mjs plugins/delivery-orchestrator/tests/linear-client.test.mjs plugins/delivery-orchestrator/tests/pm-guardrails-mcp.test.mjs plugins/delivery-orchestrator/tests/pm-guardrails.test.mjs plugins/delivery-orchestrator/tests/pm-mcp.test.mjs plugins/delivery-orchestrator/tests/pm-round3.test.mjs plugins/delivery-orchestrator/tests/pm-state.test.mjs plugins/delivery-orchestrator/tests/swarm.test.mjs plugins/delivery-orchestrator/tests/vcs.test.mjs plugins/delivery-orchestrator/tests/webhooks.test.mjs"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
