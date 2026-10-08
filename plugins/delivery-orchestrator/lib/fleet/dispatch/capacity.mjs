@@ -100,9 +100,14 @@ export function capacitySnapshot({ events, gate, now, cooldownMin }) {
   return { at: now, providers };
 }
 
+/** Codex is routable only behind a read router gate: OPEN, or FLAG in the fallback pass. */
+function codexGateUnverified(route, p) {
+  return route.provider === 'codex' && p.router?.verdict !== VERDICT.OPEN && p.router?.verdict !== VERDICT.FLAG;
+}
+
 function usable(route, snapshot, avoidFlagged) {
   const p = snapshot.providers[route.provider];
-  if (!p || p.limited) return false;
+  if (!p || p.limited || codexGateUnverified(route, p)) return false;
   return !(avoidFlagged && p.router?.verdict === VERDICT.FLAG);
 }
 
@@ -122,7 +127,7 @@ function routeReserved(role, model, snapshot) {
 export function routeLane({ role = 'lane', requestedModel = null, snapshot }) {
   if (requestedModel && isReservedModel(requestedModel)) return routeReserved(role, requestedModel, snapshot);
   const pick = ORDINARY_ROUTES.find((r) => usable(r, snapshot, true)) || ORDINARY_ROUTES.find((r) => usable(r, snapshot, false));
-  if (!pick) return { route: null, reason: 'every ordinary provider is limited — hold the dispatch, do not fall back to a reserved model' };
+  if (!pick) return { route: null, reason: 'no verified, unlimited ordinary route (Codex needs a read router gate) — hold the dispatch, do not fall back to a reserved model' };
   const flagged = snapshot.providers[pick.provider]?.router?.verdict === VERDICT.FLAG;
   return { route: pick, reason: flagged ? 'only usable route is FLAGged by the router gate' : 'first unlimited route in preference order' };
 }

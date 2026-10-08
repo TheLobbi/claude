@@ -17,7 +17,8 @@
  *
  * queued:   [{ queuedRunId, threadId, requestedAt, text, messageId }]
  * active:   [{ threadId, runId, startedAt }]
- * evidence: [{ key, state: 'done'|'open', source, at }]  key = clientRequestId, PR ref (#123) or thread id
+ * evidence: [{ key, state: 'done'|'open', source, at, kind? }]  key = clientRequestId, PR ref (#123) or thread id;
+ *           kind 'delivered-message' = a completed keyed message (matches the item's own key only)
  */
 
 const ROUND_RE = /^(.*)-r(\d+)$/;
@@ -73,9 +74,16 @@ function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+/**
+ * Done-evidence for this item. A delivered message (kind 'delivered-message')
+ * proves only its OWN key was processed, so it matches the item's own key and
+ * never a reference the item merely mentions. Caller evidence (a merged PR, a
+ * receipt) matches any key or ref the item points at.
+ */
 function satisfiedBy(item, evidence) {
   const refs = new Set(refsOf(item));
-  return evidence.find((e) => e.state === 'done' && refs.has(e.key));
+  const own = keyOf(item);
+  return evidence.find((e) => e.state === 'done' && (e.kind === 'delivered-message' ? e.key === own : refs.has(e.key)));
 }
 
 function judge(item, peers, evidence) {

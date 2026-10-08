@@ -7,7 +7,7 @@
       "name": "Markus Ahling",
       "email": "markus@thelobbi.io"
     },
-    "generatedAt": "2026-10-08T10:32:24.195Z",
+    "generatedAt": "2026-10-08T11:00:09.927Z",
     "repo": "https://github.com/markus41/claude",
     "url": "https://markus41.github.io/claude/"
   },
@@ -269,7 +269,7 @@
     },
     {
       "name": "delivery-orchestrator",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Unified delivery orchestration: one plugin replacing six. A tested, dependency-free kernel (swarm conductor with leased claims and worktree isolation, guardrails, transactional state MCP, fleet protocol) behind platform adapters for Linear, Jira, GitHub and Harness. 133 commands, 156 agents, 52 skills, 12 schema-validated workflows, 155 tests.",
       "author": "Markus Ahling",
       "authorUrl": "",

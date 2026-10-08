@@ -24,7 +24,7 @@ import { parseArgs } from './fleet.mjs';
 import { summarizeRouter, gateDecision, VERDICT } from './dispatch/router-health.mjs';
 import { capacitySnapshot, routeLane } from './dispatch/capacity.mjs';
 import { coalesce } from './dispatch/queue-coalesce.mjs';
-import { decideRetry } from './dispatch/retry-policy.mjs';
+import { decideRetry, attemptKey } from './dispatch/retry-policy.mjs';
 import * as t3 from './dispatch/t3-state.mjs';
 
 const DEFAULT_ROUTER = 'http://127.0.0.1:8317';
@@ -122,18 +122,35 @@ async function cmdQueue(flags) {
   return recs.some((r) => r.recommend === 'cancel') ? 1 : 0;
 }
 
+/** The key whose run status gates this retry: the CURRENT attempt's key, not the base key. */
+export function retryStatusKey(flags) {
+  return attemptKey(flags.key, Number(flags.attempt || 1));
+}
+
 async function retryReceipts(flags) {
   if (flags['receipts-json']) return { receipts: readJson(flags['receipts-json']), runStatus: flags['run-status'] || null };
-  return withDb(flags, (db) => ({ receipts: t3.readReceipts(db, flags.key), runStatus: flags['run-status'] || t3.readRunStatusForKey(db, flags.key) }));
+  const statusKey = retryStatusKey(flags);
+  return withDb(flags, (db) => ({ receipts: t3.readReceipts(db, flags.key), runStatus: flags['run-status'] || t3.readRunStatusForKey(db, statusKey) }));
+}
+
+/** Capacity for the retry: --events-json, else T3 limit events (last 12 h); none in receipts-json fixture mode. */
+async function retryCapacity(flags) {
+  const now = flags.now || new Date().toISOString();
+  const since = new Date(Date.parse(now) - 12 * 3600_000).toISOString();
+  let events = [];
+  if (flags['events-json']) events = readJson(flags['events-json']);
+  else if (!flags['receipts-json']) events = await withDb(flags, (db) => t3.readLimitEvents(db, since));
+  return capacitySnapshot({ events, gate: { verdict: flags['router-verdict'] || 'OPEN', reasons: [] }, now, cooldownMin: Number(flags.cooldown || 60) });
 }
 
 async function cmdRetry(flags) {
   if (!flags.key) throw new UsageError('retry needs --key <clientRequestId>');
   const { receipts, runStatus } = await retryReceipts(flags);
+  const capacity = await retryCapacity(flags);
   const failure = flags['failure-class'] ? { class: flags['failure-class'], message: flags['failure-message'] || '' } : null;
   const decision = decideRetry({
     key: flags.key, attempt: Number(flags.attempt || 1), receipts, runStatus, failure,
-    model: flags.model, routerVerdict: flags['router-verdict'] || 'OPEN',
+    model: flags.model, routerVerdict: flags['router-verdict'] || 'OPEN', capacity,
   });
   emit(flags, { receipts, runStatus, decision }, [
     `retry decision: ${decision.action}${decision.clientRequestId ? `  key=${decision.clientRequestId}` : ''}${decision.model ? `  model=${decision.model}` : ''}${decision.delayMs ? `  after ${decision.delayMs} ms` : ''}`,
@@ -151,7 +168,7 @@ function usage() {
   out('  capacity [--db FILE] [--since ISO] [--events-json FILE] [--no-router] [--cooldown MIN]');
   out('  queue    [--db FILE] [--queue-json FILE] [--evidence-json FILE]   cancel/keep, never cancels');
   out('  retry    --key ID [--attempt N] [--failure-class C] [--failure-message M] [--model M]');
-  out('           [--router-verdict V] [--run-status S] [--receipts-json FILE] [--db FILE]');
+  out('           [--router-verdict V] [--run-status S] [--receipts-json FILE] [--events-json FILE] [--db FILE]');
 }
 
 export async function main(argv, env = process.env) {

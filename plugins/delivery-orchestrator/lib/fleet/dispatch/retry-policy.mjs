@@ -90,18 +90,20 @@ function receiptGate({ key, attempt, receipts, runStatus, failure }) {
  *   failure        { class, message } of the failed run, or null
  *   model          the model of that attempt
  *   routerVerdict  OPEN | FLAG | REFUSE from router-health
+ *   capacity       capacitySnapshot() result; a next model whose provider is
+ *                  limited there makes the decision `hold`
  *   maxAttempts    default 3
  * }
  */
 export function decideRetry(input) {
-  const { key, attempt = 1, receipts = [], runStatus = null, failure = null, model = PRIMARY_MODEL, routerVerdict = 'OPEN', maxAttempts = 3 } = input;
+  const { key, attempt = 1, receipts = [], runStatus = null, failure = null, model = PRIMARY_MODEL, routerVerdict = 'OPEN', capacity = null, maxAttempts = 3 } = input;
   if (!key) return stop('refuse', 'no clientRequestId — an unkeyed dispatch can never be retried safely');
   const gated = receiptGate({ key, attempt, receipts, runStatus, failure });
   if (gated) return gated;
   const kind = failureKind(failure);
   if (kind === 'permanent') return stop('escalate', `non-retryable failure: ${String(failure?.message || failure?.class || 'none').slice(0, 120)}`);
   if (attempt >= maxAttempts) return stop('escalate', `attempt ${attempt} of ${maxAttempts} used`);
-  return nextAttempt({ key, attempt, kind, model, routerVerdict });
+  return nextAttempt({ key, attempt, kind, model, routerVerdict, capacity });
 }
 
 /** usage_limit: switch provider. Codex overload/transport, or a non-OPEN router: fall back to Claude. */
@@ -111,12 +113,23 @@ function chooseModel(kind, model, routerVerdict) {
   return routerVerdict !== 'OPEN' || kind === 'provider_overload' || kind === 'transport' ? FALLBACK_MODEL : model;
 }
 
-function nextAttempt({ key, attempt, kind, model, routerVerdict }) {
+/** Provider that serves a model on the ordinary routes. */
+export function providerOf(model) {
+  return model === PRIMARY_MODEL ? 'codex' : 'claudeAgent';
+}
+
+/** Why the next model cannot run now, or null. */
+function blockedReason(nextModel, routerVerdict, capacity) {
+  if (nextModel === PRIMARY_MODEL && routerVerdict === 'REFUSE') return 'the Codex router gate is REFUSE';
+  const p = capacity?.providers?.[providerOf(nextModel)];
+  return p?.limited ? `${providerOf(nextModel)} is limited until ${p.until}` : null;
+}
+
+function nextAttempt({ key, attempt, kind, model, routerVerdict, capacity }) {
   const next = attempt + 1;
   const nextModel = chooseModel(kind, model, routerVerdict);
-  if (nextModel === PRIMARY_MODEL && routerVerdict === 'REFUSE') {
-    return stop('hold', `${kind} on ${model} and the Codex router gate is REFUSE — no unlimited route; hold and re-check capacity`);
-  }
+  const blocked = blockedReason(nextModel, routerVerdict, capacity);
+  if (blocked) return stop('hold', `${kind} on ${model} and ${blocked} — no unlimited route; hold and re-check capacity`);
   return {
     action: nextModel === model ? 'retry' : 'fallback',
     retry: true,

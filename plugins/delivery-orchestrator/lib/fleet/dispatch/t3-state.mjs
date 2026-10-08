@@ -93,12 +93,17 @@ export function readReceipts(db, key) {
   return rows.map((r) => r.command_id).filter((c) => inKeyFamily(c, key));
 }
 
-/** Status of the run a keyed message produced, if any. */
+/**
+ * Status of the run a keyed message produced, if any. Pass the ATTEMPT key
+ * (attemptKey(key, n)), not the base key: attempt 2's run is keyed "<key>-a2".
+ * The match is an exact ":<key>" suffix, so % and _ in a key are literal.
+ */
 export function readRunStatusForKey(db, key) {
   const row = db.prepare(
     `SELECT r.status FROM orchestration_v2_projection_runs r
-      WHERE json_extract(r.payload_json, '$.userMessageId') LIKE '%:' || ? ORDER BY r.requested_at DESC LIMIT 1`,
-  ).get(key);
+      WHERE substr(json_extract(r.payload_json, '$.userMessageId'), -(length(?) + 1)) = ':' || ?
+      ORDER BY r.requested_at DESC LIMIT 1`,
+  ).get(key, key);
   return row?.status || null;
 }
 
@@ -115,6 +120,6 @@ export function readDeliveredEvidence(db, threadIds) {
       WHERE m.thread_id IN (SELECT value FROM json_each(?)) AND r.status = 'completed' AND m.role = 'user'`,
   ).all(JSON.stringify(threadIds));
   return rows
-    .map((r) => ({ key: keyOf({ messageId: r.message_id }), state: 'done', source: `completed run in ${r.thread_id}`, at: r.created_at }))
+    .map((r) => ({ key: keyOf({ messageId: r.message_id }), kind: 'delivered-message', state: 'done', source: `completed run in ${r.thread_id}`, at: r.created_at }))
     .filter((e) => e.key);
 }

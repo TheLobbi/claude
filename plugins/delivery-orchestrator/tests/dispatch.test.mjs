@@ -14,7 +14,8 @@ import { classifyAccount, summarizeRouter, gateDecision, shortMessage, VERDICT }
 import { parseSessionLimit, nextWallClock, providerLimits, capacitySnapshot, routeLane, isReservedModel } from '../lib/fleet/dispatch/capacity.mjs';
 import { decideRetry, attemptKey, inKeyFamily, failureKind, backoffMs } from '../lib/fleet/dispatch/retry-policy.mjs';
 import { coalesce, keyOf, roundOf, refsOf } from '../lib/fleet/dispatch/queue-coalesce.mjs';
-import { main } from '../lib/fleet/dispatch-check.mjs';
+import { main, retryStatusKey } from '../lib/fleet/dispatch-check.mjs';
+import { readRunStatusForKey, readDeliveredEvidence } from '../lib/fleet/dispatch/t3-state.mjs';
 
 const FIX = new URL('./fixtures/dispatch/', import.meta.url);
 const fixture = (name) => JSON.parse(readFileSync(new URL(name, FIX), 'utf8'));
@@ -220,5 +221,78 @@ test('cli: exit codes — router REFUSE=1, OPEN=0, queue with cancels=1, retry i
   } finally {
     quiet.mock.restore();
     quietErr.mock.restore();
+  }
+});
+
+// ---------------------------------------------------------------- CodeRabbit review 5455424119 regressions
+
+const hasSqlite = await import('node:sqlite').then(() => true, () => false);
+
+test('t3-state: run status is read for the exact attempt key, and % / _ are literal (r4217989487)', { skip: !hasSqlite && 'node:sqlite unavailable (Node < 22.5)' }, async (t) => {
+  const { DatabaseSync } = await import('node:sqlite');
+  const db = new DatabaseSync(':memory:');
+  t.after(() => db.close());
+  db.exec('CREATE TABLE orchestration_v2_projection_runs (run_id TEXT, status TEXT, requested_at TEXT, payload_json TEXT)');
+  db.exec('CREATE TABLE orchestration_v2_projection_messages (message_id TEXT, thread_id TEXT, run_id TEXT, role TEXT, created_at TEXT)');
+  const add = db.prepare('INSERT INTO orchestration_v2_projection_runs VALUES (?, ?, ?, ?)');
+  const run = (id, status, at, key) => add.run(id, status, at, JSON.stringify({ userMessageId: `message:mcp:s:thread-send:${key}` }));
+  run('r1', 'failed', '2026-10-08T01:00:00Z', 'k');
+  run('r2', 'running', '2026-10-08T02:00:00Z', 'k-a2');
+  run('r3', 'completed', '2026-10-08T03:00:00Z', 'xAy');
+  assert.equal(readRunStatusForKey(db, 'k'), 'failed', 'attempt 1 key reads attempt 1 only');
+  assert.equal(readRunStatusForKey(db, 'k-a2'), 'running', 'attempt 2 key sees the running retry');
+  assert.equal(readRunStatusForKey(db, 'x%y'), null, '% is not a wildcard');
+  assert.equal(readRunStatusForKey(db, 'xAy'), 'completed');
+  db.prepare('INSERT INTO orchestration_v2_projection_messages VALUES (?, ?, ?, ?, ?)').run('message:mcp:s:thread-send:k', 'th', 'r3', 'user', '2026-10-08T03:00:00Z');
+  assert.equal(readDeliveredEvidence(db, ['th'])[0].kind, 'delivered-message');
+});
+
+test('cli: retry status is looked up by the current attempt key (r4217989487)', () => {
+  assert.equal(retryStatusKey({ key: 'k', attempt: '2' }), 'k-a2');
+  assert.equal(retryStatusKey({ key: 'k' }), 'k');
+});
+
+test('routing: Codex is never chosen behind an unread or UNKNOWN router gate (r4217989419)', () => {
+  const events = fixture('limit-events.json');
+  const now = '2026-10-08T04:30:00Z';
+  for (const gate of [null, { verdict: 'UNKNOWN', reasons: ['router not read'] }]) {
+    assert.equal(routeLane({ snapshot: capacitySnapshot({ events, gate, now }) }).route, null, 'Claude limited + Codex unverified -> hold');
+    assert.equal(routeLane({ snapshot: capacitySnapshot({ events: [], gate, now }) }).route.model, 'claude-opus-5-5');
+  }
+  const flagged = capacitySnapshot({ events, gate: { verdict: VERDICT.FLAG, reasons: [] }, now });
+  assert.equal(routeLane({ snapshot: flagged }).route.model, 'gpt-6.1-sol', 'FLAG stays eligible as the fallback');
+});
+
+test("queue: delivered-message evidence matches only the item's own key, not a ref it mentions (r4217989438)", () => {
+  const q = [{ queuedRunId: 'run:thread:c:ordinal:1', threadId: 'c', requestedAt: '2026-10-08T07:00:00Z', text: 'Review accounts#178; compare with iac#380.', messageId: 'message:mcp:s:thread-send:controller-review-178-r1' }];
+  const delivered = (key) => [{ key, kind: 'delivered-message', state: 'done', source: 'completed run in c' }];
+  assert.equal(coalesce({ queued: q, evidence: delivered('iac#380') })[0].recommend, 'keep');
+  assert.equal(coalesce({ queued: q, evidence: delivered('controller-review-178-r1') })[0].rule, 'satisfied');
+  assert.equal(coalesce({ queued: q, evidence: [{ key: 'iac#380', state: 'done', source: 'gh: MERGED' }] })[0].rule, 'satisfied', 'caller ref evidence still matches refs');
+});
+
+test("retry: holds when the next model's provider is limited (r4217989470)", () => {
+  const claudeLimited = capacitySnapshot({ events: fixture('limit-events.json'), gate: { verdict: 'REFUSE', reasons: [] }, now: '2026-10-08T04:30:00Z' });
+  const base = { key: 'k-r1', receipts: ['command:mcp:s:thread-send:k-r1'], runStatus: 'failed', model: 'gpt-6.1-sol', capacity: claudeLimited };
+  const u = decideRetry({ ...base, routerVerdict: 'REFUSE', failure: { class: 'usage_limit', message: '' } });
+  assert.equal(u.action, 'hold');
+  assert.match(u.reason, /claudeAgent is limited until 2026-10-08T05:00:09.818Z/);
+  assert.equal(decideRetry({ ...base, failure: { class: 'transport_error', message: 'stream disconnected' } }).action, 'hold', 'transport fallback into limited Claude also holds');
+  const free = capacitySnapshot({ events: [], gate: { verdict: 'OPEN', reasons: [] }, now: '2026-10-08T04:30:00Z' });
+  assert.equal(decideRetry({ ...base, capacity: free, failure: { class: 'transport_error', message: 'stream disconnected' } }).action, 'fallback');
+});
+
+test('cli: retry passes T3 capacity into the decision (r4217989470)', async (t) => {
+  const tmp = mkdtempSync(join(tmpdir(), 'dispatch-cli-cap-'));
+  t.after(() => rmSync(tmp, { recursive: true, force: true }));
+  const receipts = join(tmp, 'r.json');
+  writeFileSync(receipts, JSON.stringify(['command:mcp:s:thread-send:k-r1']));
+  const quiet = t.mock.method(process.stdout, 'write', () => true);
+  try {
+    const args = ['retry', '--key', 'k-r1', '--receipts-json', receipts, '--run-status', 'failed', '--failure-class', 'usage_limit', '--model', 'gpt-6.1-sol', '--now', '2026-10-08T04:30:00Z'];
+    assert.equal(await main([...args, '--events-json', fileURLToPath(new URL('limit-events.json', FIX))]), 1, 'Claude limited -> hold');
+    assert.equal(await main(args), 0, 'no limit events -> fallback');
+  } finally {
+    quiet.mock.restore();
   }
 });
