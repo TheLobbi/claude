@@ -1,7 +1,7 @@
 {
   "$schema": "https://claude.local/schemas/plugin.schema.json",
   "name": "delivery-orchestrator",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Unified delivery orchestration: one plugin replacing six. A tested, dependency-free kernel (swarm conductor with leased claims and worktree isolation, guardrails, transactional state MCP, fleet protocol) behind platform adapters for Linear, Jira, GitHub and Harness. 133 commands, 156 agents, 52 skills, 12 schema-validated workflows, 155 tests.",
   "author": {
     "name": "Markus Ahling",

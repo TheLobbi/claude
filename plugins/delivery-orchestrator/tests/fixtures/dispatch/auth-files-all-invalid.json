@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "id": "codex-00000001-lane1@example.test-pro.json",
+      "type": "codex",
+      "provider": "codex",
+      "email": "lane1@example.test",
+      "disabled": false,
+      "unavailable": false,
+      "status": "error",
+      "status_message": "token refresh failed with status 401",
+      "id_token": {
+        "chatgpt_account_id": "00000000-0000-4000-8000-000000000001",
+        "plan_type": "pro"
+      },
+      "recent_requests": []
+    },
+    {
+      "id": "codex-00000002-lane2@example.test-pro.json",
+      "type": "codex",
+      "provider": "codex",
+      "email": "lane2@example.test",
+      "disabled": false,
+      "unavailable": false,
+      "status": "error",
+      "status_message": "token refresh failed with status 401",
+      "id_token": {
+        "chatgpt_account_id": "00000000-0000-4000-8000-000000000002",
+        "plan_type": "pro"
+      },
+      "recent_requests": []
+    }
+  ]
+}

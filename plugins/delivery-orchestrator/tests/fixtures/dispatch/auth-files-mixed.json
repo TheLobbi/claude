@@ -1,0 +1,85 @@
+{
+  "files": [
+    {
+      "id": "codex-00000001-lane1@example.test-pro.json",
+      "type": "codex",
+      "provider": "codex",
+      "email": "lane1@example.test",
+      "disabled": false,
+      "unavailable": false,
+      "status": "active",
+      "status_message": "",
+      "id_token": {
+        "chatgpt_account_id": "00000000-0000-4000-8000-000000000001",
+        "plan_type": "pro"
+      },
+      "recent_requests": [
+        {
+          "time": "20:00-20:10",
+          "success": 9,
+          "failed": 1
+        }
+      ]
+    },
+    {
+      "id": "codex-00000002-lane2@example.test-pro.json",
+      "type": "codex",
+      "provider": "codex",
+      "email": "lane2@example.test",
+      "disabled": false,
+      "unavailable": false,
+      "status": "error",
+      "status_message": "Encountered invalidated oauth token for user, failing auth_unavailable",
+      "id_token": {
+        "chatgpt_account_id": "00000000-0000-4000-8000-000000000002",
+        "plan_type": "pro"
+      },
+      "recent_requests": []
+    },
+    {
+      "id": "codex-00000003-lane3@example.test-pro.json",
+      "type": "codex",
+      "provider": "codex",
+      "email": "lane3@example.test",
+      "disabled": false,
+      "unavailable": false,
+      "status": "error",
+      "status_message": "{\"detail\":\"Rate limit exceeded\"}",
+      "id_token": {
+        "chatgpt_account_id": "00000000-0000-4000-8000-000000000003",
+        "plan_type": "pro"
+      },
+      "recent_requests": []
+    },
+    {
+      "id": "codex-00000004-lane4@example.test-pro.json",
+      "type": "codex",
+      "provider": "codex",
+      "email": "lane4@example.test",
+      "disabled": false,
+      "unavailable": false,
+      "status": "error",
+      "status_message": "{\"error\":{\"message\":\"Our servers are currently overloaded. Please try again later.\",\"type\":\"service_unavailable_error\",\"param\":null,\"code\":\"server_is_overloaded\"},\"sequence_number\":2}",
+      "id_token": {
+        "chatgpt_account_id": "00000000-0000-4000-8000-000000000004",
+        "plan_type": "pro"
+      },
+      "recent_requests": []
+    },
+    {
+      "id": "codex-00000005-lane5@example.test-pro.json",
+      "type": "codex",
+      "provider": "codex",
+      "email": "lane5@example.test",
+      "disabled": true,
+      "unavailable": false,
+      "status": "active",
+      "status_message": "",
+      "id_token": {
+        "chatgpt_account_id": "00000000-0000-4000-8000-000000000005",
+        "plan_type": "pro"
+      },
+      "recent_requests": []
+    }
+  ]
+}

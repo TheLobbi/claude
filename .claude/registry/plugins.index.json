@@ -250,7 +250,7 @@
       "dependencies": {}
     },
     "delivery-orchestrator": {
-      "version": "1.0.0",
+      "version": "1.2.0",
       "path": "../plugins/delivery-orchestrator",
       "source": "local",
       "installedAt": "2026-09-08T00:00:00.000Z",

@@ -1,0 +1,79 @@
+{
+  "queued": [
+    {
+      "queuedRunId": "run:thread:coord:ordinal:10",
+      "threadId": "coord",
+      "requestedAt": "2026-10-08T07:00:00Z",
+      "text": "Lane report: PR #263 is green, merge-ready.",
+      "messageId": "message:mcp:sess-1:thread-send:lane-a-report-r1"
+    },
+    {
+      "queuedRunId": "run:thread:coord:ordinal:11",
+      "threadId": "coord",
+      "requestedAt": "2026-10-08T07:05:00Z",
+      "text": "Lane report: PR #263 is green and approved, merge-ready.",
+      "messageId": "message:mcp:sess-1:thread-send:lane-a-report-r2"
+    },
+    {
+      "queuedRunId": "run:thread:coord:ordinal:12",
+      "threadId": "coord",
+      "requestedAt": "2026-10-08T07:06:00Z",
+      "text": "Status ping:   are you alive?",
+      "messageId": "msg-12"
+    },
+    {
+      "queuedRunId": "run:thread:coord:ordinal:13",
+      "threadId": "coord",
+      "requestedAt": "2026-10-08T07:07:00Z",
+      "text": "status ping: are you alive?",
+      "messageId": "msg-13"
+    },
+    {
+      "queuedRunId": "run:thread:coord:ordinal:14",
+      "threadId": "coord",
+      "requestedAt": "2026-10-08T07:08:00Z",
+      "text": "Please merge iac#380 once checks pass.",
+      "messageId": "message:mcp:sess-1:thread-send:controller-merge-iac-380-r1"
+    },
+    {
+      "queuedRunId": "run:thread:coord:ordinal:15",
+      "threadId": "coord",
+      "requestedAt": "2026-10-08T07:09:00Z",
+      "text": "New ask: review accounts#178 for the session issuer.",
+      "messageId": "message:mcp:sess-1:thread-send:controller-review-178-r1"
+    },
+    {
+      "queuedRunId": "run:thread:lane-b:ordinal:20",
+      "threadId": "lane-b",
+      "requestedAt": "2026-10-08T07:10:00Z",
+      "text": "Resend: do the WorkOS matrix.",
+      "messageId": "message:mcp:sess-1:thread-send:workos-matrix-round-1-r1"
+    }
+  ],
+  "active": [
+    {
+      "threadId": "coord",
+      "runId": "run:thread:coord:ordinal:9",
+      "startedAt": "2026-10-08T06:00:00Z"
+    }
+  ],
+  "evidence": [
+    {
+      "key": "iac#380",
+      "state": "done",
+      "source": "gh pr view: MERGED",
+      "at": "2026-10-08T07:30:00Z"
+    },
+    {
+      "key": "workos-matrix-round-1-r1",
+      "state": "done",
+      "source": "completed run in lane-b",
+      "at": "2026-10-08T06:00:00Z"
+    },
+    {
+      "key": "accounts#178",
+      "state": "open",
+      "source": "gh pr view: OPEN"
+    }
+  ]
+}
