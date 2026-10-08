@@ -1376,3 +1376,41 @@ Node.js v22.22.2
 - **Status:** RESOLVED
 - **Fix:** `find <dir>/.claude -type f -delete && find <dir>/.claude -depth -type d -empty -delete`. Note `rmdir` alone fails ("Directory not empty") because sibling `agent-memory/` subdirectories are also created, and the recursive-force delete is blocked by the bash-safety-validator hook.
 - **Prevention:** Two habits. (1) Never leave the Bash cwd inside a subdirectory — use absolute paths so the hook always resolves to the repo root. (2) Before any `check:plugin-schema` / `check:marketplace` run, `ls -a plugins/` and confirm no stray `.claude` entry; a directory under `plugins/` with no `.claude-plugin/plugin.json` fails validation with a message that does not obviously point at telemetry. If this recurs, the real fix is to anchor the hook's write path to `$CLAUDE_PROJECT_DIR` rather than `$PWD`.
+
+### Error: plugins/fleet-orchestration not found (2026-10-08T09:38:34Z)
+- **Tool:** Bash
+- **Input:** `ls plugins/fleet-orchestration`
+- **Error:** Exit code 2 — the directory does not exist.
+- **Status:** RESOLVED
+- **Fix:** #159 merged six orchestrators, including fleet-orchestration, into `plugins/delivery-orchestrator`. The fleet skills, agents and `lib/fleet/` now live there. The skill names (`fleet-orchestration:*`) still appear in the session's skill list, which is misleading.
+- **Prevention:** When a brief names a plugin path, run `git ls-files | grep -i <name>` before `ls`. Trust the tree over the skill list or the brief.
+
+### Error: node -e write to /c/... path became C:\c\... (2026-10-08T10:20:00Z)
+- **Tool:** Bash
+- **Input:** `D=/c/Dev/sandbox/...; node -e "fs.writeFileSync('$D/runs.json', ...)"`
+- **Error:** ENOENT on `C:\c\Dev\...`. This is the same MSYS path doubling as the 2026-04-21 entry.
+- **Status:** RESOLVED
+- **Fix:** Set `D=C:/Dev/...` (a forward-slash drive path) before interpolating into `node -e` or passing CLI arguments to node.
+- **Prevention:** Any shell variable that ends up inside a node argument or `node -e` string must use the `C:/` form, never `/c/`.
+
+### Error: eslint-plugin-sonarjs 3.x fails to load / silently ignores files (2026-10-08T10:10:00Z)
+- **Tool:** Bash
+- **Input:** `npx eslint --no-config-lookup -c <tempdir>/eslint.config.mjs <files in another tree>`
+- **Error:** Two failures in a row. First, sonarjs 3.x threw `Cannot read properties of undefined (reading 'FunctionType')` and then `Cannot find module 'ts-api-utils'`: it needs `typescript` and `ts-api-utils` installed beside it. Second, once it loaded, eslint exited 0 with "File ignored because outside of base path", which is a vacuous green.
+- **Status:** RESOLVED
+- **Fix:** Ran `npm i eslint@9 eslint-plugin-sonarjs@3 typescript@5 ts-api-utils` in a temp dir, copied the target files into it, checked the sha256 matched, and ran the rule at threshold 0 to get per-function scores. Confirmed the gate can go red with a threshold-1 run (exit 1).
+- **Prevention:** For out-of-repo complexity checks, lint files under the config's base path, and treat any "File ignored" warning as UNKNOWN, not a pass.
+
+### Error: t3_thread_read ECONNRESET (2026-10-08T09:42:49Z)
+- **Tool:** mcp__t3-code__t3_thread_read
+- **Error:** `ECONNRESET: The socket connection was closed unexpectedly`
+- **Status:** RESOLVED
+- **Fix:** A transient T3 MCP socket reset; the identical read succeeded on the first retry.
+- **Prevention:** Retry a read-only T3 call once before treating it as a failure. Don't retry `t3_thread_send` without a stable `clientRequestId`.
+
+### Error: Stop hook re-enters while the remaining gate belongs to another party (2026-10-08)
+- **Tool:** Stop hook (re-entrant, `stop_hook_active=true`)
+- **Error:** The hook kept rejecting completion. First it demanded "independent" verification, then that an external CodeRabbit re-review resolve. Any check this lane ran itself counted as self-assessment.
+- **Status:** RESOLVED
+- **Fix:** Independent evidence came from outside the lane: GitHub CI runs pinned to the head SHA, and the coordinator's own re-run, which it marked DELIVERED. An external review gate was handed off by receipt to the coordinator, which owns the merge.
+- **Prevention:** In the final receipt, name every gate the lane does not control, and name its owner. Cite CI run URLs pinned to the head SHA as the independent evidence. Do not add commits to a PR under review just to satisfy the hook; that moves the head and restarts the review.
