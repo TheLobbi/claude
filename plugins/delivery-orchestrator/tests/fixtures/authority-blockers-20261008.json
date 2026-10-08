@@ -1,0 +1,106 @@
+{
+  "_source": "Blockers labelled 'Markus-only' in TheLobbi/wagonworks-bots PRs #2-#7 and TheLobbi/pony #36, 2026-10-08 MCP Apps run. Facts as audited read-only; expected = class under the decision table.",
+  "blockers": [
+    {
+      "action": "Teams Developer Portal Entra SSO client ID registration (per bot app)",
+      "reversible": true,
+      "capability": {
+        "available": false,
+        "missing": "Delegated M365 token for the Teams Developer Portal API; no app-only Graph permission covers SSO/OAuth registration. UNKNOWN: exact scope"
+      },
+      "grant": null,
+      "expected": "MISSING-CAPABILITY"
+    },
+    {
+      "action": "Entra app: add identifierUris, oAuthConsentRedirect, pre-authorize ab3be6b7 (existing bot app)",
+      "reversible": true,
+      "capability": {
+        "available": true
+      },
+      "grant": "brief",
+      "expected": "AGENT-AUTHORIZED"
+    },
+    {
+      "action": "Doppler wagonworks-bots/dev: set <BOT>_MCP_SSO_REFERENCE_ID / _AUDIENCE / _ORIGINS",
+      "reversible": true,
+      "capability": {
+        "available": true
+      },
+      "grant": "existing-grant",
+      "expected": "AGENT-AUTHORIZED"
+    },
+    {
+      "action": "npm run package:teams with the real reference id",
+      "reversible": true,
+      "capability": {
+        "available": true
+      },
+      "grant": "brief",
+      "expected": "AGENT-AUTHORIZED"
+    },
+    {
+      "action": "Create a new single-tenant Entra app for WagonWorks Ops (brief: do NOT create Entra apps)",
+      "reversible": true,
+      "capability": {
+        "available": true
+      },
+      "grant": null,
+      "expected": "COORDINATOR-DECISION"
+    },
+    {
+      "action": "Grant the ops identity Reader on TheLobbi Production",
+      "irreversibleKind": "production-access-grant",
+      "capability": {
+        "available": true
+      },
+      "grant": null,
+      "expected": "IRREVERSIBLE/FOUNDER"
+    },
+    {
+      "action": "Houdini proof: live Linear issueCreate/commentCreate test writes (runtime question to user)",
+      "reversible": true,
+      "capability": {
+        "available": true
+      },
+      "grant": null,
+      "expected": "COORDINATOR-DECISION"
+    },
+    {
+      "action": "Deploy bot to broodlord-1 (systemd unit + tailscale funnel --set-path)",
+      "irreversibleKind": "production-cutover",
+      "capability": {
+        "available": true
+      },
+      "grant": null,
+      "expected": "IRREVERSIBLE/FOUNDER"
+    },
+    {
+      "action": "Sideload the app package and test in m365.cloud.microsoft/chat",
+      "reversible": true,
+      "capability": {
+        "available": false,
+        "missing": "A non-founder M365 test identity with a Copilot licence and custom-app upload allowed, plus a browser session an agent may drive"
+      },
+      "grant": null,
+      "expected": "MISSING-CAPABILITY"
+    },
+    {
+      "action": "Retire stale 'Pony (dev)' org catalog entry 7e5fd9a5",
+      "irreversibleKind": "publish",
+      "capability": {
+        "available": true
+      },
+      "grant": null,
+      "expected": "IRREVERSIBLE/FOUNDER"
+    },
+    {
+      "action": "Merge PR #1 feat/consolidate-specialist-bots into main",
+      "irreversibleKind": "merge-to-default-branch",
+      "capability": {
+        "available": true
+      },
+      "grant": null,
+      "expected": "IRREVERSIBLE/FOUNDER"
+    }
+  ]
+}

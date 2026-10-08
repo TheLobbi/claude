@@ -1,0 +1,67 @@
+{
+  "_source": "T3 run states for the 2026-10-08 MCP Apps lanes, read with t3_thread_list/t3_thread_read. No lane posted a receipt to a T3 coordinator thread; reports went to the non-T3 session wagonworks-dev-00.",
+  "runs": [
+    {
+      "threadId": "mcp:6e390e8a-3031-4fa9-9f0c-8ebf76d2c2ac",
+      "runId": "ordinal:1",
+      "status": "completed"
+    },
+    {
+      "threadId": "mcp:6e390e8a-3031-4fa9-9f0c-8ebf76d2c2ac",
+      "runId": "ordinal:2",
+      "status": "cancelled"
+    },
+    {
+      "threadId": "mcp:cb273f19-18be-41cb-9a31-763899be4e65",
+      "runId": "ordinal:1",
+      "status": "completed"
+    },
+    {
+      "threadId": "mcp:cb273f19-18be-41cb-9a31-763899be4e65",
+      "runId": "ordinal:2",
+      "status": "cancelled"
+    },
+    {
+      "threadId": "mcp:915f71bb-078e-480a-96db-e46d4a0c16cb",
+      "runId": "ordinal:1",
+      "status": "cancelled"
+    },
+    {
+      "threadId": "mcp:915f71bb-078e-480a-96db-e46d4a0c16cb",
+      "runId": "ordinal:2",
+      "status": "completed"
+    },
+    {
+      "threadId": "mcp:749081a7-287a-4a6a-b8c3-6aae4943705b",
+      "runId": "ordinal:5",
+      "status": "completed"
+    },
+    {
+      "threadId": "mcp:aaaaaaaa-0000-0000-0000-000000000000",
+      "runId": "ordinal:1",
+      "status": "running"
+    }
+  ],
+  "receipts": [
+    {
+      "threadId": "mcp:6e390e8a-3031-4fa9-9f0c-8ebf76d2c2ac",
+      "runId": "ordinal:1",
+      "kind": "completion",
+      "postedAt": "2026-10-08T07:54:02Z",
+      "exactText": "Opened PR #2, head 42ec4d4",
+      "evidence": [
+        "https://github.com/TheLobbi/wagonworks-bots/pull/2"
+      ]
+    },
+    {
+      "threadId": "mcp:cb273f19-18be-41cb-9a31-763899be4e65",
+      "runId": "ordinal:2",
+      "kind": "completion",
+      "postedAt": "2026-10-08T08:31:20Z",
+      "exactText": "Robustness gaps closed on #36",
+      "evidence": [
+        "https://github.com/TheLobbi/pony/pull/36"
+      ]
+    }
+  ]
+}

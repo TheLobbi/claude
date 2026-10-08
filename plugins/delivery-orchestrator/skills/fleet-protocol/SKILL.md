@@ -245,6 +245,30 @@ the list in `fleet.config.json` under `founderClass`.
   question that parks the work.
 - Never ask the human a blocking question mid-run.
 
+### 6a. Classify before you escalate
+
+`founderClass` names *topics*. It does not decide who acts. Classify each
+blocker from facts, using the table in `references/authority-and-receipts.md`
+(the checker is `lib/fleet/classify-authority.mjs`):
+
+| Class | When | Goes to |
+|---|---|---|
+| IRREVERSIBLE/FOUNDER | Merge to default branch, publish, tenant-wide or production grant, billing, deleting customer data, production cutover | coordinator → parent → founder |
+| MISSING-CAPABILITY | Reversible, but no automated path or permission exists | coordinator, naming the **exact** permission or capability |
+| AGENT-AUTHORIZED | Reversible and inside an existing grant or the brief | **proceed**, no sign-off |
+| COORDINATOR-DECISION | Reversible and capable, but not delegated | coordinator extends or denies the brief |
+
+The founder is reached only through the parent, and only for the first row.
+Do not list a reversible step the brief delegates as "the human's step".
+
+### 6b. Receipts
+
+Every escalation, completion and failure is a schema-checked receipt, sent to
+the coordinator's thread (`references/authority-and-receipts.md`). **A lane is
+done only when it has posted a completion or failure receipt.** A cancelled
+run still owes one. The coordinator lists terminal runs that have no receipt
+and reconciles every completion claim against T3 run state.
+
 ## 7. Behaviour
 
 - **Minimum verbosity** in every message and report: facts, numbers,
@@ -270,3 +294,4 @@ the append rule: `references/run-directory.md`.
 | `references/git-discipline.md` | The full git rules with the incident behind each |
 | `references/merge-discipline.md` | The merge gate, step by step |
 | `references/run-directory.md` | Log files, who owns which, the append rule |
+| `references/authority-and-receipts.md` | Blocker decision table, escalation receipt schema, done rule, coordinator reconciliation |
