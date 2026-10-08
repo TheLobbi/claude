@@ -186,12 +186,26 @@ function reconcileRun(run, closing = []) {
  * @returns {{checked:number, findings:{threadId:string, runId:string, finding:string}[]}}
  */
 export function reconcileReceipts(runs, receipts) {
-  const terminal = runs.filter((r) => TERMINAL_RUN_STATES.includes(r.status));
+  const invalid = runs.flatMap((r, i) => (isValidRun(r) ? [] : [invalidRunFinding(r, i)]));
+  const terminal = runs.filter((r) => isValidRun(r) && TERMINAL_RUN_STATES.includes(r.status));
   const byRun = closingReceipts(receipts);
   const findings = terminal
     .map((run) => reconcileRun(run, byRun.get(runKey(run.threadId, run.runId))))
     .filter(Boolean);
-  return { checked: terminal.length, findings };
+  return { checked: terminal.length, findings: [...invalid, ...findings] };
+}
+
+const nonEmptyText = (v) => typeof v === 'string' && v.trim() !== '';
+
+/** A run entry is usable only if it is an object with text threadId, runId and status. */
+function isValidRun(r) {
+  return r !== null && typeof r === 'object' && nonEmptyText(r.threadId) && nonEmptyText(r.runId) && nonEmptyText(r.status);
+}
+
+/** Malformed run entries are skipped and reported, never dereferenced. */
+function invalidRunFinding(r, i) {
+  const shape = r === null ? 'null' : typeof r;
+  return { threadId: '(invalid run entry)', runId: `runs[${i}]`, finding: `invalid run entry: expected an object with non-empty threadId, runId and status, got ${shape}` };
 }
 
 function parseLine(line, i, label) {

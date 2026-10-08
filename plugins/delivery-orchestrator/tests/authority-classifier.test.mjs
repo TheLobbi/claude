@@ -153,6 +153,17 @@ test('should report a mismatch when a completion is followed by a failure on a c
   assert.match(findings[0].finding, /claim mismatch: a receipt says completion but T3 run status is cancelled/);
 });
 
+// CodeRabbit r2: malformed run entries are skipped and reported, never crash.
+test('should skip and report null or malformed run entries without throwing', () => {
+  const runs = [null, 'cancelled', { threadId: 't' }, { threadId: 't', runId: 'r', status: 'cancelled' }];
+  const { checked, findings } = reconcileReceipts(runs, [closing('failure')]);
+  assert.equal(checked, 1, 'only the one valid terminal run is checked');
+  const invalid = findings.filter((f) => /invalid run entry/.test(f.finding));
+  assert.deepEqual(invalid.map((f) => f.runId), ['runs[0]', 'runs[1]', 'runs[2]']);
+  assert.match(invalid[0].finding, /got null/);
+  assert.equal(findings.length, 3, 'the valid run is closed by its failure receipt');
+});
+
 // CodeRabbit #5: the protocol's receipts.jsonl (and a JSON array) both parse.
 test('should parse receipts from JSON Lines and from a JSON array identically', () => {
   const records = [closing('failure'), closing('completion', { runId: 'r2' })];
