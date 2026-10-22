@@ -8,7 +8,7 @@ const AA = 4.5;
 const NON_TEXT_UI = 3;
 
 function semanticStep(profile, field, fallback) {
-  const step = profile[field] ?? fallback;
+  const step = profile[field] === undefined ? fallback : profile[field];
   if (!SCALE_STEPS.includes(step)) throw new Error(`${field} must be one of: ${SCALE_STEPS.join(", ")}`);
   return step;
 }
@@ -149,7 +149,7 @@ function chakraSurfaceTokens(theme) {
 export function renderChakra(theme) {
   const scaleLines = SCALE_STEPS.map((s) => `          ${s}: { value: ${q(theme.scale[s])} },`).join("\n");
   const effects = theme.effects
-    .flatMap((effect) => String(effect).split(/[\r\n\u2028\u2029]/).map((line, index) => `${index === 0 ? "// - " : "//   "}${line}`))
+    .flatMap((effect) => String(effect).split(/[\r\n\u2028\u2029]/).map((line, index) => `${index === 0 ? "// - " : "//   "}${safeCommentText(line)}`))
     .join("\n");
   const styleName = safeCommentText(theme.style.name);
   const styleId = safeCommentText(theme.style.id);

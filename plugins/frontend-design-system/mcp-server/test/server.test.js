@@ -80,6 +80,15 @@ test("semantic accent steps reject invalid external profile values", () => {
   const { profile } = resolveProfile(catalog, style);
   assert.throws(() => buildTheme({ style, profile: { ...profile, solidStep: 501 }, source: "test" }), /solidStep must be one of/);
   assert.throws(() => buildTheme({ style, profile: { ...profile, focusRingStep: "600" }, source: "test" }), /focusRingStep must be one of/);
+  assert.throws(() => buildTheme({ style, profile: { ...profile, solidStep: null }, source: "test" }), /solidStep must be one of/);
+});
+
+test("semantic accent contrast warnings fail closed when an accent step is too light", () => {
+  const style = findStyle(catalog, "claude");
+  const { profile } = resolveProfile(catalog, style);
+  const theme = buildTheme({ style, profile: { ...profile, solidStep: 500, focusRingStep: 500 }, source: "test" });
+  assert.ok(theme.warnings.some((warning) => warning.includes("light brand.focusRing (500)") && warning.includes("< 3")));
+  assert.ok(theme.warnings.some((warning) => warning.includes("light brand.solid (500)") && warning.includes("< 3")));
 });
 
 test("every style resolves a profile and renders all formats", () => {
@@ -190,6 +199,9 @@ test("DESIGN_STYLES_PATH extension merges styles; a bad path only warns", () => 
   const chakra = createServer(ext)({ jsonrpc: "2.0", id: 2, method: "tools/call", params: { name: "generate_chakra_system", arguments: { style: "test-style" } } });
   assert.match(chakra.result.content[0].text, /\/\/ - first line\n\/\/   second line\n\/\/ - third effect/);
   assert.match(chakra.result.content[0].text, /Test \* \/ Style Injected/);
+  assert.match(chakra.result.content[0].text, /\/\/ - terminator \* \//);
+  assert.ok(!chakra.result.content[0].text.includes("\u2028"), "Chakra effect comments must sanitize line separators");
+  assert.ok(!chakra.result.content[0].text.includes("terminator */"), "Chakra effect comments must sanitize comment terminators");
   assert.doesNotThrow(() => evalChakra(chakra.result.content[0].text));
 });
 
