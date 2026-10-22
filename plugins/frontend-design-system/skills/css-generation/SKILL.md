@@ -755,7 +755,7 @@ canonical skill's verification checklist and `check_contrast` for both modes.
 |---------|---------------|----------|-------------------|-----------|
 | Raw color | `--color-primary-500: #3b82f6` | `theme.extend.colors.primary[500]` | `theme.colors.primary[500]` | `tokens.colors.brand.500: { value: '#3b82f6' }` |
 | Token reference | `var(--color-neutral-900)` | `'var(--color-neutral-900)'` | `theme.colors.neutral[900]` | `'{colors.neutral.900}'` inside a `value` |
-| Semantic color | `--color-text-primary` | `text-*` utility on a named color | `theme.colors.text.primary` | `semanticTokens.colors.fg.body` |
+| Semantic color | `--color-text-primary` | `text-*` utility on a named color | `theme.colors.text.primary` | `semanticTokens.colors.ink.strong` |
 | Dark mode | `[data-theme="dark"]` override block | `dark:` variant via `darkMode` | swap `lightTheme` / `darkTheme` | `_dark` inside the semantic token `value` |
 | Color scheme | n/a | n/a | n/a | `colorPalette` (contract above) |
 | Fonts, radii, shadows | `--font-family-sans`, `--radius-md`, `--shadow-md` | `fontFamily`, `borderRadius`, `boxShadow` | `theme.typography`, `theme.borderRadius`, `theme.shadows` | `tokens.fonts`, `tokens.radii`, `tokens.shadows`, each `{ value }` |
@@ -769,7 +769,7 @@ Rules for the Chakra column:
 
 ## Modern Principles (all targets)
 
-- **Semantic over raw tokens**: components consume `bg.panel`, `fg.body`, `border.line`, never `neutral.900` or a hex value. Raw scales appear only in token definitions.
+- **Semantic over raw tokens**: components consume generated semantic tokens such as `surface.raised`, `ink.strong`, and `edge.subtle`, never `neutral.900` or a hex value. Raw scales appear only in token definitions.
 - **Dark mode via tokens**: define the dark value once on the semantic token (`[data-theme="dark"]` block, `dark:` variant, theme object swap, or `_dark`); components do not branch on mode.
 - **Logical properties**: prefer `margin-inline`, `padding-block`, `inset-inline-start`, `border-inline-end` over left/right/top/bottom so layouts follow writing direction.
 - **Reduced motion**: wrap transitions and animations in `@media (prefers-reduced-motion: no-preference)`, or neutralize them under `prefers-reduced-motion: reduce`.
