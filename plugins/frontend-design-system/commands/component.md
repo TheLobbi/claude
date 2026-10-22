@@ -740,7 +740,7 @@ Used when `--target chakra` is passed. Source of truth: `skills/chakra-ui-v3/SKI
 Rules:
 - Multi-part components are slot recipes (`defineSlotRecipe`) exposed as compound parts via `createSlotRecipeContext` (`withProvider` on the root, `withContext` on the rest).
 - Colors come from `colorPalette` (custom palettes must satisfy the colorPalette contract: `50`-`950` plus `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`).
-- Boolean props are `open`, `disabled`, `invalid`, `required`, `loading` (never `isOpen`, `isDisabled`, `isInvalid`, `isRequired`, `isLoading`).
+- Boolean state props are component-specific. Use names such as `open`, `disabled`, `invalid`, `required`, or `loading` only when `get_component_props` returns them for the selected component; never invent an `is*` variant or assume this list is exhaustive.
 - Overlays are compound parts (`Dialog.Root` etc.), not flat `Modal`/`Drawer`.
 - Register the slot recipe under `theme.slotRecipes` in `createSystem(defaultConfig, defineConfig(...))`, then run `npx @chakra-ui/cli typegen ./theme.ts`.
 
