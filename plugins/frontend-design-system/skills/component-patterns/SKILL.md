@@ -871,17 +871,17 @@ export const cardSlotRecipe = defineSlotRecipe({
       default: {},
       glass: {
         root: {
-          bg: "rgba(255, 255, 255, 0.1)",
+          bg: "brand.subtle",
           backdropFilter: "blur(10px)",
-          borderColor: "rgba(255, 255, 255, 0.2)",
+          borderColor: "edge.subtle",
         },
       },
       "neo-brutalist": {
         root: {
           borderWidth: "4px",
-          borderColor: "black",
+          borderColor: "ink.strong",
           borderRadius: "none",
-          boxShadow: "8px 8px 0 0 black",
+          boxShadow: "surface",
         },
       },
     },
@@ -889,7 +889,11 @@ export const cardSlotRecipe = defineSlotRecipe({
   defaultVariants: { styleType: "default" },
 })
 
-const { withProvider, withContext } = createSlotRecipeContext({ recipe: cardSlotRecipe })
+const { withProvider, withContext } = createSlotRecipeContext({ key: "card" })
+
+// theme.ts: register the same recipe under the key used by the system.
+// const config = defineConfig({ theme: { slotRecipes: { card: cardSlotRecipe } } })
+// export const system = createSystem(defaultConfig, config)
 
 interface CardRootProps extends HTMLChakraProps<"div">, RecipeVariantProps<typeof cardSlotRecipe> {}
 interface CardPartProps extends HTMLChakraProps<"div"> {}

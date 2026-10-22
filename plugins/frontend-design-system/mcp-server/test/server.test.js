@@ -154,6 +154,8 @@ test("DESIGN_STYLES_PATH extension merges styles; a bad path only warns", () => 
   assert.ok(!g.result.isError, g.result.content[0].text);
   const chakra = createServer(ext)({ jsonrpc: "2.0", id: 2, method: "tools/call", params: { name: "generate_chakra_system", arguments: { style: "test-style" } } });
   assert.match(chakra.result.content[0].text, /\/\/ - first line\n\/\/   second line\n\/\/ - third effect/);
+  assert.match(chakra.result.content[0].text, /Test Style Injected/);
+  assert.doesNotThrow(() => evalChakra(chakra.result.content[0].text));
 });
 
 test("stdio transport: real process answers initialize and tools/call, ignores notifications, survives garbage", async () => {

@@ -153,6 +153,7 @@ export const system = createSystem(defaultConfig, customConfig)
 Extend a built-in slot recipe (`alertAnatomy.keys()` supplies the slot names):
 
 ```ts
+import { defineSlotRecipe } from "@chakra-ui/react"
 import { alertAnatomy } from "@chakra-ui/react/anatomy"
 
 const alertSlotRecipe = defineSlotRecipe({
@@ -165,6 +166,8 @@ const alertSlotRecipe = defineSlotRecipe({
 A brand-new multi-part component:
 
 ```ts
+import { defineSlotRecipe } from "@chakra-ui/react"
+
 const navbarSlotRecipe = defineSlotRecipe({
   slots: ["root", "badge", "icon"],
   base: {
@@ -176,6 +179,8 @@ const navbarSlotRecipe = defineSlotRecipe({
 ```
 
 ```tsx
+import { Box, useSlotRecipe } from "@chakra-ui/react"
+
 const Navbar = (props) => {
   const recipe = useSlotRecipe({ key: "navbar" })
   const styles = recipe()
@@ -193,7 +198,7 @@ Recipe fields: `base`, `variants`, `defaultVariants`, `compoundVariants` (slot r
 
 ```tsx
 "use client"
-const { withProvider, withContext } = createSlotRecipeContext({ recipe: checkboxSlotRecipe })
+const { withProvider, withContext } = createSlotRecipeContext({ key: "checkbox" })
 export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>("label", "root")
 export const CheckboxControl = withContext<HTMLInputElement, CheckboxControlProps>("input", "control")
 ```

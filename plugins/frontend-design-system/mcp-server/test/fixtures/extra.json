@@ -1,10 +1,10 @@
 {
   "styles": [
-    { "id": "test-style", "name": "Test Style", "category": "minimalist-styles", "description": "fixture", "keywords": ["test"] }
+    { "id": "test-style", "name": "Test Style\u2028Injected", "category": "minimalist-styles", "description": "fixture", "keywords": ["test"] }
   ],
   "profiles": {
     "styles": {
-      "test-style": { "effects": ["first line\nsecond line", "third effect"] }
+      "test-style": { "effects": ["first line\nsecond line", "third effect\rwith CR", "line\u2028with LS\u2029with PS"] }
     }
   }
 }
