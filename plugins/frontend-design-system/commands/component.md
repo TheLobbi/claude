@@ -57,6 +57,10 @@ Generate production-ready UI components with design system consistency, accessib
 
 ## Execution Flow
 
+When `--target chakra` is passed, skip the generic component and testing
+templates below and follow the Chakra UI v3 target guidance instead. Apply the
+generic templates only when the target is not Chakra.
+
 ### 1. Load Component Template
 
 Load base template for the component type from:

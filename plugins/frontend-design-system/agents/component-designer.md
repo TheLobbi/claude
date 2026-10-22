@@ -125,7 +125,7 @@ When the target is Chakra UI v3 (`/component <type> --target chakra`), follow `s
 
 - Multi-part components are slot recipes (`defineSlotRecipe`) exposed as compound parts via `createSlotRecipeContext` (`withProvider`/`withContext`); add `"use client"` in React Server Component frameworks.
 - Variant colors use `colorPalette` (not `colorScheme`), backed by the full colorPalette contract.
-- Boolean props are `open`, `disabled`, `invalid`, `required`, `loading` (not `isOpen`, `isDisabled`, and so on). Icons are children, not `leftIcon`/`rightIcon`.
+- Boolean props are component-specific. Query `get_component_props` before emitting them; examples include `open`, `disabled`, `invalid`, `required`, and `loading` (not `isOpen`, `isDisabled`, and so on). Icons are children, not `leftIcon`/`rightIcon`.
 - Overlays and disclosure use compound parts (`Dialog.Root` and the like), `Field`/`Fieldset` replace `FormControl`, `Presence` replaces `Fade`/`Slide`. Accordion items and Tabs triggers/content require a `value`.
 - Layout gaps use `gap`, not `spacing`. Per-element styles use the `css` prop.
 - Do not recall props from memory. Query the official `chakra-ui` MCP server (`list_components`, `get_component_props`, `get_component_example`).
