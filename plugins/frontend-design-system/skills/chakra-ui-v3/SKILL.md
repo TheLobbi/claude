@@ -101,7 +101,7 @@ const config = defineConfig({
     semanticTokens: {
       colors: {
         danger: {
-          value: { base: "{colors.red}", _dark: "{colors.darkred}" },
+          value: { base: "{colors.red.500}", _dark: "{colors.red.700}" },
         },
       },
     },
@@ -269,7 +269,7 @@ Never emit these. Use the replacement.
 | `colorScheme` | `colorPalette` |
 | `isOpen` / `isDisabled` / `isInvalid` / `isRequired` / `isLoading` | `open` / `disabled` / `invalid` / `required` / `loading` |
 | `spacing` | `gap` |
-| `onChange` on controls | `onValueChange` / `onCheckedChange` (receive `{ value }`) |
+| Event handlers | Keep `onChange` for native inputs; use `onCheckedChange(details)` for checkbox controls and read `details.checked`; use `onValueChange(details)` for value-based controls and read the component's documented `details.value` (verify with the official MCP) |
 | `noOfLines`, `truncated` | `lineClamp`, `truncate` |
 | `leftIcon` / `rightIcon` | icons as children |
 | `Modal`, `Drawer`, `Popover`, `Menu` flat API | `Dialog.Root` etc. with explicit parts, wrapped in `Portal` where needed |

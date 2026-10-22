@@ -227,7 +227,7 @@ const config = defineConfig({
     },
     semanticTokens: {
       colors: {
-        danger: { value: { base: '{colors.red}', _dark: '{colors.darkred}' } },
+        danger: { value: { base: '{colors.red.500}', _dark: '{colors.red.700}' } },
       },
     },
   },
@@ -268,6 +268,11 @@ Detect v2 patterns and migrate them while converting, never copy them through:
 - `extendTheme` -> `createSystem(defaultConfig, defineConfig(...))`; `colorScheme` -> `colorPalette`; `sx`/`__css` -> `css`.
 - `isOpen`/`isDisabled`/`isInvalid`/`isRequired`/`isLoading` -> `open`/`disabled`/`invalid`/`required`/`loading`; `spacing` -> `gap`.
 - Anything else on the banned list: apply the replacement from `skills/chakra-ui-v3/SKILL.md` or flag for `v2_to_v3_code_review`.
+
+Event handlers are component-specific: retain `onChange` for native inputs, use
+`onCheckedChange(details)` and read `details.checked` for checkbox controls, and
+use `onValueChange(details)` with the documented `details.value` field for
+value-based controls. Verify the payload with the official `chakra-ui` MCP.
 
 ## Conversion Report
 

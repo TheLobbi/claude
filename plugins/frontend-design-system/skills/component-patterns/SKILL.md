@@ -841,19 +841,14 @@ Third output target alongside Tailwind + CVA and styled-components. The patterns
 
 ### Conventions
 
-| Concern | Chakra v3 |
+| Workflow concern | Component-patterns guidance |
 |---------|-----------|
-| Multi-part components | Compound parts, for example `Dialog.Root` with explicit parts, inside `Portal` where needed |
-| Accordion items, Tabs triggers/content | Always pass `value` |
-| Forms | `Field` / `Fieldset` |
-| Color variant | `colorPalette="brand"` (needs the full semantic contract) |
-| Boolean state props | `open`, `disabled`, `invalid`, `required`, `loading` |
-| Change handlers | `onValueChange` / `onCheckedChange`, which receive `{ value }` |
-| Layout spacing | `gap` |
-| Custom styles | `css` prop (nested selectors need `&`) |
-| Icons in buttons | Children, not icon props |
-| Tooltip text | `content` prop, from `@/components/ui/tooltip` |
-| Drop recipe styles | `unstyled` on the root |
+| Style variants | Map design styles to a recipe or slot-recipe variant such as `styleType`; use the Chakra v3 skill for the underlying API contract. |
+| Accessible composition | Prefer Chakra compound parts and confirm their props and payloads through `chakra-ui` MCP before adding manual interaction plumbing. |
+
+The `chakra-ui-v3` skill is the single source of truth for Chakra props, state names,
+event payloads, token contracts, and migration rules. Do not duplicate those API
+facts in component patterns; link back to that skill when a pattern needs them.
 
 ### Slot recipe component (design style as a variant)
 
@@ -862,12 +857,12 @@ A multi-part component is one slot recipe plus `createSlotRecipeContext`. The ro
 **components/ui/card.tsx:**
 ```tsx
 "use client"
-import { createSlotRecipeContext, defineSlotRecipe } from "@chakra-ui/react"
+import { createSlotRecipeContext, defineSlotRecipe, type HTMLChakraProps, type RecipeVariantProps } from "@chakra-ui/react"
 
 export const cardSlotRecipe = defineSlotRecipe({
   slots: ["root", "header", "body"],
   base: {
-    root: { bg: "bg.panel", color: "fg.body", borderWidth: "1px", borderColor: "border.line" },
+    root: { bg: "surface.raised", color: "ink.strong", borderWidth: "1px", borderColor: "edge.subtle" },
     header: { px: 4, py: 3, fontWeight: "semibold" },
     body: { px: 4, py: 3 },
   },
@@ -896,7 +891,9 @@ export const cardSlotRecipe = defineSlotRecipe({
 
 const { withProvider, withContext } = createSlotRecipeContext({ recipe: cardSlotRecipe })
 
-// Prop types: declare per official MCP get_component_props / chakra-ui-v3 skill
+interface CardRootProps extends HTMLChakraProps<"div">, RecipeVariantProps<typeof cardSlotRecipe> {}
+interface CardPartProps extends HTMLChakraProps<"div"> {}
+
 export const CardRoot = withProvider<HTMLDivElement, CardRootProps>("div", "root")
 export const CardHeader = withContext<HTMLDivElement, CardPartProps>("div", "header")
 export const CardBody = withContext<HTMLDivElement, CardPartProps>("div", "body")

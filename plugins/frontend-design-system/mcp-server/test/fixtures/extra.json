@@ -1,5 +1,10 @@
 {
   "styles": [
     { "id": "test-style", "name": "Test Style", "category": "minimalist-styles", "description": "fixture", "keywords": ["test"] }
-  ]
+  ],
+  "profiles": {
+    "styles": {
+      "test-style": { "effects": ["first line\nsecond line", "third effect"] }
+    }
+  }
 }

@@ -38,7 +38,7 @@ export const TOOL_DEFS = [
       properties: {
         style: str("Style id or name."),
         brandColor: str("Optional hex (#rgb or #rrggbb) replacing the style's primary color. It must support a strictly darkening 50-950 tonal scale; extreme black/white seeds are rejected."),
-        paletteName: str("colorPalette key, default 'brand'. Must match ^[a-z][a-zA-Z0-9]*$."),
+        paletteName: str("colorPalette key, default 'brand'. Must match ^[a-z][a-zA-Z0-9]*$ and cannot be surface, ink, or edge."),
       },
       required: ["style"],
       additionalProperties: false,
@@ -53,7 +53,7 @@ export const TOOL_DEFS = [
         style: str("Style id or name."),
         format: { type: "string", enum: Object.keys(RENDERERS), description: "Output format." },
         brandColor: str("Optional hex replacing the style's primary color. It must support a strictly darkening 50-950 tonal scale; extreme black/white seeds are rejected."),
-        paletteName: str("Palette key, default 'brand'."),
+        paletteName: str("Palette key, default 'brand'. Must match ^[a-z][a-zA-Z0-9]*$ and cannot be surface, ink, or edge."),
       },
       required: ["style", "format"],
       additionalProperties: false,
@@ -117,7 +117,7 @@ export function createHandlers(catalog) {
     },
 
     generate_tokens: (args) => {
-      const render = RENDERERS[args.format];
+      const render = Object.hasOwn(RENDERERS, args.format) ? RENDERERS[args.format] : undefined;
       if (!render) throw new Error(`format must be one of: ${Object.keys(RENDERERS).join(", ")}`);
       const theme = themeFor(catalog, args);
       return args.format === "json" ? render(theme) : render(theme) + warningsFooter(theme, args.format);

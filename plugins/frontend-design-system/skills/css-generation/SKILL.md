@@ -738,92 +738,16 @@ export const Button = styled.button<{ variant?: 'primary' | 'secondary' }>`
 
 ## Chakra UI v3 Generation
 
-Follow the `chakra-ui-v3` skill for all API details. Never emit v2 patterns; the skill's v2 to v3 banned list applies.
+Use the `chakra-ui-v3` skill as the source of truth for Chakra APIs, token
+shapes, semantic conditions, `colorPalette`, provider setup, and typegen. This
+skill owns the CSS-generation boundary: map the selected style's raw palette,
+semantic surface pairs, typography, radii, shadows, and global CSS into Chakra
+token names without inventing component recipes.
 
-### Design style to Chakra system
-
-A design style becomes one `createSystem(defaultConfig, defineConfig({ ... }))` call, filled in this order:
-
-| Layer | Config key | Contents |
-|-------|-----------|----------|
-| 1 | `theme.tokens` | Raw palette (`50`-`950`), fonts, radii, shadows, blurs, easings |
-| 2 | `theme.semanticTokens` | `bg.*`, `fg.*`, `border.*`, and the `colorPalette` contract, each with `base` and `_dark` |
-| 3 | `theme.recipes` / `theme.slotRecipes` | Per-component visual language (see `component-patterns`) |
-| 4 | `globalCss` | Page background, selection, typography baseline |
-
-The `design-styles` MCP server exposes `generate_chakra_system` for layers 1, 2, and 4 of a named style. Layer 3 stays hand-authored per project.
-
-**theme.ts:**
-```typescript
-import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
-
-const config = defineConfig({
-  theme: {
-    tokens: {
-      colors: {
-        // Raw scales: every value wrapped in { value }. Define 50-950.
-        brand: {
-          50: { value: '#eff6ff' },
-          // ... 100-400
-          500: { value: '#3b82f6' },
-          // ... 600-900
-          950: { value: '#172554' },
-        },
-        neutral: {
-          50: { value: '#fafafa' },
-          // ... 100-900
-          950: { value: '#0a0a0a' },
-        },
-      },
-    },
-    semanticTokens: {
-      colors: {
-        // Surfaces and text: base = light, _dark = dark mode
-        bg: {
-          page: { value: { base: '{colors.neutral.50}', _dark: '{colors.neutral.950}' } },
-          panel: { value: { base: '#ffffff', _dark: '{colors.neutral.900}' } },
-        },
-        fg: {
-          body: { value: { base: '{colors.neutral.900}', _dark: '{colors.neutral.50}' } },
-        },
-        border: {
-          line: { value: { base: '{colors.neutral.200}', _dark: '{colors.neutral.700}' } },
-        },
-        // colorPalette contract for `brand` (all seven keys required)
-        brand: {
-          solid: { value: '{colors.brand.500}' },
-          contrast: { value: '{colors.brand.100}' },
-          fg: { value: '{colors.brand.700}' },
-          muted: { value: '{colors.brand.100}' },
-          subtle: { value: '{colors.brand.200}' },
-          emphasized: { value: '{colors.brand.300}' },
-          focusRing: { value: '{colors.brand.500}' },
-        },
-      },
-    },
-  },
-  globalCss: {
-    html: { fontFamily: 'ui-sans-serif, system-ui, sans-serif' },
-    body: { bg: 'bg.page', color: 'fg.body' },
-    '*::selection': { bg: 'brand.subtle' },
-  },
-});
-
-export const system = createSystem(defaultConfig, config);
-```
-
-### colorPalette contract
-
-A custom color works with `colorPalette` only if it defines raw `50`-`950` tokens **and** the semantic keys `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`. For dark mode give each semantic key a `{ base, _dark }` value and verify both modes with `check_contrast`:
-
-```typescript
-brand: {
-  solid: { value: { base: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
-  // ... same shape for the other six keys
-}
-```
-
-Consume with `<Button colorPalette="brand">` or `<Box bg="brand.solid" color="brand.contrast">`.
+The `design-styles` MCP server's `generate_chakra_system` tool emits the raw
+tokens, semantic tokens, and global CSS for a named style. Hand-author layer 3
+(`recipes` / `slotRecipes`) in the component-patterns workflow, then run the
+canonical skill's verification checklist and `check_contrast` for both modes.
 
 ### Token format mapping
 

@@ -80,6 +80,9 @@ test("chakra output: valid, {value}-wrapped, colorPalette contract complete, lig
     assert.deepEqual(Object.keys(semanticTokens.colors.brand), ["solid", "contrast", "fg", "muted", "subtle", "emphasized", "focusRing"]);
     assertValueLeaves(semanticTokens.colors, "semanticTokens.colors");
     assert.ok("base" in semanticTokens.colors.surface.canvas.value && "_dark" in semanticTokens.colors.surface.canvas.value);
+    for (const key of ["solid", "contrast", "fg", "muted", "subtle", "emphasized", "focusRing"]) {
+      assert.ok("base" in semanticTokens.colors.brand[key].value && "_dark" in semanticTokens.colors.brand[key].value, key);
+    }
     assert.ok(semanticTokens.colors.brand.fg.value._dark.startsWith("{colors.brand."));
     assert.equal(config.globalCss.body.bg, "surface.canvas");
   }
@@ -114,6 +117,8 @@ test("brandColor override and paletteName are honored; bad input is a tool error
   assert.ok(out.includes('500: { value: "#ff6600" }') && out.includes("accent: {"));
   assert.equal(call("generate_chakra_system", { style: "glassmorphism", brandColor: "nope" }).isError, true);
   assert.equal(call("generate_chakra_system", { style: "glassmorphism", paletteName: "Bad Name" }).isError, true);
+  assert.equal(call("generate_chakra_system", { style: "glassmorphism", paletteName: "surface" }).isError, true);
+  assert.equal(call("generate_tokens", { style: "glassmorphism", format: "constructor" }).isError, true);
   assert.match(text(call("get_style", { style: "glasmorphism" })), /Unknown style/);
   assert.equal(call("nope").isError, true);
 });
@@ -147,6 +152,8 @@ test("DESIGN_STYLES_PATH extension merges styles; a bad path only warns", () => 
   assert.equal(ext.styles.size, 96);
   const g = createServer(ext)({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: "generate_tokens", arguments: { style: "test-style", format: "css" } } });
   assert.ok(!g.result.isError, g.result.content[0].text);
+  const chakra = createServer(ext)({ jsonrpc: "2.0", id: 2, method: "tools/call", params: { name: "generate_chakra_system", arguments: { style: "test-style" } } });
+  assert.match(chakra.result.content[0].text, /\/\/ - first line\n\/\/   second line\n\/\/ - third effect/);
 });
 
 test("stdio transport: real process answers initialize and tools/call, ignores notifications, survives garbage", async () => {
