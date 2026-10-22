@@ -33,7 +33,7 @@
       "dependencies": {}
     },
     "frontend-design-system": {
-      "version": "2.0.0",
+      "version": "2.1.0",
       "path": "../plugins/frontend-design-system",
       "source": "local",
       "installedAt": "2026-01-01T00:00:00.000Z",
@@ -260,8 +260,8 @@
   "registry": {
     "frontend-design-system": {
       "name": "frontend-design-system",
-      "version": "2.0.0",
-      "description": "263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development",
+      "version": "2.1.0",
+      "description": "Design styles with multi-tenant Keycloak theming and Chakra UI v3 output for AI-powered frontend development; ships a design-styles MCP server",
       "keywords": [
         "frontend",
         "design-system",
@@ -280,7 +280,10 @@
         "tool-use",
         "memory",
         "parallelization",
-        "guardrails"
+        "guardrails",
+        "chakra-ui",
+        "design-tokens",
+        "mcp"
       ],
       "categories": [
         "frontend"
@@ -1561,7 +1564,7 @@
       "frontend-design-system": {
         "path": "../plugins/frontend-design-system/.claude-plugin/plugin.json",
         "callsign": "Stylist",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "status": "active",
         "tier": "standard"
       },

@@ -98,8 +98,8 @@
     },
     {
       "name": "frontend-design-system",
-      "description": "263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development",
-      "version": "2.0.0",
+      "description": "Design styles with multi-tenant Keycloak theming and Chakra UI v3 output for AI-powered frontend development; ships a design-styles MCP server",
+      "version": "2.1.0",
       "author": {
         "name": "Markus Ahling"
       },

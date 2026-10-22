@@ -1,0 +1,5 @@
+{
+  "styles": [
+    { "id": "test-style", "name": "Test Style", "category": "minimalist-styles", "description": "fixture", "keywords": ["test"] }
+  ]
+}

@@ -136,6 +136,14 @@
     "telemetry",
     "tenant-provision",
     "test",
-    "update-documentation"
+    "update-documentation",
+    "design:style",
+    "design:theme",
+    "design:tokens",
+    "design:component",
+    "design:palette",
+    "design:audit",
+    "design:convert",
+    "design:keycloak"
   ]
 }

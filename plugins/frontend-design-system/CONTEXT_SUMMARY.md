@@ -1,7 +1,7 @@
 # frontend-design-system Context Summary
 
 ## Plugin purpose
-263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development
+Design styles with multi-tenant Keycloak theming and Chakra UI v3 output for AI-powered frontend development. Ships the `design-styles` MCP server (`mcp-server/`) and wires the official `chakra-ui` MCP server
 
 ## Command index
 - `commands/audit.md`
@@ -22,6 +22,8 @@
 - `agents/theme-engineer.md`
 
 ## Skill index
+- `skills/agentic-patterns/SKILL.md`
+- `skills/chakra-ui-v3/SKILL.md`
 - `skills/component-patterns/SKILL.md`
 - `skills/css-generation/SKILL.md`
 - `skills/design-styles/SKILL.md`

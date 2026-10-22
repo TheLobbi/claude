@@ -24,13 +24,14 @@ Generate production-ready UI components with design system consistency, accessib
 ## Usage
 
 ```bash
-/component <type> [style]
+/component <type> [style] [--target styled|tailwind|chakra]
 ```
 
 ## Arguments
 
 - `type` (required): Component type - `button`, `card`, `modal`, `form`, `navigation`, `input`, `select`, `checkbox`, `radio`, `switch`, `badge`, `alert`, `tooltip`, `dropdown`, `tabs`, `accordion`, `breadcrumb`, `pagination`, `table`, `loader`, `progress`
 - `style` (optional): Design style name to apply (defaults to active theme)
+- `--target` (optional): Output target. `styled` (default, styled-components), `tailwind`, or `chakra` (Chakra UI v3). See "Chakra UI v3 Target" below.
 
 ## Examples
 
@@ -49,6 +50,9 @@ Generate production-ready UI components with design system consistency, accessib
 
 # Generate navigation
 /component navigation "Modern Minimalist"
+
+# Generate a Chakra UI v3 card (slot recipe + compound parts)
+/component card Glassmorphism --target chakra
 ```
 
 ## Execution Flow
@@ -728,6 +732,67 @@ export const Modal: React.FC<ModalProps> = ({
   );
 };
 ```
+
+## Chakra UI v3 Target
+
+Used when `--target chakra` is passed. Source of truth: `skills/chakra-ui-v3/SKILL.md`. Never emit a pattern from its "v2 → v3 banned list". For props and examples of built-in components, query the official `chakra-ui` MCP server (`get_component_props`, `get_component_example`) instead of recalling them.
+
+Rules:
+- Multi-part components are slot recipes (`defineSlotRecipe`) exposed as compound parts via `createSlotRecipeContext` (`withProvider` on the root, `withContext` on the rest).
+- Colors come from `colorPalette` (custom palettes must satisfy the colorPalette contract: `50`-`950` plus `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`).
+- Boolean props are `open`, `disabled`, `invalid`, `required`, `loading` (never `isOpen`, `isDisabled`, `isInvalid`, `isRequired`, `isLoading`).
+- Overlays are compound parts (`Dialog.Root` etc.), not flat `Modal`/`Drawer`.
+- Register the slot recipe under `theme.slotRecipes` in `createSystem(defaultConfig, defineConfig(...))`, then run `npx @chakra-ui/cli typegen ./theme.ts`.
+
+```typescript
+// theme/recipes/card.ts
+import { defineSlotRecipe } from '@chakra-ui/react';
+
+export const cardSlotRecipe = defineSlotRecipe({
+  slots: ['root', 'header', 'body'],
+  base: {
+    root: { bg: 'brand.muted', color: 'brand.fg', px: 4, py: 2 },
+    header: { px: 4, py: 3 },
+    body: { px: 4, py: 3 },
+  },
+});
+
+// theme.ts
+// const config = defineConfig({ theme: { slotRecipes: { card: cardSlotRecipe } } })
+// export const system = createSystem(defaultConfig, config)
+```
+
+```tsx
+// components/Card/Card.tsx
+"use client"
+import { createSlotRecipeContext } from '@chakra-ui/react';
+import { cardSlotRecipe } from '@/theme/recipes/card';
+
+const { withProvider, withContext } = createSlotRecipeContext({ recipe: cardSlotRecipe });
+
+// Prop types: derive from the official MCP (get_component_props); do not guess.
+export const CardRoot = withProvider<HTMLDivElement, CardRootProps>('div', 'root');
+export const CardHeader = withContext<HTMLDivElement, CardPartProps>('div', 'header');
+export const CardBody = withContext<HTMLDivElement, CardPartProps>('div', 'body');
+```
+
+```tsx
+// Usage: colorPalette plus boolean props (open / disabled / loading)
+import { Button, Dialog } from '@chakra-ui/react';
+
+<CardRoot colorPalette="brand">
+  <CardHeader>Title</CardHeader>
+  <CardBody>
+    <Button colorPalette="brand" loading disabled>Save</Button>
+  </CardBody>
+</CardRoot>
+
+<Dialog.Root open={open}>
+  {/* parts: get_component_example for Dialog */}
+</Dialog.Root>
+```
+
+Pass `unstyled` on the root to drop recipe styles. Foreground/background semantic pairs must meet WCAG AA in light and dark (`check_contrast` from the `design-styles` MCP server).
 
 ## Component Files Structure
 

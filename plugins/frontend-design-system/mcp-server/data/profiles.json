@@ -1,0 +1,470 @@
+{
+  "note": "Starting-point visual profiles, not final brand decisions. `categories` are defaults for every style in a category; `styles` override per style id. Fields: primary/canvas/ink (hex), mode (light|dark|both), radius, shadow, fontHeading/fontBody, effects (guidance for hand-authored recipes).",
+  "categories": {
+    "minimalist-styles": {
+      "primary": "#334155",
+      "canvas": "#ffffff",
+      "ink": "#111827",
+      "mode": "both",
+      "radius": "6px",
+      "shadow": "0 1px 2px rgba(0,0,0,0.06)",
+      "fontHeading": "Inter, system-ui, sans-serif",
+      "fontBody": "Inter, system-ui, sans-serif",
+      "effects": [
+        "generous whitespace",
+        "hairline borders"
+      ]
+    },
+    "historical-styles": {
+      "primary": "#8a6d3b",
+      "canvas": "#faf6ee",
+      "ink": "#2b2118",
+      "mode": "light",
+      "radius": "2px",
+      "shadow": "0 2px 6px rgba(43,33,24,0.18)",
+      "fontHeading": "Georgia, 'Times New Roman', serif",
+      "fontBody": "Georgia, 'Times New Roman', serif",
+      "effects": [
+        "ornamental dividers",
+        "serif display type"
+      ]
+    },
+    "retro-and-vintage": {
+      "primary": "#e0457b",
+      "canvas": "#fff4e0",
+      "ink": "#2a1b3d",
+      "mode": "light",
+      "radius": "8px",
+      "shadow": "4px 4px 0 rgba(42,27,61,0.25)",
+      "fontHeading": "'Trebuchet MS', system-ui, sans-serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "flat saturated fills",
+        "offset shadows"
+      ]
+    },
+    "digital-ui-styles": {
+      "primary": "#4f46e5",
+      "canvas": "#f4f5fb",
+      "ink": "#1f2340",
+      "mode": "both",
+      "radius": "14px",
+      "shadow": "0 8px 24px rgba(31,35,64,0.12)",
+      "fontHeading": "Inter, system-ui, sans-serif",
+      "fontBody": "Inter, system-ui, sans-serif",
+      "effects": [
+        "soft elevation",
+        "large radii"
+      ]
+    },
+    "futuristic-styles": {
+      "primary": "#00e5ff",
+      "canvas": "#0a0e27",
+      "ink": "#e6f1ff",
+      "mode": "dark",
+      "radius": "4px",
+      "shadow": "0 0 16px rgba(0,229,255,0.35)",
+      "fontHeading": "'Rajdhani', 'Segoe UI', sans-serif",
+      "fontBody": "'Segoe UI', system-ui, sans-serif",
+      "effects": [
+        "glow on focus and borders",
+        "grid backgrounds"
+      ]
+    },
+    "nature-inspired": {
+      "primary": "#3f7d4e",
+      "canvas": "#f6f7f1",
+      "ink": "#1f2a1f",
+      "mode": "light",
+      "radius": "12px",
+      "shadow": "0 4px 14px rgba(31,42,31,0.10)",
+      "fontHeading": "'Merriweather', Georgia, serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "earth-tone surfaces",
+        "organic radii"
+      ]
+    },
+    "bold-and-expressive": {
+      "primary": "#ff3b30",
+      "canvas": "#fffbe6",
+      "ink": "#000000",
+      "mode": "light",
+      "radius": "0px",
+      "shadow": "6px 6px 0 #000000",
+      "fontHeading": "'Archivo Black', Impact, sans-serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "thick borders",
+        "hard offset shadows"
+      ]
+    },
+    "dark-mode-styles": {
+      "primary": "#d4af37",
+      "canvas": "#0b0b0f",
+      "ink": "#f2f2f2",
+      "mode": "dark",
+      "radius": "8px",
+      "shadow": "0 6px 20px rgba(0,0,0,0.6)",
+      "fontHeading": "Inter, system-ui, sans-serif",
+      "fontBody": "Inter, system-ui, sans-serif",
+      "effects": [
+        "low-chroma surfaces",
+        "subtle luminance steps"
+      ]
+    },
+    "gradient-and-color": {
+      "primary": "#8b5cf6",
+      "canvas": "#fbfaff",
+      "ink": "#1e1b4b",
+      "mode": "both",
+      "radius": "16px",
+      "shadow": "0 10px 30px rgba(139,92,246,0.25)",
+      "fontHeading": "Inter, system-ui, sans-serif",
+      "fontBody": "Inter, system-ui, sans-serif",
+      "effects": [
+        "gradient fills on solid surfaces only",
+        "keep text on solid backgrounds"
+      ]
+    },
+    "professional-and-corporate": {
+      "primary": "#1d4ed8",
+      "canvas": "#ffffff",
+      "ink": "#0f172a",
+      "mode": "both",
+      "radius": "6px",
+      "shadow": "0 1px 3px rgba(15,23,42,0.12)",
+      "fontHeading": "system-ui, 'Segoe UI', sans-serif",
+      "fontBody": "system-ui, 'Segoe UI', sans-serif",
+      "effects": [
+        "restrained palette",
+        "dense but legible tables"
+      ]
+    },
+    "creative-and-artistic": {
+      "primary": "#e11d48",
+      "canvas": "#fff7f0",
+      "ink": "#2d1b1b",
+      "mode": "light",
+      "radius": "10px",
+      "shadow": "3px 3px 0 rgba(45,27,27,0.3)",
+      "fontHeading": "'Playfair Display', Georgia, serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "texture overlays",
+        "irregular edges"
+      ]
+    },
+    "gaming-and-entertainment": {
+      "primary": "#7c3aed",
+      "canvas": "#0f0f1a",
+      "ink": "#ecebff",
+      "mode": "dark",
+      "radius": "6px",
+      "shadow": "0 0 18px rgba(124,58,237,0.45)",
+      "fontHeading": "'Orbitron', 'Segoe UI', sans-serif",
+      "fontBody": "'Segoe UI', system-ui, sans-serif",
+      "effects": [
+        "HUD-style borders",
+        "accent glow"
+      ]
+    },
+    "e-commerce": {
+      "primary": "#111827",
+      "canvas": "#ffffff",
+      "ink": "#111827",
+      "mode": "both",
+      "radius": "4px",
+      "shadow": "0 2px 8px rgba(17,24,39,0.08)",
+      "fontHeading": "system-ui, sans-serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "image-forward cards",
+        "clear price emphasis"
+      ]
+    },
+    "educational": {
+      "primary": "#2563eb",
+      "canvas": "#f8fafc",
+      "ink": "#0f172a",
+      "mode": "both",
+      "radius": "10px",
+      "shadow": "0 2px 8px rgba(15,23,42,0.08)",
+      "fontHeading": "system-ui, sans-serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "high readability",
+        "progress indicators"
+      ]
+    },
+    "social-and-community": {
+      "primary": "#0ea5e9",
+      "canvas": "#f8fafc",
+      "ink": "#0f172a",
+      "mode": "both",
+      "radius": "12px",
+      "shadow": "0 1px 4px rgba(15,23,42,0.10)",
+      "fontHeading": "system-ui, sans-serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "avatar-centric rows",
+        "clear thread hierarchy"
+      ]
+    },
+    "productivity": {
+      "primary": "#6366f1",
+      "canvas": "#f9fafb",
+      "ink": "#111827",
+      "mode": "both",
+      "radius": "8px",
+      "shadow": "0 1px 3px rgba(17,24,39,0.10)",
+      "fontHeading": "Inter, system-ui, sans-serif",
+      "fontBody": "Inter, system-ui, sans-serif",
+      "effects": [
+        "dense layouts",
+        "keyboard-first focus rings"
+      ]
+    },
+    "health-and-wellness": {
+      "primary": "#0d9488",
+      "canvas": "#f0fdfa",
+      "ink": "#134e4a",
+      "mode": "light",
+      "radius": "14px",
+      "shadow": "0 4px 16px rgba(13,148,136,0.14)",
+      "fontHeading": "system-ui, sans-serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "calm low-contrast surfaces with AA text",
+        "large touch targets"
+      ]
+    },
+    "travel-and-hospitality": {
+      "primary": "#0891b2",
+      "canvas": "#fffdf8",
+      "ink": "#1c1917",
+      "mode": "light",
+      "radius": "12px",
+      "shadow": "0 6px 20px rgba(28,25,23,0.12)",
+      "fontHeading": "'Playfair Display', Georgia, serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "full-bleed imagery",
+        "overlay scrims for text"
+      ]
+    },
+    "experimental-and-emerging": {
+      "primary": "#a78bfa",
+      "canvas": "#0c0a1d",
+      "ink": "#f1edff",
+      "mode": "dark",
+      "radius": "20px",
+      "shadow": "0 0 40px rgba(167,139,250,0.35)",
+      "fontHeading": "system-ui, sans-serif",
+      "fontBody": "system-ui, sans-serif",
+      "effects": [
+        "depth layers",
+        "motion gated by prefers-reduced-motion"
+      ]
+    }
+  },
+  "styles": {
+    "glassmorphism": {
+      "primary": "#6366f1",
+      "canvas": "#e8ecff",
+      "ink": "#12163a",
+      "darkCanvas": "#0b1030",
+      "mode": "both",
+      "radius": "16px",
+      "shadow": "0 8px 32px rgba(31,38,135,0.20)",
+      "effects": [
+        "surface: rgba(255,255,255,0.1) with backdropFilter blur(12px)",
+        "1px translucent border",
+        "provide opaque fallback when backdrop-filter is unsupported"
+      ]
+    },
+    "neumorphism": {
+      "primary": "#5b6ee1",
+      "canvas": "#e0e5ec",
+      "ink": "#2d3748",
+      "mode": "light",
+      "radius": "20px",
+      "shadow": "9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff",
+      "effects": [
+        "same-color surfaces with dual light/dark shadows",
+        "add explicit borders or focus rings; shadows alone fail non-text contrast"
+      ]
+    },
+    "neo-brutalism": {
+      "primary": "#ffe600",
+      "canvas": "#fffdf0",
+      "ink": "#000000",
+      "mode": "light",
+      "radius": "0px",
+      "shadow": "8px 8px 0 #000000",
+      "effects": [
+        "4px solid #000 borders",
+        "hard offset shadow",
+        "flat saturated fills"
+      ]
+    },
+    "brutalist": {
+      "primary": "#111111",
+      "canvas": "#e5e5e5",
+      "ink": "#000000",
+      "mode": "light",
+      "radius": "0px",
+      "shadow": "none",
+      "fontHeading": "'Courier New', monospace",
+      "fontBody": "'Courier New', monospace",
+      "effects": [
+        "raw borders",
+        "monospace type",
+        "no ornament"
+      ]
+    },
+    "cyberpunk": {
+      "primary": "#00ffff",
+      "canvas": "#0a0e27",
+      "ink": "#e6f1ff",
+      "mode": "dark",
+      "radius": "2px",
+      "shadow": "0 0 14px rgba(0,255,255,0.45)",
+      "effects": [
+        "magenta #ff00ff secondary accent",
+        "glowing borders",
+        "scanline or grid texture"
+      ]
+    },
+    "art-deco": {
+      "primary": "#d4af37",
+      "canvas": "#0d0d0d",
+      "ink": "#f5ecd0",
+      "mode": "dark",
+      "radius": "0px",
+      "shadow": "0 0 0 1px #d4af37",
+      "fontHeading": "'Poiret One', 'Playfair Display', serif",
+      "effects": [
+        "gold hairline frames",
+        "symmetric geometric ornament",
+        "uppercase tracked headings"
+      ]
+    },
+    "vaporwave": {
+      "primary": "#ff71ce",
+      "canvas": "#1a1033",
+      "ink": "#e8f7ff",
+      "mode": "dark",
+      "radius": "6px",
+      "shadow": "0 0 20px rgba(1,205,254,0.4)",
+      "effects": [
+        "cyan #01cdfe and violet #b967ff accents",
+        "pastel gradients on large surfaces only"
+      ]
+    },
+    "scandinavian-design": {
+      "primary": "#5f7a6c",
+      "canvas": "#f7f5f2",
+      "ink": "#2b2b2b",
+      "mode": "light",
+      "radius": "8px",
+      "shadow": "0 1px 3px rgba(0,0,0,0.08)",
+      "effects": [
+        "muted natural palette",
+        "functional spacing"
+      ]
+    },
+    "swiss-design": {
+      "primary": "#e10600",
+      "canvas": "#ffffff",
+      "ink": "#000000",
+      "mode": "light",
+      "radius": "0px",
+      "shadow": "none",
+      "fontHeading": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "fontBody": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "effects": [
+        "strict grid",
+        "one accent color",
+        "flush-left ragged-right type"
+      ]
+    },
+    "material-design": {
+      "primary": "#6750a4",
+      "canvas": "#fffbfe",
+      "ink": "#1c1b1f",
+      "darkCanvas": "#141218",
+      "mode": "both",
+      "radius": "12px",
+      "shadow": "0 1px 3px rgba(0,0,0,0.30)",
+      "fontHeading": "Roboto, system-ui, sans-serif",
+      "fontBody": "Roboto, system-ui, sans-serif",
+      "effects": [
+        "tonal surfaces",
+        "elevation by tint"
+      ]
+    },
+    "dark-elegant": {
+      "primary": "#d4af37",
+      "canvas": "#0b0b0f",
+      "ink": "#f4efe1",
+      "mode": "dark",
+      "radius": "4px",
+      "shadow": "0 8px 24px rgba(0,0,0,0.65)",
+      "fontHeading": "'Cormorant Garamond', Georgia, serif",
+      "effects": [
+        "gold accents on near-black",
+        "serif display type"
+      ]
+    },
+    "oled-black": {
+      "primary": "#4cc2ff",
+      "canvas": "#000000",
+      "ink": "#f5f5f5",
+      "mode": "dark",
+      "radius": "8px",
+      "shadow": "none",
+      "effects": [
+        "true #000 canvas",
+        "separate surfaces with 1px borders not shadows"
+      ]
+    },
+    "memphis-design": {
+      "primary": "#ff4fa3",
+      "canvas": "#fff8e7",
+      "ink": "#1a1a1a",
+      "mode": "light",
+      "radius": "0px",
+      "shadow": "5px 5px 0 #1a1a1a",
+      "effects": [
+        "clashing primary accents (#00c2ff, #ffd400)",
+        "squiggle and confetti patterns as decoration only"
+      ]
+    },
+    "corporate-blue": {
+      "primary": "#0b5cab",
+      "canvas": "#ffffff",
+      "ink": "#0f172a",
+      "mode": "both",
+      "radius": "4px",
+      "shadow": "0 1px 3px rgba(15,23,42,0.12)",
+      "effects": [
+        "restrained blue accent",
+        "neutral grays"
+      ]
+    },
+    "meditation": {
+      "primary": "#6b8f9e",
+      "canvas": "#f4f8f7",
+      "ink": "#24343b",
+      "mode": "light",
+      "radius": "20px",
+      "shadow": "0 4px 20px rgba(36,52,59,0.08)",
+      "effects": [
+        "low motion",
+        "generous spacing",
+        "soft desaturated palette with AA text"
+      ]
+    }
+  }
+}

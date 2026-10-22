@@ -7,7 +7,7 @@
       "name": "Markus Ahling",
       "email": "markus@thelobbi.io"
     },
-    "generatedAt": "2026-09-08T19:34:30.181Z",
+    "generatedAt": "2026-10-22T03:42:59.917Z",
     "repo": "https://github.com/markus41/claude",
     "url": "https://markus41.github.io/claude/"
   },
@@ -16,9 +16,9 @@
     "subplugins": 6,
     "commands": 343,
     "agents": 322,
-    "skills": 292,
+    "skills": 293,
     "hooks": 17,
-    "mcp": 8,
+    "mcp": 9,
     "categories": 8
   },
   "categories": [
@@ -47,7 +47,7 @@
       "counts": {
         "commands": 181,
         "agents": 181,
-        "skills": 111
+        "skills": 112
       }
     },
     {
@@ -269,7 +269,7 @@
     },
     {
       "name": "delivery-orchestrator",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Unified delivery orchestration: one plugin replacing six. A tested, dependency-free kernel (swarm conductor with leased claims and worktree isolation, guardrails, transactional state MCP, fleet protocol) behind platform adapters for Linear, Jira, GitHub and Harness. 133 commands, 156 agents, 52 skills, 12 schema-validated workflows, 155 tests.",
       "author": "Markus Ahling",
       "authorUrl": "",
@@ -434,8 +434,8 @@
     },
     {
       "name": "frontend-design-system",
-      "version": "2.0.0",
-      "description": "263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development",
+      "version": "2.1.0",
+      "description": "Design styles with multi-tenant Keycloak theming and Chakra UI v3 output for AI-powered frontend development; ships a design-styles MCP server",
       "author": "Markus Ahling",
       "authorUrl": "",
       "source": "./plugins/frontend-design-system",
@@ -459,10 +459,10 @@
       "counts": {
         "commands": 8,
         "agents": 6,
-        "skills": 5,
+        "skills": 6,
         "hooks": 0
       },
-      "mcp": false,
+      "mcp": true,
       "hasReadme": true
     },
     {

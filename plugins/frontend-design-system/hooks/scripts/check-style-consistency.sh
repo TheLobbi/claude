@@ -12,8 +12,20 @@ CHECK_COLOR_CONSISTENCY="${CHECK_COLOR_CONSISTENCY:-true}"
 CHECK_SPACING_CONSISTENCY="${CHECK_SPACING_CONSISTENCY:-true}"
 CHECK_TYPOGRAPHY_CONSISTENCY="${CHECK_TYPOGRAPHY_CONSISTENCY:-true}"
 
-# Get the file being modified from arguments
-FILE_PATH="${1:-}"
+# Claude Code sends hook input as JSON on stdin. Keep the positional argument
+# fallback so the checker remains easy to run by hand.
+FILE_PATH=""
+if [ ! -t 0 ]; then
+  HOOK_INPUT=$(cat)
+  if command -v jq >/dev/null 2>&1; then
+    FILE_PATH=$(printf '%s' "$HOOK_INPUT" | jq -r '.tool_input.file_path // .tool_input.path // empty' 2>/dev/null || true)
+  elif [[ "$HOOK_INPUT" =~ \"file_path\"[[:space:]]*:[[:space:]]*\"([^\"]*)\" ]]; then
+    FILE_PATH="${BASH_REMATCH[1]}"
+  elif [[ "$HOOK_INPUT" =~ \"path\"[[:space:]]*:[[:space:]]*\"([^\"]*)\" ]]; then
+    FILE_PATH="${BASH_REMATCH[1]}"
+  fi
+fi
+FILE_PATH="${FILE_PATH:-${1:-}}"
 
 if [ -z "$FILE_PATH" ]; then
   echo "⚠️  No file path provided to style consistency checker"
@@ -34,7 +46,7 @@ if [ "$CHECK_COLOR_CONSISTENCY" = "true" ]; then
   if grep -E "#[0-9a-fA-F]{3,6}|rgb\(|rgba\(" "$FILE_PATH" > /dev/null 2>&1; then
     HARDCODED_COLORS=$(grep -E "#[0-9a-fA-F]{3,6}|rgb\(|rgba\(" "$FILE_PATH" | wc -l)
     if [ "$HARDCODED_COLORS" -gt 0 ]; then
-      WARNINGS+=("⚠️  Found $HARDCODED_COLORS hardcoded color value(s). Consider using CSS variables from the design system.")
+      WARNINGS+=("⚠️  Found $HARDCODED_COLORS hardcoded color value(s). Consider design tokens (CSS variables or Chakra semantic tokens such as brand.solid, ink.strong).")
     fi
   fi
 fi
@@ -55,7 +67,7 @@ if [[ "$FILE_PATH" =~ \.(tsx|jsx)$ ]]; then
   if grep -E "style=\{\{" "$FILE_PATH" > /dev/null 2>&1; then
     INLINE_STYLES=$(grep -E "style=\{\{" "$FILE_PATH" | wc -l)
     if [ "$INLINE_STYLES" -gt 0 ]; then
-      WARNINGS+=("⚠️  Found $INLINE_STYLES inline style(s). Consider using CSS classes or styled-components.")
+      WARNINGS+=("⚠️  Found $INLINE_STYLES inline style(s). Consider CSS classes, styled-components, or Chakra UI v3 style props / recipes.")
     fi
   fi
 fi
@@ -79,7 +91,7 @@ if [ ${#WARNINGS[@]} -gt 0 ]; then
   done
   echo ""
   echo "💡 Design System Resources:"
-  echo "   - CSS Variables: Check design-tokens.ts or theme files"
+  echo "   - CSS Variables: Check design-tokens.ts, theme.ts (Chakra system) or theme files"
   echo "   - Spacing Scale: 4px increments (4, 8, 12, 16, 24, 32, 48, 64)"
   echo "   - Typography: Use predefined text classes"
   echo ""

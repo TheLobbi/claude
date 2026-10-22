@@ -14,15 +14,22 @@
 - `theme` (see `commands/theme.md`)
 - `tokens` (see `commands/tokens.md`)
 
+## Chakra UI v3 Rules
+- `skills/chakra-ui-v3/SKILL.md` is the single source of truth for Chakra facts; other files link to it instead of restating APIs.
+- Never emit Chakra v2 patterns (`extendTheme`, `colorScheme`, `isOpen`, `ColorModeScript`, flat `Modal`); see the skill's banned list.
+- Prefer MCP lookups (`chakra-ui` `get_component_props`, `design-styles` `check_contrast`) over recalled props or eyeballed contrast.
+- Keep `mcp-server/` dependency-free and its entry point tracked in git (plugin-cache rule).
+
 ## Prohibited Actions
 - Do not delete or rename `.claude-plugin/plugin.json`.
 - Do not introduce secrets, credentials, or tenant-specific IDs in tracked files.
 - Do not modify unrelated plugins from this plugin workflow unless explicitly requested.
 
 ## Required Validation Checks
-- Run `npm run check:plugin-context`.
-- Run `npm run check:plugin-schema`.
-- If code/scripts changed in this plugin, run targeted tests for `plugins/frontend-design-system`.
+- Run `pnpm check:plugin-context`.
+- Run `pnpm check:plugin-schema`.
+- Run `pnpm check:marketplace` (verifies the `mcpServers` entry points exist in git).
+- If `mcp-server/` changed, run `node --test mcp-server/test/*.test.js` and `node mcp-server/scripts/build-catalog.mjs --check`.
 
 ## Context Budget
 Load in this order and stop when you have enough context:

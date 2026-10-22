@@ -6,6 +6,11 @@ This directory contains hooks for maintaining design system consistency, accessi
 
 These hooks run automatically during Claude Code operations to ensure design system best practices are followed. All hooks run in **advisory mode** by default, providing warnings and suggestions without blocking operations.
 
+Claude Code passes the hook payload as JSON on stdin. The scripts read
+`.tool_input.file_path` (with `.tool_input.path` as a fallback); a positional path
+argument is also accepted for manual checks. `jq` is used when available, with a
+small Bash parser fallback so the hooks do not require an extra dependency.
+
 ## Available Hooks
 
 ### 1. Style Consistency Checker

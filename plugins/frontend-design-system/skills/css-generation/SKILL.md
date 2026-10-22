@@ -4,6 +4,7 @@ triggers:
   - css
   - tailwind
   - styled-components
+  - chakra
   - design tokens
   - color palette
   - typography
@@ -18,11 +19,13 @@ globs:
 
 # CSS Generation Skill
 
-Generate CSS, Tailwind, and styled-components code from design style selections.
+Generate CSS, Tailwind, styled-components, and Chakra UI v3 code from design style selections.
 
 ## Overview
 
-This skill provides tools and templates for converting design tokens and style selections into production-ready CSS, Tailwind configurations, and styled-components theme objects.
+This skill provides tools and templates for converting design tokens and style selections into production-ready CSS, Tailwind configurations, styled-components theme objects, and Chakra UI v3 systems.
+
+Chakra UI v3 is the third output target. Every Chakra fact lives in the `chakra-ui-v3` skill; this skill only maps design tokens onto it.
 
 ## CSS Variables Generation from Design Tokens
 
@@ -733,6 +736,121 @@ export const Button = styled.button<{ variant?: 'primary' | 'secondary' }>`
 `;
 ```
 
+## Chakra UI v3 Generation
+
+Follow the `chakra-ui-v3` skill for all API details. Never emit v2 patterns; the skill's v2 to v3 banned list applies.
+
+### Design style to Chakra system
+
+A design style becomes one `createSystem(defaultConfig, defineConfig({ ... }))` call, filled in this order:
+
+| Layer | Config key | Contents |
+|-------|-----------|----------|
+| 1 | `theme.tokens` | Raw palette (`50`-`950`), fonts, radii, shadows, blurs, easings |
+| 2 | `theme.semanticTokens` | `bg.*`, `fg.*`, `border.*`, and the `colorPalette` contract, each with `base` and `_dark` |
+| 3 | `theme.recipes` / `theme.slotRecipes` | Per-component visual language (see `component-patterns`) |
+| 4 | `globalCss` | Page background, selection, typography baseline |
+
+The `design-styles` MCP server exposes `generate_chakra_system` for layers 1, 2, and 4 of a named style. Layer 3 stays hand-authored per project.
+
+**theme.ts:**
+```typescript
+import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
+
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        // Raw scales: every value wrapped in { value }. Define 50-950.
+        brand: {
+          50: { value: '#eff6ff' },
+          // ... 100-400
+          500: { value: '#3b82f6' },
+          // ... 600-900
+          950: { value: '#172554' },
+        },
+        neutral: {
+          50: { value: '#fafafa' },
+          // ... 100-900
+          950: { value: '#0a0a0a' },
+        },
+      },
+    },
+    semanticTokens: {
+      colors: {
+        // Surfaces and text: base = light, _dark = dark mode
+        bg: {
+          page: { value: { base: '{colors.neutral.50}', _dark: '{colors.neutral.950}' } },
+          panel: { value: { base: '#ffffff', _dark: '{colors.neutral.900}' } },
+        },
+        fg: {
+          body: { value: { base: '{colors.neutral.900}', _dark: '{colors.neutral.50}' } },
+        },
+        border: {
+          line: { value: { base: '{colors.neutral.200}', _dark: '{colors.neutral.700}' } },
+        },
+        // colorPalette contract for `brand` (all seven keys required)
+        brand: {
+          solid: { value: '{colors.brand.500}' },
+          contrast: { value: '{colors.brand.100}' },
+          fg: { value: '{colors.brand.700}' },
+          muted: { value: '{colors.brand.100}' },
+          subtle: { value: '{colors.brand.200}' },
+          emphasized: { value: '{colors.brand.300}' },
+          focusRing: { value: '{colors.brand.500}' },
+        },
+      },
+    },
+  },
+  globalCss: {
+    html: { fontFamily: 'ui-sans-serif, system-ui, sans-serif' },
+    body: { bg: 'bg.page', color: 'fg.body' },
+    '*::selection': { bg: 'brand.subtle' },
+  },
+});
+
+export const system = createSystem(defaultConfig, config);
+```
+
+### colorPalette contract
+
+A custom color works with `colorPalette` only if it defines raw `50`-`950` tokens **and** the semantic keys `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`. For dark mode give each semantic key a `{ base, _dark }` value and verify both modes with `check_contrast`:
+
+```typescript
+brand: {
+  solid: { value: { base: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+  // ... same shape for the other six keys
+}
+```
+
+Consume with `<Button colorPalette="brand">` or `<Box bg="brand.solid" color="brand.contrast">`.
+
+### Token format mapping
+
+| Concept | CSS variables | Tailwind | styled-components | Chakra v3 |
+|---------|---------------|----------|-------------------|-----------|
+| Raw color | `--color-primary-500: #3b82f6` | `theme.extend.colors.primary[500]` | `theme.colors.primary[500]` | `tokens.colors.brand.500: { value: '#3b82f6' }` |
+| Token reference | `var(--color-neutral-900)` | `'var(--color-neutral-900)'` | `theme.colors.neutral[900]` | `'{colors.neutral.900}'` inside a `value` |
+| Semantic color | `--color-text-primary` | `text-*` utility on a named color | `theme.colors.text.primary` | `semanticTokens.colors.fg.body` |
+| Dark mode | `[data-theme="dark"]` override block | `dark:` variant via `darkMode` | swap `lightTheme` / `darkTheme` | `_dark` inside the semantic token `value` |
+| Color scheme | n/a | n/a | n/a | `colorPalette` (contract above) |
+| Fonts, radii, shadows | `--font-family-sans`, `--radius-md`, `--shadow-md` | `fontFamily`, `borderRadius`, `boxShadow` | `theme.typography`, `theme.borderRadius`, `theme.shadows` | `tokens.fonts`, `tokens.radii`, `tokens.shadows`, each `{ value }` |
+| Global base styles | `:root` / `body` rules | `@layer base` | `createGlobalStyle` | `globalCss` |
+
+Rules for the Chakra column:
+- Token values are always wrapped in `{ value: ... }`; references use `{category.name}` (for example `{colors.brand.500}`).
+- Semantic token conditions are `base` plus `_dark`; no per-component color-mode branching.
+- After editing the config, regenerate prop types: `npx @chakra-ui/cli typegen ./theme.ts` (or note it as a follow-up).
+- Wrap the app with `<ChakraProvider value={system}>`; color mode comes from `next-themes` (see `chakra-ui-v3`).
+
+## Modern Principles (all targets)
+
+- **Semantic over raw tokens**: components consume `bg.panel`, `fg.body`, `border.line`, never `neutral.900` or a hex value. Raw scales appear only in token definitions.
+- **Dark mode via tokens**: define the dark value once on the semantic token (`[data-theme="dark"]` block, `dark:` variant, theme object swap, or `_dark`); components do not branch on mode.
+- **Logical properties**: prefer `margin-inline`, `padding-block`, `inset-inline-start`, `border-inline-end` over left/right/top/bottom so layouts follow writing direction.
+- **Reduced motion**: wrap transitions and animations in `@media (prefers-reduced-motion: no-preference)`, or neutralize them under `prefers-reduced-motion: reduce`.
+- **WCAG AA contrast**: every foreground/background semantic pair meets 4.5:1 (normal text) or 3:1 (large text, UI components) in light and dark. Verify with the `design-styles` MCP server `check_contrast` tool; do not eyeball it.
+
 ## Format Conversion
 
 ### CSS to Tailwind
@@ -949,6 +1067,7 @@ function darken(color: string, amount: number): string {
 - **design-styles**: Convert style selections to CSS/Tailwind
 - **component-patterns**: Apply generated styles to components
 - **keycloak-theming**: Generate theme CSS for Keycloak
+- **chakra-ui-v3**: Source of truth for every Chakra UI v3 API used above
 
 ## Resources
 

@@ -19,7 +19,7 @@ allowed-tools:
 
 # CSS Format Conversion Command
 
-Convert styling between CSS, Tailwind, styled-components, SCSS, Less, and PostCSS formats with intelligent property mapping.
+Convert styling between CSS, Tailwind, styled-components, Chakra UI v3, SCSS, Less, and PostCSS formats with intelligent property mapping.
 
 ## Usage
 
@@ -29,8 +29,8 @@ Convert styling between CSS, Tailwind, styled-components, SCSS, Less, and PostCS
 
 ## Arguments
 
-- `source_format` (required): Source CSS format - css, tailwind, styled, scss, less, postcss
-- `target_format` (required): Target CSS format - css, tailwind, styled, scss, less, postcss
+- `source_format` (required): Source CSS format - css, tailwind, styled, chakra, scss, less, postcss
+- `target_format` (required): Target CSS format - css, tailwind, styled, chakra, scss, less, postcss
 - `input_file` (required): Path to the CSS/style file to convert
 - `output_file` (optional): Output file path (defaults to input_file.{ext})
 
@@ -54,6 +54,15 @@ Convert styling between CSS, Tailwind, styled-components, SCSS, Less, and PostCS
 
 # Convert CSS to SCSS with variables
 /convert css scss styles/app.css styles/app.scss
+
+# Convert CSS variables to a Chakra UI v3 system
+/convert css chakra styles/tokens.css theme.ts
+
+# Convert styled-components to Chakra UI v3
+/convert styled chakra src/Button.tsx src/Button.chakra.tsx
+
+# Convert a Chakra UI v3 system to CSS variables
+/convert chakra css theme.ts styles/tokens.css
 ```
 
 ## Execution Flow
@@ -72,7 +81,7 @@ validate_input() {
   
   # Validate source format
   case "$source_format" in
-    css|tailwind|styled|scss|less|postcss) return 0 ;;
+    css|tailwind|styled|chakra|scss|less|postcss) return 0 ;;
     *) echo "Error: Invalid source format"; return 1 ;;
   esac
 }
@@ -85,6 +94,7 @@ Extract AST from source format:
 - **CSS Parser**: Extract rules, selectors, properties, variables
 - **Tailwind Parser**: Extract utility classes and tailwind config
 - **Styled-Components Parser**: Extract styled definitions and global styles
+- **Chakra Parser**: Extract `theme.tokens`, `theme.semanticTokens`, recipes/slot recipes, `globalCss`, and `css`/style props from Chakra v3 sources
 - **SCSS Parser**: Handle nesting, variables, mixins
 - **Less Parser**: Handle operations and mixins
 - **PostCSS Parser**: Handle plugins and modern syntax
@@ -121,6 +131,7 @@ Generate output in target format:
 - **CSS**: Standard CSS with variables and media queries
 - **Tailwind**: Utility class composition
 - **styled-components**: Styled components with theme integration
+- **Chakra**: Chakra UI v3 system (see "Chakra UI v3 Conversion")
 - **SCSS**: SCSS with variables and nesting
 - **Less**: Less with variables and mixins
 - **PostCSS**: Modern CSS with plugin syntax
@@ -203,6 +214,60 @@ export const Button = styled.button`
   border-radius: 6px;
 `;
 ```
+
+### Chakra UI v3 Output
+
+```typescript
+import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
+
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: { primary: { 500: { value: '#3b82f6' } } },
+    },
+    semanticTokens: {
+      colors: {
+        danger: { value: { base: '{colors.red}', _dark: '{colors.darkred}' } },
+      },
+    },
+  },
+});
+
+export const system = createSystem(defaultConfig, config);
+```
+
+## Chakra UI v3 Conversion
+
+Source of truth: `skills/chakra-ui-v3/SKILL.md`. Never emit a pattern from its "v2 → v3 banned list". Look up built-in component props and examples through the official `chakra-ui` MCP server (`get_component_props`, `get_component_example`, `v2_to_v3_code_review`) rather than recalling them.
+
+### To Chakra (`css|tailwind|styled|scss|less|postcss` -> `chakra`)
+
+| Source | Chakra v3 |
+|--------|-----------|
+| `--primary: #3b82f6` / theme value | `theme.tokens.colors.primary.500: { value: '#3b82f6' }` (always `{ value }`-wrapped) |
+| Light/dark variable pair (`:root` + `.dark`, `prefers-color-scheme`) | `theme.semanticTokens` with `{ base, _dark }` |
+| Reference to another variable | `{colors.x}` token reference |
+| Custom color used as a variant color | Raw `50`-`950` plus semantic `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing` so `colorPalette` works |
+| Component variants (single element) | `defineRecipe` under `theme.recipes` |
+| Multi-part component | `defineSlotRecipe` under `theme.slotRecipes` |
+| Global/body/selection rules | `globalCss` |
+| Per-element nested selectors | `css` prop (nested selectors need `&`) |
+
+Wrap in `createSystem(defaultConfig, defineConfig({ theme: { ... } }))`, provide it with `<ChakraProvider value={system}>`, and run `npx @chakra-ui/cli typegen ./theme.ts` afterwards.
+
+### From Chakra (`chakra` -> `css|tailwind|styled|scss|less|postcss`)
+
+- Unwrap `{ value }` from tokens; resolve `{colors.x}` references to the target's variable or theme reference.
+- `semanticTokens` `base` becomes the default value; `_dark` becomes the dark variant (CSS: `.dark` or `prefers-color-scheme` block; Tailwind: `dark:` variant; styled-components: dark theme object).
+- Recipes and slot recipes become variant classes/props per slot. Report responsive `compoundVariants` as a warning (unsupported in Chakra itself).
+
+### v2 sources (`chakra` input that uses v2 APIs)
+
+Detect v2 patterns and migrate them while converting, never copy them through:
+
+- `extendTheme` -> `createSystem(defaultConfig, defineConfig(...))`; `colorScheme` -> `colorPalette`; `sx`/`__css` -> `css`.
+- `isOpen`/`isDisabled`/`isInvalid`/`isRequired`/`isLoading` -> `open`/`disabled`/`invalid`/`required`/`loading`; `spacing` -> `gap`.
+- Anything else on the banned list: apply the replacement from `skills/chakra-ui-v3/SKILL.md` or flag for `v2_to_v3_code_review`.
 
 ## Conversion Report
 

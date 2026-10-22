@@ -9,8 +9,20 @@ set -e
 TENANTS="${TENANTS:-thelobbi,brooksidebi}"
 KEYCLOAK_THEME_DIR="${KEYCLOAK_THEME_DIR:-./themes/keycloak}"
 
-# Get the file being modified from arguments
-FILE_PATH="${1:-}"
+# Claude Code sends hook input as JSON on stdin. Keep the positional argument
+# fallback so the sync reminder remains easy to run by hand.
+FILE_PATH=""
+if [ ! -t 0 ]; then
+  HOOK_INPUT=$(cat)
+  if command -v jq >/dev/null 2>&1; then
+    FILE_PATH=$(printf '%s' "$HOOK_INPUT" | jq -r '.tool_input.file_path // .tool_input.path // empty' 2>/dev/null || true)
+  elif [[ "$HOOK_INPUT" =~ \"file_path\"[[:space:]]*:[[:space:]]*\"([^\"]*)\" ]]; then
+    FILE_PATH="${BASH_REMATCH[1]}"
+  elif [[ "$HOOK_INPUT" =~ \"path\"[[:space:]]*:[[:space:]]*\"([^\"]*)\" ]]; then
+    FILE_PATH="${BASH_REMATCH[1]}"
+  fi
+fi
+FILE_PATH="${FILE_PATH:-${1:-}}"
 
 if [ -z "$FILE_PATH" ]; then
   echo "⚠️  No file path provided to theme sync hook"

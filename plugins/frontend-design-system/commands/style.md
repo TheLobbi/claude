@@ -1,6 +1,6 @@
 ---
 name: style
-intent: Apply a specific design style from 263+ styles and generate implementation code
+intent: Apply a specific design style from the bundled catalog or an extended 263+ style vault and generate implementation code
 tags:
   - frontend-design-system
   - command
@@ -8,7 +8,7 @@ tags:
 inputs: []
 risk: medium
 cost: medium
-description: Apply a specific design style from 263+ styles and generate implementation code
+description: Apply a specific design style from the bundled catalog or an extended 263+ style vault and generate implementation code
 allowed-tools:
   - Read
   - Write
@@ -19,7 +19,7 @@ allowed-tools:
 
 # Style Application Command
 
-Apply a specific design style and generate implementation code in your preferred format (CSS, Tailwind, or styled-components).
+Apply a specific design style and generate implementation code in your preferred format (CSS, Tailwind, styled-components, or Chakra UI v3).
 
 ## Usage
 
@@ -30,7 +30,7 @@ Apply a specific design style and generate implementation code in your preferred
 ## Arguments
 
 - `style_name` (required): Name of the design style to apply (e.g., "Material Design", "Glassmorphism", "Neumorphism")
-- `output_format` (optional): Output format - `css`, `tailwind`, or `styled-components` (default: `css`)
+- `output_format` (optional): Output format - `css`, `tailwind`, `styled-components`, or `chakra` (default: `css`). `chakra` generates a Chakra UI v3 system via the `design-styles` MCP server (see "Chakra UI v3 Output").
 
 ## Examples
 
@@ -43,6 +43,9 @@ Apply a specific design style and generate implementation code in your preferred
 
 # Apply Neumorphism with styled-components
 /style Neumorphism styled-components
+
+# Apply Glassmorphism as a Chakra UI v3 system
+/style Glassmorphism chakra
 ```
 
 ## Execution Flow
@@ -55,7 +58,7 @@ Apply a specific design style and generate implementation code in your preferred
 ```
 
 The command will:
-1. Search the 263+ design styles database
+1. Search the bundled 95-style catalog. Point `DESIGN_STYLES_PATH` at an exported JSON from the full 263+ design styles vault to extend the search set.
 2. Extract style characteristics (colors, typography, spacing, effects)
 3. Load associated prompt keywords and design tokens
 4. Verify style exists or suggest closest matches
@@ -342,6 +345,28 @@ export const Button = styled.button`
 `;
 ```
 
+## Chakra UI v3 Output
+
+Used when `output_format` is `chakra`. Source of truth: `skills/chakra-ui-v3/SKILL.md`. Never emit a pattern from its "v2 → v3 banned list".
+
+Use the `design-styles` MCP server (this plugin's `mcp-server/`):
+
+| Tool | Use |
+|------|-----|
+| `search_styles` | Find a style when the name is missing or ambiguous |
+| `get_style` | Load a style's characteristics |
+| `generate_chakra_system` | Generate the Chakra v3 system for the style. Inputs: `style`; optional `brandColor` (hex) and `paletteName` (default `brand`) |
+| `check_contrast` | Validate foreground/background semantic pairs (WCAG AA, light and dark) |
+
+Flow:
+1. Resolve the style (`search_styles`, `get_style`).
+2. Call `generate_chakra_system` with the style name, passing `brandColor` only when the user supplied one.
+3. Write the result as `styles/{style_name}/theme.ts` (`createSystem(defaultConfig, defineConfig(...))`). It covers raw tokens, semantic tokens (`base`/`_dark`, including the `colorPalette` contract), and `globalCss`.
+4. Per-component recipes/slot recipes are not generated; hand-author them from the style (see `/component <type> {style_name} --target chakra`).
+5. Run `check_contrast` on the semantic pairs, then `npx @chakra-ui/cli typegen ./theme.ts`.
+
+Integration: provide the system with `<ChakraProvider value={system}>` (the generated `Provider` from `npx @chakra-ui/cli snippet add` wraps it with `next-themes`). For built-in component props, use the official `chakra-ui` MCP server (`get_component_props`, `get_component_example`).
+
 ## Output Structure
 
 The command creates the following files:
@@ -412,6 +437,7 @@ See `components.{format}` for ready-to-use component examples.
 
 - If style not found: Display list of similar styles
 - If invalid output format: Default to CSS and show warning
+- If `chakra` is requested and the `design-styles` MCP server is unavailable: say so and fall back to `/tokens all {style_name} --format chakra`
 - If generation fails: Provide fallback with basic tokens
 
 ## Next Steps

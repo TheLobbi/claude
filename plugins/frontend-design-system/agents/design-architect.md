@@ -269,6 +269,18 @@ When handing off to the style-implementer agent, use these keywords:
 ✗ Skip stakeholder alignment and feedback
 ✗ Create rigid systems that can't evolve
 
+## Chakra UI v3 and Modern Principles
+
+Chakra UI v3 is a supported output target alongside Tailwind and styled-components. Source of truth: `skills/chakra-ui-v3/SKILL.md`. Never specify a pattern from its "v2 → v3 banned list".
+
+Principles for any target:
+- **Semantic tokens first.** Components consume `bg.*`, `fg.*`, `border.*`, and a `colorPalette`, not raw palette steps. Raw palette (`50`-`950`) feeds semantic tokens only.
+- **Dark mode via tokens.** Each semantic token carries `base` and `_dark` values; avoid per-component color-mode branching.
+- **WCAG AA.** Foreground/background semantic pairs meet AA in light and dark; verify with `check_contrast`.
+- **MCP-assisted lookup instead of recalled props.** Use the official `chakra-ui` MCP server (`list_components`, `get_component_props`, `get_component_example`, `get_theme`) and the plugin's `design-styles` MCP server (`search_styles`, `get_style`, `generate_chakra_system`, `check_contrast`).
+
+Mapping a style to Chakra, in order: `tokens`, `semanticTokens` (including the `colorPalette` contract), `recipes`/`slotRecipes`, `globalCss`, exported via `createSystem(defaultConfig, defineConfig(...))`. Hand off to Style Implementer (`/style <name> chakra`), Component Designer (`--target chakra`), and Theme Engineer (token export only for Keycloak).
+
 ## Collaboration Points
 
 ### With Style Implementer

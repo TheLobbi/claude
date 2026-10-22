@@ -124,6 +124,14 @@
     "scrapin:algo",
     "scrapin:drift",
     "scrapin:status",
-    "scrapin:setup"
+    "scrapin:setup",
+    "design:style",
+    "design:theme",
+    "design:tokens",
+    "design:component",
+    "design:palette",
+    "design:audit",
+    "design:convert",
+    "design:keycloak"
   ]
 }

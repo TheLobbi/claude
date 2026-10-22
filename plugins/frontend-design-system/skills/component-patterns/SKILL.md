@@ -8,6 +8,7 @@ triggers:
   - form
   - input
   - navigation
+  - chakra
   - layout
   - grid
 globs:
@@ -834,6 +835,90 @@ export function FlexLayout({
 }
 ```
 
+## Chakra UI v3 Patterns
+
+Third output target alongside Tailwind + CVA and styled-components. The patterns above stay valid for those targets. All Chakra facts come from the `chakra-ui-v3` skill; query the official `chakra-ui` MCP (`get_component_props`, `get_component_example`) instead of recalling props. Tokens and the `colorPalette` contract come from the Chakra section of `css-generation`.
+
+### Conventions
+
+| Concern | Chakra v3 |
+|---------|-----------|
+| Multi-part components | Compound parts, for example `Dialog.Root` with explicit parts, inside `Portal` where needed |
+| Accordion items, Tabs triggers/content | Always pass `value` |
+| Forms | `Field` / `Fieldset` |
+| Color variant | `colorPalette="brand"` (needs the full semantic contract) |
+| Boolean state props | `open`, `disabled`, `invalid`, `required`, `loading` |
+| Change handlers | `onValueChange` / `onCheckedChange`, which receive `{ value }` |
+| Layout spacing | `gap` |
+| Custom styles | `css` prop (nested selectors need `&`) |
+| Icons in buttons | Children, not icon props |
+| Tooltip text | `content` prop, from `@/components/ui/tooltip` |
+| Drop recipe styles | `unstyled` on the root |
+
+### Slot recipe component (design style as a variant)
+
+A multi-part component is one slot recipe plus `createSlotRecipeContext`. The root uses `withProvider`; every other part uses `withContext`. Style variants mirror the `styleType` prop used by the Tailwind patterns above.
+
+**components/ui/card.tsx:**
+```tsx
+"use client"
+import { createSlotRecipeContext, defineSlotRecipe } from "@chakra-ui/react"
+
+export const cardSlotRecipe = defineSlotRecipe({
+  slots: ["root", "header", "body"],
+  base: {
+    root: { bg: "bg.panel", color: "fg.body", borderWidth: "1px", borderColor: "border.line" },
+    header: { px: 4, py: 3, fontWeight: "semibold" },
+    body: { px: 4, py: 3 },
+  },
+  variants: {
+    styleType: {
+      default: {},
+      glass: {
+        root: {
+          bg: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(10px)",
+          borderColor: "rgba(255, 255, 255, 0.2)",
+        },
+      },
+      "neo-brutalist": {
+        root: {
+          borderWidth: "4px",
+          borderColor: "black",
+          borderRadius: "none",
+          boxShadow: "8px 8px 0 0 black",
+        },
+      },
+    },
+  },
+  defaultVariants: { styleType: "default" },
+})
+
+const { withProvider, withContext } = createSlotRecipeContext({ recipe: cardSlotRecipe })
+
+// Prop types: declare per official MCP get_component_props / chakra-ui-v3 skill
+export const CardRoot = withProvider<HTMLDivElement, CardRootProps>("div", "root")
+export const CardHeader = withContext<HTMLDivElement, CardPartProps>("div", "header")
+export const CardBody = withContext<HTMLDivElement, CardPartProps>("div", "body")
+```
+
+```tsx
+<CardRoot>
+  <CardHeader>Title</CardHeader>
+  <CardBody>Content</CardBody>
+</CardRoot>
+```
+
+Notes:
+- Register the recipe under `theme.slotRecipes` in the system and run `npx @chakra-ui/cli typegen ./theme.ts` so variant props are typed.
+- To extend a built-in slot recipe instead, pass the component's anatomy keys (`alertAnatomy.keys()` from `@chakra-ui/react/anatomy`) as `slots`.
+- `compoundVariants` does not work with responsive values; keep style-by-variant combinations non-responsive.
+- Files using these hooks need `"use client"` in React Server Component frameworks.
+
+### Accessibility by default
+
+Prefer Chakra compound parts over hand-rolled `role`, `aria-*`, and focus-trap code, and do not copy the Modal, focus-trap, or keyboard hooks from the Accessibility Patterns section into Chakra output. Confirm what a part already provides with `get_component_example` before adding any manual ARIA, and add only what the example lacks (for example an accessible name on an icon-only control). Semantic color pairs still need `check_contrast` in light and dark.
+
 ## Accessibility Patterns
 
 ### Focus Management
@@ -1115,6 +1200,7 @@ export const Loading: Story = {
 - **design-styles**: Apply different design styles to components
 - **css-generation**: Generate component styles from design tokens
 - **keycloak-theming**: Use components in authentication pages
+- **chakra-ui-v3**: Source of truth for Chakra UI v3 components, recipes, and props
 
 ## Resources
 

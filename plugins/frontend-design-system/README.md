@@ -1,20 +1,20 @@
 # frontend-design-system
 
-**Version:** 1.0.0 | **License:** MIT | **Callsign:** Stylist
+**Version:** 2.1.0 | **License:** MIT | **Callsign:** Stylist
 **Author:** Markus Ahling
 
 ## Purpose
 
-This plugin provides an AI-powered frontend design system toolkit with 263+ design
-styles and multi-tenant Keycloak theming. It exists because enterprise applications
+This plugin provides an AI-powered frontend design system toolkit with design
+styles, multi-tenant Keycloak theming, and Chakra UI v3 output. It exists because enterprise applications
 serving multiple tenants need consistent design language that can be customized per
 tenant -- from design tokens and component patterns through to Keycloak login pages --
 without duplicating effort across each tenant theme.
 
 The plugin bridges an Obsidian vault containing 263+ curated design styles with
 automated CSS generation, component scaffolding, and Keycloak theme deployment. Its
-agents handle everything from strategic design architecture (opus-level) through
-responsive layout optimization (haiku-level), ensuring design quality at every scale.
+agents cover strategic design architecture, implementation, theming, accessibility,
+and responsive layout work across the full frontend lifecycle.
 
 ## Directory Structure
 
@@ -24,7 +24,8 @@ frontend-design-system/
   CLAUDE.md / CONTEXT_SUMMARY.md
   agents/                        # 6 agents
   commands/                      # 8 commands
-  skills/                        # 4 skills (subdirectories with SKILL.md)
+  skills/                        # 6 skills (subdirectories with SKILL.md)
+  mcp-server/                    # design-styles MCP server (zero dependencies)
   hooks/                         # Style consistency, accessibility, theme sync
 ```
 
@@ -32,12 +33,12 @@ frontend-design-system/
 
 | Agent | Model | Description |
 |-------|-------|-------------|
-| design-architect | opus | Strategic design system architecture and token taxonomy |
+| design-architect | sonnet | Strategic design system architecture and token taxonomy |
 | style-implementer | sonnet | Convert design vocabulary to CSS and apply to components |
 | theme-engineer | sonnet | Multi-tenant Keycloak theme development |
 | component-designer | sonnet | Reusable UI component design and implementation |
 | accessibility-auditor | sonnet | WCAG 2.1 compliance and accessibility testing |
-| responsive-specialist | haiku | Mobile-first responsive design across breakpoints |
+| responsive-specialist | sonnet | Mobile-first responsive design across breakpoints |
 
 ## Commands
 
@@ -58,6 +59,8 @@ frontend-design-system/
 - **keycloak-theming** -- Multi-tenant theme generation, realm config, login customization
 - **css-generation** -- CSS Variables, Tailwind config, styled-components generation
 - **component-patterns** -- Reusable component patterns, composition, hooks, accessibility
+- **chakra-ui-v3** -- Verified Chakra UI v3 reference: createSystem, tokens, recipes, color mode, v2 banned list
+- **agentic-patterns** -- Agent orchestration patterns used by the plugin agents
 
 ## CSS Output Formats
 
@@ -68,6 +71,20 @@ frontend-design-system/
 | Sass/SCSS | Token generation with variables |
 | styled-components | Theme provider integration |
 | Emotion | CSS-in-JS theme support |
+| Chakra UI v3 | `createSystem` + `defineConfig` tokens, semantic tokens (light/dark), `colorPalette` contract |
+
+## MCP Servers
+
+Declared in `plugin.json` under `mcpServers`:
+
+| Server | Source | Purpose |
+|--------|--------|---------|
+| `design-styles` | `mcp-server/` (this plugin, Node 20+, no install step) | `list_style_categories`, `search_styles`, `get_style`, `generate_chakra_system`, `generate_tokens` (chakra / css / tailwind / json), `check_contrast` (WCAG) |
+| `chakra-ui` | official `@chakra-ui/react-mcp` via `npx` | Live Chakra v3 component props, examples, tokens, `v2_to_v3_code_review` |
+
+The bundled catalog holds the 95 styles listed in `skills/design-styles/SKILL.md` (19 categories) with visual profiles: 15 hand-tuned styles plus per-category defaults. The full 263+ style vocabulary lives in the Obsidian vault; export it as JSON (`{ styles, categories, profiles }`) and set `DESIGN_STYLES_PATH` to extend the catalog. `generate_chakra_system` emits tokens, semantic tokens, and `globalCss`; per-component recipes stay hand-authored. Generated values are starting points: review the "Review notes" footer and run `check_contrast`.
+
+Regenerate the catalog after editing the design-styles skill: `node mcp-server/scripts/build-catalog.mjs`. Tests: `node --test mcp-server/test/*.test.js`.
 
 ## Prerequisites
 
