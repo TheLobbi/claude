@@ -25,6 +25,16 @@ UI component patterns with style-specific implementations and accessibility.
 
 This skill provides comprehensive component patterns with multiple design style implementations, accessibility features, and best practices for modern frontend development.
 
+### Claude-Inspired Component Guidance
+
+When the selected style is `claude`, keep component visuals calm and semantic:
+
+- Use `surface.canvas` for the page, `surface.raised` for cards and fields, `ink.strong` and `ink.muted` for text, and `edge.subtle` for 1px boundaries.
+- Use the `brand` semantic contract for coral actions and selected states; pair `brand.solid` with `brand.contrast` and use `brand.fg` for text links.
+- Prefer `radii.surface` and `shadows.surface`, generous spacing, sentence-case labels, and readable 60-70ch content measures.
+- Avoid gradients, glass effects, decorative noise, oversized shadows, and motion that ignores `prefers-reduced-motion`.
+- For Chakra UI v3, consume these semantic tokens through recipes and `colorPalette`; do not hard-code the preset's hex values in components.
+
 ## Component Library Structure
 
 ```
