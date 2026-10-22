@@ -63,6 +63,9 @@ test("claude preset keeps its warm semantic language across every output format"
     assert.ok(out.includes("#d97757"), `${format} should include the coral seed`);
   }
   const theme = JSON.parse(text(call("generate_tokens", { style: "claude", format: "json" })));
+  const tailwind = text(call("generate_tokens", { style: "claude", format: "tailwind" }));
+  const tailwindConfig = JSON.parse(tailwind.slice(tailwind.indexOf("export default ") + "export default ".length));
+  assert.equal(tailwindConfig.theme.extend.colors[theme.paletteName].focusRing, theme.scale[theme.palette.focusRing]);
   assert.equal(theme.surfaces.light.canvas, "#f7f5f2");
   assert.equal(theme.surfaces.dark.canvas, "#211d1a");
   assert.equal(theme.palette.solid, 600);

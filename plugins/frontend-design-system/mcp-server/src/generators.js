@@ -240,7 +240,11 @@ export function renderCss(theme) {
 
 export function renderTailwind(theme) {
   const n = theme.paletteName;
-  const colors = { ...theme.scale, DEFAULT: theme.scale[theme.palette.solid] };
+  const colors = {
+    ...theme.scale,
+    DEFAULT: theme.scale[theme.palette.solid],
+    focusRing: theme.scale[theme.palette.focusRing],
+  };
   const config = {
     darkMode: "class",
     theme: {
