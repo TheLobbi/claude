@@ -5,6 +5,13 @@ import { SCALE_STEPS, contrastRatio, hexToHsl, hslToHex, mix, normalizeHex, tona
 const PALETTE_NAME = /^[a-z][a-zA-Z0-9]*$/;
 const RESERVED_PALETTE_NAMES = new Set(["surface", "ink", "edge"]);
 const AA = 4.5;
+const NON_TEXT_UI = 3;
+
+function semanticStep(profile, field, fallback) {
+  const step = profile[field] === undefined ? fallback : profile[field];
+  if (!SCALE_STEPS.includes(step)) throw new Error(`${field} must be one of: ${SCALE_STEPS.join(", ")}`);
+  return step;
+}
 
 const pickFirstPassing = (candidates, bg) => candidates.find((c) => contrastRatio(c.hex, bg) >= AA) ?? candidates[candidates.length - 1];
 
@@ -43,6 +50,8 @@ export function buildTheme({ style, profile, source, brandColor, paletteName = "
   const primary = normalizeHex(brandColor ?? profile.primary);
   const scale = tonalScale(primary);
   const darkOnly = profile.mode === "dark";
+  const solid = semanticStep(profile, "solidStep", 500);
+  const focusRing = semanticStep(profile, "focusRingStep", 500);
 
   const derived = deriveDarkSurface(primary);
   const light = darkOnly ? undefined : surfaces(normalizeHex(profile.canvas), normalizeHex(profile.ink), false);
@@ -57,15 +66,15 @@ export function buildTheme({ style, profile, source, brandColor, paletteName = "
   if (profile.mode === "dark") warnings.push("Style is dark-only; light mode resolves to the same dark values.");
   if (brandColor) warnings.push("brandColor replaced the style's primary; surface colors still come from the style profile.");
 
-  const solidContrast = pickFirstPassing([{ hex: "#ffffff" }, { step: 950, hex: scale[950] }], scale[500]);
-  if (contrastRatio(solidContrast.hex, scale[500]) < AA) {
-    warnings.push(`brand.contrast on brand.solid is ${contrastRatio(solidContrast.hex, scale[500]).toFixed(2)}:1 (< 4.5); pick a different seed for filled buttons.`);
+  const solidContrast = pickFirstPassing([{ hex: "#ffffff" }, { hex: "#000000" }, { step: 950, hex: scale[950] }], scale[solid]);
+  if (contrastRatio(solidContrast.hex, scale[solid]) < AA) {
+    warnings.push(`${paletteName}.contrast on ${paletteName}.solid is ${contrastRatio(solidContrast.hex, scale[solid]).toFixed(2)}:1 (< 4.5); pick a different seed for filled buttons.`);
   }
 
   const palette = {
-    solid: 500,
+    solid,
     contrast: solidContrast,
-    focusRing: 500,
+    focusRing,
     light: paletteSteps(scale, base.canvas, false),
     dark: paletteSteps(scale, dark.canvas, true),
   };
@@ -73,6 +82,10 @@ export function buildTheme({ style, profile, source, brandColor, paletteName = "
     const step = palette[mode].fg;
     const ratio = contrastRatio(scale[step], surf.canvas);
     if (ratio < AA) warnings.push(`${mode} ${paletteName}.fg (${step}) is ${ratio.toFixed(2)}:1 on the canvas (< 4.5).`);
+    const focusRatio = contrastRatio(scale[focusRing], surf.canvas);
+    if (focusRatio < NON_TEXT_UI) warnings.push(`${mode} ${paletteName}.focusRing (${focusRing}) is ${focusRatio.toFixed(2)}:1 on the canvas (< 3).`);
+    const solidRatio = contrastRatio(scale[solid], surf.canvas);
+    if (solidRatio < NON_TEXT_UI) warnings.push(`${mode} ${paletteName}.solid (${solid}) is ${solidRatio.toFixed(2)}:1 on the canvas (< 3).`);
   }
   if (contrastRatio(base.ink, base.canvas) < AA) warnings.push("Style ink on canvas is below 4.5:1 in light mode.");
 
@@ -94,7 +107,7 @@ export function buildTheme({ style, profile, source, brandColor, paletteName = "
 
 const q = (v) => JSON.stringify(v);
 const ref = (name, step) => `{colors.${name}.${step}}`;
-const safeCommentText = (v) => String(v).replace(/[\r\n\u2028\u2029]/g, " ");
+const safeCommentText = (v) => String(v).replace(/[\r\n\u2028\u2029]/g, " ").replace(/\*\//g, "* /");
 
 function chakraSemanticPalette(theme) {
   const n = theme.paletteName;
@@ -136,7 +149,7 @@ function chakraSurfaceTokens(theme) {
 export function renderChakra(theme) {
   const scaleLines = SCALE_STEPS.map((s) => `          ${s}: { value: ${q(theme.scale[s])} },`).join("\n");
   const effects = theme.effects
-    .flatMap((effect) => String(effect).split(/[\r\n\u2028\u2029]/).map((line, index) => `${index === 0 ? "// - " : "//   "}${line}`))
+    .flatMap((effect) => String(effect).split(/[\r\n\u2028\u2029]/).map((line, index) => `${index === 0 ? "// - " : "//   "}${safeCommentText(line)}`))
     .join("\n");
   const styleName = safeCommentText(theme.style.name);
   const styleId = safeCommentText(theme.style.id);
@@ -207,6 +220,8 @@ const block = (selector, vars) => `${selector} {\n${Object.entries(vars).map(([k
 
 export function renderCss(theme) {
   const n = theme.paletteName;
+  const styleName = safeCommentText(theme.style.name);
+  const styleId = safeCommentText(theme.style.id);
   const shared = {
     ...Object.fromEntries(SCALE_STEPS.map((s) => [`--${n}-${s}`, theme.scale[s]])),
     [`--${n}-solid`]: theme.scale[theme.palette.solid],
@@ -220,12 +235,16 @@ export function renderCss(theme) {
   const darkOnly = theme.mode === "dark";
   const root = block(":root", { ...shared, ...cssVarMap(theme, darkOnly ? "dark" : "light") });
   const dark = darkOnly ? "" : "\n\n" + block(".dark", cssVarMap(theme, "dark"));
-  return `/* ${theme.style.name} (${theme.style.id}). Generated by the design-styles MCP server. */\n${root}${dark}\n`;
+  return `/* ${styleName} (${styleId}). Generated by the design-styles MCP server. */\n${root}${dark}\n`;
 }
 
 export function renderTailwind(theme) {
   const n = theme.paletteName;
-  const colors = { ...theme.scale, DEFAULT: theme.scale[theme.palette.solid] };
+  const colors = {
+    ...theme.scale,
+    DEFAULT: theme.scale[theme.palette.solid],
+    focusRing: theme.scale[theme.palette.focusRing],
+  };
   const config = {
     darkMode: "class",
     theme: {

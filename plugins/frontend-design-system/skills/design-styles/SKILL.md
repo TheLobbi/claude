@@ -32,6 +32,7 @@ This skill provides comprehensive access to 19 design categories, each containin
 
 ### 1. Minimalist Styles
 - **Clean Minimalism**: Simple, white space, subtle shadows
+- **Claude**: Claude/Anthropic-inspired warm editorial minimalism, quiet surfaces, coral accents, and conversational hierarchy
 - **Scandinavian Design**: Natural materials, muted colors, functionality
 - **Japanese Minimalism**: Zen aesthetics, negative space, natural elements
 - **Swiss Design**: Grid-based, clean typography, limited color
@@ -260,6 +261,14 @@ Mood/Atmosphere?
 Create a login page with Scandinavian minimalism design style.
 Use muted colors, natural material textures, and generous whitespace.
 Include a clean form with subtle shadows and simple typography.
+```
+
+### Claude-Inspired Product UI
+```
+Create a product workspace with the Claude design style.
+Use a warm neutral canvas, dark brown ink, and a restrained coral accent for primary actions.
+Keep surfaces quiet with 1px borders, low elevation, generous spacing, readable line lengths, and sentence-case headings.
+Avoid gradients, glass effects, decorative noise, and oversized shadows; preserve WCAG AA contrast in light and dark mode.
 ```
 
 ### Cyberpunk Dashboard

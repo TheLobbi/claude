@@ -15,7 +15,7 @@
         "zen",
         "flat"
       ],
-      "styleCount": 5
+      "styleCount": 6
     },
     {
       "id": "historical-styles",
@@ -282,6 +282,21 @@
       "name": "Clean Minimalism",
       "category": "minimalist-styles",
       "description": "Simple, white space, subtle shadows",
+      "keywords": [
+        "minimal",
+        "clean",
+        "simple",
+        "whitespace",
+        "scandinavian",
+        "zen",
+        "flat"
+      ]
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "category": "minimalist-styles",
+      "description": "Claude/Anthropic-inspired warm editorial minimalism, quiet surfaces, coral accents, and conversational hierarchy",
       "keywords": [
         "minimal",
         "clean",

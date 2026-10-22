@@ -58,7 +58,7 @@ Apply a specific design style and generate implementation code in your preferred
 ```
 
 The command will:
-1. Search the bundled 95-style catalog. Point `DESIGN_STYLES_PATH` at an exported JSON from the full 263+ design styles vault to extend the search set.
+1. Search the bundled 96-style catalog. The `claude` preset provides a warm Claude/Anthropic-inspired baseline; point `DESIGN_STYLES_PATH` at an exported JSON from the full 263+ design styles vault to extend the search set.
 2. Extract style characteristics (colors, typography, spacing, effects)
 3. Load associated prompt keywords and design tokens
 4. Verify style exists or suggest closest matches
