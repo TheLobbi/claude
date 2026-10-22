@@ -83,7 +83,7 @@ test("semantic accent steps reject invalid external profile values", () => {
   assert.throws(() => buildTheme({ style, profile: { ...profile, solidStep: null }, source: "test" }), /solidStep must be one of/);
 });
 
-test("semantic accent contrast warnings fail closed when an accent step is too light", () => {
+test("semantic accent contrast warns when an accent step is too light", () => {
   const style = findStyle(catalog, "claude");
   const { profile } = resolveProfile(catalog, style);
   const theme = buildTheme({ style, profile: { ...profile, solidStep: 500, focusRingStep: 500 }, source: "test" });
