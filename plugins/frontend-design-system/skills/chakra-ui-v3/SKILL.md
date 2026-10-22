@@ -1,5 +1,12 @@
 ---
 description: "Chakra UI v3 reference — createSystem, tokens, semantic tokens, recipes, slot recipes, color mode, v2 migration, and how a design style maps onto a Chakra system"
+model: sonnet
+allowed-tools:
+  - Read
+  - Write
+  - Glob
+  - Grep
+  - Bash
 triggers:
   - chakra
   - chakra ui

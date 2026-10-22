@@ -9,7 +9,7 @@ These hooks run automatically during Claude Code operations to ensure design sys
 Claude Code passes the hook payload as JSON on stdin. The scripts read
 `.tool_input.file_path` (with `.tool_input.path` as a fallback); a positional path
 argument is also accepted for manual checks. `jq` is used when available, with a
-small Bash parser fallback so the hooks do not require an extra dependency.
+Node.js JSON parser fallback so the hooks do not depend on regex extraction.
 
 ## Available Hooks
 

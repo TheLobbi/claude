@@ -25,6 +25,11 @@ test("tonal scale keeps the seed at 500 and darkens monotonically", () => {
   for (let i = 1; i < lums.length; i++) assert.ok(lums[i] < lums[i - 1], `step ${SCALE_STEPS[i]} should be darker than ${SCALE_STEPS[i - 1]}`);
 });
 
+test("tonal scale rejects seeds that cannot be strictly monotonic", () => {
+  assert.throws(() => tonalScale("#ffffff"), /strictly darkening/);
+  assert.throws(() => tonalScale("#000000"), /strictly darkening/);
+});
+
 test("every bundled style has a strictly darkening tonal scale", () => {
   for (const style of catalog.styles.values()) {
     const { profile } = resolveProfile(catalog, style);
@@ -160,13 +165,17 @@ test("stdio transport: real process answers initialize and tools/call, ignores n
     for (let t = 0; t < 100 && lines.length < n; t++) await new Promise((r) => setTimeout(r, 50));
     assert.ok(lines.length >= n, `expected ${n} replies, got ${lines.length}`);
   };
-  child.stdin.write('{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}\n');
-  child.stdin.write('{"jsonrpc":"2.0","method":"notifications/initialized"}\n');
-  child.stdin.write("not json\n");
-  child.stdin.write('{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"check_contrast","arguments":{"foreground":"#000","background":"#fff"}}}\n');
-  await waitFor(3);
-  child.stdin.end();
-  assert.equal(lines[0].result.serverInfo.name, "design-styles");
-  assert.equal(lines[1].error.code, -32700);
-  assert.equal(JSON.parse(lines[2].result.content[0].text).ratio, 21);
+  try {
+    child.stdin.write('{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}\n');
+    child.stdin.write('{"jsonrpc":"2.0","method":"notifications/initialized"}\n');
+    child.stdin.write("not json\n");
+    child.stdin.write('{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"check_contrast","arguments":{"foreground":"#000","background":"#fff"}}}\n');
+    await waitFor(3);
+    assert.equal(lines[0].result.serverInfo.name, "design-styles");
+    assert.equal(lines[1].error.code, -32700);
+    assert.equal(JSON.parse(lines[2].result.content[0].text).ratio, 21);
+  } finally {
+    if (!child.stdin.destroyed) child.stdin.end();
+    if (child.exitCode === null && child.signalCode === null) child.kill();
+  }
 });

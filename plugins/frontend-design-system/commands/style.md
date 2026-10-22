@@ -363,7 +363,7 @@ Flow:
 2. Call `generate_chakra_system` with the style name, passing `brandColor` only when the user supplied one.
 3. Write the result as `styles/{style_name}/theme.ts` (`createSystem(defaultConfig, defineConfig(...))`). It covers raw tokens, semantic tokens (`base`/`_dark`, including the `colorPalette` contract), and `globalCss`.
 4. Per-component recipes/slot recipes are not generated; hand-author them from the style (see `/component <type> {style_name} --target chakra`).
-5. Run `check_contrast` on the semantic pairs, then `npx @chakra-ui/cli typegen ./theme.ts`.
+5. Run `check_contrast` on the semantic pairs, then `npx @chakra-ui/cli typegen styles/{style_name}/theme.ts`.
 
 Integration: provide the system with `<ChakraProvider value={system}>` (the generated `Provider` from `npx @chakra-ui/cli snippet add` wraps it with `next-themes`). For built-in component props, use the official `chakra-ui` MCP server (`get_component_props`, `get_component_example`).
 

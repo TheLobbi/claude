@@ -85,16 +85,23 @@ const DARKER = { 600: 0.2, 700: 0.42, 800: 0.62, 900: 0.8, 950: 0.92 };
 
 /** Tonal 50-950 scale with the seed placed exactly at 500. */
 export function tonalScale(seedHex) {
-  const [h, s, l] = hexToHsl(seedHex);
+  const seed = normalizeHex(seedHex);
+  const [h, s, l] = hexToHsl(seed);
   const scale = {};
   for (const step of SCALE_STEPS) {
-    if (step === 500) scale[step] = normalizeHex(seedHex);
+    if (step === 500) scale[step] = seed;
     else if (step < 500) scale[step] = hslToHex([h, s, l + (97 - l) * LIGHTER[step]]);
     else {
       // Very dark seeds (for example #111111) must move toward black rather
       // than toward the default 8% floor, which would make darker steps lighter.
       const darkLightness = l >= 8 ? l - (l - 8) * DARKER[step] : l * (1 - DARKER[step]);
       scale[step] = hslToHex([h, s, darkLightness]);
+    }
+  }
+  const luminances = SCALE_STEPS.map((step) => luminance(scale[step]));
+  for (let i = 1; i < luminances.length; i++) {
+    if (!(luminances[i] < luminances[i - 1])) {
+      throw new Error(`Cannot generate a strictly darkening 50-950 tonal scale for ${seed}; choose a less extreme brandColor.`);
     }
   }
   return scale;

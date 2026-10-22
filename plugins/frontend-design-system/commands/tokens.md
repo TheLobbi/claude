@@ -582,7 +582,7 @@ Rules:
 - Raw palette goes in `theme.tokens`; light/dark meaning goes in `theme.semanticTokens` as `{ base, _dark }`.
 - Reference other tokens with `{colors.x}`.
 - A custom color used with `colorPalette` defines `50`-`950` raw tokens plus the semantic keys `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`.
-- Export `system = createSystem(defaultConfig, config)`, then run `npx @chakra-ui/cli typegen ./theme.ts`.
+- Export `system = createSystem(defaultConfig, config)`, then run `npx @chakra-ui/cli typegen tokens/theme.ts`.
 
 ```typescript
 // tokens/theme.ts

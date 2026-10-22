@@ -37,7 +37,7 @@ export const TOOL_DEFS = [
       type: "object",
       properties: {
         style: str("Style id or name."),
-        brandColor: str("Optional hex (#rgb or #rrggbb) replacing the style's primary color."),
+        brandColor: str("Optional hex (#rgb or #rrggbb) replacing the style's primary color. It must support a strictly darkening 50-950 tonal scale; extreme black/white seeds are rejected."),
         paletteName: str("colorPalette key, default 'brand'. Must match ^[a-z][a-zA-Z0-9]*$."),
       },
       required: ["style"],
@@ -52,7 +52,7 @@ export const TOOL_DEFS = [
       properties: {
         style: str("Style id or name."),
         format: { type: "string", enum: Object.keys(RENDERERS), description: "Output format." },
-        brandColor: str("Optional hex replacing the style's primary color."),
+        brandColor: str("Optional hex replacing the style's primary color. It must support a strictly darkening 50-950 tonal scale; extreme black/white seeds are rejected."),
         paletteName: str("Palette key, default 'brand'."),
       },
       required: ["style", "format"],
