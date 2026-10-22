@@ -1,6 +1,6 @@
 {
   "styles": [
-    { "id": "test-style", "name": "Test Style\u2028Injected", "category": "minimalist-styles", "description": "fixture", "keywords": ["test"] }
+    { "id": "test-style", "name": "Test */ Style\u2028Injected", "category": "minimalist-styles", "description": "fixture", "keywords": ["test"] }
   ],
   "profiles": {
     "styles": {

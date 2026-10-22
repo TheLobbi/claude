@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { contrastRatio, tonalScale, luminance, SCALE_STEPS } from "../src/color.js";
 import { loadCatalog, searchStyles, findStyle, resolveProfile } from "../src/catalog.js";
+import { buildTheme } from "../src/generators.js";
 import { createServer } from "../src/index.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -41,12 +42,44 @@ test("every bundled style has a strictly darkening tonal scale", () => {
   }
 });
 
-test("catalog: 95 styles in 19 categories, search ranks name matches first", () => {
-  assert.equal(catalog.styles.size, 95);
+test("catalog: 96 styles in 19 categories, search ranks name matches first", () => {
+  assert.equal(catalog.styles.size, 96);
   assert.equal(catalog.categories.size, 19);
   assert.equal(searchStyles(catalog, { query: "glass" })[0].id, "glassmorphism");
+  assert.equal(searchStyles(catalog, { query: "anthropic" })[0].id, "claude");
   assert.ok(searchStyles(catalog, { query: "neon", category: "futuristic" }).every((s) => s.category === "futuristic-styles"));
   assert.equal(findStyle(catalog, "Neo-Brutalism").id, "neo-brutalism");
+});
+
+test("claude preset keeps its warm semantic language across every output format", () => {
+  const style = findStyle(catalog, "claude");
+  const { profile } = resolveProfile(catalog, style);
+  assert.deepEqual(
+    { primary: profile.primary, canvas: profile.canvas, ink: profile.ink, darkCanvas: profile.darkCanvas, darkInk: profile.darkInk },
+    { primary: "#d97757", canvas: "#f7f5f2", ink: "#2b2520", darkCanvas: "#211d1a", darkInk: "#f7f3ed" },
+  );
+  for (const format of ["chakra", "css", "tailwind", "json"]) {
+    const out = text(call("generate_tokens", { style: "claude", format }));
+    assert.ok(out.includes("#d97757"), `${format} should include the coral seed`);
+  }
+  const theme = JSON.parse(text(call("generate_tokens", { style: "claude", format: "json" })));
+  assert.equal(theme.surfaces.light.canvas, "#f7f5f2");
+  assert.equal(theme.surfaces.dark.canvas, "#211d1a");
+  assert.equal(theme.palette.solid, 600);
+  assert.equal(theme.palette.focusRing, 600);
+  assert.equal(theme.palette.contrast.hex, "#000000");
+  assert.deepEqual(theme.warnings, []);
+  for (const mode of ["light", "dark"]) {
+    assert.ok(contrastRatio(theme.scale[theme.palette.solid], theme.surfaces[mode].canvas) >= 3, `${mode} solid should meet 3:1 UI contrast`);
+    assert.ok(contrastRatio(theme.scale[theme.palette.focusRing], theme.surfaces[mode].canvas) >= 3, `${mode} focus ring should meet 3:1 UI contrast`);
+  }
+});
+
+test("semantic accent steps reject invalid external profile values", () => {
+  const style = findStyle(catalog, "claude");
+  const { profile } = resolveProfile(catalog, style);
+  assert.throws(() => buildTheme({ style, profile: { ...profile, solidStep: 501 }, source: "test" }), /solidStep must be one of/);
+  assert.throws(() => buildTheme({ style, profile: { ...profile, focusRingStep: "600" }, source: "test" }), /focusRingStep must be one of/);
 });
 
 test("every style resolves a profile and renders all formats", () => {
@@ -146,15 +179,17 @@ test("protocol: initialize, ping, tools/list, unknown method, notifications", ()
 test("DESIGN_STYLES_PATH extension merges styles; a bad path only warns", () => {
   const warnings = [];
   const bad = loadCatalog({ DESIGN_STYLES_PATH: join(here, "missing.json") }, (m) => warnings.push(m));
-  assert.equal(bad.styles.size, 95);
+  assert.equal(bad.styles.size, 96);
   assert.equal(warnings.length, 1);
   const ext = loadCatalog({ DESIGN_STYLES_PATH: join(here, "fixtures", "extra.json") }, () => {});
-  assert.equal(ext.styles.size, 96);
+  assert.equal(ext.styles.size, 97);
   const g = createServer(ext)({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: "generate_tokens", arguments: { style: "test-style", format: "css" } } });
   assert.ok(!g.result.isError, g.result.content[0].text);
+  assert.ok(!g.result.content[0].text.includes("\u2028"), "CSS metadata comments must sanitize line separators");
+  assert.ok(!g.result.content[0].text.includes("Test */ Style"), "CSS metadata comments must sanitize comment terminators");
   const chakra = createServer(ext)({ jsonrpc: "2.0", id: 2, method: "tools/call", params: { name: "generate_chakra_system", arguments: { style: "test-style" } } });
   assert.match(chakra.result.content[0].text, /\/\/ - first line\n\/\/   second line\n\/\/ - third effect/);
-  assert.match(chakra.result.content[0].text, /Test Style Injected/);
+  assert.match(chakra.result.content[0].text, /Test \* \/ Style Injected/);
   assert.doesNotThrow(() => evalChakra(chakra.result.content[0].text));
 });
 

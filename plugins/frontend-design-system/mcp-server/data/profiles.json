@@ -1,5 +1,5 @@
 {
-  "note": "Starting-point visual profiles, not final brand decisions. `categories` are defaults for every style in a category; `styles` override per style id. Fields: primary/canvas/ink (hex), mode (light|dark|both), radius, shadow, fontHeading/fontBody, effects (guidance for hand-authored recipes).",
+  "note": "Starting-point visual profiles, not final brand decisions. `categories` are defaults for every style in a category; `styles` override per style id. Fields: primary/canvas/ink (hex), mode (light|dark|both), radius, shadow, fontHeading/fontBody, solidStep/focusRingStep (optional accessible semantic accent steps), effects (guidance for hand-authored recipes). The bundled catalog includes 16 hand-tuned style profiles.",
   "categories": {
     "minimalist-styles": {
       "primary": "#334155",
@@ -269,6 +269,27 @@
     }
   },
   "styles": {
+    "claude": {
+      "primary": "#d97757",
+      "canvas": "#f7f5f2",
+      "ink": "#2b2520",
+      "darkCanvas": "#211d1a",
+      "darkInk": "#f7f3ed",
+      "mode": "both",
+      "solidStep": 600,
+      "focusRingStep": 600,
+      "radius": "10px",
+      "shadow": "0 2px 10px rgba(43,37,32,0.08)",
+      "fontHeading": "Inter, ui-sans-serif, system-ui, sans-serif",
+      "fontBody": "Inter, ui-sans-serif, system-ui, sans-serif",
+      "effects": [
+        "warm neutral canvas with generous whitespace",
+        "reserve coral accents for primary actions and selected states",
+        "quiet 1px borders and low elevation instead of gradients or glass",
+        "use readable 60-70ch measures and sentence-case headings",
+        "keep motion subtle and honor prefers-reduced-motion"
+      ]
+    },
     "glassmorphism": {
       "primary": "#6366f1",
       "canvas": "#e8ecff",
