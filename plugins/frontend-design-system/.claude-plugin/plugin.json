@@ -1,12 +1,12 @@
 {
   "name": "frontend-design-system",
-  "version": "2.0.0",
-  "description": "263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development",
+  "version": "2.1.0",
+  "description": "Design styles with multi-tenant Keycloak theming and Chakra UI v3 output for AI-powered frontend development; ships a design-styles MCP server",
   "author": {
     "name": "Markus Ahling"
   },
   "license": "MIT",
-  "repository": "https://github.com/markus41/claude/tree/main/frontend-design-system",
+  "repository": "https://github.com/markus41/claude/tree/main/plugins/frontend-design-system",
   "keywords": [
     "frontend",
     "design-system",
@@ -25,13 +25,17 @@
     "tool-use",
     "memory",
     "parallelization",
-    "guardrails"
+    "guardrails",
+    "chakra-ui",
+    "chakra-ui-v3",
+    "design-tokens",
+    "mcp"
   ],
   "contextEntry": "CONTEXT_SUMMARY.md",
   "context": {
     "entry": "CONTEXT_SUMMARY.md",
     "title": "Frontend Design System",
-    "summary": "263+ design styles with multi-tenant Keycloak theming for AI-powered frontend development. 8 commands, 6 agents, 4 skills.",
+    "summary": "Design styles with multi-tenant Keycloak theming and Chakra UI v3 output. 8 commands, 6 agents, 6 skills, 2 MCP servers (design-styles, chakra-ui).",
     "tags": [
       "frontend",
       "design-system",
@@ -40,7 +44,10 @@
       "css",
       "tailwind",
       "ui-ux",
-      "accessibility"
+      "accessibility",
+      "chakra-ui",
+      "design-tokens",
+      "mcp"
     ],
     "bootstrapFiles": [
       "CONTEXT_SUMMARY.md"
@@ -83,8 +90,26 @@
       "css",
       "tailwind",
       "ui-ux",
-      "multi-tenant"
+      "multi-tenant",
+      "chakra-ui",
+      "design-tokens",
+      "mcp"
     ],
     "requires": []
+  },
+  "mcpServers": {
+    "design-styles": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/mcp-server/src/index.js"
+      ]
+    },
+    "chakra-ui": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@chakra-ui/react-mcp@2.1.1"
+      ]
+    }
   }
 }

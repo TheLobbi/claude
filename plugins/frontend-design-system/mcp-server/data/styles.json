@@ -1,0 +1,1646 @@
+{
+  "generatedFrom": "skills/design-styles/SKILL.md",
+  "note": "Subset catalog. The full 263+ style database lives in the Obsidian vault; point DESIGN_STYLES_PATH at an exported JSON of the same shape to extend it.",
+  "categories": [
+    {
+      "id": "minimalist-styles",
+      "number": 1,
+      "name": "Minimalist Styles",
+      "keywords": [
+        "minimal",
+        "clean",
+        "simple",
+        "whitespace",
+        "scandinavian",
+        "zen",
+        "flat"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "historical-styles",
+      "number": 2,
+      "name": "Historical Styles",
+      "keywords": [
+        "art-deco",
+        "victorian",
+        "baroque",
+        "gothic",
+        "renaissance",
+        "historical",
+        "ornate"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "retro-and-vintage",
+      "number": 3,
+      "name": "Retro & Vintage",
+      "keywords": [
+        "retro",
+        "80s",
+        "90s",
+        "vaporwave",
+        "memphis",
+        "vintage",
+        "mid-century"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "digital-ui-styles",
+      "number": 4,
+      "name": "Digital UI Styles",
+      "keywords": [
+        "neumorphism",
+        "glassmorphism",
+        "material",
+        "fluent",
+        "skeuomorphic",
+        "soft-ui"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "futuristic-styles",
+      "number": 5,
+      "name": "Futuristic Styles",
+      "keywords": [
+        "cyberpunk",
+        "sci-fi",
+        "neon",
+        "futuristic",
+        "dystopian",
+        "tech",
+        "holographic"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "nature-inspired",
+      "number": 6,
+      "name": "Nature-Inspired",
+      "keywords": [
+        "organic",
+        "botanical",
+        "nature",
+        "ocean",
+        "forest",
+        "desert",
+        "earth-tones"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "bold-and-expressive",
+      "number": 7,
+      "name": "Bold & Expressive",
+      "keywords": [
+        "maximalist",
+        "brutalist",
+        "neo-brutalist",
+        "bold",
+        "expressive",
+        "vibrant"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "dark-mode-styles",
+      "number": 8,
+      "name": "Dark Mode Styles",
+      "keywords": [
+        "dark-mode",
+        "dark-elegant",
+        "dark-minimal",
+        "dark-neon",
+        "oled-black"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "gradient-and-color",
+      "number": 9,
+      "name": "Gradient & Color",
+      "keywords": [
+        "gradient",
+        "duotone",
+        "rainbow",
+        "pastel",
+        "metallic",
+        "colorful"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "professional-and-corporate",
+      "number": 10,
+      "name": "Professional & Corporate",
+      "keywords": [
+        "corporate",
+        "professional",
+        "business",
+        "financial",
+        "medical",
+        "startup"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "creative-and-artistic",
+      "number": 11,
+      "name": "Creative & Artistic",
+      "keywords": [
+        "artistic",
+        "grunge",
+        "watercolor",
+        "abstract",
+        "pop-art",
+        "collage"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "gaming-and-entertainment",
+      "number": 12,
+      "name": "Gaming & Entertainment",
+      "keywords": [
+        "gaming",
+        "streaming",
+        "rpg",
+        "fantasy",
+        "esports",
+        "pixel-art",
+        "8-bit"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "e-commerce",
+      "number": 13,
+      "name": "E-commerce",
+      "keywords": [
+        "ecommerce",
+        "luxury",
+        "fashion",
+        "marketplace",
+        "subscription",
+        "handmade"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "educational",
+      "number": 14,
+      "name": "Educational",
+      "keywords": [
+        "educational",
+        "academic",
+        "learning",
+        "kids",
+        "course",
+        "tutorial",
+        "docs"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "social-and-community",
+      "number": 15,
+      "name": "Social & Community",
+      "keywords": [
+        "social",
+        "forum",
+        "dating",
+        "community",
+        "blog",
+        "feed"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "productivity",
+      "number": 16,
+      "name": "Productivity",
+      "keywords": [
+        "productivity",
+        "dashboard",
+        "tasks",
+        "notes",
+        "calendar",
+        "project-management"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "health-and-wellness",
+      "number": 17,
+      "name": "Health & Wellness",
+      "keywords": [
+        "fitness",
+        "meditation",
+        "wellness",
+        "nutrition",
+        "healthcare",
+        "mindfulness"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "travel-and-hospitality",
+      "number": 18,
+      "name": "Travel & Hospitality",
+      "keywords": [
+        "travel",
+        "hotel",
+        "restaurant",
+        "tourism",
+        "airline",
+        "hospitality"
+      ],
+      "styleCount": 5
+    },
+    {
+      "id": "experimental-and-emerging",
+      "number": 19,
+      "name": "Experimental & Emerging",
+      "keywords": [
+        "3d",
+        "ar",
+        "vr",
+        "particles",
+        "morphing",
+        "generative",
+        "experimental"
+      ],
+      "styleCount": 5
+    }
+  ],
+  "styles": [
+    {
+      "id": "clean-minimalism",
+      "name": "Clean Minimalism",
+      "category": "minimalist-styles",
+      "description": "Simple, white space, subtle shadows",
+      "keywords": [
+        "minimal",
+        "clean",
+        "simple",
+        "whitespace",
+        "scandinavian",
+        "zen",
+        "flat"
+      ]
+    },
+    {
+      "id": "scandinavian-design",
+      "name": "Scandinavian Design",
+      "category": "minimalist-styles",
+      "description": "Natural materials, muted colors, functionality",
+      "keywords": [
+        "minimal",
+        "clean",
+        "simple",
+        "whitespace",
+        "scandinavian",
+        "zen",
+        "flat"
+      ]
+    },
+    {
+      "id": "japanese-minimalism",
+      "name": "Japanese Minimalism",
+      "category": "minimalist-styles",
+      "description": "Zen aesthetics, negative space, natural elements",
+      "keywords": [
+        "minimal",
+        "clean",
+        "simple",
+        "whitespace",
+        "scandinavian",
+        "zen",
+        "flat"
+      ]
+    },
+    {
+      "id": "swiss-design",
+      "name": "Swiss Design",
+      "category": "minimalist-styles",
+      "description": "Grid-based, clean typography, limited color",
+      "keywords": [
+        "minimal",
+        "clean",
+        "simple",
+        "whitespace",
+        "scandinavian",
+        "zen",
+        "flat"
+      ]
+    },
+    {
+      "id": "flat-design",
+      "name": "Flat Design",
+      "category": "minimalist-styles",
+      "description": "No gradients, bright colors, simple shapes",
+      "keywords": [
+        "minimal",
+        "clean",
+        "simple",
+        "whitespace",
+        "scandinavian",
+        "zen",
+        "flat"
+      ]
+    },
+    {
+      "id": "art-deco",
+      "name": "Art Deco",
+      "category": "historical-styles",
+      "description": "Geometric patterns, gold accents, bold lines",
+      "keywords": [
+        "art-deco",
+        "victorian",
+        "baroque",
+        "gothic",
+        "renaissance",
+        "historical",
+        "ornate"
+      ]
+    },
+    {
+      "id": "victorian",
+      "name": "Victorian",
+      "category": "historical-styles",
+      "description": "Ornate details, rich colors, decorative elements",
+      "keywords": [
+        "art-deco",
+        "victorian",
+        "baroque",
+        "gothic",
+        "renaissance",
+        "historical",
+        "ornate"
+      ]
+    },
+    {
+      "id": "baroque",
+      "name": "Baroque",
+      "category": "historical-styles",
+      "description": "Dramatic, ornate, gold embellishments",
+      "keywords": [
+        "art-deco",
+        "victorian",
+        "baroque",
+        "gothic",
+        "renaissance",
+        "historical",
+        "ornate"
+      ]
+    },
+    {
+      "id": "gothic",
+      "name": "Gothic",
+      "category": "historical-styles",
+      "description": "Dark tones, pointed arches, medieval elements",
+      "keywords": [
+        "art-deco",
+        "victorian",
+        "baroque",
+        "gothic",
+        "renaissance",
+        "historical",
+        "ornate"
+      ]
+    },
+    {
+      "id": "renaissance",
+      "name": "Renaissance",
+      "category": "historical-styles",
+      "description": "Classical proportions, symmetry, refined details",
+      "keywords": [
+        "art-deco",
+        "victorian",
+        "baroque",
+        "gothic",
+        "renaissance",
+        "historical",
+        "ornate"
+      ]
+    },
+    {
+      "id": "80s-retro",
+      "name": "80s Retro",
+      "category": "retro-and-vintage",
+      "description": "Neon colors, geometric shapes, gradients",
+      "keywords": [
+        "retro",
+        "80s",
+        "90s",
+        "vaporwave",
+        "memphis",
+        "vintage",
+        "mid-century"
+      ]
+    },
+    {
+      "id": "90s-web",
+      "name": "90s Web",
+      "category": "retro-and-vintage",
+      "description": "Bright colors, basic shapes, nostalgia",
+      "keywords": [
+        "retro",
+        "80s",
+        "90s",
+        "vaporwave",
+        "memphis",
+        "vintage",
+        "mid-century"
+      ]
+    },
+    {
+      "id": "vaporwave",
+      "name": "Vaporwave",
+      "category": "retro-and-vintage",
+      "description": "Pastel colors, glitch effects, 80s-90s aesthetics",
+      "keywords": [
+        "retro",
+        "80s",
+        "90s",
+        "vaporwave",
+        "memphis",
+        "vintage",
+        "mid-century"
+      ]
+    },
+    {
+      "id": "memphis-design",
+      "name": "Memphis Design",
+      "category": "retro-and-vintage",
+      "description": "Bold colors, geometric shapes, playful patterns",
+      "keywords": [
+        "retro",
+        "80s",
+        "90s",
+        "vaporwave",
+        "memphis",
+        "vintage",
+        "mid-century"
+      ]
+    },
+    {
+      "id": "mid-century-modern",
+      "name": "Mid-Century Modern",
+      "category": "retro-and-vintage",
+      "description": "Organic shapes, clean lines, warm woods",
+      "keywords": [
+        "retro",
+        "80s",
+        "90s",
+        "vaporwave",
+        "memphis",
+        "vintage",
+        "mid-century"
+      ]
+    },
+    {
+      "id": "neumorphism",
+      "name": "Neumorphism",
+      "category": "digital-ui-styles",
+      "description": "Soft shadows, subtle depth, monochromatic",
+      "keywords": [
+        "neumorphism",
+        "glassmorphism",
+        "material",
+        "fluent",
+        "skeuomorphic",
+        "soft-ui"
+      ]
+    },
+    {
+      "id": "glassmorphism",
+      "name": "Glassmorphism",
+      "category": "digital-ui-styles",
+      "description": "Frosted glass, transparency, blur effects",
+      "keywords": [
+        "neumorphism",
+        "glassmorphism",
+        "material",
+        "fluent",
+        "skeuomorphic",
+        "soft-ui"
+      ]
+    },
+    {
+      "id": "skeuomorphism",
+      "name": "Skeuomorphism",
+      "category": "digital-ui-styles",
+      "description": "Real-world textures, shadows, 3D elements",
+      "keywords": [
+        "neumorphism",
+        "glassmorphism",
+        "material",
+        "fluent",
+        "skeuomorphic",
+        "soft-ui"
+      ]
+    },
+    {
+      "id": "material-design",
+      "name": "Material Design",
+      "category": "digital-ui-styles",
+      "description": "Elevation, bold colors, deliberate motion",
+      "keywords": [
+        "neumorphism",
+        "glassmorphism",
+        "material",
+        "fluent",
+        "skeuomorphic",
+        "soft-ui"
+      ]
+    },
+    {
+      "id": "fluent-design",
+      "name": "Fluent Design",
+      "category": "digital-ui-styles",
+      "description": "Acrylic materials, depth, motion, light",
+      "keywords": [
+        "neumorphism",
+        "glassmorphism",
+        "material",
+        "fluent",
+        "skeuomorphic",
+        "soft-ui"
+      ]
+    },
+    {
+      "id": "cyberpunk",
+      "name": "Cyberpunk",
+      "category": "futuristic-styles",
+      "description": "Neon colors, dark backgrounds, tech aesthetics",
+      "keywords": [
+        "cyberpunk",
+        "sci-fi",
+        "neon",
+        "futuristic",
+        "dystopian",
+        "tech",
+        "holographic"
+      ]
+    },
+    {
+      "id": "sci-fi",
+      "name": "Sci-Fi",
+      "category": "futuristic-styles",
+      "description": "Futuristic UI, holographic elements, space themes",
+      "keywords": [
+        "cyberpunk",
+        "sci-fi",
+        "neon",
+        "futuristic",
+        "dystopian",
+        "tech",
+        "holographic"
+      ]
+    },
+    {
+      "id": "neon-tech",
+      "name": "Neon Tech",
+      "category": "futuristic-styles",
+      "description": "Glowing elements, dark mode, electric colors",
+      "keywords": [
+        "cyberpunk",
+        "sci-fi",
+        "neon",
+        "futuristic",
+        "dystopian",
+        "tech",
+        "holographic"
+      ]
+    },
+    {
+      "id": "dystopian",
+      "name": "Dystopian",
+      "category": "futuristic-styles",
+      "description": "Dark, gritty, industrial elements",
+      "keywords": [
+        "cyberpunk",
+        "sci-fi",
+        "neon",
+        "futuristic",
+        "dystopian",
+        "tech",
+        "holographic"
+      ]
+    },
+    {
+      "id": "hi-tech",
+      "name": "Hi-Tech",
+      "category": "futuristic-styles",
+      "description": "Clean tech, blue accents, digital interfaces",
+      "keywords": [
+        "cyberpunk",
+        "sci-fi",
+        "neon",
+        "futuristic",
+        "dystopian",
+        "tech",
+        "holographic"
+      ]
+    },
+    {
+      "id": "organic",
+      "name": "Organic",
+      "category": "nature-inspired",
+      "description": "Natural shapes, earth tones, flowing forms",
+      "keywords": [
+        "organic",
+        "botanical",
+        "nature",
+        "ocean",
+        "forest",
+        "desert",
+        "earth-tones"
+      ]
+    },
+    {
+      "id": "botanical",
+      "name": "Botanical",
+      "category": "nature-inspired",
+      "description": "Plant motifs, green palettes, natural textures",
+      "keywords": [
+        "organic",
+        "botanical",
+        "nature",
+        "ocean",
+        "forest",
+        "desert",
+        "earth-tones"
+      ]
+    },
+    {
+      "id": "ocean-theme",
+      "name": "Ocean Theme",
+      "category": "nature-inspired",
+      "description": "Blues, waves, aquatic elements",
+      "keywords": [
+        "organic",
+        "botanical",
+        "nature",
+        "ocean",
+        "forest",
+        "desert",
+        "earth-tones"
+      ]
+    },
+    {
+      "id": "forest-theme",
+      "name": "Forest Theme",
+      "category": "nature-inspired",
+      "description": "Greens, browns, woodland imagery",
+      "keywords": [
+        "organic",
+        "botanical",
+        "nature",
+        "ocean",
+        "forest",
+        "desert",
+        "earth-tones"
+      ]
+    },
+    {
+      "id": "desert",
+      "name": "Desert",
+      "category": "nature-inspired",
+      "description": "Warm tones, sand colors, minimalist plants",
+      "keywords": [
+        "organic",
+        "botanical",
+        "nature",
+        "ocean",
+        "forest",
+        "desert",
+        "earth-tones"
+      ]
+    },
+    {
+      "id": "maximalism",
+      "name": "Maximalism",
+      "category": "bold-and-expressive",
+      "description": "Layered elements, rich colors, abundant decoration",
+      "keywords": [
+        "maximalist",
+        "brutalist",
+        "neo-brutalist",
+        "bold",
+        "expressive",
+        "vibrant"
+      ]
+    },
+    {
+      "id": "brutalist",
+      "name": "Brutalist",
+      "category": "bold-and-expressive",
+      "description": "Raw, concrete-like, bold typography",
+      "keywords": [
+        "maximalist",
+        "brutalist",
+        "neo-brutalist",
+        "bold",
+        "expressive",
+        "vibrant"
+      ]
+    },
+    {
+      "id": "neo-brutalism",
+      "name": "Neo-Brutalism",
+      "category": "bold-and-expressive",
+      "description": "Bright colors, thick borders, bold shadows",
+      "keywords": [
+        "maximalist",
+        "brutalist",
+        "neo-brutalist",
+        "bold",
+        "expressive",
+        "vibrant"
+      ]
+    },
+    {
+      "id": "expressive-typography",
+      "name": "Expressive Typography",
+      "category": "bold-and-expressive",
+      "description": "Large text, varied fonts, dynamic layouts",
+      "keywords": [
+        "maximalist",
+        "brutalist",
+        "neo-brutalist",
+        "bold",
+        "expressive",
+        "vibrant"
+      ]
+    },
+    {
+      "id": "colorful-chaos",
+      "name": "Colorful Chaos",
+      "category": "bold-and-expressive",
+      "description": "Multiple bright colors, overlapping elements",
+      "keywords": [
+        "maximalist",
+        "brutalist",
+        "neo-brutalist",
+        "bold",
+        "expressive",
+        "vibrant"
+      ]
+    },
+    {
+      "id": "dark-elegant",
+      "name": "Dark Elegant",
+      "category": "dark-mode-styles",
+      "description": "Deep blacks, gold accents, luxury feel",
+      "keywords": [
+        "dark-mode",
+        "dark-elegant",
+        "dark-minimal",
+        "dark-neon",
+        "oled-black"
+      ]
+    },
+    {
+      "id": "dark-minimalist",
+      "name": "Dark Minimalist",
+      "category": "dark-mode-styles",
+      "description": "Simple dark UI, subtle contrasts",
+      "keywords": [
+        "dark-mode",
+        "dark-elegant",
+        "dark-minimal",
+        "dark-neon",
+        "oled-black"
+      ]
+    },
+    {
+      "id": "dark-neon",
+      "name": "Dark Neon",
+      "category": "dark-mode-styles",
+      "description": "Dark background, bright neon accents",
+      "keywords": [
+        "dark-mode",
+        "dark-elegant",
+        "dark-minimal",
+        "dark-neon",
+        "oled-black"
+      ]
+    },
+    {
+      "id": "dark-material",
+      "name": "Dark Material",
+      "category": "dark-mode-styles",
+      "description": "Material design in dark theme",
+      "keywords": [
+        "dark-mode",
+        "dark-elegant",
+        "dark-minimal",
+        "dark-neon",
+        "oled-black"
+      ]
+    },
+    {
+      "id": "oled-black",
+      "name": "OLED Black",
+      "category": "dark-mode-styles",
+      "description": "Pure black, high contrast, battery-saving",
+      "keywords": [
+        "dark-mode",
+        "dark-elegant",
+        "dark-minimal",
+        "dark-neon",
+        "oled-black"
+      ]
+    },
+    {
+      "id": "gradient-mesh",
+      "name": "Gradient Mesh",
+      "category": "gradient-and-color",
+      "description": "Complex gradients, colorful blends",
+      "keywords": [
+        "gradient",
+        "duotone",
+        "rainbow",
+        "pastel",
+        "metallic",
+        "colorful"
+      ]
+    },
+    {
+      "id": "duotone",
+      "name": "Duotone",
+      "category": "gradient-and-color",
+      "description": "Two-color schemes, bold contrasts",
+      "keywords": [
+        "gradient",
+        "duotone",
+        "rainbow",
+        "pastel",
+        "metallic",
+        "colorful"
+      ]
+    },
+    {
+      "id": "rainbow",
+      "name": "Rainbow",
+      "category": "gradient-and-color",
+      "description": "Full spectrum, vibrant multi-color",
+      "keywords": [
+        "gradient",
+        "duotone",
+        "rainbow",
+        "pastel",
+        "metallic",
+        "colorful"
+      ]
+    },
+    {
+      "id": "pastel-gradients",
+      "name": "Pastel Gradients",
+      "category": "gradient-and-color",
+      "description": "Soft color transitions, gentle tones",
+      "keywords": [
+        "gradient",
+        "duotone",
+        "rainbow",
+        "pastel",
+        "metallic",
+        "colorful"
+      ]
+    },
+    {
+      "id": "metallic-gradients",
+      "name": "Metallic Gradients",
+      "category": "gradient-and-color",
+      "description": "Chrome, gold, silver effects",
+      "keywords": [
+        "gradient",
+        "duotone",
+        "rainbow",
+        "pastel",
+        "metallic",
+        "colorful"
+      ]
+    },
+    {
+      "id": "corporate-blue",
+      "name": "Corporate Blue",
+      "category": "professional-and-corporate",
+      "description": "Professional, trustworthy, clean",
+      "keywords": [
+        "corporate",
+        "professional",
+        "business",
+        "financial",
+        "medical",
+        "startup"
+      ]
+    },
+    {
+      "id": "financial",
+      "name": "Financial",
+      "category": "professional-and-corporate",
+      "description": "Conservative, secure, traditional",
+      "keywords": [
+        "corporate",
+        "professional",
+        "business",
+        "financial",
+        "medical",
+        "startup"
+      ]
+    },
+    {
+      "id": "legal",
+      "name": "Legal",
+      "category": "professional-and-corporate",
+      "description": "Professional, serif fonts, formal",
+      "keywords": [
+        "corporate",
+        "professional",
+        "business",
+        "financial",
+        "medical",
+        "startup"
+      ]
+    },
+    {
+      "id": "medical",
+      "name": "Medical",
+      "category": "professional-and-corporate",
+      "description": "Clean, white, trustworthy, accessible",
+      "keywords": [
+        "corporate",
+        "professional",
+        "business",
+        "financial",
+        "medical",
+        "startup"
+      ]
+    },
+    {
+      "id": "tech-startup",
+      "name": "Tech Startup",
+      "category": "professional-and-corporate",
+      "description": "Modern, bold, innovative",
+      "keywords": [
+        "corporate",
+        "professional",
+        "business",
+        "financial",
+        "medical",
+        "startup"
+      ]
+    },
+    {
+      "id": "artistic-grunge",
+      "name": "Artistic Grunge",
+      "category": "creative-and-artistic",
+      "description": "Textured, rough edges, creative chaos",
+      "keywords": [
+        "artistic",
+        "grunge",
+        "watercolor",
+        "abstract",
+        "pop-art",
+        "collage"
+      ]
+    },
+    {
+      "id": "watercolor",
+      "name": "Watercolor",
+      "category": "creative-and-artistic",
+      "description": "Soft blends, artistic, flowing",
+      "keywords": [
+        "artistic",
+        "grunge",
+        "watercolor",
+        "abstract",
+        "pop-art",
+        "collage"
+      ]
+    },
+    {
+      "id": "abstract-art",
+      "name": "Abstract Art",
+      "category": "creative-and-artistic",
+      "description": "Geometric shapes, bold colors, creative",
+      "keywords": [
+        "artistic",
+        "grunge",
+        "watercolor",
+        "abstract",
+        "pop-art",
+        "collage"
+      ]
+    },
+    {
+      "id": "pop-art",
+      "name": "Pop Art",
+      "category": "creative-and-artistic",
+      "description": "Bold colors, comic style, high contrast",
+      "keywords": [
+        "artistic",
+        "grunge",
+        "watercolor",
+        "abstract",
+        "pop-art",
+        "collage"
+      ]
+    },
+    {
+      "id": "collage",
+      "name": "Collage",
+      "category": "creative-and-artistic",
+      "description": "Layered images, mixed media, creative",
+      "keywords": [
+        "artistic",
+        "grunge",
+        "watercolor",
+        "abstract",
+        "pop-art",
+        "collage"
+      ]
+    },
+    {
+      "id": "gaming-ui",
+      "name": "Gaming UI",
+      "category": "gaming-and-entertainment",
+      "description": "HUD elements, stats displays, action-focused",
+      "keywords": [
+        "gaming",
+        "streaming",
+        "rpg",
+        "fantasy",
+        "esports",
+        "pixel-art",
+        "8-bit"
+      ]
+    },
+    {
+      "id": "streaming",
+      "name": "Streaming",
+      "category": "gaming-and-entertainment",
+      "description": "Dark theme, vibrant accents, chat-friendly",
+      "keywords": [
+        "gaming",
+        "streaming",
+        "rpg",
+        "fantasy",
+        "esports",
+        "pixel-art",
+        "8-bit"
+      ]
+    },
+    {
+      "id": "rpg-fantasy",
+      "name": "RPG Fantasy",
+      "category": "gaming-and-entertainment",
+      "description": "Medieval, magical elements, ornate",
+      "keywords": [
+        "gaming",
+        "streaming",
+        "rpg",
+        "fantasy",
+        "esports",
+        "pixel-art",
+        "8-bit"
+      ]
+    },
+    {
+      "id": "esports",
+      "name": "Esports",
+      "category": "gaming-and-entertainment",
+      "description": "Bold, energetic, competitive",
+      "keywords": [
+        "gaming",
+        "streaming",
+        "rpg",
+        "fantasy",
+        "esports",
+        "pixel-art",
+        "8-bit"
+      ]
+    },
+    {
+      "id": "retro-gaming",
+      "name": "Retro Gaming",
+      "category": "gaming-and-entertainment",
+      "description": "Pixel art, 8-bit colors, nostalgic",
+      "keywords": [
+        "gaming",
+        "streaming",
+        "rpg",
+        "fantasy",
+        "esports",
+        "pixel-art",
+        "8-bit"
+      ]
+    },
+    {
+      "id": "luxury-store",
+      "name": "Luxury Store",
+      "category": "e-commerce",
+      "description": "Elegant, spacious, high-end feel",
+      "keywords": [
+        "ecommerce",
+        "luxury",
+        "fashion",
+        "marketplace",
+        "subscription",
+        "handmade"
+      ]
+    },
+    {
+      "id": "fast-fashion",
+      "name": "Fast Fashion",
+      "category": "e-commerce",
+      "description": "Trendy, bold, image-heavy",
+      "keywords": [
+        "ecommerce",
+        "luxury",
+        "fashion",
+        "marketplace",
+        "subscription",
+        "handmade"
+      ]
+    },
+    {
+      "id": "marketplace",
+      "name": "Marketplace",
+      "category": "e-commerce",
+      "description": "Clean grids, product-focused, functional",
+      "keywords": [
+        "ecommerce",
+        "luxury",
+        "fashion",
+        "marketplace",
+        "subscription",
+        "handmade"
+      ]
+    },
+    {
+      "id": "subscription-box",
+      "name": "Subscription Box",
+      "category": "e-commerce",
+      "description": "Curated, minimal, lifestyle-focused",
+      "keywords": [
+        "ecommerce",
+        "luxury",
+        "fashion",
+        "marketplace",
+        "subscription",
+        "handmade"
+      ]
+    },
+    {
+      "id": "handmade",
+      "name": "Handmade",
+      "category": "e-commerce",
+      "description": "Artisanal, warm, personal touch",
+      "keywords": [
+        "ecommerce",
+        "luxury",
+        "fashion",
+        "marketplace",
+        "subscription",
+        "handmade"
+      ]
+    },
+    {
+      "id": "academic",
+      "name": "Academic",
+      "category": "educational",
+      "description": "Clean, readable, professional",
+      "keywords": [
+        "educational",
+        "academic",
+        "learning",
+        "kids",
+        "course",
+        "tutorial",
+        "docs"
+      ]
+    },
+    {
+      "id": "kids-learning",
+      "name": "Kids Learning",
+      "category": "educational",
+      "description": "Colorful, playful, friendly",
+      "keywords": [
+        "educational",
+        "academic",
+        "learning",
+        "kids",
+        "course",
+        "tutorial",
+        "docs"
+      ]
+    },
+    {
+      "id": "course-platform",
+      "name": "Course Platform",
+      "category": "educational",
+      "description": "Organized, clean, progress-focused",
+      "keywords": [
+        "educational",
+        "academic",
+        "learning",
+        "kids",
+        "course",
+        "tutorial",
+        "docs"
+      ]
+    },
+    {
+      "id": "documentation",
+      "name": "Documentation",
+      "category": "educational",
+      "description": "Clear hierarchy, code-friendly, searchable",
+      "keywords": [
+        "educational",
+        "academic",
+        "learning",
+        "kids",
+        "course",
+        "tutorial",
+        "docs"
+      ]
+    },
+    {
+      "id": "tutorial",
+      "name": "Tutorial",
+      "category": "educational",
+      "description": "Step-by-step, visual, engaging",
+      "keywords": [
+        "educational",
+        "academic",
+        "learning",
+        "kids",
+        "course",
+        "tutorial",
+        "docs"
+      ]
+    },
+    {
+      "id": "social-network",
+      "name": "Social Network",
+      "category": "social-and-community",
+      "description": "User-focused, feed-based, interactive",
+      "keywords": [
+        "social",
+        "forum",
+        "dating",
+        "community",
+        "blog",
+        "feed"
+      ]
+    },
+    {
+      "id": "forum",
+      "name": "Forum",
+      "category": "social-and-community",
+      "description": "Threaded, readable, community-focused",
+      "keywords": [
+        "social",
+        "forum",
+        "dating",
+        "community",
+        "blog",
+        "feed"
+      ]
+    },
+    {
+      "id": "dating-app",
+      "name": "Dating App",
+      "category": "social-and-community",
+      "description": "Personal, image-heavy, swipe-friendly",
+      "keywords": [
+        "social",
+        "forum",
+        "dating",
+        "community",
+        "blog",
+        "feed"
+      ]
+    },
+    {
+      "id": "community-hub",
+      "name": "Community Hub",
+      "category": "social-and-community",
+      "description": "Welcoming, organized, discussion-friendly",
+      "keywords": [
+        "social",
+        "forum",
+        "dating",
+        "community",
+        "blog",
+        "feed"
+      ]
+    },
+    {
+      "id": "blog-platform",
+      "name": "Blog Platform",
+      "category": "social-and-community",
+      "description": "Reading-focused, typography-heavy, clean",
+      "keywords": [
+        "social",
+        "forum",
+        "dating",
+        "community",
+        "blog",
+        "feed"
+      ]
+    },
+    {
+      "id": "task-manager",
+      "name": "Task Manager",
+      "category": "productivity",
+      "description": "Clean, organized, action-focused",
+      "keywords": [
+        "productivity",
+        "dashboard",
+        "tasks",
+        "notes",
+        "calendar",
+        "project-management"
+      ]
+    },
+    {
+      "id": "dashboard",
+      "name": "Dashboard",
+      "category": "productivity",
+      "description": "Data-rich, charts, analytics",
+      "keywords": [
+        "productivity",
+        "dashboard",
+        "tasks",
+        "notes",
+        "calendar",
+        "project-management"
+      ]
+    },
+    {
+      "id": "note-taking",
+      "name": "Note Taking",
+      "category": "productivity",
+      "description": "Distraction-free, typography-focused",
+      "keywords": [
+        "productivity",
+        "dashboard",
+        "tasks",
+        "notes",
+        "calendar",
+        "project-management"
+      ]
+    },
+    {
+      "id": "calendar",
+      "name": "Calendar",
+      "category": "productivity",
+      "description": "Time-based, clean grids, color-coded",
+      "keywords": [
+        "productivity",
+        "dashboard",
+        "tasks",
+        "notes",
+        "calendar",
+        "project-management"
+      ]
+    },
+    {
+      "id": "project-management",
+      "name": "Project Management",
+      "category": "productivity",
+      "description": "Boards, timelines, team-focused",
+      "keywords": [
+        "productivity",
+        "dashboard",
+        "tasks",
+        "notes",
+        "calendar",
+        "project-management"
+      ]
+    },
+    {
+      "id": "fitness",
+      "name": "Fitness",
+      "category": "health-and-wellness",
+      "description": "Energetic, motivational, stats-focused",
+      "keywords": [
+        "fitness",
+        "meditation",
+        "wellness",
+        "nutrition",
+        "healthcare",
+        "mindfulness"
+      ]
+    },
+    {
+      "id": "meditation",
+      "name": "Meditation",
+      "category": "health-and-wellness",
+      "description": "Calm, minimal, soothing colors",
+      "keywords": [
+        "fitness",
+        "meditation",
+        "wellness",
+        "nutrition",
+        "healthcare",
+        "mindfulness"
+      ]
+    },
+    {
+      "id": "nutrition",
+      "name": "Nutrition",
+      "category": "health-and-wellness",
+      "description": "Fresh, colorful, food-photography",
+      "keywords": [
+        "fitness",
+        "meditation",
+        "wellness",
+        "nutrition",
+        "healthcare",
+        "mindfulness"
+      ]
+    },
+    {
+      "id": "healthcare",
+      "name": "Healthcare",
+      "category": "health-and-wellness",
+      "description": "Clean, accessible, trustworthy",
+      "keywords": [
+        "fitness",
+        "meditation",
+        "wellness",
+        "nutrition",
+        "healthcare",
+        "mindfulness"
+      ]
+    },
+    {
+      "id": "mindfulness",
+      "name": "Mindfulness",
+      "category": "health-and-wellness",
+      "description": "Gentle, nature-inspired, peaceful",
+      "keywords": [
+        "fitness",
+        "meditation",
+        "wellness",
+        "nutrition",
+        "healthcare",
+        "mindfulness"
+      ]
+    },
+    {
+      "id": "travel-booking",
+      "name": "Travel Booking",
+      "category": "travel-and-hospitality",
+      "description": "Image-heavy, adventure-focused",
+      "keywords": [
+        "travel",
+        "hotel",
+        "restaurant",
+        "tourism",
+        "airline",
+        "hospitality"
+      ]
+    },
+    {
+      "id": "hotel",
+      "name": "Hotel",
+      "category": "travel-and-hospitality",
+      "description": "Luxury, spacious, elegant",
+      "keywords": [
+        "travel",
+        "hotel",
+        "restaurant",
+        "tourism",
+        "airline",
+        "hospitality"
+      ]
+    },
+    {
+      "id": "restaurant",
+      "name": "Restaurant",
+      "category": "travel-and-hospitality",
+      "description": "Food-focused, atmospheric, inviting",
+      "keywords": [
+        "travel",
+        "hotel",
+        "restaurant",
+        "tourism",
+        "airline",
+        "hospitality"
+      ]
+    },
+    {
+      "id": "tourism",
+      "name": "Tourism",
+      "category": "travel-and-hospitality",
+      "description": "Destination-focused, inspirational, vibrant",
+      "keywords": [
+        "travel",
+        "hotel",
+        "restaurant",
+        "tourism",
+        "airline",
+        "hospitality"
+      ]
+    },
+    {
+      "id": "airline",
+      "name": "Airline",
+      "category": "travel-and-hospitality",
+      "description": "Clean, efficient, professional",
+      "keywords": [
+        "travel",
+        "hotel",
+        "restaurant",
+        "tourism",
+        "airline",
+        "hospitality"
+      ]
+    },
+    {
+      "id": "3d-ui",
+      "name": "3D UI",
+      "category": "experimental-and-emerging",
+      "description": "Three-dimensional elements, depth, immersive",
+      "keywords": [
+        "3d",
+        "ar",
+        "vr",
+        "particles",
+        "morphing",
+        "generative",
+        "experimental"
+      ]
+    },
+    {
+      "id": "ar-vr-interface",
+      "name": "AR/VR Interface",
+      "category": "experimental-and-emerging",
+      "description": "Spatial, futuristic, immersive",
+      "keywords": [
+        "3d",
+        "ar",
+        "vr",
+        "particles",
+        "morphing",
+        "generative",
+        "experimental"
+      ]
+    },
+    {
+      "id": "particle-effects",
+      "name": "Particle Effects",
+      "category": "experimental-and-emerging",
+      "description": "Animated particles, dynamic, engaging",
+      "keywords": [
+        "3d",
+        "ar",
+        "vr",
+        "particles",
+        "morphing",
+        "generative",
+        "experimental"
+      ]
+    },
+    {
+      "id": "morphing-shapes",
+      "name": "Morphing Shapes",
+      "category": "experimental-and-emerging",
+      "description": "Fluid animations, organic transitions",
+      "keywords": [
+        "3d",
+        "ar",
+        "vr",
+        "particles",
+        "morphing",
+        "generative",
+        "experimental"
+      ]
+    },
+    {
+      "id": "generative-art",
+      "name": "Generative Art",
+      "category": "experimental-and-emerging",
+      "description": "Algorithmic, unique, creative",
+      "keywords": [
+        "3d",
+        "ar",
+        "vr",
+        "particles",
+        "morphing",
+        "generative",
+        "experimental"
+      ]
+    }
+  ]
+}

@@ -71,7 +71,7 @@
     },
     {
       "name": "style",
-      "intent": "Apply a specific design style from 263+ styles and generate implementation code",
+      "intent": "Apply a specific design style from the bundled catalog or an extended 263+ style vault and generate implementation code",
       "tags": [
         "frontend-design-system",
         "command",

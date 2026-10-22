@@ -746,6 +746,17 @@ export function ThemeBuilder({ tenantId, initialTheme, onSave }: ThemeBuilderPro
 ✓ Restrict theme admin access to authorized users
 ✓ Audit theme changes for compliance
 
+## Chakra UI v3
+
+Source of truth: `skills/chakra-ui-v3/SKILL.md`. Never emit a pattern from its "v2 → v3 banned list" (`extendTheme`, `<ChakraProvider theme=...>`, `resetCss`, and so on).
+
+- **Keycloak themes are FreeMarker templates plus CSS.** Chakra components do not render there. Chakra applies only as a token export: derive the Keycloak theme's CSS variables from the Chakra system (`/convert chakra css theme.ts styles/tokens.css`, or `/tokens all <style> --format css`). `semanticTokens` `base` becomes the default value and `_dark` becomes the dark variant.
+- **Tenant-themed React apps** may use Chakra: one system per tenant via `createSystem(defaultConfig, defineConfig(...))`, provided with `<ChakraProvider value={system}>`. Tokens are `{ value }`-wrapped; reference with `{colors.x}`.
+- Color mode is `next-themes` plus the generated `@/components/ui/color-mode` snippet (not `ColorModeProvider`/`ColorModeScript`). Prefer semantic tokens with `_dark` over per-component hooks.
+- A tenant brand color used with `colorPalette` needs `50`-`950` plus `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`.
+- Check tenant color pairs with `check_contrast` from the `design-styles` MCP server (WCAG AA, light and dark). Use the official `chakra-ui` MCP server for built-in component props and theme lookup instead of recalling them.
+- After editing a system, run `npx @chakra-ui/cli typegen ./theme.ts`.
+
 ## Deliverables
 
 1. **Keycloak Theme Package**

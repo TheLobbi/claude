@@ -11,8 +11,23 @@ CHECK_ARIA_LABELS="${CHECK_ARIA_LABELS:-true}"
 CHECK_COLOR_CONTRAST="${CHECK_COLOR_CONTRAST:-true}"
 CONTRAST_RATIO_THRESHOLD="${CONTRAST_RATIO_THRESHOLD:-4.5}"
 
-# Get the file being modified from arguments
-FILE_PATH="${1:-}"
+# Claude Code sends hook input as JSON on stdin. Keep the positional argument
+# fallback so the validator remains easy to run by hand.
+FILE_PATH=""
+if [ ! -t 0 ]; then
+  HOOK_INPUT=$(cat)
+  if command -v jq >/dev/null 2>&1; then
+    FILE_PATH=$(printf '%s' "$HOOK_INPUT" | jq -r '(.tool_input.file_path // .tool_input.path) | if type == "string" then . else empty end' 2>/dev/null || true)
+  elif command -v node >/dev/null 2>&1; then
+    FILE_PATH=$(printf '%s' "$HOOK_INPUT" | node -e '
+      const fs = require("node:fs");
+      const input = JSON.parse(fs.readFileSync(0, "utf8"));
+      const filePath = input?.tool_input?.file_path ?? input?.tool_input?.path;
+      if (typeof filePath === "string") process.stdout.write(filePath);
+    ' 2>/dev/null || true)
+  fi
+fi
+FILE_PATH="${FILE_PATH:-${1:-}}"
 
 if [ -z "$FILE_PATH" ]; then
   echo "⚠️  No file path provided to accessibility validator"

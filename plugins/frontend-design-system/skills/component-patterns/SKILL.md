@@ -8,6 +8,7 @@ triggers:
   - form
   - input
   - navigation
+  - chakra
   - layout
   - grid
 globs:
@@ -834,6 +835,91 @@ export function FlexLayout({
 }
 ```
 
+## Chakra UI v3 Patterns
+
+Third output target alongside Tailwind + CVA and styled-components. The patterns above stay valid for those targets. All Chakra facts come from the `chakra-ui-v3` skill; query the official `chakra-ui` MCP (`get_component_props`, `get_component_example`) instead of recalling props. Tokens and the `colorPalette` contract come from the Chakra section of `css-generation`.
+
+### Conventions
+
+| Workflow concern | Component-patterns guidance |
+|---------|-----------|
+| Style variants | Map design styles to a recipe or slot-recipe variant such as `styleType`; use the Chakra v3 skill for the underlying API contract. |
+| Accessible composition | Prefer Chakra compound parts and confirm their props and payloads through `chakra-ui` MCP before adding manual interaction plumbing. |
+
+The `chakra-ui-v3` skill is the single source of truth for Chakra props, state names,
+event payloads, token contracts, and migration rules. Do not duplicate those API
+facts in component patterns; link back to that skill when a pattern needs them.
+
+### Slot recipe component (design style as a variant)
+
+A multi-part component is one slot recipe plus `createSlotRecipeContext`. The root uses `withProvider`; every other part uses `withContext`. Style variants mirror the `styleType` prop used by the Tailwind patterns above.
+
+**components/ui/card.tsx:**
+```tsx
+"use client"
+import { createSlotRecipeContext, defineSlotRecipe, type HTMLChakraProps, type RecipeVariantProps } from "@chakra-ui/react"
+
+export const cardSlotRecipe = defineSlotRecipe({
+  slots: ["root", "header", "body"],
+  base: {
+    root: { bg: "surface.raised", color: "ink.strong", borderWidth: "1px", borderColor: "edge.subtle" },
+    header: { px: 4, py: 3, fontWeight: "semibold" },
+    body: { px: 4, py: 3 },
+  },
+  variants: {
+    styleType: {
+      default: {},
+      glass: {
+        root: {
+          bg: "brand.subtle",
+          backdropFilter: "blur(10px)",
+          borderColor: "edge.subtle",
+        },
+      },
+      "neo-brutalist": {
+        root: {
+          borderWidth: "4px",
+          borderColor: "ink.strong",
+          borderRadius: "none",
+          boxShadow: "surface",
+        },
+      },
+    },
+  },
+  defaultVariants: { styleType: "default" },
+})
+
+const { withProvider, withContext } = createSlotRecipeContext({ key: "card" })
+
+// theme.ts: register the same recipe under the key used by the system.
+// const config = defineConfig({ theme: { slotRecipes: { card: cardSlotRecipe } } })
+// export const system = createSystem(defaultConfig, config)
+
+interface CardRootProps extends HTMLChakraProps<"div">, RecipeVariantProps<typeof cardSlotRecipe> {}
+interface CardPartProps extends HTMLChakraProps<"div"> {}
+
+export const CardRoot = withProvider<HTMLDivElement, CardRootProps>("div", "root")
+export const CardHeader = withContext<HTMLDivElement, CardPartProps>("div", "header")
+export const CardBody = withContext<HTMLDivElement, CardPartProps>("div", "body")
+```
+
+```tsx
+<CardRoot>
+  <CardHeader>Title</CardHeader>
+  <CardBody>Content</CardBody>
+</CardRoot>
+```
+
+Notes:
+- Register the recipe under `theme.slotRecipes` in the system and run `npx @chakra-ui/cli typegen ./theme.ts` so variant props are typed.
+- To extend a built-in slot recipe instead, pass the component's anatomy keys (`alertAnatomy.keys()` from `@chakra-ui/react/anatomy`) as `slots`.
+- `compoundVariants` does not work with responsive values; keep style-by-variant combinations non-responsive.
+- Files using these hooks need `"use client"` in React Server Component frameworks.
+
+### Accessibility by default
+
+Prefer Chakra compound parts over hand-rolled `role`, `aria-*`, and focus-trap code, and do not copy the Modal, focus-trap, or keyboard hooks from the Accessibility Patterns section into Chakra output. Confirm what a part already provides with `get_component_example` before adding any manual ARIA, and add only what the example lacks (for example an accessible name on an icon-only control). Semantic color pairs still need `check_contrast` in light and dark.
+
 ## Accessibility Patterns
 
 ### Focus Management
@@ -1115,6 +1201,7 @@ export const Loading: Story = {
 - **design-styles**: Apply different design styles to components
 - **css-generation**: Generate component styles from design tokens
 - **keycloak-theming**: Use components in authentication pages
+- **chakra-ui-v3**: Source of truth for Chakra UI v3 components, recipes, and props
 
 ## Resources
 

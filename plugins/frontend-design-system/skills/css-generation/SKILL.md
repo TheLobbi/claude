@@ -4,6 +4,7 @@ triggers:
   - css
   - tailwind
   - styled-components
+  - chakra
   - design tokens
   - color palette
   - typography
@@ -18,11 +19,13 @@ globs:
 
 # CSS Generation Skill
 
-Generate CSS, Tailwind, and styled-components code from design style selections.
+Generate CSS, Tailwind, styled-components, and Chakra UI v3 code from design style selections.
 
 ## Overview
 
-This skill provides tools and templates for converting design tokens and style selections into production-ready CSS, Tailwind configurations, and styled-components theme objects.
+This skill provides tools and templates for converting design tokens and style selections into production-ready CSS, Tailwind configurations, styled-components theme objects, and Chakra UI v3 systems.
+
+Chakra UI v3 is the third output target. Every Chakra fact lives in the `chakra-ui-v3` skill; this skill only maps design tokens onto it.
 
 ## CSS Variables Generation from Design Tokens
 
@@ -733,6 +736,45 @@ export const Button = styled.button<{ variant?: 'primary' | 'secondary' }>`
 `;
 ```
 
+## Chakra UI v3 Generation
+
+Use the `chakra-ui-v3` skill as the source of truth for Chakra APIs, token
+shapes, semantic conditions, `colorPalette`, provider setup, and typegen. This
+skill owns the CSS-generation boundary: map the selected style's raw palette,
+semantic surface pairs, typography, radii, shadows, and global CSS into Chakra
+token names without inventing component recipes.
+
+The `design-styles` MCP server's `generate_chakra_system` tool emits the raw
+tokens, semantic tokens, and global CSS for a named style. Hand-author layer 3
+(`recipes` / `slotRecipes`) in the component-patterns workflow, then run the
+canonical skill's verification checklist and `check_contrast` for both modes.
+
+### Token format mapping
+
+| Concept | CSS variables | Tailwind | styled-components | Chakra v3 |
+|---------|---------------|----------|-------------------|-----------|
+| Raw color | `--color-primary-500: #3b82f6` | `theme.extend.colors.primary[500]` | `theme.colors.primary[500]` | `tokens.colors.brand.500: { value: '#3b82f6' }` |
+| Token reference | `var(--color-neutral-900)` | `'var(--color-neutral-900)'` | `theme.colors.neutral[900]` | `'{colors.neutral.900}'` inside a `value` |
+| Semantic color | `--color-text-primary` | `text-*` utility on a named color | `theme.colors.text.primary` | `semanticTokens.colors.ink.strong` |
+| Dark mode | `[data-theme="dark"]` override block | `dark:` variant via `darkMode` | swap `lightTheme` / `darkTheme` | `_dark` inside the semantic token `value` |
+| Color scheme | n/a | n/a | n/a | `colorPalette` (contract above) |
+| Fonts, radii, shadows | `--font-family-sans`, `--radius-md`, `--shadow-md` | `fontFamily`, `borderRadius`, `boxShadow` | `theme.typography`, `theme.borderRadius`, `theme.shadows` | `tokens.fonts`, `tokens.radii`, `tokens.shadows`, each `{ value }` |
+| Global base styles | `:root` / `body` rules | `@layer base` | `createGlobalStyle` | `globalCss` |
+
+Rules for the Chakra column:
+- Token values are always wrapped in `{ value: ... }`; references use `{category.name}` (for example `{colors.brand.500}`).
+- Semantic token conditions are `base` plus `_dark`; no per-component color-mode branching.
+- After editing the config, regenerate prop types: `npx @chakra-ui/cli typegen ./theme.ts` (or note it as a follow-up).
+- Wrap the app with `<ChakraProvider value={system}>`; color mode comes from `next-themes` (see `chakra-ui-v3`).
+
+## Modern Principles (all targets)
+
+- **Semantic over raw tokens**: components consume generated semantic tokens such as `surface.raised`, `ink.strong`, and `edge.subtle`, never `neutral.900` or a hex value. Raw scales appear only in token definitions.
+- **Dark mode via tokens**: define the dark value once on the semantic token (`[data-theme="dark"]` block, `dark:` variant, theme object swap, or `_dark`); components do not branch on mode.
+- **Logical properties**: prefer `margin-inline`, `padding-block`, `inset-inline-start`, `border-inline-end` over left/right/top/bottom so layouts follow writing direction.
+- **Reduced motion**: wrap transitions and animations in `@media (prefers-reduced-motion: no-preference)`, or neutralize them under `prefers-reduced-motion: reduce`.
+- **WCAG AA contrast**: every foreground/background semantic pair meets 4.5:1 (normal text) or 3:1 (large text, UI components) in light and dark. Verify with the `design-styles` MCP server `check_contrast` tool; do not eyeball it.
+
 ## Format Conversion
 
 ### CSS to Tailwind
@@ -949,6 +991,7 @@ function darken(color: string, amount: number): string {
 - **design-styles**: Convert style selections to CSS/Tailwind
 - **component-patterns**: Apply generated styles to components
 - **keycloak-theming**: Generate theme CSS for Keycloak
+- **chakra-ui-v3**: Source of truth for every Chakra UI v3 API used above
 
 ## Resources
 

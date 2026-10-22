@@ -1,0 +1,19 @@
+{
+  "name": "@frontend-design-system/mcp-server",
+  "version": "1.0.0",
+  "description": "Zero-dependency stdio MCP server: design style catalog search, token/system generation (Chakra UI v3, CSS variables, Tailwind), WCAG contrast checks",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "design-styles-mcp": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "check:catalog": "node scripts/build-catalog.mjs --check",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

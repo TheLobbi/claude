@@ -501,6 +501,18 @@ const Card = styled.div`
 `;
 ```
 
+## Chakra UI v3
+
+Chakra UI v3 is a third output target alongside Tailwind and styled-components. Source of truth: `skills/chakra-ui-v3/SKILL.md`. Never emit a pattern from its "v2 → v3 banned list" (`extendTheme`, `colorScheme`, `sx`, `isOpen`/`isDisabled`, `spacing`, and so on).
+
+- Layer order for a style: `tokens` (`{ value }`-wrapped), `semanticTokens` (`base`/`_dark`, `{colors.x}` refs), `recipes`/`slotRecipes`, `globalCss`, exported via `createSystem(defaultConfig, defineConfig(...))`.
+- Custom colors used with `colorPalette` need `50`-`950` plus `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`.
+- Prefer semantic tokens with `_dark` over per-component color-mode hooks.
+- After editing the config, run `npx @chakra-ui/cli typegen ./theme.ts`.
+- Do not recall component props from memory. Use the official `chakra-ui` MCP server (`get_component_props`, `get_component_example`, `v2_to_v3_code_review`).
+- Use the plugin's `design-styles` MCP server: `generate_chakra_system` for a named style (layers 1, 2, 4), `check_contrast` for semantic pairs. Layer 3 (recipes) is hand-authored.
+- Commands: `/style <name> chakra`, `/tokens <category> <style> --format chakra`, `/convert <format> chakra <input>`.
+
 ## Deliverables
 
 ### 1. Design Token Files

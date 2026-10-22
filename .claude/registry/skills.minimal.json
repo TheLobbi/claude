@@ -63,6 +63,12 @@
     "drawio:mcp-integration": "../plugins/drawio-diagramming/skills/mcp-integration/SKILL.md",
     "drawio:wireframes-mockups": "../plugins/drawio-diagramming/skills/wireframes-mockups/SKILL.md",
     "drawio:data-structures": "../plugins/drawio-diagramming/skills/data-structures/SKILL.md",
-    "drawio:network-software-mapping": "../plugins/drawio-diagramming/skills/network-software-mapping/SKILL.md"
+    "drawio:network-software-mapping": "../plugins/drawio-diagramming/skills/network-software-mapping/SKILL.md",
+    "frontend-design-system:agentic-patterns": "../plugins/frontend-design-system/skills/agentic-patterns/SKILL.md",
+    "frontend-design-system:chakra-ui-v3": "../plugins/frontend-design-system/skills/chakra-ui-v3/SKILL.md",
+    "frontend-design-system:component-patterns": "../plugins/frontend-design-system/skills/component-patterns/SKILL.md",
+    "frontend-design-system:css-generation": "../plugins/frontend-design-system/skills/css-generation/SKILL.md",
+    "frontend-design-system:design-styles": "../plugins/frontend-design-system/skills/design-styles/SKILL.md",
+    "frontend-design-system:keycloak-theming": "../plugins/frontend-design-system/skills/keycloak-theming/SKILL.md"
   }
 }

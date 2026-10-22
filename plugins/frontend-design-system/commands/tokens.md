@@ -19,18 +19,19 @@ allowed-tools:
 
 # Design Tokens Generation Command
 
-Extract and generate design tokens from design styles in multiple formats (CSS variables, JSON, Tailwind config, TypeScript).
+Extract and generate design tokens from design styles in multiple formats (CSS variables, JSON, Tailwind config, TypeScript, Chakra UI v3).
 
 ## Usage
 
 ```bash
-/tokens <category> [style]
+/tokens <category> [style] [--format css|ts|tailwind|json|chakra]
 ```
 
 ## Arguments
 
 - `category` (required): Token category - `colors`, `spacing`, `typography`, `shadows`, `all`
 - `style` (optional): Design style name to extract tokens from (defaults to active theme)
+- `--format` (optional): Output format. Omit to emit the default set; `chakra` emits a Chakra UI v3 system (Format 5 below).
 
 ## Examples
 
@@ -49,6 +50,9 @@ Extract and generate design tokens from design styles in multiple formats (CSS v
 
 # Generate shadow tokens from Neumorphism
 /tokens shadows Neumorphism
+
+# Generate a Chakra UI v3 system from a style
+/tokens all "Material Design" --format chakra
 ```
 
 ## Execution Flow
@@ -569,6 +573,53 @@ module.exports = {
 }
 ```
 
+#### Format 5: Chakra UI v3
+
+Source of truth: `skills/chakra-ui-v3/SKILL.md`. Never emit `extendTheme` or other v2 patterns.
+
+Rules:
+- Every raw token value is wrapped: `{ value: ... }`.
+- Raw palette goes in `theme.tokens`; light/dark meaning goes in `theme.semanticTokens` as `{ base, _dark }`.
+- Reference other tokens with `{colors.x}`.
+- A custom color used with `colorPalette` defines `50`-`950` raw tokens plus the semantic keys `solid`, `contrast`, `fg`, `muted`, `subtle`, `emphasized`, `focusRing`.
+- Export `system = createSystem(defaultConfig, config)`, then run `npx @chakra-ui/cli typegen tokens/theme.ts`.
+
+```typescript
+// tokens/theme.ts
+import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
+
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          50: { value: '#eff6ff' }, // literal values extracted from the style
+          // ... 100-900
+          950: { value: '#172554' },
+        },
+      },
+    },
+    semanticTokens: {
+      colors: {
+        brand: {
+          solid:      { value: { base: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+          contrast:   { value: { base: '{colors.brand.50}',  _dark: '{colors.brand.950}' } },
+          fg:         { value: { base: '{colors.brand.700}', _dark: '{colors.brand.200}' } },
+          muted:      { value: { base: '{colors.brand.100}', _dark: '{colors.brand.900}' } },
+          subtle:     { value: { base: '{colors.brand.200}', _dark: '{colors.brand.800}' } },
+          emphasized: { value: { base: '{colors.brand.300}', _dark: '{colors.brand.700}' } },
+          focusRing:  { value: { base: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+        },
+      },
+    },
+  },
+});
+
+export const system = createSystem(defaultConfig, config);
+```
+
+The hex values and the light/dark step choices above are illustrative; use the extracted style values and verify contrast. For spacing, typography, shadows, and radii, emit the matching `theme.tokens.<category>` groups with `{ value }` wrapping. Validate semantic pairs with `check_contrast` (`design-styles` MCP server) in light and dark. For a full system generated from a named style, use `generate_chakra_system`.
+
 ### 4. Token Documentation
 
 Generate markdown documentation for tokens:
@@ -685,6 +736,7 @@ Files created:
 - tokens/tokens.ts (TypeScript)
 - tokens/tokens.json (JSON)
 - tokens/tailwind.config.tokens.js (Tailwind)
+- tokens/theme.ts (Chakra UI v3, with --format chakra)
 - tokens/README.md (Documentation)
 
 Token count:
