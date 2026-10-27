@@ -146,7 +146,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Review the conversation and check: 1) Were all requested tasks completed? 2) Were any errors encountered that should be documented as lessons learned? 3) Are there uncommitted changes that should be committed? If any task is incomplete or errors occurred, respond with {\"ok\": false, \"reason\": \"description of what remains\"}. If everything is complete, respond with {\"ok\": true}. Context: $ARGUMENTS",
+            "prompt": "FIRST: if the top-level stop_hook_active field in the context below is true, respond {\"ok\": true} immediately (Claude is continuing because a Stop hook blocked; allow termination). Otherwise review the conversation and check: 1) Were all requested tasks completed? 2) Were any errors encountered that should be documented as lessons learned? 3) Are there uncommitted changes that should be committed? Do NOT block for commit/push/PR steps the user has not authorized, or for questions already put to the user and awaiting their answer; those are pending user decisions, not incomplete work. If a task is genuinely incomplete or an error is undocumented, respond with {\"ok\": false, \"reason\": \"description of what remains\"}. If everything is complete or only user decisions remain, respond with {\"ok\": true}. Context: $ARGUMENTS",
             "timeout": 30
           }
         ]
