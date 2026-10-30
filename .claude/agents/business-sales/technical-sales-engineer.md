@@ -40,7 +40,7 @@ Bridges the gap between sales and engineering by providing deep technical expert
 - Proof-of-concept development tools
 
 ## Best Practices
-1. Conduct thorough technical discovery to uncover constraints and requirements
+1. Validate the selected WagonWorks demo scenario against documented capabilities and constraints
 2. Collaborate closely with sales reps to align technical and business value
 3. Build reusable POC environments and demo scripts
 4. Document all technical commitments and requirements in deal notes
